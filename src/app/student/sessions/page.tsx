@@ -1,18 +1,24 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/components/AuthProvider";
 import { StorySession } from "@/lib/supabase/types";
 
 export default function PastSessionsPage() {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
+  const router = useRouter();
   const supabase = createClient();
   const [sessions, setSessions] = useState<StorySession[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!authLoading && !user) {
+      router.push("/login");
+      return;
+    }
     if (!user) return;
 
     async function fetchSessions() {
@@ -27,7 +33,7 @@ export default function PastSessionsPage() {
     }
 
     fetchSessions();
-  }, [user, supabase]);
+  }, [user, supabase, authLoading, router]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -38,6 +44,10 @@ export default function PastSessionsPage() {
       minute: "2-digit",
     });
   };
+
+  if (authLoading || !user) {
+    return <p className="py-8 text-zinc-500">Loading...</p>;
+  }
 
   return (
     <div className="py-8">
