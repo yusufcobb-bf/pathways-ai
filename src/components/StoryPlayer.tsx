@@ -3,6 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { story, Choice } from "@/data/story";
+import {
+  computeVirtueScores,
+  getVirtueSummary,
+  VIRTUES,
+  VIRTUE_DESCRIPTIONS,
+  VirtueScores,
+} from "@/data/virtues";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "./AuthProvider";
 
@@ -15,6 +22,7 @@ interface StoryState {
   reflection: string;
   saving: boolean;
   error: string | null;
+  virtueScores: VirtueScores | null;
 }
 
 function ProgressIndicator({
@@ -83,6 +91,37 @@ function ContinueButton({
   );
 }
 
+function VirtueSummary({ scores }: { scores: VirtueScores }) {
+  return (
+    <div className="mt-8 rounded-lg border border-zinc-200 bg-white p-6">
+      <h3 className="mb-4 text-lg font-semibold text-zinc-900">
+        Your Virtue Summary
+      </h3>
+      <div className="space-y-4">
+        {VIRTUES.map((virtue) => {
+          const score = scores[virtue];
+          return (
+            <div key={virtue} className="border-b border-zinc-100 pb-3 last:border-0 last:pb-0">
+              <div className="flex items-center justify-between">
+                <span className="font-medium text-zinc-800">{virtue}</span>
+                <span className="text-sm font-medium text-zinc-600">
+                  {score > 0 ? `+${score}` : score}
+                </span>
+              </div>
+              <p className="mt-1 text-sm text-zinc-500">
+                {getVirtueSummary(virtue, score)}
+              </p>
+              <p className="mt-1 text-xs text-zinc-400">
+                {VIRTUE_DESCRIPTIONS[virtue]}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export default function StoryPlayer() {
   const { user } = useAuth();
   const supabase = createClient();
@@ -94,6 +133,7 @@ export default function StoryPlayer() {
     reflection: "",
     saving: false,
     error: null,
+    virtueScores: null,
   });
 
   const totalCheckpoints = story.checkpoints.length;
@@ -127,11 +167,15 @@ export default function StoryPlayer() {
 
     setState((prev) => ({ ...prev, saving: true, error: null }));
 
+    // Compute virtue scores from choices
+    const virtueScores = computeVirtueScores(state.choices);
+
     const { error } = await supabase.from("story_sessions").insert({
       user_id: user.id,
       story_id: "the-new-student",
       choices: state.choices,
       reflection: state.reflection || null,
+      virtue_scores: virtueScores,
     });
 
     if (error) {
@@ -143,7 +187,12 @@ export default function StoryPlayer() {
       return;
     }
 
-    setState((prev) => ({ ...prev, saving: false, stage: "completed" }));
+    setState((prev) => ({
+      ...prev,
+      saving: false,
+      stage: "completed",
+      virtueScores,
+    }));
   };
 
   const handlePlayAgain = () => {
@@ -154,6 +203,7 @@ export default function StoryPlayer() {
       reflection: "",
       saving: false,
       error: null,
+      virtueScores: null,
     });
   };
 
@@ -221,14 +271,19 @@ export default function StoryPlayer() {
       )}
 
       {state.stage === "completed" && (
-        <div className="text-center">
-          <h2 className="mb-4 text-xl font-semibold text-zinc-900">
-            Session Complete
-          </h2>
-          <p className="mb-8 text-zinc-600">
-            Your story session has been saved.
-          </p>
-          <div className="flex justify-center gap-4">
+        <div>
+          <div className="text-center">
+            <h2 className="mb-4 text-xl font-semibold text-zinc-900">
+              Session Complete
+            </h2>
+            <p className="text-zinc-600">
+              Your story session has been saved.
+            </p>
+          </div>
+
+          {state.virtueScores && <VirtueSummary scores={state.virtueScores} />}
+
+          <div className="mt-8 flex justify-center gap-4">
             <button
               onClick={handlePlayAgain}
               className="rounded-lg bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-800"

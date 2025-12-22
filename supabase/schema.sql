@@ -24,6 +24,7 @@ create table story_sessions (
   story_id text not null,
   choices text[] not null,
   reflection text,
+  virtue_scores jsonb,
   created_at timestamp with time zone default now() not null
 );
 

@@ -6,6 +6,33 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/components/AuthProvider";
 import { StorySession } from "@/lib/supabase/types";
+import { VIRTUES, VirtueScores } from "@/data/virtues";
+
+function VirtueScoreDisplay({ scores }: { scores: VirtueScores }) {
+  return (
+    <div className="mt-4 border-t border-zinc-100 pt-4">
+      <p className="text-sm font-medium text-zinc-700">Virtue Scores:</p>
+      <div className="mt-2 flex flex-wrap gap-2">
+        {VIRTUES.map((virtue) => {
+          const score = scores[virtue];
+          if (score === 0) return null;
+          return (
+            <span
+              key={virtue}
+              className={`rounded-full px-2 py-1 text-xs font-medium ${
+                score > 0
+                  ? "bg-green-100 text-green-700"
+                  : "bg-zinc-100 text-zinc-600"
+              }`}
+            >
+              {virtue}: {score > 0 ? `+${score}` : score}
+            </span>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 export default function PastSessionsPage() {
   const { user, loading: authLoading } = useAuth();
@@ -91,6 +118,9 @@ export default function PastSessionsPage() {
               <p className="text-sm text-zinc-600">
                 Choices: {session.choices.length} decisions made
               </p>
+              {session.virtue_scores && (
+                <VirtueScoreDisplay scores={session.virtue_scores} />
+              )}
               {session.reflection && (
                 <div className="mt-4 border-t border-zinc-100 pt-4">
                   <p className="text-sm font-medium text-zinc-700">
