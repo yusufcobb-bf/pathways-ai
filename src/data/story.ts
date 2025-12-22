@@ -95,3 +95,33 @@ Whatever choices you made today, you had the chance to think about how your acti
 
 Starting at a new school isn't easy. Sometimes a small gesture — a smile, an invitation, or just noticing someone — can make a big difference.`,
 };
+
+// Helper function to get a choice by its ID
+export function getChoiceById(choiceId: string): Choice | undefined {
+  for (const checkpoint of story.checkpoints) {
+    const choice = checkpoint.choices.find((c) => c.id === choiceId);
+    if (choice) return choice;
+  }
+  return undefined;
+}
+
+// Helper function to get checkpoint info for a choice ID
+export function getCheckpointForChoice(choiceId: string): {
+  checkpoint: Checkpoint;
+  index: number;
+} | undefined {
+  for (let i = 0; i < story.checkpoints.length; i++) {
+    const checkpoint = story.checkpoints[i];
+    if (checkpoint.choices.some((c) => c.id === choiceId)) {
+      return { checkpoint, index: i };
+    }
+  }
+  return undefined;
+}
+
+// Checkpoint labels for display
+export const CHECKPOINT_LABELS = [
+  "First Interaction",
+  "Group Project",
+  "Lunch Table",
+] as const;
