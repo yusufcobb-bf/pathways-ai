@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/components/AuthProvider";
 import { StorySession } from "@/lib/supabase/types";
 import { VIRTUES, VirtueScores } from "@/data/virtues";
+import { getStoryTitleById } from "@/data/story";
 
 function VirtueScoreDisplay({ scores }: { scores: VirtueScores }) {
   return (
@@ -109,7 +110,7 @@ export default function PastSessionsPage() {
             >
               <div className="mb-2 flex items-center justify-between">
                 <span className="font-medium text-zinc-900">
-                  The New Student
+                  {getStoryTitleById(session.story_id)}
                 </span>
                 <span className="text-sm text-zinc-500">
                   {formatDate(session.created_at)}

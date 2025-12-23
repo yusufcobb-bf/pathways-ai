@@ -1,0 +1,58 @@
+{
+  "id": "community-garden-project",
+  "title": "The Community Garden Project",
+  "intro": "Your class has been chosen to help create a new community garden in the empty lot next to your school. Everyone is excited about planting vegetables and flowers that the whole neighborhood can enjoy. The project will take several weeks, and today is the first day of planning.\n\nAs you walk into the classroom, you notice that the desks have been arranged in small groups. Mrs. Chen explains that each group will be responsible for designing and caring for one section of the garden. You look around and see some of your close friends already sitting together, but you also notice Alex sitting alone at a table, looking hopeful that someone will join.",
+  "checkpoints": [
+    {
+      "id": "c1",
+      "prompt": "You need to choose which group to join for the garden project. Your best friends Maya and Jordan are waving you over to their table, which already has three people. There's one empty seat left. At the same time, you see Alex sitting alone, organizing some seed packets they brought from home. Alex has great ideas but is often quiet in group settings.",
+      "choices": [
+        {
+          "id": "c1-a",
+          "text": "Walk over to Alex and ask if you can work together, then invite others to join your group"
+        },
+        {
+          "id": "c1-b",
+          "text": "Join your friends but suggest that Alex joins your group too"
+        },
+        {
+          "id": "c1-c",
+          "text": "Quickly take the last seat with your friends before someone else does"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "prompt": "During the planning session, your group is deciding what to plant in your section. Most people want to grow tomatoes and sunflowers because they're easy and popular. However, you remember that the community center nearby serves meals to elderly residents who might benefit from herbs and vegetables that are good for cooking. The decision needs to be made soon so you can order seeds.",
+      "choices": [
+        {
+          "id": "c2-a",
+          "text": "Suggest researching what plants would be most useful for the community center's meals"
+        },
+        {
+          "id": "c2-b",
+          "text": "Propose a compromise: plant some popular flowers and some practical herbs and vegetables"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "prompt": "It's the third week of the project, and your garden section is looking great. However, you notice that another group's plants aren't doing well because they haven't been watering them regularly. Some of those students seem overwhelmed with other schoolwork and activities. The teacher hasn't noticed yet, but you can see their plants are starting to wilt.",
+      "choices": [
+        {
+          "id": "c3-a",
+          "text": "Offer to help the struggling group with their watering schedule and share gardening tips"
+        },
+        {
+          "id": "c3-b",
+          "text": "Quietly water their plants when you're tending to your own section"
+        },
+        {
+          "id": "c3-c",
+          "text": "Focus on your own group's section since everyone is responsible for their own area"
+        }
+      ]
+    }
+  ],
+  "ending": "As the weeks pass, the community garden begins to take shape. Each group's section reflects the different choices and efforts that went into planning and caring for it. Neighbors start stopping by to see the progress, and some even offer to help with watering during weekends. The project becomes more than just a school assignment—it becomes a space where the whole community can come together. When the first vegetables are ready to harvest, your class decides to donate them to the community center, and everyone feels proud of what they've accomplished together."
+}

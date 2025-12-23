@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { StorySession } from "@/lib/supabase/types";
 import { VIRTUES, VirtueScores } from "@/data/virtues";
+import { getStoryTitleById } from "@/data/story";
 import SessionDetail from "@/components/SessionDetail";
 
 function VirtueScoreBadges({ scores }: { scores: VirtueScores }) {
@@ -46,7 +47,7 @@ function SessionCard({ session }: { session: StorySession }) {
     <div className="rounded-lg border border-zinc-200 bg-white p-6">
       {/* Summary Header */}
       <div className="mb-2 flex items-center justify-between">
-        <span className="font-medium text-zinc-900">The New Student</span>
+        <span className="font-medium text-zinc-900">{getStoryTitleById(session.story_id)}</span>
         <span className="text-sm text-zinc-500">
           {formatDate(session.created_at)}
         </span>

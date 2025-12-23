@@ -1,3 +1,8 @@
+import {
+  GeneratedStory,
+  safeValidateGeneratedStory,
+} from "@/lib/ai/story-schema";
+
 export interface Choice {
   id: string;
   text: string;
@@ -16,7 +21,55 @@ export interface Story {
   ending: string;
 }
 
-export const story: Story = {
+// Normalize a GeneratedStory (with "prompt") to Story (with "narrative")
+function normalizeGeneratedStory(generated: GeneratedStory): Story {
+  return {
+    title: generated.title,
+    intro: generated.intro,
+    checkpoints: generated.checkpoints.map((cp) => ({
+      id: cp.id,
+      narrative: cp.prompt, // Map "prompt" to "narrative"
+      choices: cp.choices,
+    })),
+    ending: generated.ending,
+  };
+}
+
+// Try to import the generated story (may not exist)
+let generatedStoryData: unknown = null;
+try {
+  // This import will fail at build time if the file doesn't exist
+  // which is expected behavior - we'll use the fallback story
+  generatedStoryData = require("./generated-story.json");
+} catch {
+  // File doesn't exist - this is expected if story hasn't been generated yet
+}
+
+// Load story from generated JSON file, falling back to hardcoded story
+export function loadStory(): { story: Story; storyId: string; isGenerated: boolean } {
+  if (generatedStoryData) {
+    const validation = safeValidateGeneratedStory(generatedStoryData);
+
+    if (validation.success && validation.data) {
+      return {
+        story: normalizeGeneratedStory(validation.data),
+        storyId: validation.data.id,
+        isGenerated: true,
+      };
+    }
+
+    console.warn("Generated story validation failed:", validation.error?.message);
+  }
+
+  return {
+    story: fallbackStory,
+    storyId: "the-new-student",
+    isGenerated: false,
+  };
+}
+
+// Fallback story used when no generated story is available
+export const fallbackStory: Story = {
   title: "The New Student",
   intro: `It's the first day back at school after winter break. You walk into your classroom and notice someone sitting alone at the back — a new student you've never seen before.
 
@@ -96,27 +149,46 @@ Whatever choices you made today, you had the chance to think about how your acti
 Starting at a new school isn't easy. Sometimes a small gesture — a smile, an invitation, or just noticing someone — can make a big difference.`,
 };
 
-// Helper function to get a choice by its ID
-export function getChoiceById(choiceId: string): Choice | undefined {
-  for (const checkpoint of story.checkpoints) {
+// Backwards-compatible export (used by SessionDetail)
+export const story = fallbackStory;
+
+// Helper function to get a choice by its ID from a given story
+export function getChoiceByIdFromStory(
+  storyData: Story,
+  choiceId: string
+): Choice | undefined {
+  for (const checkpoint of storyData.checkpoints) {
     const choice = checkpoint.choices.find((c) => c.id === choiceId);
     if (choice) return choice;
   }
   return undefined;
 }
 
-// Helper function to get checkpoint info for a choice ID
-export function getCheckpointForChoice(choiceId: string): {
-  checkpoint: Checkpoint;
-  index: number;
-} | undefined {
-  for (let i = 0; i < story.checkpoints.length; i++) {
-    const checkpoint = story.checkpoints[i];
+// Helper function to get checkpoint info for a choice ID from a given story
+export function getCheckpointForChoiceFromStory(
+  storyData: Story,
+  choiceId: string
+): { checkpoint: Checkpoint; index: number } | undefined {
+  for (let i = 0; i < storyData.checkpoints.length; i++) {
+    const checkpoint = storyData.checkpoints[i];
     if (checkpoint.choices.some((c) => c.id === choiceId)) {
       return { checkpoint, index: i };
     }
   }
   return undefined;
+}
+
+// Helper function to get a choice by its ID (uses fallback story for backwards compatibility)
+export function getChoiceById(choiceId: string): Choice | undefined {
+  return getChoiceByIdFromStory(fallbackStory, choiceId);
+}
+
+// Helper function to get checkpoint info for a choice ID (uses fallback story for backwards compatibility)
+export function getCheckpointForChoice(choiceId: string): {
+  checkpoint: Checkpoint;
+  index: number;
+} | undefined {
+  return getCheckpointForChoiceFromStory(fallbackStory, choiceId);
 }
 
 // Checkpoint labels for display
@@ -125,3 +197,25 @@ export const CHECKPOINT_LABELS = [
   "Group Project",
   "Lunch Table",
 ] as const;
+
+// Get story title by ID (for displaying in session history)
+export function getStoryTitleById(storyId: string): string {
+  // Check if it's the fallback story
+  if (storyId === "the-new-student") {
+    return fallbackStory.title;
+  }
+
+  // Check if we have a generated story with this ID
+  if (generatedStoryData) {
+    const validation = safeValidateGeneratedStory(generatedStoryData);
+    if (validation.success && validation.data && validation.data.id === storyId) {
+      return validation.data.title;
+    }
+  }
+
+  // Default fallback for unknown story IDs
+  return storyId
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}

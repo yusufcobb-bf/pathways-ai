@@ -105,3 +105,46 @@ export function getVirtueSummary(virtue: Virtue, score: number): string {
     return `There were opportunities to show more ${virtue.toLowerCase()}.`;
   }
 }
+
+// Position-based virtue mapping for AI-generated stories
+// Since AI doesn't generate scores, we use the choice position to determine virtue impacts
+// The system prompt ensures: a = most empathetic, b = moderate, c = least engaged
+const POSITION_VIRTUE_MAP: Record<string, Partial<VirtueScores>> = {
+  a: { Empathy: 2, Courage: 2 },
+  b: { Empathy: 1, "Self-Control": 1 },
+  c: { Empathy: -1 },
+};
+
+// Get virtue impact for a choice based on its position (a, b, or c)
+export function getPositionBasedVirtueImpact(
+  choiceId: string
+): Partial<VirtueScores> {
+  // Extract the letter from choice ID (e.g., "c1-a" → "a")
+  const match = choiceId.match(/^c[1-3]-([abc])$/);
+  if (!match) return {};
+
+  const position = match[1];
+  return POSITION_VIRTUE_MAP[position] || {};
+}
+
+// Compute virtue scores using position-based mapping (for generated stories)
+export function computePositionBasedVirtueScores(
+  choices: string[]
+): VirtueScores {
+  const scores: VirtueScores = {
+    Empathy: 0,
+    Respect: 0,
+    Responsibility: 0,
+    Courage: 0,
+    "Self-Control": 0,
+  };
+
+  for (const choiceId of choices) {
+    const impacts = getPositionBasedVirtueImpact(choiceId);
+    for (const [virtue, value] of Object.entries(impacts)) {
+      scores[virtue as Virtue] += value;
+    }
+  }
+
+  return scores;
+}

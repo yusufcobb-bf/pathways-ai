@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import StoryPlayer from "@/components/StoryPlayer";
+import { loadStory } from "@/data/story";
 
 export default async function StudentHome() {
   const supabase = await createClient();
@@ -10,5 +11,10 @@ export default async function StudentHome() {
     redirect("/login");
   }
 
-  return <StoryPlayer />;
+  // Load the story (generated or fallback)
+  const { story, storyId, isGenerated } = loadStory();
+
+  return (
+    <StoryPlayer story={story} storyId={storyId} isGenerated={isGenerated} />
+  );
 }

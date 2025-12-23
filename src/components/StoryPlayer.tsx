@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { story, Choice } from "@/data/story";
+import { Story, Choice } from "@/data/story";
 import {
   computeVirtueScores,
+  computePositionBasedVirtueScores,
   getVirtueSummary,
   VIRTUES,
   VIRTUE_DESCRIPTIONS,
@@ -12,6 +13,12 @@ import {
 } from "@/data/virtues";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "./AuthProvider";
+
+interface StoryPlayerProps {
+  story: Story;
+  storyId: string;
+  isGenerated: boolean;
+}
 
 type Stage = "intro" | "checkpoint" | "ending" | "reflection" | "completed";
 
@@ -122,7 +129,11 @@ function VirtueSummary({ scores }: { scores: VirtueScores }) {
   );
 }
 
-export default function StoryPlayer() {
+export default function StoryPlayer({
+  story,
+  storyId,
+  isGenerated,
+}: StoryPlayerProps) {
   const { user } = useAuth();
   const supabase = createClient();
 
@@ -168,11 +179,14 @@ export default function StoryPlayer() {
     setState((prev) => ({ ...prev, saving: true, error: null }));
 
     // Compute virtue scores from choices
-    const virtueScores = computeVirtueScores(state.choices);
+    // Use position-based scoring for generated stories, standard scoring for fallback
+    const virtueScores = isGenerated
+      ? computePositionBasedVirtueScores(state.choices)
+      : computeVirtueScores(state.choices);
 
     const { error } = await supabase.from("story_sessions").insert({
       user_id: user.id,
-      story_id: "the-new-student",
+      story_id: storyId,
       choices: state.choices,
       reflection: state.reflection || null,
       virtue_scores: virtueScores,
