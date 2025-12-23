@@ -313,6 +313,18 @@ export const CHECKPOINT_LABELS = [
 ] as const;
 
 /**
+ * Get story pool position by ID (for educator visibility).
+ * Returns position (1-indexed) and total pool size.
+ * Returns null if story is not in the current pool.
+ */
+export function getStoryPoolPosition(storyId: string): { position: number; total: number } | null {
+  const pool = loadStoryPool();
+  const index = pool.findIndex((entry) => entry.storyId === storyId);
+  if (index === -1) return null;
+  return { position: index + 1, total: pool.length };
+}
+
+/**
  * Get story title by ID (for displaying in session history).
  * Searches the story pool first, then falls back to ID formatting.
  */

@@ -1,8 +1,10 @@
 import { StorySession } from "@/lib/supabase/types";
 import {
-  story,
   getChoiceById,
   getCheckpointForChoice,
+  getStoryTitleById,
+  getStoryFromPool,
+  getStoryPoolPosition,
   CHECKPOINT_LABELS,
 } from "@/data/story";
 import {
@@ -112,12 +114,36 @@ function DiscussionPromptsSection({ scores }: { scores: VirtueScores }) {
 }
 
 export default function SessionDetail({ session }: SessionDetailProps) {
+  // Get story metadata for this session
+  const storyId = session.story_id;
+  const poolEntry = getStoryFromPool(storyId);
+  const poolPosition = getStoryPoolPosition(storyId);
+
   return (
     <div className="mt-4 space-y-6 border-t border-zinc-200 pt-4">
       {/* Story Info */}
-      <div>
-        <h4 className="mb-1 text-sm font-semibold text-zinc-700">Story</h4>
-        <p className="text-sm text-zinc-600">{story.title}</p>
+      <div className="rounded-lg bg-zinc-50 p-4">
+        <h4 className="mb-2 text-sm font-semibold text-zinc-700">Story Information</h4>
+        <div className="space-y-1 text-sm text-zinc-600">
+          <p>
+            <span className="font-medium text-zinc-700">Title:</span>{" "}
+            {getStoryTitleById(storyId)}
+          </p>
+          <p>
+            <span className="font-medium text-zinc-700">ID:</span>{" "}
+            <span className="font-mono text-xs">{storyId}</span>
+          </p>
+          <p>
+            <span className="font-medium text-zinc-700">Source:</span>{" "}
+            {poolEntry?.isGenerated ? "AI-Generated" : "Fallback Story"}
+          </p>
+          {poolPosition && (
+            <p>
+              <span className="font-medium text-zinc-700">Position:</span>{" "}
+              Story {poolPosition.position} of {poolPosition.total}
+            </p>
+          )}
+        </div>
       </div>
 
       {/* Choices Made */}
