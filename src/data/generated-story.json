@@ -1,58 +1,58 @@
 {
-  "id": "community-garden-project",
-  "title": "The Community Garden Project",
-  "intro": "Your class has been chosen to help create a new community garden in the empty lot next to your school. Everyone is excited about planting vegetables and flowers that the whole neighborhood can enjoy. The project will take several weeks, and today is the first day of planning.\n\nAs you walk into the classroom, you notice that the desks have been arranged in small groups. Mrs. Chen explains that each group will be responsible for designing and caring for one section of the garden. You look around and see some of your close friends already sitting together, but you also notice Alex sitting alone at a table, looking hopeful that someone will join.",
+  "id": "missing-lunch-money",
+  "title": "The Missing Lunch Money",
+  "intro": "You're sitting in the school cafeteria with your friend Kai when you notice him staring at his empty lunch tray. The lunch line is getting shorter, and most students already have their food. Kai keeps checking his pockets and looking around nervously.\n\n'I can't find my lunch money anywhere,' Kai says quietly, running his hands through his backpack one more time. 'I know I had it this morning.' You have enough money for your own lunch plus a little extra that your mom gave you for emergencies.",
   "checkpoints": [
     {
       "id": "c1",
-      "prompt": "You need to choose which group to join for the garden project. Your best friends Maya and Jordan are waving you over to their table, which already has three people. There's one empty seat left. At the same time, you see Alex sitting alone, organizing some seed packets they brought from home. Alex has great ideas but is often quiet in group settings.",
+      "prompt": "The cashier calls out that the lunch line will close in five minutes. Kai closes his backpack and starts to get up from the table. 'I guess I'm not eating today,' he says with a shrug. You can see other students like Elena and Marcus still in line getting their food.",
       "choices": [
         {
           "id": "c1-a",
-          "text": "Walk over to Alex and ask if you can work together, then invite others to join your group"
+          "text": "Offer to buy Kai lunch with your extra money"
         },
         {
           "id": "c1-b",
-          "text": "Join your friends but suggest that Alex joins your group too"
+          "text": "Suggest asking the cafeteria worker if there's a way to get lunch without money today"
         },
         {
           "id": "c1-c",
-          "text": "Quickly take the last seat with your friends before someone else does"
+          "text": "Ask Kai if he wants to share half of whatever you get for lunch"
         }
       ]
     },
     {
       "id": "c2",
-      "prompt": "During the planning session, your group is deciding what to plant in your section. Most people want to grow tomatoes and sunflowers because they're easy and popular. However, you remember that the community center nearby serves meals to elderly residents who might benefit from herbs and vegetables that are good for cooking. The decision needs to be made soon so you can order seeds.",
+      "prompt": "While you're deciding what to do, you overhear Elena talking to her friend about finding a crumpled five-dollar bill near the water fountain earlier. She mentions she turned it in to the main office because she wasn't sure whose it was. Kai doesn't seem to have heard this conversation.",
       "choices": [
         {
           "id": "c2-a",
-          "text": "Suggest researching what plants would be most useful for the community center's meals"
+          "text": "Tell Kai what Elena said about finding money near the water fountain"
         },
         {
           "id": "c2-b",
-          "text": "Propose a compromise: plant some popular flowers and some practical herbs and vegetables"
+          "text": "Ask Elena directly about the money she found"
         }
       ]
     },
     {
       "id": "c3",
-      "prompt": "It's the third week of the project, and your garden section is looking great. However, you notice that another group's plants aren't doing well because they haven't been watering them regularly. Some of those students seem overwhelmed with other schoolwork and activities. The teacher hasn't noticed yet, but you can see their plants are starting to wilt.",
+      "prompt": "The cafeteria is starting to empty out as students finish getting their lunch. You notice the main office is just down the hall from the cafeteria, and there's still about fifteen minutes left in the lunch period. Kai is gathering his things slowly, and Elena has moved to a table near the windows with her food.",
       "choices": [
         {
           "id": "c3-a",
-          "text": "Offer to help the struggling group with their watering schedule and share gardening tips"
+          "text": "Walk with Kai to the main office to check about the lost money"
         },
         {
           "id": "c3-b",
-          "text": "Quietly water their plants when you're tending to your own section"
+          "text": "Get your lunch first and then figure out the situation"
         },
         {
           "id": "c3-c",
-          "text": "Focus on your own group's section since everyone is responsible for their own area"
+          "text": "Sit with Kai and eat whatever food you can share between you both"
         }
       ]
     }
   ],
-  "ending": "As the weeks pass, the community garden begins to take shape. Each group's section reflects the different choices and efforts that went into planning and caring for it. Neighbors start stopping by to see the progress, and some even offer to help with watering during weekends. The project becomes more than just a school assignment—it becomes a space where the whole community can come together. When the first vegetables are ready to harvest, your class decides to donate them to the community center, and everyone feels proud of what they've accomplished together."
+  "ending": "The lunch period continues with students finishing their meals and cleaning up their tables. Some head outside to the playground while others stay inside to finish homework or talk with friends. The afternoon classes will start soon, and the cafeteria workers begin preparing for the next lunch shift."
 }
