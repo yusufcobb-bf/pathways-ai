@@ -223,7 +223,15 @@ export default function StoryPlayer({
 
   return (
     <div className="mx-auto max-w-2xl py-8">
-      <h1 className="mb-8 text-2xl font-bold text-zinc-900">{story.title}</h1>
+      <div className="mb-8 flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-zinc-900">{story.title}</h1>
+        <Link
+          href="/student/sessions"
+          className="text-sm text-zinc-500 hover:text-zinc-700"
+        >
+          View Past Sessions
+        </Link>
+      </div>
 
       {state.stage === "intro" && (
         <div>

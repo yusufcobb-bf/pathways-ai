@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { StorySession } from "@/lib/supabase/types";
 import { VIRTUES, VirtueScores } from "@/data/virtues";
@@ -98,12 +99,22 @@ export default function EducatorDashboard() {
 
   return (
     <div className="py-8">
-      <h1 className="mb-2 text-2xl font-bold text-zinc-900">
-        Educator Dashboard
-      </h1>
-      <p className="mb-8 text-zinc-600">
-        Review student sessions, virtue outcomes, and discussion prompts.
-      </p>
+      <div className="mb-8 flex items-start justify-between">
+        <div>
+          <h1 className="mb-2 text-2xl font-bold text-zinc-900">
+            Educator Dashboard
+          </h1>
+          <p className="text-zinc-600">
+            Review student sessions, virtue outcomes, and discussion prompts.
+          </p>
+        </div>
+        <Link
+          href="/educator/story-preview"
+          className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
+        >
+          Preview Active Story
+        </Link>
+      </div>
 
       {loading ? (
         <p className="text-zinc-500">Loading sessions...</p>
