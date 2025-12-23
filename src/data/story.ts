@@ -21,6 +21,16 @@ export interface Story {
   ending: string;
 }
 
+// ============================================================
+// STORY POOL INFRASTRUCTURE (Stage 6a)
+// ============================================================
+
+export interface StoryPoolEntry {
+  story: Story;
+  storyId: string;
+  isGenerated: boolean;
+}
+
 // Normalize a GeneratedStory (with "prompt") to Story (with "narrative")
 function normalizeGeneratedStory(generated: GeneratedStory): Story {
   return {
@@ -35,21 +45,117 @@ function normalizeGeneratedStory(generated: GeneratedStory): Story {
   };
 }
 
-// Try to import the generated story (may not exist)
-let generatedStoryData: unknown = null;
+// Load story data from pool files (static imports)
+// Using require() for compatibility with Next.js build
+let storyPool1Data: unknown = null;
+let storyPool2Data: unknown = null;
+let storyPool3Data: unknown = null;
+
 try {
-  // This import will fail at build time if the file doesn't exist
-  // which is expected behavior - we'll use the fallback story
-  generatedStoryData = require("./generated-story.json");
+  storyPool1Data = require("./stories/story-1.json");
 } catch {
-  // File doesn't exist - this is expected if story hasn't been generated yet
+  // File doesn't exist - will use fallback
 }
 
-// Load story from generated JSON file, falling back to hardcoded story
-export function loadStory(): { story: Story; storyId: string; isGenerated: boolean } {
-  if (generatedStoryData) {
-    const validation = safeValidateGeneratedStory(generatedStoryData);
+try {
+  storyPool2Data = require("./stories/story-2.json");
+} catch {
+  // File doesn't exist - will use fallback
+}
 
+try {
+  storyPool3Data = require("./stories/story-3.json");
+} catch {
+  // File doesn't exist - will use fallback
+}
+
+// Build the story pool from loaded data
+function buildStoryPoolEntry(data: unknown): StoryPoolEntry | null {
+  if (!data) return null;
+
+  const validation = safeValidateGeneratedStory(data);
+  if (validation.success && validation.data) {
+    return {
+      story: normalizeGeneratedStory(validation.data),
+      storyId: validation.data.id,
+      isGenerated: true,
+    };
+  }
+
+  return null;
+}
+
+/**
+ * Load all stories in the pool.
+ * Returns an array of valid stories in order [story-1, story-2, story-3].
+ * Invalid or missing stories are excluded.
+ *
+ * Stage 6b will handle selection logic.
+ */
+export function loadStoryPool(): StoryPoolEntry[] {
+  const pool: StoryPoolEntry[] = [];
+
+  // Load stories in order
+  const entry1 = buildStoryPoolEntry(storyPool1Data);
+  const entry2 = buildStoryPoolEntry(storyPool2Data);
+  const entry3 = buildStoryPoolEntry(storyPool3Data);
+
+  if (entry1) pool.push(entry1);
+  if (entry2) pool.push(entry2);
+  if (entry3) pool.push(entry3);
+
+  // If no stories in pool, add fallback
+  if (pool.length === 0) {
+    pool.push({
+      story: fallbackStory,
+      storyId: "the-new-student",
+      isGenerated: false,
+    });
+  }
+
+  return pool;
+}
+
+/**
+ * Get a specific story from the pool by ID.
+ * Returns undefined if not found.
+ */
+export function getStoryFromPool(storyId: string): StoryPoolEntry | undefined {
+  const pool = loadStoryPool();
+  return pool.find((entry) => entry.storyId === storyId);
+}
+
+// ============================================================
+// BACKWARD COMPATIBLE EXPORTS
+// ============================================================
+
+// Legacy: Try to import the old generated story location (for migration)
+let legacyGeneratedStoryData: unknown = null;
+try {
+  legacyGeneratedStoryData = require("./generated-story.json");
+} catch {
+  // File doesn't exist - expected if migrated to pool
+}
+
+/**
+ * Load the active story for gameplay.
+ *
+ * Currently returns the FIRST valid story from the pool.
+ * Stage 6b will handle selection logic (round-robin, etc.)
+ */
+export function loadStory(): { story: Story; storyId: string; isGenerated: boolean } {
+  // First, check the story pool
+  const pool = loadStoryPool();
+
+  if (pool.length > 0) {
+    // Stage 6b will handle selection logic
+    // For now, return the first story in the pool
+    return pool[0];
+  }
+
+  // Legacy fallback: check old generated-story.json location
+  if (legacyGeneratedStoryData) {
+    const validation = safeValidateGeneratedStory(legacyGeneratedStoryData);
     if (validation.success && validation.data) {
       return {
         story: normalizeGeneratedStory(validation.data),
@@ -57,10 +163,10 @@ export function loadStory(): { story: Story; storyId: string; isGenerated: boole
         isGenerated: true,
       };
     }
-
     console.warn("Generated story validation failed:", validation.error?.message);
   }
 
+  // Final fallback: hardcoded story
   return {
     story: fallbackStory,
     storyId: "the-new-student",
@@ -68,7 +174,11 @@ export function loadStory(): { story: Story; storyId: string; isGenerated: boole
   };
 }
 
-// Fallback story used when no generated story is available
+// ============================================================
+// FALLBACK STORY
+// ============================================================
+
+// Fallback story used when no generated stories are available
 export const fallbackStory: Story = {
   title: "The New Student",
   intro: `It's the first day back at school after winter break. You walk into your classroom and notice someone sitting alone at the back — a new student you've never seen before.
@@ -152,6 +262,10 @@ Starting at a new school isn't easy. Sometimes a small gesture — a smile, an i
 // Backwards-compatible export (used by SessionDetail)
 export const story = fallbackStory;
 
+// ============================================================
+// HELPER FUNCTIONS
+// ============================================================
+
 // Helper function to get a choice by its ID from a given story
 export function getChoiceByIdFromStory(
   storyData: Story,
@@ -198,22 +312,32 @@ export const CHECKPOINT_LABELS = [
   "Lunch Table",
 ] as const;
 
-// Get story title by ID (for displaying in session history)
+/**
+ * Get story title by ID (for displaying in session history).
+ * Searches the story pool first, then falls back to ID formatting.
+ */
 export function getStoryTitleById(storyId: string): string {
   // Check if it's the fallback story
   if (storyId === "the-new-student") {
     return fallbackStory.title;
   }
 
-  // Check if we have a generated story with this ID
-  if (generatedStoryData) {
-    const validation = safeValidateGeneratedStory(generatedStoryData);
+  // Check the story pool for this ID
+  const pool = loadStoryPool();
+  const poolEntry = pool.find((entry) => entry.storyId === storyId);
+  if (poolEntry) {
+    return poolEntry.story.title;
+  }
+
+  // Check legacy generated story location
+  if (legacyGeneratedStoryData) {
+    const validation = safeValidateGeneratedStory(legacyGeneratedStoryData);
     if (validation.success && validation.data && validation.data.id === storyId) {
       return validation.data.title;
     }
   }
 
-  // Default fallback for unknown story IDs
+  // Default fallback for unknown story IDs: format the ID nicely
   return storyId
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
