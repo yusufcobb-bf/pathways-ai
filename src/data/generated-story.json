@@ -1,58 +1,58 @@
 {
-  "id": "missing-lunch-money",
-  "title": "The Missing Lunch Money",
-  "intro": "You're sitting in the school cafeteria with your friend Kai when you notice him staring at his empty lunch tray. The lunch line is getting shorter, and most students already have their food. Kai keeps checking his pockets and looking around nervously.\n\n'I can't find my lunch money anywhere,' Kai says quietly, running his hands through his backpack one more time. 'I know I had it this morning.' You have enough money for your own lunch plus a little extra that your mom gave you for emergencies.",
+  "id": "science-fair-project-mystery",
+  "title": "The Missing Project",
+  "intro": "You arrive at school early on Wednesday morning to check on your science fair project one last time before the judging begins. The hallway is quiet, with only a few teachers preparing their classrooms. You walk toward the display tables set up in the main corridor where all the projects are arranged.\n\nAs you approach your assigned spot, you notice something strange. Your volcano model is there, but the data chart you spent weeks creating is missing. The colorful poster showing your experiment results was taped right next to the volcano yesterday afternoon. Now there's just an empty space on the table.",
   "checkpoints": [
     {
       "id": "c1",
-      "prompt": "The cashier calls out that the lunch line will close in five minutes. Kai closes his backpack and starts to get up from the table. 'I guess I'm not eating today,' he says with a shrug. You can see other students like Elena and Marcus still in line getting their food.",
+      "prompt": "You look around and see Jamal setting up his weather station project two tables away. At the far end of the hall, Ms. Rodriguez is hanging streamers for the fair. Near the gym entrance, you spot Zara organizing papers at a table covered with what looks like multiple project displays.\n\nYour chart could be anywhere, and the judging starts in less than two hours.",
       "choices": [
         {
           "id": "c1-a",
-          "text": "Offer to buy Kai lunch with your extra money"
+          "text": "Walk directly to Zara and ask if she's seen your missing chart"
         },
         {
           "id": "c1-b",
-          "text": "Suggest asking the cafeteria worker if there's a way to get lunch without money today"
+          "text": "Approach Jamal and mention that your poster is missing"
         },
         {
           "id": "c1-c",
-          "text": "Ask Kai if he wants to share half of whatever you get for lunch"
+          "text": "Search around your own table area first"
         }
       ]
     },
     {
       "id": "c2",
-      "prompt": "While you're deciding what to do, you overhear Elena talking to her friend about finding a crumpled five-dollar bill near the water fountain earlier. She mentions she turned it in to the main office because she wasn't sure whose it was. Kai doesn't seem to have heard this conversation.",
+      "prompt": "After your initial search, you notice the janitor's cart parked near the main office. Mr. Chen, the night custodian, is emptying trash bins and organizing cleaning supplies. You also see that the lost and found box outside the principal's office has several papers sticking out of the top.\n\nThe morning announcement crackles over the intercom, reminding everyone that science fair judging begins at 9:30 AM.",
       "choices": [
         {
           "id": "c2-a",
-          "text": "Tell Kai what Elena said about finding money near the water fountain"
+          "text": "Ask Mr. Chen if he moved any papers while cleaning last night"
         },
         {
           "id": "c2-b",
-          "text": "Ask Elena directly about the money she found"
+          "text": "Check the lost and found box for your chart"
         }
       ]
     },
     {
       "id": "c3",
-      "prompt": "The cafeteria is starting to empty out as students finish getting their lunch. You notice the main office is just down the hall from the cafeteria, and there's still about fifteen minutes left in the lunch period. Kai is gathering his things slowly, and Elena has moved to a table near the windows with her food.",
+      "prompt": "Students begin arriving for the day, filling the hallways with chatter and locker slams. You overhear Keisha telling her friend that she saw some papers scattered near the trophy case yesterday after school. The art room door opens, and Mrs. Park steps out carrying a stack of colorful posters.\n\nThe clock on the wall shows 8:45 AM. You have forty-five minutes before the judges arrive.",
       "choices": [
         {
           "id": "c3-a",
-          "text": "Walk with Kai to the main office to check about the lost money"
+          "text": "Head to the trophy case to look for scattered papers"
         },
         {
           "id": "c3-b",
-          "text": "Get your lunch first and then figure out the situation"
+          "text": "Ask Mrs. Park about the posters she's carrying"
         },
         {
           "id": "c3-c",
-          "text": "Sit with Kai and eat whatever food you can share between you both"
+          "text": "Return to your project table and recreate the chart from memory"
         }
       ]
     }
   ],
-  "ending": "The lunch period continues with students finishing their meals and cleaning up their tables. Some head outside to the playground while others stay inside to finish homework or talk with friends. The afternoon classes will start soon, and the cafeteria workers begin preparing for the next lunch shift."
+  "ending": "You take action with your decision, moving through the busy hallway as more students arrive. The science fair setup continues around you, with teachers making final adjustments to displays and students checking their projects. The judges will arrive soon, and whatever happens next will unfold as the morning progresses."
 }
