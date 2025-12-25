@@ -2,6 +2,11 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import StoryPlayer from "@/components/StoryPlayer";
 import { loadStoryPool } from "@/data/story";
+import {
+  getStoryPoolConfig,
+  applyConfigToPool,
+  selectStoryByMode,
+} from "@/lib/story-config";
 
 export default async function StudentHome() {
   const supabase = await createClient();
@@ -18,15 +23,27 @@ export default async function StudentHome() {
     .eq("user_id", user.id)
     .not("reflection", "is", null);
 
-  // Calculate which story to show (round-robin through story pool)
   const completedSessions = count ?? 0;
-  const pool = loadStoryPool();
-  const storyIndex = completedSessions % pool.length;
 
-  // Get the selected story from pool
-  const { story, storyId, isGenerated } = pool[storyIndex];
+  // Load raw story pool
+  const rawPool = loadStoryPool();
 
+  // Fetch educator configuration (returns null if none exists)
+  const config = await getStoryPoolConfig(supabase);
+
+  // Apply config to filter and order the pool
+  const configuredPool = applyConfigToPool(rawPool, config);
+
+  // Select story based on mode (defaults to fixed_sequence if no config)
+  const mode = config?.mode ?? "fixed_sequence";
+  const { story, storyId, isGenerated } = selectStoryByMode(
+    configuredPool,
+    mode,
+    completedSessions
+  );
+
+  // Key includes session count to force remount even if storyId unchanged (fixed mode)
   return (
-    <StoryPlayer key={storyId} story={story} storyId={storyId} isGenerated={isGenerated} />
+    <StoryPlayer key={`${storyId}-${completedSessions}`} story={story} storyId={storyId} isGenerated={isGenerated} />
   );
 }

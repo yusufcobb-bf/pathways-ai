@@ -116,12 +116,20 @@ export default function EducatorDashboard() {
             Review student sessions, virtue outcomes, and discussion prompts.
           </p>
         </div>
-        <Link
-          href="/educator/story-preview"
-          className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
-        >
-          Preview Active Story
-        </Link>
+        <div className="flex gap-2">
+          <Link
+            href="/educator/story-settings"
+            className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
+          >
+            Story Settings
+          </Link>
+          <Link
+            href="/educator/story-preview"
+            className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
+          >
+            Preview Active Story
+          </Link>
+        </div>
       </div>
 
       {loading ? (
