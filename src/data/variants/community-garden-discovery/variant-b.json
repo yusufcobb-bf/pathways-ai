@@ -1,0 +1,59 @@
+{
+  "archetypeId": "community-garden-discovery",
+  "variantId": "park-cleanup-setting",
+  "title": "The Park Cleanup Puzzle",
+  "intro": "You arrive at Willow Creek Park on a bright Saturday morning for the monthly neighborhood cleanup event. The park is quiet this early, with morning fog still hanging over the pond near the entrance. Mr. Patterson, the retired teacher who organizes these events, usually sets up the supply station near the main pavilion by 8 AM.\n\nAs you walk toward the usual meeting spot, something catches your eye near the new butterfly garden that volunteers planted last month. The mulch that was carefully spread around the native plants has been scattered everywhere, and several of the young milkweed plants appear flattened. You spot two familiar faces nearby: Jaylen and Sophie, both regular cleanup volunteers, are standing at the edge of the disturbed area with confused expressions.",
+  "checkpoints": [
+    {
+      "id": "c1",
+      "prompt": "Jaylen shakes his head as you approach. \"This definitely wasn't like this when we left last weekend,\" he says. Sophie crouches near one of the damaged plants and points to the ground. \"There are marks in the dirt here,\" she observes. \"Something was definitely digging around.\" You notice a plastic garden trowel lying in the grass a few feet away, one that looks like it came from the cleanup supply bin. There are clumps of dirt and mulch scattered in a trail leading toward the pond.\n\nThe three of you exchange looks, trying to make sense of what happened to the butterfly garden.",
+      "choices": [
+        {
+          "id": "c1-a",
+          "text": "Pick up the trowel and examine it more closely"
+        },
+        {
+          "id": "c1-b",
+          "text": "Ask Jaylen and Sophie what they think caused this damage"
+        },
+        {
+          "id": "c1-c",
+          "text": "Follow the trail of scattered mulch toward the pond"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "prompt": "You hear footsteps on the gravel path behind you. Mr. Patterson is walking toward the butterfly garden, carrying a stack of trash bags and wearing his usual bright orange volunteer vest. He stops short when he sees the state of the garden bed.\n\n\"Oh dear,\" he says, setting down the supplies. \"I had a feeling something like this might have happened.\" Sophie asks what he means. Mr. Patterson explains, \"I got a text from Mrs. Lee, whose house backs up to the park. She said she heard strange sounds coming from this area around sunset yesterday, but when she looked out her window, she couldn't see anything unusual.\"",
+      "choices": [
+        {
+          "id": "c2-a",
+          "text": "Ask Mr. Patterson what kind of sounds Mrs. Lee heard"
+        },
+        {
+          "id": "c2-b",
+          "text": "Suggest checking if any supplies are missing from the shed"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "prompt": "Mr. Patterson tells you that Mrs. Lee described hearing digging sounds and what she thought might be animal noises. As he finishes speaking, you notice movement in the tall grass at the edge of the butterfly garden. The grass sways back and forth, though there isn't much breeze this morning. Sophie whispers and points toward a small gap in the ornamental fence that separates the garden from the rest of the park.\n\nYou can hear soft rustling sounds coming from the tall grass. Mr. Patterson takes a cautious step toward the movement, while Jaylen picks up a fallen branch to push aside the grass.",
+      "choices": [
+        {
+          "id": "c3-a",
+          "text": "Walk toward the tall grass to see what's hiding there"
+        },
+        {
+          "id": "c3-b",
+          "text": "Stay where you are and call out gently to whatever is in the grass"
+        },
+        {
+          "id": "c3-c",
+          "text": "Wait patiently to see if something emerges on its own"
+        }
+      ]
+    }
+  ],
+  "ending": "A family of raccoons waddles out from the tall grass: one larger adult and three smaller ones. They pause when they see the group of humans, then slowly amble toward the fence gap and disappear into the wooded area beyond the park. Mr. Patterson chuckles and scratches his head. \"Well, that solves our mystery,\" he says. \"Looks like the raccoons discovered the butterfly garden has plenty of grubs and insects.\" Jaylen suggests adding chicken wire around the base of the plants to protect them. Mr. Patterson nods approvingly, and the morning cleanup begins with an unexpected new project to tackle."
+}

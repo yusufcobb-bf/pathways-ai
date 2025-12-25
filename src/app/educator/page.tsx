@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import { StorySession } from "@/lib/supabase/types";
 import { VIRTUES, VirtueScores } from "@/data/virtues";
 import { getStoryTitleById, getStoryPoolPosition } from "@/data/story";
+import { getVariantCountForArchetype, getVariantTitle, getVariantDisplayInfo } from "@/data/variants";
 import SessionDetail from "@/components/SessionDetail";
 
 function VirtueScoreBadges({ scores }: { scores: VirtueScores }) {
@@ -49,11 +50,19 @@ function SessionCard({ session }: { session: StorySession }) {
       {/* Summary Header */}
       <div className="mb-2 flex items-center justify-between">
         <div>
-          <span className="font-medium text-zinc-900">{getStoryTitleById(session.story_id)}</span>
+          <span className="font-medium text-zinc-900">
+            {/* Stage 8: Show variant title if available, otherwise archetype title */}
+            {getVariantTitle(session.story_id, session.variant_id) ?? getStoryTitleById(session.story_id)}
+          </span>
           <p className="text-xs text-zinc-500">
             {(() => {
               const pos = getStoryPoolPosition(session.story_id);
-              return pos ? `Story ${pos.position} of ${pos.total}` : "Custom Story";
+              const poolInfo = pos ? `Story ${pos.position} of ${pos.total}` : "Custom Story";
+
+              // Stage 8: Show which variant was played
+              const variantDisplay = getVariantDisplayInfo(session.story_id, session.variant_id);
+
+              return `${poolInfo} • Variant: ${variantDisplay}`;
             })()}
           </p>
         </div>

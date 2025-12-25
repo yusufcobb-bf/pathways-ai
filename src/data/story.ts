@@ -28,6 +28,7 @@ export interface Story {
 export interface StoryPoolEntry {
   story: Story;
   storyId: string;
+  archetypeId: string; // Stage 8: Each story in pool is an archetype
   isGenerated: boolean;
 }
 
@@ -78,6 +79,7 @@ function buildStoryPoolEntry(data: unknown): StoryPoolEntry | null {
     return {
       story: normalizeGeneratedStory(validation.data),
       storyId: validation.data.id,
+      archetypeId: validation.data.id, // Stage 8: storyId serves as archetypeId
       isGenerated: true,
     };
   }
@@ -109,6 +111,7 @@ export function loadStoryPool(): StoryPoolEntry[] {
     pool.push({
       story: fallbackStory,
       storyId: "the-new-student",
+      archetypeId: "the-new-student", // Stage 8: fallback uses storyId as archetypeId
       isGenerated: false,
     });
   }
@@ -143,7 +146,7 @@ try {
  * Currently returns the FIRST valid story from the pool.
  * Stage 6b will handle selection logic (round-robin, etc.)
  */
-export function loadStory(): { story: Story; storyId: string; isGenerated: boolean } {
+export function loadStory(): { story: Story; storyId: string; archetypeId: string; isGenerated: boolean } {
   // First, check the story pool
   const pool = loadStoryPool();
 
@@ -160,6 +163,7 @@ export function loadStory(): { story: Story; storyId: string; isGenerated: boole
       return {
         story: normalizeGeneratedStory(validation.data),
         storyId: validation.data.id,
+        archetypeId: validation.data.id, // Stage 8: storyId serves as archetypeId
         isGenerated: true,
       };
     }
@@ -170,6 +174,7 @@ export function loadStory(): { story: Story; storyId: string; isGenerated: boole
   return {
     story: fallbackStory,
     storyId: "the-new-student",
+    archetypeId: "the-new-student", // Stage 8: fallback uses storyId as archetypeId
     isGenerated: false,
   };
 }

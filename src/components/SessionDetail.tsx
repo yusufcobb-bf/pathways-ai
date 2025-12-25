@@ -7,6 +7,7 @@ import {
   getStoryPoolPosition,
   CHECKPOINT_LABELS,
 } from "@/data/story";
+import { getVariantCountForArchetype, getVariantTitle, getVariantDisplayInfo } from "@/data/variants";
 import {
   VIRTUES,
   VIRTUE_DESCRIPTIONS,
@@ -116,8 +117,13 @@ function DiscussionPromptsSection({ scores }: { scores: VirtueScores }) {
 export default function SessionDetail({ session }: SessionDetailProps) {
   // Get story metadata for this session
   const storyId = session.story_id;
+  const variantId = session.variant_id;
   const poolEntry = getStoryFromPool(storyId);
   const poolPosition = getStoryPoolPosition(storyId);
+
+  // Stage 8: Get variant info
+  const variantTitle = getVariantTitle(storyId, variantId);
+  const variantDisplay = getVariantDisplayInfo(storyId, variantId);
 
   return (
     <div className="mt-4 space-y-6 border-t border-zinc-200 pt-4">
@@ -127,12 +133,22 @@ export default function SessionDetail({ session }: SessionDetailProps) {
         <div className="space-y-1 text-sm text-zinc-600">
           <p>
             <span className="font-medium text-zinc-700">Title:</span>{" "}
-            {getStoryTitleById(storyId)}
+            {variantTitle ?? getStoryTitleById(storyId)}
           </p>
           <p>
-            <span className="font-medium text-zinc-700">ID:</span>{" "}
+            <span className="font-medium text-zinc-700">Archetype ID:</span>{" "}
             <span className="font-mono text-xs">{storyId}</span>
           </p>
+          <p>
+            <span className="font-medium text-zinc-700">Variant:</span>{" "}
+            {variantDisplay}
+          </p>
+          {variantId && (
+            <p>
+              <span className="font-medium text-zinc-700">Variant ID:</span>{" "}
+              <span className="font-mono text-xs">{variantId}</span>
+            </p>
+          )}
           <p>
             <span className="font-medium text-zinc-700">Source:</span>{" "}
             {poolEntry?.isGenerated ? "AI-Generated" : "Fallback Story"}

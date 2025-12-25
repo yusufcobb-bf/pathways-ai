@@ -8,6 +8,7 @@ import {
   selectStoryByMode,
   selectStoryForShuffledMode,
 } from "@/lib/story-config";
+import { selectVariantForStory, variantToStory } from "@/data/variants";
 
 export default async function StudentHome() {
   const supabase = await createClient();
@@ -49,10 +50,23 @@ export default async function StudentHome() {
         )
       : selectStoryByMode(configuredPool, mode, completedSessions);
 
-  const { story, storyId, isGenerated } = selectedEntry;
+  const { storyId, archetypeId, isGenerated } = selectedEntry;
+
+  // Stage 8: Resolve variant for the selected archetype
+  // Variant selection is deterministic based on completed sessions
+  const variant = selectVariantForStory(archetypeId, completedSessions);
+  const story = variantToStory(variant);
+  const variantId = variant.variantId;
 
   // Key includes session count to force remount even if storyId unchanged (fixed mode)
   return (
-    <StoryPlayer key={`${storyId}-${completedSessions}`} story={story} storyId={storyId} isGenerated={isGenerated} />
+    <StoryPlayer
+      key={`${storyId}-${completedSessions}`}
+      story={story}
+      storyId={storyId}
+      archetypeId={archetypeId}
+      variantId={variantId}
+      isGenerated={isGenerated}
+    />
   );
 }

@@ -10,6 +10,7 @@ export interface StorySession {
   id: string;
   user_id: string;
   story_id: string;
+  variant_id: string | null; // Stage 8: Which variant was played (null = base story)
   choices: string[];
   reflection: string | null;
   virtue_scores: VirtueScores | null;

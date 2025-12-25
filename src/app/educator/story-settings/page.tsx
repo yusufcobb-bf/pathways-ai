@@ -5,6 +5,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { loadStoryPool, StoryPoolEntry } from "@/data/story";
 import { StoryPoolConfig, StoryMode } from "@/lib/supabase/types";
+import { loadVariantsForArchetype } from "@/data/variants";
 
 interface SettingsState {
   loading: boolean;
@@ -308,6 +309,34 @@ export default function StorySettingsPage() {
                       )}
                     </div>
                     <p className="text-xs text-zinc-500">ID: {entry.storyId}</p>
+                    {/* Stage 8: Show variants */}
+                    {(() => {
+                      const variants = loadVariantsForArchetype(entry.storyId);
+                      if (variants.length === 0) {
+                        return (
+                          <p className="mt-1 text-xs text-zinc-400">
+                            No variants (base story only)
+                          </p>
+                        );
+                      }
+                      return (
+                        <div className="mt-2">
+                          <p className="text-xs font-medium text-zinc-600">
+                            {variants.length} variant{variants.length !== 1 ? "s" : ""}:
+                          </p>
+                          <ul className="mt-1 space-y-0.5">
+                            {variants.map((v) => (
+                              <li
+                                key={v.variantId}
+                                className="text-xs text-zinc-500"
+                              >
+                                • {v.title}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      );
+                    })()}
                   </div>
                 </div>
 

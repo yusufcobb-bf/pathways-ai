@@ -18,6 +18,8 @@ import { useAuth } from "./AuthProvider";
 interface StoryPlayerProps {
   story: Story;
   storyId: string;
+  archetypeId: string; // Stage 8: Story archetype ID
+  variantId: string | null; // Stage 8: Variant ID (null = base/canonical story)
   isGenerated: boolean;
 }
 
@@ -133,6 +135,8 @@ function VirtueSummary({ scores }: { scores: VirtueScores }) {
 export default function StoryPlayer({
   story,
   storyId,
+  archetypeId,
+  variantId,
   isGenerated,
 }: StoryPlayerProps) {
   const { user } = useAuth();
@@ -189,6 +193,7 @@ export default function StoryPlayer({
     const { error } = await supabase.from("story_sessions").insert({
       user_id: user.id,
       story_id: storyId,
+      variant_id: variantId, // Stage 8: Save which variant was played (null = base story)
       choices: state.choices,
       reflection: state.reflection || null,
       virtue_scores: virtueScores,
@@ -212,10 +217,10 @@ export default function StoryPlayer({
   };
 
   const handlePlayAgain = () => {
-    // Navigate to /student to trigger fresh server-side story selection
-    // based on updated completed session count
-    router.push("/student");
-    router.refresh();
+    // Force a hard navigation to /student to trigger fresh server-side story selection
+    // Using window.location ensures the server component fully re-renders
+    // with the updated completed session count
+    window.location.href = "/student";
   };
 
   return (
@@ -275,16 +280,25 @@ export default function StoryPlayer({
           <textarea
             value={state.reflection}
             onChange={(e) => handleReflectionChange(e.target.value)}
-            placeholder="Write your thoughts here..."
-            className="h-40 w-full rounded-lg border border-zinc-200 p-4 text-zinc-700 placeholder:text-zinc-400 focus:border-zinc-400 focus:outline-none"
+            placeholder="Write your thoughts here... (required)"
+            className={`h-40 w-full rounded-lg border p-4 text-zinc-700 placeholder:text-zinc-400 focus:outline-none ${
+              state.reflection.trim().length === 0
+                ? "border-zinc-200 focus:border-zinc-400"
+                : "border-green-300 focus:border-green-400"
+            }`}
           />
+          <p className="mt-2 text-sm text-zinc-500">
+            {state.reflection.trim().length === 0
+              ? "Please write a reflection to continue."
+              : `${state.reflection.trim().length} characters`}
+          </p>
           {state.error && (
             <p className="mt-2 text-sm text-red-600">{state.error}</p>
           )}
           <ContinueButton
             onClick={handleFinish}
             label={state.saving ? "Saving..." : "Finish"}
-            disabled={state.saving}
+            disabled={state.saving || state.reflection.trim().length === 0}
           />
         </div>
       )}
