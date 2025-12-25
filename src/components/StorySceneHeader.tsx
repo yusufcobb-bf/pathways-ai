@@ -1,6 +1,7 @@
 /**
  * Stage 13: Story Scene Header
  * Stage 14: Added sceneSubtitle for per-checkpoint updates
+ * Stage 15: Added smooth background transition for mood gradients
  *
  * Visual header component for stories.
  * Displays environment visual (gradient or image), title, and optional subtitle.
@@ -43,7 +44,10 @@ export default function StorySceneHeader({
       ) : gradientStyle ? (
         <div
           className="h-32 w-full"
-          style={{ background: gradientStyle }}
+          style={{
+            background: gradientStyle,
+            transition: "background 300ms ease",
+          }}
         />
       ) : null}
       <div className="p-4">

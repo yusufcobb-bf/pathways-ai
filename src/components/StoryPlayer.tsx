@@ -15,7 +15,7 @@ import {
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "./AuthProvider";
 import StorySceneHeader from "./StorySceneHeader";
-import { getStoryEnvironment } from "@/data/story-environments";
+import { getStoryEnvironment, getStoryGradient } from "@/data/story-environments";
 import { getSceneSubtitle } from "@/data/story-scenes";
 
 interface StoryPlayerProps {
@@ -305,6 +305,7 @@ export default function StoryPlayer({
 
       {/* Stage 13: Visual Story Header */}
       {/* Stage 14: Add scene-specific subtitle based on current stage */}
+      {/* Stage 15: Add mood-based gradient based on current stage */}
       <StorySceneHeader
         title={story.title}
         subtitle={environment?.subtitle}
@@ -312,7 +313,10 @@ export default function StoryPlayer({
           archetypeId,
           state.stage === "intro" ? "intro" : state.checkpointIndex
         )}
-        gradientStyle={environment?.gradientStyle}
+        gradientStyle={getStoryGradient(
+          archetypeId,
+          state.stage === "intro" ? "intro" : state.checkpointIndex
+        )}
         imageSrc={environment?.imageSrc}
       />
 
