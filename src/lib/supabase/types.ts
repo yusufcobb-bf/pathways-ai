@@ -1,8 +1,12 @@
 import { VirtueScores } from "@/data/virtues";
 
+// Stage 12: User roles for RBAC
+export type UserRole = "student" | "educator";
+
 export interface Profile {
   id: string;
   user_id: string;
+  role: UserRole;
   created_at: string;
 }
 

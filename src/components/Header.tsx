@@ -1,17 +1,41 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "./AuthProvider";
 import { createClient } from "@/lib/supabase/client";
+import { UserRole } from "@/lib/supabase/types";
 
 export default function Header() {
   const { user, loading } = useAuth();
   const router = useRouter();
   const supabase = createClient();
+  const [role, setRole] = useState<UserRole | null>(null);
+
+  // Fetch user role when authenticated
+  useEffect(() => {
+    async function fetchRole() {
+      if (!user) {
+        setRole(null);
+        return;
+      }
+
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("user_id", user.id)
+        .single();
+
+      setRole((profile?.role as UserRole) ?? null);
+    }
+
+    fetchRole();
+  }, [user, supabase]);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
+    setRole(null);
     router.push("/");
     router.refresh();
   };
@@ -23,18 +47,24 @@ export default function Header() {
           Pathways AI
         </Link>
         <nav className="flex items-center gap-6">
-          <Link
-            href="/student"
-            className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
-          >
-            Student
-          </Link>
-          <Link
-            href="/educator"
-            className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
-          >
-            Educator
-          </Link>
+          {/* Show Student link for students */}
+          {role === "student" && (
+            <Link
+              href="/student"
+              className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
+            >
+              Student
+            </Link>
+          )}
+          {/* Show Educator link only for educators */}
+          {role === "educator" && (
+            <Link
+              href="/educator"
+              className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
+            >
+              Educator
+            </Link>
+          )}
           {!loading && (
             <>
               {user ? (

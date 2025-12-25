@@ -37,8 +37,14 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Protect student routes
-  if (request.nextUrl.pathname.startsWith("/student") && !user) {
+  const pathname = request.nextUrl.pathname;
+
+  // Stage 12: Protect student and educator routes (auth check only)
+  // Role enforcement happens in layout.tsx files
+  const isStudentRoute = pathname.startsWith("/student");
+  const isEducatorRoute = pathname.startsWith("/educator");
+
+  if ((isStudentRoute || isEducatorRoute) && !user) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     return NextResponse.redirect(url);

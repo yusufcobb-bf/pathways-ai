@@ -7,9 +7,11 @@ import { createClient } from "@/lib/supabase/client";
 
 interface AuthFormProps {
   mode: "login" | "signup";
+  role?: "student" | "educator";
 }
 
-export default function AuthForm({ mode }: AuthFormProps) {
+export default function AuthForm({ mode, role = "student" }: AuthFormProps) {
+  const roleLabel = role === "educator" ? "Educator" : "Student";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -49,7 +51,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
   return (
     <div className="mx-auto max-w-sm py-16">
       <h1 className="mb-8 text-2xl font-bold text-zinc-900">
-        {mode === "login" ? "Log In" : "Sign Up"}
+        {roleLabel} {mode === "login" ? "Log In" : "Sign Up"}
       </h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -109,14 +111,14 @@ export default function AuthForm({ mode }: AuthFormProps) {
         {mode === "login" ? (
           <>
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="font-medium text-zinc-900 hover:underline">
+            <Link href={`/signup?role=${role}`} className="font-medium text-zinc-900 hover:underline">
               Sign up
             </Link>
           </>
         ) : (
           <>
             Already have an account?{" "}
-            <Link href="/login" className="font-medium text-zinc-900 hover:underline">
+            <Link href={`/login?role=${role}`} className="font-medium text-zinc-900 hover:underline">
               Log in
             </Link>
           </>

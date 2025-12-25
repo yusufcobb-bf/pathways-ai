@@ -1,5 +1,11 @@
 import AuthForm from "@/components/AuthForm";
 
-export default function LoginPage() {
-  return <AuthForm mode="login" />;
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ role?: string }>;
+}) {
+  const params = await searchParams;
+  const role = params.role === "educator" ? "educator" : "student";
+  return <AuthForm mode="login" role={role} />;
 }
