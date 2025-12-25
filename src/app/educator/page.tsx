@@ -133,10 +133,10 @@ export default function EducatorDashboard() {
             Story Settings
           </Link>
           <Link
-            href="/educator/story-preview"
+            href="/educator/stories"
             className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
           >
-            Preview Active Story
+            Story Library
           </Link>
         </div>
       </div>
