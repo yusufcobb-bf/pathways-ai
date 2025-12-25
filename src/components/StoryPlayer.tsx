@@ -14,6 +14,8 @@ import {
 } from "@/data/virtues";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "./AuthProvider";
+import StorySceneHeader from "./StorySceneHeader";
+import { getStoryEnvironment } from "@/data/story-environments";
 
 interface StoryPlayerProps {
   story: Story;
@@ -147,6 +149,9 @@ export default function StoryPlayer({
   const supabase = createClient();
   const router = useRouter();
 
+  // Stage 13: Get environment visuals for this story
+  const environment = getStoryEnvironment(archetypeId);
+
   const [state, setState] = useState<StoryState>({
     stage: "intro",
     checkpointIndex: 0,
@@ -249,8 +254,16 @@ export default function StoryPlayer({
         </div>
       )}
 
-      <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-zinc-900">{story.title}</h1>
+      {/* Stage 13: Visual Story Header */}
+      <StorySceneHeader
+        title={story.title}
+        subtitle={environment?.subtitle}
+        gradientStyle={environment?.gradientStyle}
+        imageSrc={environment?.imageSrc}
+      />
+
+      {/* Navigation Link */}
+      <div className="mb-6 text-right">
         {previewMode ? (
           <Link
             href="/educator"
