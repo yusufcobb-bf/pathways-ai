@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Story, Choice } from "@/data/story";
@@ -16,6 +16,7 @@ import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "./AuthProvider";
 import StorySceneHeader from "./StorySceneHeader";
 import { getStoryEnvironment } from "@/data/story-environments";
+import { getSceneSubtitle } from "@/data/story-scenes";
 
 interface StoryPlayerProps {
   story: Story;
@@ -37,9 +38,11 @@ interface StoryState {
   saving: boolean;
   error: string | null;
   virtueScores: VirtueScores | null;
+  selectedChoice: { id: string; text: string } | null; // Stage 14: Choice feedback
+  isTransitioning: boolean; // Stage 14: Fade transitions
 }
 
-function ProgressIndicator({
+function CheckpointProgress({
   current,
   total,
 }: {
@@ -47,8 +50,15 @@ function ProgressIndicator({
   total: number;
 }) {
   return (
-    <div className="mb-6 text-sm text-zinc-500">
-      Step {current} of {total}
+    <div className="mb-6 flex gap-1">
+      {Array.from({ length: total }).map((_, i) => (
+        <div
+          key={i}
+          className={`h-1.5 flex-1 rounded-full ${
+            i < current ? "bg-zinc-700" : "bg-zinc-200"
+          }`}
+        />
+      ))}
     </div>
   );
 }
@@ -56,21 +66,35 @@ function ProgressIndicator({
 function ChoiceList({
   choices,
   onSelect,
+  selectedChoiceId,
 }: {
   choices: Choice[];
   onSelect: (choiceId: string) => void;
+  selectedChoiceId?: string;
 }) {
   return (
     <div className="mt-8 space-y-3">
-      {choices.map((choice) => (
-        <button
-          key={choice.id}
-          onClick={() => onSelect(choice.id)}
-          className="w-full rounded-lg border border-zinc-200 bg-white p-4 text-left text-zinc-700 transition-colors hover:border-zinc-400 hover:bg-zinc-50"
-        >
-          {choice.text}
-        </button>
-      ))}
+      {choices.map((choice) => {
+        const isSelected = choice.id === selectedChoiceId;
+        const isDisabled = selectedChoiceId !== undefined;
+
+        return (
+          <button
+            key={choice.id}
+            onClick={() => onSelect(choice.id)}
+            disabled={isDisabled}
+            className={`w-full rounded-lg border p-4 text-left transition-colors ${
+              isSelected
+                ? "border-zinc-700 bg-zinc-100 text-zinc-900"
+                : isDisabled
+                ? "border-zinc-100 bg-zinc-50 text-zinc-400"
+                : "border-zinc-200 bg-white text-zinc-700 hover:border-zinc-400 hover:bg-zinc-50"
+            }`}
+          >
+            {choice.text}
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -160,6 +184,8 @@ export default function StoryPlayer({
     saving: false,
     error: null,
     virtueScores: null,
+    selectedChoice: null,
+    isTransitioning: false,
   });
 
   const totalCheckpoints = story.checkpoints.length;
@@ -169,15 +195,38 @@ export default function StoryPlayer({
   };
 
   const handleChoice = (choiceId: string) => {
-    const nextIndex = state.checkpointIndex + 1;
-    const isLastCheckpoint = nextIndex >= totalCheckpoints;
+    // Stage 14: Find the selected choice text for feedback
+    const currentCheckpoint = story.checkpoints[state.checkpointIndex];
+    const selectedChoice = currentCheckpoint.choices.find(c => c.id === choiceId);
+    const currentIndex = state.checkpointIndex;
 
+    if (!selectedChoice) return;
+
+    // Show selection feedback
     setState((prev) => ({
       ...prev,
-      choices: [...prev.choices, choiceId],
-      stage: isLastCheckpoint ? "ending" : "checkpoint",
-      checkpointIndex: isLastCheckpoint ? prev.checkpointIndex : nextIndex,
+      selectedChoice: { id: choiceId, text: selectedChoice.text },
     }));
+
+    // After brief delay, transition to next scene
+    setTimeout(() => {
+      setState((prev) => ({ ...prev, isTransitioning: true }));
+
+      // After fade out, advance and fade back in
+      setTimeout(() => {
+        const nextIndex = currentIndex + 1;
+        const isLastCheckpoint = nextIndex >= totalCheckpoints;
+
+        setState((prev) => ({
+          ...prev,
+          choices: [...prev.choices, choiceId],
+          stage: isLastCheckpoint ? "ending" : "checkpoint",
+          checkpointIndex: isLastCheckpoint ? currentIndex : nextIndex,
+          selectedChoice: null,
+          isTransitioning: false,
+        }));
+      }, 200);
+    }, 800);
   };
 
   const handleContinueToReflection = () => {
@@ -255,9 +304,14 @@ export default function StoryPlayer({
       )}
 
       {/* Stage 13: Visual Story Header */}
+      {/* Stage 14: Add scene-specific subtitle based on current stage */}
       <StorySceneHeader
         title={story.title}
         subtitle={environment?.subtitle}
+        sceneSubtitle={getSceneSubtitle(
+          archetypeId,
+          state.stage === "intro" ? "intro" : state.checkpointIndex
+        )}
         gradientStyle={environment?.gradientStyle}
         imageSrc={environment?.imageSrc}
       />
@@ -289,8 +343,12 @@ export default function StoryPlayer({
       )}
 
       {state.stage === "checkpoint" && (
-        <div>
-          <ProgressIndicator
+        <div
+          className={`transition-opacity duration-200 ${
+            state.isTransitioning ? "opacity-0" : "opacity-100"
+          }`}
+        >
+          <CheckpointProgress
             current={state.checkpointIndex + 1}
             total={totalCheckpoints}
           />
@@ -300,7 +358,14 @@ export default function StoryPlayer({
           <ChoiceList
             choices={story.checkpoints[state.checkpointIndex].choices}
             onSelect={handleChoice}
+            selectedChoiceId={state.selectedChoice?.id}
           />
+          {/* Stage 14: Neutral choice acknowledgment */}
+          {state.selectedChoice && (
+            <p className="mt-4 text-sm text-zinc-500">
+              You chose to {state.selectedChoice.text.toLowerCase().replace(/\.$/, "")}
+            </p>
+          )}
         </div>
       )}
 
