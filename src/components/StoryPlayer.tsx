@@ -21,6 +21,8 @@ interface StoryPlayerProps {
   archetypeId: string; // Stage 8: Story archetype ID
   variantId: string | null; // Stage 8: Variant ID (null = base/canonical story)
   isGenerated: boolean;
+  previewMode?: boolean; // Stage 11: Educator preview mode (no DB writes)
+  onPreviewExit?: () => void; // Stage 11b: Callback to exit preview and return to setup
 }
 
 type Stage = "intro" | "checkpoint" | "ending" | "reflection" | "completed";
@@ -138,6 +140,8 @@ export default function StoryPlayer({
   archetypeId,
   variantId,
   isGenerated,
+  previewMode = false,
+  onPreviewExit,
 }: StoryPlayerProps) {
   const { user } = useAuth();
   const supabase = createClient();
@@ -180,6 +184,16 @@ export default function StoryPlayer({
   };
 
   const handleFinish = async () => {
+    // Stage 11: In preview mode, skip all DB operations and virtue computation
+    if (previewMode) {
+      setState((prev) => ({
+        ...prev,
+        stage: "completed",
+        virtueScores: null, // No virtue scores in preview
+      }));
+      return;
+    }
+
     if (!user) return;
 
     setState((prev) => ({ ...prev, saving: true, error: null }));
@@ -225,14 +239,33 @@ export default function StoryPlayer({
 
   return (
     <div className="mx-auto max-w-2xl py-8">
+      {/* Stage 11: Preview Mode Banner */}
+      {previewMode && (
+        <div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4">
+          <p className="text-sm text-blue-800">
+            <strong>Educator Preview</strong> — This simulates the student
+            experience. No data is saved.
+          </p>
+        </div>
+      )}
+
       <div className="mb-8 flex items-center justify-between">
         <h1 className="text-2xl font-bold text-zinc-900">{story.title}</h1>
-        <Link
-          href="/student/sessions"
-          className="text-sm text-zinc-500 hover:text-zinc-700"
-        >
-          View Past Sessions
-        </Link>
+        {previewMode ? (
+          <Link
+            href="/educator"
+            className="text-sm text-zinc-500 hover:text-zinc-700"
+          >
+            Back to Dashboard
+          </Link>
+        ) : (
+          <Link
+            href="/student/sessions"
+            className="text-sm text-zinc-500 hover:text-zinc-700"
+          >
+            View Past Sessions
+          </Link>
+        )}
       </div>
 
       {state.stage === "intro" && (
@@ -273,33 +306,45 @@ export default function StoryPlayer({
           <h2 className="mb-4 text-xl font-semibold text-zinc-900">
             Reflection
           </h2>
-          <p className="mb-6 text-zinc-600">
-            Take a moment to think about the story and the choices you made.
-            What stood out to you? Is there anything you would do differently?
-          </p>
-          <textarea
-            value={state.reflection}
-            onChange={(e) => handleReflectionChange(e.target.value)}
-            placeholder="Write your thoughts here... (required)"
-            className={`h-40 w-full rounded-lg border p-4 text-zinc-700 placeholder:text-zinc-400 focus:outline-none ${
-              state.reflection.trim().length === 0
-                ? "border-zinc-200 focus:border-zinc-400"
-                : "border-green-300 focus:border-green-400"
-            }`}
-          />
-          <p className="mt-2 text-sm text-zinc-500">
-            {state.reflection.trim().length === 0
-              ? "Please write a reflection to continue."
-              : `${state.reflection.trim().length} characters`}
-          </p>
-          {state.error && (
-            <p className="mt-2 text-sm text-red-600">{state.error}</p>
+          {previewMode ? (
+            <>
+              <p className="mb-6 italic text-zinc-400">
+                (Preview mode — reflection step skipped)
+              </p>
+              <ContinueButton onClick={handleFinish} label="Finish Preview" />
+            </>
+          ) : (
+            <>
+              <p className="mb-6 text-zinc-600">
+                Take a moment to think about the story and the choices you made.
+                What stood out to you? Is there anything you would do
+                differently?
+              </p>
+              <textarea
+                value={state.reflection}
+                onChange={(e) => handleReflectionChange(e.target.value)}
+                placeholder="Write your thoughts here... (required)"
+                className={`h-40 w-full rounded-lg border p-4 text-zinc-700 placeholder:text-zinc-400 focus:outline-none ${
+                  state.reflection.trim().length === 0
+                    ? "border-zinc-200 focus:border-zinc-400"
+                    : "border-green-300 focus:border-green-400"
+                }`}
+              />
+              <p className="mt-2 text-sm text-zinc-500">
+                {state.reflection.trim().length === 0
+                  ? "Please write a reflection to continue."
+                  : `${state.reflection.trim().length} characters`}
+              </p>
+              {state.error && (
+                <p className="mt-2 text-sm text-red-600">{state.error}</p>
+              )}
+              <ContinueButton
+                onClick={handleFinish}
+                label={state.saving ? "Saving..." : "Finish"}
+                disabled={state.saving || state.reflection.trim().length === 0}
+              />
+            </>
           )}
-          <ContinueButton
-            onClick={handleFinish}
-            label={state.saving ? "Saving..." : "Finish"}
-            disabled={state.saving || state.reflection.trim().length === 0}
-          />
         </div>
       )}
 
@@ -307,28 +352,54 @@ export default function StoryPlayer({
         <div>
           <div className="text-center">
             <h2 className="mb-4 text-xl font-semibold text-zinc-900">
-              Session Complete
+              {previewMode ? "Preview Complete" : "Session Complete"}
             </h2>
             <p className="text-zinc-600">
-              Your story session has been saved.
+              {previewMode
+                ? "This is a preview. No session was saved."
+                : "Your story session has been saved."}
             </p>
           </div>
 
-          {state.virtueScores && <VirtueSummary scores={state.virtueScores} />}
+          {/* Stage 11: Hide virtue summary in preview mode */}
+          {!previewMode && state.virtueScores && (
+            <VirtueSummary scores={state.virtueScores} />
+          )}
 
           <div className="mt-8 flex justify-center gap-4">
-            <button
-              onClick={handlePlayAgain}
-              className="rounded-lg bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
-            >
-              Play Again
-            </button>
-            <Link
-              href="/student/sessions"
-              className="rounded-lg border border-zinc-300 bg-white px-6 py-3 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-100"
-            >
-              View Past Sessions
-            </Link>
+            {previewMode ? (
+              <>
+                {onPreviewExit && (
+                  <button
+                    onClick={onPreviewExit}
+                    className="rounded-lg bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
+                  >
+                    Preview Again
+                  </button>
+                )}
+                <Link
+                  href="/educator"
+                  className="rounded-lg border border-zinc-300 bg-white px-6 py-3 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-100"
+                >
+                  Back to Dashboard
+                </Link>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={handlePlayAgain}
+                  className="rounded-lg bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
+                >
+                  Play Again
+                </button>
+                <Link
+                  href="/student/sessions"
+                  className="rounded-lg border border-zinc-300 bg-white px-6 py-3 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-100"
+                >
+                  View Past Sessions
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}

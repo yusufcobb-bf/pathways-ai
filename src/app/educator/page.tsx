@@ -138,6 +138,12 @@ export default function EducatorDashboard() {
           >
             Story Library
           </Link>
+          <Link
+            href="/educator/student-preview"
+            className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
+          >
+            Preview Student Experience
+          </Link>
         </div>
       </div>
 
