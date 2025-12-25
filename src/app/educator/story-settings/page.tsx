@@ -16,6 +16,7 @@ interface SettingsState {
   enabledIds: Set<string>;
   storyOrder: string[];
   mode: StoryMode;
+  singleStoryId: string | null; // Stage 10: Explicit story for single_story mode
 }
 
 export default function StorySettingsPage() {
@@ -29,6 +30,7 @@ export default function StorySettingsPage() {
     enabledIds: new Set(),
     storyOrder: [],
     mode: "fixed_sequence",
+    singleStoryId: null,
   });
 
   // Load initial data on mount
@@ -68,6 +70,7 @@ export default function StorySettingsPage() {
           enabledIds: enabledSet,
           storyOrder: order,
           mode: config.mode as StoryMode,
+          singleStoryId: (config.single_story_id as string | null) ?? null,
         });
       } else {
         // No config exists - use defaults
@@ -80,6 +83,7 @@ export default function StorySettingsPage() {
           enabledIds: defaultEnabled,
           storyOrder: defaultOrder,
           mode: "fixed_sequence",
+          singleStoryId: null,
         });
       }
     }
@@ -127,6 +131,11 @@ export default function StorySettingsPage() {
     setState((prev) => ({ ...prev, mode, success: false }));
   };
 
+  // Stage 10: Set single story for single_story mode
+  const setSingleStoryId = (storyId: string | null) => {
+    setState((prev) => ({ ...prev, singleStoryId: storyId, success: false }));
+  };
+
   // Save configuration (inserts new row for version history)
   const handleSave = async () => {
     setState((prev) => ({ ...prev, saving: true, error: null, success: false }));
@@ -135,6 +144,7 @@ export default function StorySettingsPage() {
       enabled_story_ids: Array.from(state.enabledIds),
       story_order: state.storyOrder,
       mode: state.mode,
+      single_story_id: state.singleStoryId, // Stage 10
       updated_at: new Date().toISOString(),
     };
 
@@ -256,6 +266,41 @@ export default function StorySettingsPage() {
           </label>
         </div>
       </section>
+
+      {/* Single Story Selection (Stage 10) - Only shown for single_story mode */}
+      {state.mode === "single_story" && (
+        <section className="mb-6 rounded-lg border border-zinc-200 bg-white p-6">
+          <h2 className="mb-4 text-lg font-semibold text-zinc-900">
+            Single Story Selection
+          </h2>
+          <p className="mb-4 text-sm text-zinc-500">
+            Choose which story all students will play.
+          </p>
+          <select
+            value={state.singleStoryId ?? ""}
+            onChange={(e) =>
+              setSingleStoryId(e.target.value === "" ? null : e.target.value)
+            }
+            className="w-full rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm text-zinc-700 focus:border-zinc-500 focus:outline-none"
+          >
+            <option value="">First enabled story (default)</option>
+            {orderedStories
+              .filter((entry) => state.enabledIds.has(entry.storyId))
+              .map((entry) => (
+                <option key={entry.storyId} value={entry.storyId}>
+                  {entry.story.title}
+                </option>
+              ))}
+          </select>
+          {state.singleStoryId &&
+            !state.enabledIds.has(state.singleStoryId) && (
+              <p className="mt-2 text-sm text-amber-600">
+                Selected story is not enabled. Will fall back to first enabled
+                story.
+              </p>
+            )}
+        </section>
+      )}
 
       {/* Story Pool */}
       <section className="mb-6 rounded-lg border border-zinc-200 bg-white p-6">

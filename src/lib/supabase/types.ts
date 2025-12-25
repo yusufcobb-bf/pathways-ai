@@ -25,6 +25,7 @@ export interface StoryPoolConfig {
   enabled_story_ids: string[];
   story_order: string[];
   mode: StoryMode;
+  single_story_id: string | null; // Stage 10: Explicit story selection for single_story mode
   created_at: string;
   updated_at: string;
 }

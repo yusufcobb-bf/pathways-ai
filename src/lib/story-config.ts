@@ -114,22 +114,69 @@ export function applyConfigToPool(
 }
 
 /**
+ * Stage 10: Unified config application helper.
+ *
+ * Combines filtering, ordering, and config extraction into one function.
+ *
+ * Rules:
+ * 1. If config is null/missing → default mode = fixed_sequence, pool as-is
+ * 2. enabled_story_ids empty → all enabled
+ * 3. story_order → reorder enabled stories
+ * 4. single_story_id → validate against enabled pool
+ * 5. Always ensure configuredPool.length >= 1
+ *
+ * @param pool The raw story pool from loadStoryPool()
+ * @param config The educator configuration (or null for defaults)
+ * @returns { mode, configuredPool, singleStoryId }
+ */
+export function applyStoryPoolConfig(
+  pool: StoryPoolEntry[],
+  config: StoryPoolConfig | null
+): {
+  mode: StoryMode;
+  configuredPool: StoryPoolEntry[];
+  singleStoryId: string | null;
+} {
+  // Apply filtering and ordering
+  const configuredPool = applyConfigToPool(pool, config);
+
+  // Extract mode (default to fixed_sequence)
+  const mode: StoryMode = config?.mode ?? "fixed_sequence";
+
+  // Validate single_story_id against enabled pool
+  let singleStoryId: string | null = null;
+  if (config?.single_story_id) {
+    // Only use if the story exists in the configured pool
+    const exists = configuredPool.some(
+      (entry) => entry.storyId === config.single_story_id
+    );
+    if (exists) {
+      singleStoryId = config.single_story_id;
+    }
+  }
+
+  return { mode, configuredPool, singleStoryId };
+}
+
+/**
  * Select a story based on the configured mode and completed session count.
  *
  * Mode behavior (all operate on the ordered+enabled pool):
  * - fixed_sequence: Students progress through stories in educator-defined order
- * - single_story: All students play first enabled story only
+ * - single_story: Use explicit singleStoryId if valid, else first enabled story
  * - shuffled_sequence: Coming Soon - falls back to fixed_sequence
  *
  * @param pool The configured (filtered + ordered) story pool
  * @param mode The selection mode
  * @param completedSessions The number of completed sessions for this user
+ * @param singleStoryId Optional: explicit story ID for single_story mode (Stage 10)
  * @returns The selected story entry
  */
 export function selectStoryByMode(
   pool: StoryPoolEntry[],
   mode: StoryMode,
-  completedSessions: number
+  completedSessions: number,
+  singleStoryId?: string | null
 ): StoryPoolEntry {
   if (pool.length === 0) {
     throw new Error("Cannot select from empty pool");
@@ -137,7 +184,12 @@ export function selectStoryByMode(
 
   switch (mode) {
     case "single_story":
-      // All students play first enabled story only
+      // Stage 10: Use explicit single_story_id if set and valid
+      if (singleStoryId) {
+        const found = pool.find((entry) => entry.storyId === singleStoryId);
+        if (found) return found;
+      }
+      // Fallback to first enabled story
       return pool[0];
 
     case "shuffled_sequence":

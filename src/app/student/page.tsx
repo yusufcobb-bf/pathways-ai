@@ -4,7 +4,7 @@ import StoryPlayer from "@/components/StoryPlayer";
 import { loadStoryPool } from "@/data/story";
 import {
   getStoryPoolConfig,
-  applyConfigToPool,
+  applyStoryPoolConfig,
   selectStoryByMode,
   selectStoryForShuffledMode,
 } from "@/lib/story-config";
@@ -33,11 +33,11 @@ export default async function StudentHome() {
   // Fetch educator configuration (returns null if none exists)
   const config = await getStoryPoolConfig(supabase);
 
-  // Apply config to filter and order the pool
-  const configuredPool = applyConfigToPool(rawPool, config);
-
-  // Select story based on mode (defaults to fixed_sequence if no config)
-  const mode = config?.mode ?? "fixed_sequence";
+  // Stage 10: Apply config to get mode, filtered pool, and single story selection
+  const { mode, configuredPool, singleStoryId } = applyStoryPoolConfig(
+    rawPool,
+    config
+  );
 
   // Use async function for shuffled_sequence mode (requires DB access for per-student state)
   const selectedEntry =
@@ -48,7 +48,7 @@ export default async function StudentHome() {
           configuredPool,
           completedSessions
         )
-      : selectStoryByMode(configuredPool, mode, completedSessions);
+      : selectStoryByMode(configuredPool, mode, completedSessions, singleStoryId);
 
   const { storyId, archetypeId, isGenerated } = selectedEntry;
 
