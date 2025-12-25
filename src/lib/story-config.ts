@@ -6,8 +6,25 @@
  */
 
 import { SupabaseClient } from "@supabase/supabase-js";
-import { StoryPoolConfig, StoryMode } from "@/lib/supabase/types";
+import { StoryPoolConfig, StoryMode, StudentStoryCycle } from "@/lib/supabase/types";
 import { StoryPoolEntry } from "@/data/story";
+
+/**
+ * Shuffle array using Fisher-Yates algorithm.
+ *
+ * RANDOMNESS GUARDRAIL: This uses simple Math.random() intentionally.
+ * This is NOT AI-driven randomness and is acceptable for controlled
+ * classroom variety. Do not replace with seeded, cryptographic, or
+ * AI-based randomness unless explicitly instructed.
+ */
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
 
 /**
  * Fetch the latest story pool configuration from Supabase.
@@ -124,8 +141,8 @@ export function selectStoryByMode(
       return pool[0];
 
     case "shuffled_sequence":
-      // Coming Soon - falls back to fixed_sequence behavior
-      console.warn("shuffled_sequence not implemented, using fixed_sequence");
+      // This mode requires async handling - should use selectStoryForShuffledMode instead
+      console.warn("shuffled_sequence called via sync function, using fixed_sequence");
     // fallthrough intentional
     case "fixed_sequence":
     default:
@@ -133,4 +150,94 @@ export function selectStoryByMode(
       const index = completedSessions % pool.length;
       return pool[index];
   }
+}
+
+/**
+ * Select a story for shuffled_sequence mode (async, requires DB access).
+ *
+ * This mode gives each student a unique randomized order of stories.
+ * When they complete all stories in their shuffled order, a new shuffle is generated.
+ *
+ * COMPLETED SESSIONS GUARDRAIL: completedSessions must only count sessions
+ * where reflection IS NOT NULL. Do not count started, abandoned, or in-progress sessions.
+ *
+ * @param supabase The Supabase client
+ * @param userId The current user's ID
+ * @param pool The configured (filtered + ordered) story pool
+ * @param completedSessions The number of COMPLETED sessions (reflection saved)
+ * @returns The selected story entry
+ */
+export async function selectStoryForShuffledMode(
+  supabase: SupabaseClient,
+  userId: string,
+  pool: StoryPoolEntry[],
+  completedSessions: number
+): Promise<StoryPoolEntry> {
+  if (pool.length === 0) {
+    throw new Error("Cannot select from empty pool");
+  }
+
+  // Get current pool story IDs for comparison
+  const currentPoolIds = pool.map((entry) => entry.storyId);
+  const positionInCycle = completedSessions % pool.length;
+  const expectedCycleIndex = Math.floor(completedSessions / pool.length);
+
+  // Fetch existing cycle state
+  const { data: cycleData } = await supabase
+    .from("student_story_cycles")
+    .select("*")
+    .eq("user_id", userId)
+    .single();
+
+  const existingCycle = cycleData as StudentStoryCycle | null;
+
+  // Determine if we need a new shuffle
+  const needsNewShuffle =
+    !existingCycle ||
+    existingCycle.shuffled_order.length === 0 ||
+    !poolMatchesShuffledOrder(currentPoolIds, existingCycle.shuffled_order) ||
+    existingCycle.cycle_index !== expectedCycleIndex;
+
+  if (needsNewShuffle) {
+    // Generate new shuffled order
+    const newShuffledOrder = shuffleArray(currentPoolIds);
+
+    // Upsert the cycle state
+    const { error } = await supabase.from("student_story_cycles").upsert({
+      user_id: userId,
+      cycle_index: expectedCycleIndex,
+      shuffled_order: newShuffledOrder,
+      updated_at: new Date().toISOString(),
+    });
+
+    if (error) {
+      console.error("Failed to save shuffle state:", error);
+      // Fallback to fixed_sequence behavior
+      return pool[positionInCycle];
+    }
+
+    // Return story at current position in new shuffle
+    const storyId = newShuffledOrder[positionInCycle];
+    const entry = pool.find((e) => e.storyId === storyId);
+    return entry ?? pool[0];
+  }
+
+  // Use existing shuffle
+  const storyId = existingCycle.shuffled_order[positionInCycle];
+  const entry = pool.find((e) => e.storyId === storyId);
+  return entry ?? pool[0];
+}
+
+/**
+ * Check if the current pool matches the shuffled order (same stories, possibly different order).
+ */
+function poolMatchesShuffledOrder(
+  poolIds: string[],
+  shuffledOrder: string[]
+): boolean {
+  if (poolIds.length !== shuffledOrder.length) {
+    return false;
+  }
+  const poolSet = new Set(poolIds);
+  return shuffledOrder.every((id) => poolSet.has(id));
 }

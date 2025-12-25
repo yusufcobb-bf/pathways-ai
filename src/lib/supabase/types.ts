@@ -27,3 +27,12 @@ export interface StoryPoolConfig {
   created_at: string;
   updated_at: string;
 }
+
+// Per-student shuffle state for shuffled_sequence mode
+export interface StudentStoryCycle {
+  user_id: string;
+  cycle_index: number;
+  shuffled_order: string[];
+  created_at: string;
+  updated_at: string;
+}

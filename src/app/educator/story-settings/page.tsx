@@ -235,18 +235,18 @@ export default function StorySettingsPage() {
             </div>
           </label>
 
-          <label className="flex cursor-not-allowed items-start gap-3 opacity-50">
+          <label className="flex cursor-pointer items-start gap-3">
             <input
               type="radio"
               name="mode"
               value="shuffled_sequence"
-              disabled
+              checked={state.mode === "shuffled_sequence"}
+              onChange={() => setMode("shuffled_sequence")}
               className="mt-1"
             />
             <div>
               <span className="font-medium text-zinc-900">
-                Shuffled Sequence{" "}
-                <span className="text-xs text-zinc-400">(Coming Soon)</span>
+                Shuffled Sequence
               </span>
               <p className="text-sm text-zinc-500">
                 Each student receives a randomized order of all enabled stories

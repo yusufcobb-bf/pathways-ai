@@ -6,6 +6,7 @@ import {
   getStoryPoolConfig,
   applyConfigToPool,
   selectStoryByMode,
+  selectStoryForShuffledMode,
 } from "@/lib/story-config";
 
 export default async function StudentHome() {
@@ -36,11 +37,19 @@ export default async function StudentHome() {
 
   // Select story based on mode (defaults to fixed_sequence if no config)
   const mode = config?.mode ?? "fixed_sequence";
-  const { story, storyId, isGenerated } = selectStoryByMode(
-    configuredPool,
-    mode,
-    completedSessions
-  );
+
+  // Use async function for shuffled_sequence mode (requires DB access for per-student state)
+  const selectedEntry =
+    mode === "shuffled_sequence"
+      ? await selectStoryForShuffledMode(
+          supabase,
+          user.id,
+          configuredPool,
+          completedSessions
+        )
+      : selectStoryByMode(configuredPool, mode, completedSessions);
+
+  const { story, storyId, isGenerated } = selectedEntry;
 
   // Key includes session count to force remount even if storyId unchanged (fixed mode)
   return (
