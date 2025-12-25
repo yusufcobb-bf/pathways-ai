@@ -1,58 +1,63 @@
 {
-  "id": "science-fair-project-mystery",
+  "id": "science-fair-mystery",
   "title": "The Missing Project",
-  "intro": "You arrive at school early on Wednesday morning to check on your science fair project one last time before the judging begins. The hallway is quiet, with only a few teachers preparing their classrooms. You walk toward the display tables set up in the main corridor where all the projects are arranged.\n\nAs you approach your assigned spot, you notice something strange. Your volcano model is there, but the data chart you spent weeks creating is missing. The colorful poster showing your experiment results was taped right next to the volcano yesterday afternoon. Now there's just an empty space on the table.",
+  "intro": "You arrive at school early on science fair day, excited to set up your volcano project in the gym. The hallways echo with your footsteps as you carry your supplies toward the gymnasium. When you push through the double doors, you notice something strange.\n\nYour assigned table sits empty, but scattered around it are pieces of what looks like a broken model solar system. Across the gym, you see Kai frantically searching through a box of materials while Maya stands nearby, holding a crumpled piece of paper. The gym teacher, Mr. Rodriguez, is setting up chairs at the far end of the room.",
   "checkpoints": [
     {
       "id": "c1",
-      "prompt": "You look around and see Jamal setting up his weather station project two tables away. At the far end of the hall, Ms. Rodriguez is hanging streamers for the fair. Near the gym entrance, you spot Zara organizing papers at a table covered with what looks like multiple project displays.\n\nYour chart could be anywhere, and the judging starts in less than two hours.",
+      "prompt": "You set your volcano materials on your table and look more closely at the scattered pieces. Some appear to be painted planets, and there's a bent wire that might have held them in orbit. Kai looks up from his box and catches your eye, then glances toward Maya, who is now reading the crumpled paper more carefully.\n\nThe science fair doesn't start for another hour, but other students will begin arriving soon to set up their projects.",
       "choices": [
         {
           "id": "c1-a",
-          "text": "Walk directly to Zara and ask if she's seen your missing chart"
+          "text": "Walk directly over to Kai and ask what happened to the solar system project"
         },
         {
           "id": "c1-b",
-          "text": "Approach Jamal and mention that your poster is missing"
+          "text": "Gather the scattered planet pieces and place them on the empty table next to yours"
         },
         {
           "id": "c1-c",
-          "text": "Search around your own table area first"
+          "text": "Continue setting up your volcano while keeping an eye on Kai and Maya"
         }
       ]
     },
     {
       "id": "c2",
-      "prompt": "After your initial search, you notice the janitor's cart parked near the main office. Mr. Chen, the night custodian, is emptying trash bins and organizing cleaning supplies. You also see that the lost and found box outside the principal's office has several papers sticking out of the top.\n\nThe morning announcement crackles over the intercom, reminding everyone that science fair judging begins at 9:30 AM.",
+      "prompt": "Maya unfolds the paper completely and you can see it's covered with drawings and measurements. She walks over to where the planet pieces are scattered and kneels down, comparing something on the paper to the broken pieces. Kai closes his box and starts walking toward the gym exit, but stops when he sees Maya examining the debris.\n\n\"I thought I put everything away safely last night,\" Maya says, though she's speaking quietly and you're not sure if she's talking to herself or to someone else.",
       "choices": [
         {
           "id": "c2-a",
-          "text": "Ask Mr. Chen if he moved any papers while cleaning last night"
+          "text": "Ask Maya if she needs help fixing her project"
         },
         {
           "id": "c2-b",
-          "text": "Check the lost and found box for your chart"
+          "text": "Look around the gym for any other clues about what might have happened"
         }
       ]
     },
     {
       "id": "c3",
-      "prompt": "Students begin arriving for the day, filling the hallways with chatter and locker slams. You overhear Keisha telling her friend that she saw some papers scattered near the trophy case yesterday after school. The art room door opens, and Mrs. Park steps out carrying a stack of colorful posters.\n\nThe clock on the wall shows 8:45 AM. You have forty-five minutes before the judges arrive.",
+      "prompt": "You notice a small trail of glitter leading from Maya's table toward the storage closet where students keep their materials overnight. The closet door is slightly ajar, and you can see boxes and project supplies stacked inside. Kai has returned and is now helping Maya sort through the broken pieces, while Mr. Rodriguez continues arranging chairs, occasionally glancing in your direction.\n\nOther students are starting to filter into the gym with their projects, and the room is beginning to fill with the sounds of setup and conversation.",
       "choices": [
         {
           "id": "c3-a",
-          "text": "Head to the trophy case to look for scattered papers"
+          "text": "Follow the glitter trail to the storage closet and investigate"
         },
         {
           "id": "c3-b",
-          "text": "Ask Mrs. Park about the posters she's carrying"
+          "text": "Approach Mr. Rodriguez and mention what you observed"
         },
         {
           "id": "c3-c",
-          "text": "Return to your project table and recreate the chart from memory"
+          "text": "Focus on perfecting your own volcano setup while staying nearby"
         }
       ]
     }
   ],
-  "ending": "You take action with your decision, moving through the busy hallway as more students arrive. The science fair setup continues around you, with teachers making final adjustments to displays and students checking their projects. The judges will arrive soon, and whatever happens next will unfold as the morning progresses."
+  "ending": "The gym continues to fill with students and parents as the science fair officially begins. Maya has managed to create a new display using her detailed drawings and the salvageable planet pieces, while Kai helps her explain the solar system to visitors. Your volcano demonstration draws a small crowd, and you notice Mr. Rodriguez making notes on his clipboard as he moves between the projects. The morning unfolds with presentations, questions, and the excited chatter of discovery.",
+  "_meta": {
+    "generatedAt": "2025-12-23T19:39:14.422Z",
+    "model": "claude-sonnet-4-20250514",
+    "generationVersion": "1.0.0"
+  }
 }

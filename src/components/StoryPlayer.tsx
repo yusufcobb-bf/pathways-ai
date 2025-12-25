@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Story, Choice } from "@/data/story";
 import {
   computeVirtueScores,
@@ -136,6 +137,7 @@ export default function StoryPlayer({
 }: StoryPlayerProps) {
   const { user } = useAuth();
   const supabase = createClient();
+  const router = useRouter();
 
   const [state, setState] = useState<StoryState>({
     stage: "intro",
@@ -210,15 +212,10 @@ export default function StoryPlayer({
   };
 
   const handlePlayAgain = () => {
-    setState({
-      stage: "intro",
-      checkpointIndex: 0,
-      choices: [],
-      reflection: "",
-      saving: false,
-      error: null,
-      virtueScores: null,
-    });
+    // Navigate to /student to trigger fresh server-side story selection
+    // based on updated completed session count
+    router.push("/student");
+    router.refresh();
   };
 
   return (

@@ -27,6 +27,6 @@ export default async function StudentHome() {
   const { story, storyId, isGenerated } = pool[storyIndex];
 
   return (
-    <StoryPlayer story={story} storyId={storyId} isGenerated={isGenerated} />
+    <StoryPlayer key={storyId} story={story} storyId={storyId} isGenerated={isGenerated} />
   );
 }

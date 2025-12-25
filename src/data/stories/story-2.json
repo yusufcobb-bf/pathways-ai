@@ -1,58 +1,63 @@
 {
-  "id": "science-fair-project-mystery",
-  "title": "The Missing Project",
-  "intro": "You arrive at school early on Wednesday morning to check on your science fair project one last time before the judging begins. The hallway is quiet, with only a few teachers preparing their classrooms. You walk toward the display tables set up in the main corridor where all the projects are arranged.\n\nAs you approach your assigned spot, you notice something strange. Your volcano model is there, but the data chart you spent weeks creating is missing. The colorful poster showing your experiment results was taped right next to the volcano yesterday afternoon. Now there's just an empty space on the table.",
+  "id": "after-school-project-partners",
+  "title": "After School Project Partners",
+  "intro": "You walk into Ms. Chen's classroom after school to work on your science project about renewable energy. The room is quieter than usual, with only a few students scattered at different tables. Your project partner, Kai, is already there setting up materials near the window.\n\nAs you approach, you notice Elena sitting alone at a nearby table. She has books and papers spread out but keeps glancing over at you and Kai. Her usual project partner, Devon, is absent today according to the note on the whiteboard.",
   "checkpoints": [
     {
       "id": "c1",
-      "prompt": "You look around and see Jamal setting up his weather station project two tables away. At the far end of the hall, Ms. Rodriguez is hanging streamers for the fair. Near the gym entrance, you spot Zara organizing papers at a table covered with what looks like multiple project displays.\n\nYour chart could be anywhere, and the judging starts in less than two hours.",
+      "prompt": "You set your backpack down and start unpacking your materials. Elena closes her textbook and walks over to your table. \"Hey, I was wondering if you two might have room for one more person today? Devon's sick and I really need to get some work done on our solar panel model.\" Kai looks up from organizing the craft supplies and glances between you and Elena.",
       "choices": [
         {
           "id": "c1-a",
-          "text": "Walk directly to Zara and ask if she's seen your missing chart"
+          "text": "Tell Elena she can definitely join your group for today's work session"
         },
         {
           "id": "c1-b",
-          "text": "Approach Jamal and mention that your poster is missing"
+          "text": "Suggest Elena work at the table next to yours so you can help each other"
         },
         {
           "id": "c1-c",
-          "text": "Search around your own table area first"
+          "text": "Ask Kai what they think about Elena working with you today"
         }
       ]
     },
     {
       "id": "c2",
-      "prompt": "After your initial search, you notice the janitor's cart parked near the main office. Mr. Chen, the night custodian, is emptying trash bins and organizing cleaning supplies. You also see that the lost and found box outside the principal's office has several papers sticking out of the top.\n\nThe morning announcement crackles over the intercom, reminding everyone that science fair judging begins at 9:30 AM.",
+      "prompt": "Elena pulls up a chair and starts explaining what she and Devon have been working on. As she talks, you realize their project is very similar to yours - both groups are building models to demonstrate how solar energy works. Kai starts comparing the two approaches and points out that Elena's group has solved a problem that you and Kai have been stuck on for days.",
       "choices": [
         {
           "id": "c2-a",
-          "text": "Ask Mr. Chen if he moved any papers while cleaning last night"
+          "text": "Propose that both groups share their different solutions and techniques"
         },
         {
           "id": "c2-b",
-          "text": "Check the lost and found box for your chart"
+          "text": "Continue working on your own project while Elena works on hers nearby"
         }
       ]
     },
     {
       "id": "c3",
-      "prompt": "Students begin arriving for the day, filling the hallways with chatter and locker slams. You overhear Keisha telling her friend that she saw some papers scattered near the trophy case yesterday after school. The art room door opens, and Mrs. Park steps out carrying a stack of colorful posters.\n\nThe clock on the wall shows 8:45 AM. You have forty-five minutes before the judges arrive.",
+      "prompt": "Ms. Chen walks over to check on everyone's progress. She notices the solar panel components spread across both tables and asks how the projects are going. Elena explains that she's been working with you and Kai today since Devon is absent. Ms. Chen nods and mentions that she's been impressed with both groups' creativity, then adds that the science fair presentation is next Friday.",
       "choices": [
         {
           "id": "c3-a",
-          "text": "Head to the trophy case to look for scattered papers"
+          "text": "Ask Ms. Chen if there's enough time to combine both projects into one presentation"
         },
         {
           "id": "c3-b",
-          "text": "Ask Mrs. Park about the posters she's carrying"
+          "text": "Tell Ms. Chen about the techniques you've been sharing between projects"
         },
         {
           "id": "c3-c",
-          "text": "Return to your project table and recreate the chart from memory"
+          "text": "Continue listening as Ms. Chen gives feedback on the current project designs"
         }
       ]
     }
   ],
-  "ending": "You take action with your decision, moving through the busy hallway as more students arrive. The science fair setup continues around you, with teachers making final adjustments to displays and students checking their projects. The judges will arrive soon, and whatever happens next will unfold as the morning progresses."
+  "ending": "Ms. Chen smiles and tells all three of you to keep up the excellent work. She walks back to her desk, leaving you, Kai, and Elena to continue with your projects. The afternoon sunlight streams through the classroom windows, and you can hear other students in the hallway heading home. Tomorrow Devon will be back, and you'll see how both projects turn out for the science fair next week.",
+  "_meta": {
+    "generatedAt": "2025-12-23T19:39:14.422Z",
+    "model": "claude-sonnet-4-20250514",
+    "generationVersion": "1.0.0"
+  }
 }

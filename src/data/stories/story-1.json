@@ -1,58 +1,63 @@
 {
-  "id": "science-fair-project-mystery",
-  "title": "The Missing Project",
-  "intro": "You arrive at school early on Wednesday morning to check on your science fair project one last time before the judging begins. The hallway is quiet, with only a few teachers preparing their classrooms. You walk toward the display tables set up in the main corridor where all the projects are arranged.\n\nAs you approach your assigned spot, you notice something strange. Your volcano model is there, but the data chart you spent weeks creating is missing. The colorful poster showing your experiment results was taped right next to the volcano yesterday afternoon. Now there's just an empty space on the table.",
+  "id": "community-garden-discovery",
+  "title": "The Community Garden Mystery",
+  "intro": "You arrive at Riverside Community Center for your Saturday volunteer shift at the community garden. The morning air is crisp, and you can see your breath as you walk toward the tool shed. Ms. Rodriguez, the garden coordinator, usually meets volunteers here at 9 AM sharp, but today the area seems unusually quiet.\n\nAs you approach the main garden beds, you notice something strange. Several of the newly planted tomato seedlings that were thriving yesterday now appear wilted and brown. The soil around them looks disturbed, with small holes scattered throughout the bed. You hear footsteps behind you and turn to see Kai and Zara, two other regular volunteers, walking up the gravel path with confused expressions.",
   "checkpoints": [
     {
       "id": "c1",
-      "prompt": "You look around and see Jamal setting up his weather station project two tables away. At the far end of the hall, Ms. Rodriguez is hanging streamers for the fair. Near the gym entrance, you spot Zara organizing papers at a table covered with what looks like multiple project displays.\n\nYour chart could be anywhere, and the judging starts in less than two hours.",
+      "prompt": "Kai points to the damaged plants and says, \"This wasn't like this yesterday when we left.\" Zara kneels down near one of the holes and examines it closely. \"Look at these marks in the dirt,\" she says. \"Something definitely dug here.\" You notice a small garden spade lying near the compost bin that wasn't there before, and you can see fresh dirt clinging to its blade.\n\nThe three of you exchange glances, clearly puzzled by what might have happened overnight.",
       "choices": [
         {
           "id": "c1-a",
-          "text": "Walk directly to Zara and ask if she's seen your missing chart"
+          "text": "Pick up the spade and examine it for more clues"
         },
         {
           "id": "c1-b",
-          "text": "Approach Jamal and mention that your poster is missing"
+          "text": "Ask Kai and Zara what they think might have caused this"
         },
         {
           "id": "c1-c",
-          "text": "Search around your own table area first"
+          "text": "Look around the garden for other signs of disturbance"
         }
       ]
     },
     {
       "id": "c2",
-      "prompt": "After your initial search, you notice the janitor's cart parked near the main office. Mr. Chen, the night custodian, is emptying trash bins and organizing cleaning supplies. You also see that the lost and found box outside the principal's office has several papers sticking out of the top.\n\nThe morning announcement crackles over the intercom, reminding everyone that science fair judging begins at 9:30 AM.",
+      "prompt": "Before you can investigate further, you hear the sound of the community center's back door opening. Ms. Rodriguez emerges, carrying her usual clipboard and a steaming coffee mug. She walks briskly toward your group, but stops short when she sees the damaged garden bed.\n\n\"Oh my,\" she says, setting down her mug on a nearby bench. \"I was hoping I wouldn't find this.\" Kai asks what she means, and Ms. Rodriguez sighs. \"I got a call from the night security guard around midnight. He said he saw some unusual activity in the garden area, but by the time he came to check, everything seemed normal.\"",
       "choices": [
         {
           "id": "c2-a",
-          "text": "Ask Mr. Chen if he moved any papers while cleaning last night"
+          "text": "Ask Ms. Rodriguez what kind of activity the guard saw"
         },
         {
           "id": "c2-b",
-          "text": "Check the lost and found box for your chart"
+          "text": "Suggest checking if any tools or supplies are missing"
         }
       ]
     },
     {
       "id": "c3",
-      "prompt": "Students begin arriving for the day, filling the hallways with chatter and locker slams. You overhear Keisha telling her friend that she saw some papers scattered near the trophy case yesterday after school. The art room door opens, and Mrs. Park steps out carrying a stack of colorful posters.\n\nThe clock on the wall shows 8:45 AM. You have forty-five minutes before the judges arrive.",
+      "prompt": "Ms. Rodriguez explains that the security guard mentioned seeing small moving shadows near the garden beds, but assumed it was just cats or other animals. As she speaks, you notice movement in the nearby bushes that border the garden. A rustling sound draws everyone's attention to a patch of overgrown shrubs near the fence.\n\nZara whispers, \"There's definitely something in there.\" You can see the branches moving, even though there's no wind. Ms. Rodriguez takes a step closer to the bushes, her clipboard held protectively in front of her.",
       "choices": [
         {
           "id": "c3-a",
-          "text": "Head to the trophy case to look for scattered papers"
+          "text": "Walk over to the bushes to see what's causing the movement"
         },
         {
           "id": "c3-b",
-          "text": "Ask Mrs. Park about the posters she's carrying"
+          "text": "Stay back and call out to whatever might be in the bushes"
         },
         {
           "id": "c3-c",
-          "text": "Return to your project table and recreate the chart from memory"
+          "text": "Wait quietly to see if anything emerges on its own"
         }
       ]
     }
   ],
-  "ending": "You take action with your decision, moving through the busy hallway as more students arrive. The science fair setup continues around you, with teachers making final adjustments to displays and students checking their projects. The judges will arrive soon, and whatever happens next will unfold as the morning progresses."
+  "ending": "A small brown rabbit hops out from the bushes, followed by two smaller ones. Ms. Rodriguez laughs and shakes her head. \"Well, that explains the holes and the damaged seedlings,\" she says. \"Looks like we have some new neighbors who discovered our garden.\" The rabbits pause for a moment, then bound away toward the far end of the community center property. Kai suggests building a small fence around the vegetable beds, and Ms. Rodriguez nods, making notes on her clipboard. The morning volunteer work begins with a new project to plan.",
+  "_meta": {
+    "generatedAt": "2025-12-23T19:39:14.419Z",
+    "model": "claude-sonnet-4-20250514",
+    "generationVersion": "1.0.0"
+  }
 }

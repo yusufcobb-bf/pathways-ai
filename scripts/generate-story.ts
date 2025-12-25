@@ -32,9 +32,9 @@ import { z } from "zod";
 // CONSTANTS
 // ============================================================
 
-const MAX_RETRIES = 3;
-const MODEL = "claude-sonnet-4-20250514";
-const GENERATION_VERSION = "1.0.0";
+export const MAX_RETRIES = 3;
+export const MODEL = "claude-sonnet-4-20250514";
+export const GENERATION_VERSION = "1.0.0";
 
 // ============================================================
 // SYSTEM PROMPT
@@ -136,7 +136,7 @@ const checkpointSchema = z.object({
     .max(3, "Each checkpoint must have at most 3 choices"),
 });
 
-const generatedStorySchema = z
+export const generatedStorySchema = z
   .object({
     id: z.string().min(1, "Story must have an ID"),
     title: z.string().min(5, "Title must be at least 5 characters"),
@@ -148,7 +148,7 @@ const generatedStorySchema = z
   })
   .passthrough(); // Allow _meta and other fields
 
-type GeneratedStory = z.infer<typeof generatedStorySchema>;
+export type GeneratedStory = z.infer<typeof generatedStorySchema>;
 
 // ============================================================
 // INLINED: STORY QUALITY VALIDATION
@@ -399,7 +399,7 @@ function checkContentSafety(text: string): string[] {
  * Validate generated story for both quality and content safety.
  * Returns all errors found across all checks.
  */
-function validateGeneratedContent(story: GeneratedStory): {
+export function validateGeneratedContent(story: GeneratedStory): {
   valid: boolean;
   errors: string[];
 } {
@@ -439,7 +439,7 @@ function validateGeneratedContent(story: GeneratedStory): {
 // AI GENERATION
 // ============================================================
 
-async function callAI(anthropic: Anthropic): Promise<string> {
+export async function callAI(anthropic: Anthropic): Promise<string> {
   const response = await anthropic.messages.create({
     model: MODEL,
     max_tokens: 4096,
@@ -473,7 +473,7 @@ interface StoryWithMeta extends GeneratedStory {
   };
 }
 
-function saveStory(story: GeneratedStory, outputPath: string): void {
+export function saveStory(story: GeneratedStory, outputPath: string): void {
   const storyWithMeta: StoryWithMeta = {
     ...story,
     _meta: {
@@ -607,4 +607,7 @@ async function main() {
   process.exit(1);
 }
 
-main();
+// Only run main when executed directly (not when imported)
+if (require.main === module) {
+  main();
+}

@@ -38,12 +38,17 @@ export default function Header() {
           {!loading && (
             <>
               {user ? (
-                <button
-                  onClick={handleLogout}
-                  className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
-                >
-                  Log Out
-                </button>
+                <>
+                  <span className="text-sm text-zinc-500">
+                    {user.email}
+                  </span>
+                  <button
+                    onClick={handleLogout}
+                    className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900"
+                  >
+                    Log Out
+                  </button>
+                </>
               ) : (
                 <Link
                   href="/login"
