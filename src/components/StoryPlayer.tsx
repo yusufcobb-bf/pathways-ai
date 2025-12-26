@@ -28,6 +28,7 @@ interface StoryPlayerProps {
   previewMode?: boolean; // Stage 11: Educator preview mode (no DB writes)
   onPreviewExit?: () => void; // Stage 11b: Callback to exit preview and return to setup
   guidedReflectionEnabled?: boolean; // Stage 16: Show guided prompts after completion
+  assignmentId?: string | null; // Stage 22: Assignment ID if launched from assignment
 }
 
 type Stage = "intro" | "checkpoint" | "ending" | "reflection" | "completed";
@@ -172,6 +173,7 @@ export default function StoryPlayer({
   previewMode = false,
   onPreviewExit,
   guidedReflectionEnabled = false,
+  assignmentId = null,
 }: StoryPlayerProps) {
   const { user } = useAuth();
   const supabase = createClient();
@@ -283,15 +285,20 @@ export default function StoryPlayer({
       }
     }
 
-    const { error } = await supabase.from("story_sessions").insert({
-      user_id: user.id,
-      story_id: storyId,
-      variant_id: variantId, // Stage 8: Save which variant was played (null = base story)
-      choices: state.choices,
-      reflection: state.reflection || null,
-      virtue_scores: virtueScores,
-      guided_responses: guidedResponsesPayload, // Stage 16: Include in same insert
-    });
+    // Stage 22: Use .select("id").single() to get session ID for assignment tracking
+    const { data: sessionData, error } = await supabase
+      .from("story_sessions")
+      .insert({
+        user_id: user.id,
+        story_id: storyId,
+        variant_id: variantId, // Stage 8: Save which variant was played (null = base story)
+        choices: state.choices,
+        reflection: state.reflection || null,
+        virtue_scores: virtueScores,
+        guided_responses: guidedResponsesPayload, // Stage 16: Include in same insert
+      })
+      .select("id")
+      .single();
 
     if (error) {
       setState((prev) => ({
@@ -300,6 +307,20 @@ export default function StoryPlayer({
         error: "Failed to save session. Please try again.",
       }));
       return;
+    }
+
+    // Stage 22: Mark assignment submission as completed if this is an assignment
+    if (assignmentId && sessionData?.id) {
+      await supabase.from("assignment_submissions").upsert(
+        {
+          assignment_id: assignmentId,
+          student_id: user.id,
+          session_id: sessionData.id,
+          status: "completed",
+          completed_at: new Date().toISOString(),
+        },
+        { onConflict: "assignment_id,student_id" }
+      );
     }
 
     setState((prev) => ({

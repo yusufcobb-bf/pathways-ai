@@ -9,9 +9,19 @@ import {
   selectStoryByMode,
   selectStoryForShuffledMode,
 } from "@/lib/story-config";
-import { selectVariantForStory, variantToStory } from "@/data/variants";
+import { selectVariantForStory, variantToStory, loadVariantsForArchetype } from "@/data/variants";
 
-export default async function StudentHome() {
+interface PageProps {
+  searchParams: Promise<{
+    assignmentId?: string;
+    archetypeId?: string;
+    variantId?: string;
+    guidedReflection?: string;
+  }>;
+}
+
+export default async function StudentHome({ searchParams }: PageProps) {
+  const params = await searchParams;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -28,39 +38,74 @@ export default async function StudentHome() {
 
   const completedSessions = count ?? 0;
 
-  // Load raw story pool
-  const rawPool = loadStoryPool();
+  // Stage 22: Check if this is an assignment launch
+  const isAssignmentLaunch = params.assignmentId && params.archetypeId;
+  let assignmentId: string | null = null;
+  let storyId: string;
+  let archetypeId: string;
+  let variantId: string | null;
+  let isGenerated: boolean;
+  let guidedReflectionEnabled: boolean;
 
-  // Fetch educator configuration (returns null if none exists)
-  const config = await getStoryPoolConfig(supabase);
+  if (isAssignmentLaunch) {
+    // Assignment launch - use provided params
+    assignmentId = params.assignmentId!;
+    archetypeId = params.archetypeId!;
+    storyId = archetypeId; // For assignments, storyId = archetypeId
+    isGenerated = false; // Assignments use known archetypes
 
-  // Stage 10: Apply config to get mode, filtered pool, and single story selection
-  const { mode, configuredPool, singleStoryId } = applyStoryPoolConfig(
-    rawPool,
-    config
-  );
+    // Handle variant selection
+    if (params.variantId) {
+      // Specific variant requested - find it
+      const variants = loadVariantsForArchetype(archetypeId);
+      const requestedVariant = variants.find((v) => v.variantId === params.variantId);
+      variantId = requestedVariant?.variantId ?? null;
+    } else {
+      // No specific variant - use default selection
+      const variant = selectVariantForStory(archetypeId, completedSessions);
+      variantId = variant.variantId;
+    }
 
-  // Stage 16: Get guided reflection setting from config
-  const guidedReflectionEnabled = config?.guided_reflection_enabled ?? false;
+    // Handle guided reflection override
+    // If guidedReflection param present: "1" = on, "0" = off
+    // If not present (null override): use global config
+    if (params.guidedReflection !== undefined) {
+      guidedReflectionEnabled = params.guidedReflection === "1";
+    } else {
+      // Use global config as default
+      const config = await getStoryPoolConfig(supabase);
+      guidedReflectionEnabled = config?.guided_reflection_enabled ?? false;
+    }
+  } else {
+    // Normal story selection flow
+    const rawPool = loadStoryPool();
+    const config = await getStoryPoolConfig(supabase);
+    const { mode, configuredPool, singleStoryId } = applyStoryPoolConfig(rawPool, config);
+    guidedReflectionEnabled = config?.guided_reflection_enabled ?? false;
 
-  // Use async function for shuffled_sequence mode (requires DB access for per-student state)
-  const selectedEntry =
-    mode === "shuffled_sequence"
-      ? await selectStoryForShuffledMode(
-          supabase,
-          user.id,
-          configuredPool,
-          completedSessions
-        )
-      : selectStoryByMode(configuredPool, mode, completedSessions, singleStoryId);
+    const selectedEntry =
+      mode === "shuffled_sequence"
+        ? await selectStoryForShuffledMode(supabase, user.id, configuredPool, completedSessions)
+        : selectStoryByMode(configuredPool, mode, completedSessions, singleStoryId);
 
-  const { storyId, archetypeId, isGenerated } = selectedEntry;
+    storyId = selectedEntry.storyId;
+    archetypeId = selectedEntry.archetypeId;
+    isGenerated = selectedEntry.isGenerated;
 
-  // Stage 8: Resolve variant for the selected archetype
-  // Variant selection is deterministic based on completed sessions
+    const variant = selectVariantForStory(archetypeId, completedSessions);
+    variantId = variant.variantId;
+  }
+
+  // Stage 8: Get the story/variant for StoryPlayer
   const variant = selectVariantForStory(archetypeId, completedSessions);
-  const story = variantToStory(variant);
-  const variantId = variant.variantId;
+  // If we have a specific variantId from assignment, find that variant instead
+  let finalVariant = variant;
+  if (variantId && variantId !== variant.variantId) {
+    const variants = loadVariantsForArchetype(archetypeId);
+    const found = variants.find((v) => v.variantId === variantId);
+    if (found) finalVariant = found;
+  }
+  const story = variantToStory(finalVariant);
 
   // Key includes session count to force remount even if storyId unchanged (fixed mode)
   return (
@@ -73,6 +118,12 @@ export default async function StudentHome() {
           Past Sessions
         </Link>
         <Link
+          href="/student/assignments"
+          className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
+        >
+          Assignments
+        </Link>
+        <Link
           href="/student/classrooms"
           className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
         >
@@ -80,13 +131,14 @@ export default async function StudentHome() {
         </Link>
       </div>
       <StoryPlayer
-        key={`${storyId}-${completedSessions}`}
+        key={`${storyId}-${completedSessions}${assignmentId ? `-${assignmentId}` : ""}`}
         story={story}
         storyId={storyId}
         archetypeId={archetypeId}
         variantId={variantId}
         isGenerated={isGenerated}
         guidedReflectionEnabled={guidedReflectionEnabled}
+        assignmentId={assignmentId}
       />
     </>
   );

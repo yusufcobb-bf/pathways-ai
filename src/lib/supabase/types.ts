@@ -96,3 +96,27 @@ export interface StudentClassroomMembership {
     name: string;
   } | null;
 }
+
+// Stage 22: Assignments
+export interface Assignment {
+  id: string;
+  classroom_id: string;
+  educator_id: string;
+  title: string;
+  archetype_id: string;
+  variant_id?: string | null;
+  starts_at?: string | null;
+  ends_at?: string | null;
+  guided_reflection_override?: boolean | null;
+  created_at: string;
+}
+
+export interface AssignmentSubmission {
+  id: string;
+  assignment_id: string;
+  student_id: string;
+  session_id?: string | null;
+  status: "assigned" | "completed";
+  created_at: string;
+  completed_at?: string | null;
+}
