@@ -213,6 +213,7 @@ export default function StudentPreviewPage() {
       isGenerated={selectedEntry.isGenerated}
       previewMode={true}
       onPreviewExit={handlePreviewExit}
+      guidedReflectionEnabled={true} // Stage 16: Always show prompts in preview
     />
   );
 }

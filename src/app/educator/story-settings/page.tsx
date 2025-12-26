@@ -17,6 +17,7 @@ interface SettingsState {
   storyOrder: string[];
   mode: StoryMode;
   singleStoryId: string | null; // Stage 10: Explicit story for single_story mode
+  guidedReflectionEnabled: boolean; // Stage 16: Opt-in for guided prompts
 }
 
 export default function StorySettingsPage() {
@@ -31,6 +32,7 @@ export default function StorySettingsPage() {
     storyOrder: [],
     mode: "fixed_sequence",
     singleStoryId: null,
+    guidedReflectionEnabled: false, // Stage 16: default off (opt-in)
   });
 
   // Load initial data on mount
@@ -71,6 +73,7 @@ export default function StorySettingsPage() {
           storyOrder: order,
           mode: config.mode as StoryMode,
           singleStoryId: (config.single_story_id as string | null) ?? null,
+          guidedReflectionEnabled: config.guided_reflection_enabled ?? false, // Stage 16
         });
       } else {
         // No config exists - use defaults
@@ -84,6 +87,7 @@ export default function StorySettingsPage() {
           storyOrder: defaultOrder,
           mode: "fixed_sequence",
           singleStoryId: null,
+          guidedReflectionEnabled: false, // Stage 16: default off
         });
       }
     }
@@ -136,6 +140,15 @@ export default function StorySettingsPage() {
     setState((prev) => ({ ...prev, singleStoryId: storyId, success: false }));
   };
 
+  // Stage 16: Toggle guided reflection prompts
+  const toggleGuidedReflection = () => {
+    setState((prev) => ({
+      ...prev,
+      guidedReflectionEnabled: !prev.guidedReflectionEnabled,
+      success: false,
+    }));
+  };
+
   // Save configuration (inserts new row for version history)
   const handleSave = async () => {
     setState((prev) => ({ ...prev, saving: true, error: null, success: false }));
@@ -145,6 +158,7 @@ export default function StorySettingsPage() {
       story_order: state.storyOrder,
       mode: state.mode,
       single_story_id: state.singleStoryId, // Stage 10
+      guided_reflection_enabled: state.guidedReflectionEnabled, // Stage 16
       updated_at: new Date().toISOString(),
     };
 
@@ -301,6 +315,41 @@ export default function StorySettingsPage() {
             )}
         </section>
       )}
+
+      {/* Guided Reflection Settings - Stage 16 */}
+      <section className="mb-6 rounded-lg border border-zinc-200 bg-white p-6">
+        <h2 className="mb-4 text-lg font-semibold text-zinc-900">
+          Reflection Settings
+        </h2>
+        <label className="flex cursor-pointer items-start gap-3">
+          <button
+            onClick={toggleGuidedReflection}
+            className={`relative mt-0.5 h-6 w-11 flex-shrink-0 rounded-full transition-colors ${
+              state.guidedReflectionEnabled ? "bg-green-500" : "bg-zinc-300"
+            }`}
+            aria-label={
+              state.guidedReflectionEnabled
+                ? "Disable guided reflection"
+                : "Enable guided reflection"
+            }
+          >
+            <span
+              className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${
+                state.guidedReflectionEnabled ? "translate-x-5" : "translate-x-0"
+              }`}
+            />
+          </button>
+          <div>
+            <span className="font-medium text-zinc-900">
+              Enable Guided Reflection Prompts
+            </span>
+            <p className="text-sm text-zinc-500">
+              After story completion, show students 2-3 optional reflection
+              questions. Responses are visible in session details.
+            </p>
+          </div>
+        </label>
+      </section>
 
       {/* Story Pool */}
       <section className="mb-6 rounded-lg border border-zinc-200 bg-white p-6">

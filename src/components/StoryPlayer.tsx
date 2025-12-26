@@ -17,6 +17,7 @@ import { useAuth } from "./AuthProvider";
 import StorySceneHeader from "./StorySceneHeader";
 import { getStoryEnvironment, getStoryGradient } from "@/data/story-environments";
 import { getSceneSubtitle } from "@/data/story-scenes";
+import { getReflectionPrompts } from "@/data/reflection-prompts";
 
 interface StoryPlayerProps {
   story: Story;
@@ -26,6 +27,7 @@ interface StoryPlayerProps {
   isGenerated: boolean;
   previewMode?: boolean; // Stage 11: Educator preview mode (no DB writes)
   onPreviewExit?: () => void; // Stage 11b: Callback to exit preview and return to setup
+  guidedReflectionEnabled?: boolean; // Stage 16: Show guided prompts after completion
 }
 
 type Stage = "intro" | "checkpoint" | "ending" | "reflection" | "completed";
@@ -40,6 +42,7 @@ interface StoryState {
   virtueScores: VirtueScores | null;
   selectedChoice: { id: string; text: string } | null; // Stage 14: Choice feedback
   isTransitioning: boolean; // Stage 14: Fade transitions
+  guidedResponses: Record<string, string>; // Stage 16: Maps prompt.id to response
 }
 
 function CheckpointProgress({
@@ -168,6 +171,7 @@ export default function StoryPlayer({
   isGenerated,
   previewMode = false,
   onPreviewExit,
+  guidedReflectionEnabled = false,
 }: StoryPlayerProps) {
   const { user } = useAuth();
   const supabase = createClient();
@@ -186,6 +190,7 @@ export default function StoryPlayer({
     virtueScores: null,
     selectedChoice: null,
     isTransitioning: false,
+    guidedResponses: {},
   });
 
   const totalCheckpoints = story.checkpoints.length;
@@ -258,6 +263,26 @@ export default function StoryPlayer({
       ? computePositionBasedVirtueScores(state.choices)
       : computeVirtueScores(state.choices);
 
+    // Stage 16: Build guided_responses only if enabled and at least one response exists
+    let guidedResponsesPayload = null;
+    if (guidedReflectionEnabled) {
+      const prompts = getReflectionPrompts(archetypeId);
+      const answeredPrompts = prompts
+        .filter((p) => state.guidedResponses[p.id]?.trim())
+        .map((p) => ({
+          prompt: p.text, // Store full prompt text for session integrity
+          response: state.guidedResponses[p.id],
+        }));
+
+      if (answeredPrompts.length > 0) {
+        guidedResponsesPayload = {
+          prompts: answeredPrompts,
+          archetypeId,
+          completedAt: new Date().toISOString(),
+        };
+      }
+    }
+
     const { error } = await supabase.from("story_sessions").insert({
       user_id: user.id,
       story_id: storyId,
@@ -265,6 +290,7 @@ export default function StoryPlayer({
       choices: state.choices,
       reflection: state.reflection || null,
       virtue_scores: virtueScores,
+      guided_responses: guidedResponsesPayload, // Stage 16: Include in same insert
     });
 
     if (error) {
@@ -289,6 +315,17 @@ export default function StoryPlayer({
     // Using window.location ensures the server component fully re-renders
     // with the updated completed session count
     window.location.href = "/student";
+  };
+
+  // Stage 16: Guided reflection handler
+  const handleGuidedResponseChange = (promptId: string, value: string) => {
+    setState((prev) => ({
+      ...prev,
+      guidedResponses: {
+        ...prev.guidedResponses,
+        [promptId]: value,
+      },
+    }));
   };
 
   return (
@@ -417,8 +454,39 @@ export default function StoryPlayer({
                   ? "Please write a reflection to continue."
                   : `${state.reflection.trim().length} characters`}
               </p>
+
+              {/* Stage 16: Optional Guided Prompts Section */}
+              {guidedReflectionEnabled && (
+                <div className="mt-8 border-t border-zinc-200 pt-6">
+                  <h3 className="mb-2 text-lg font-medium text-zinc-800">
+                    Optional Reflection Questions
+                  </h3>
+                  <p className="mb-4 text-sm text-zinc-500">
+                    If you&apos;d like to think a bit more deeply, you can
+                    answer any of the questions below.
+                  </p>
+                  <div className="space-y-4">
+                    {getReflectionPrompts(archetypeId).map((prompt) => (
+                      <div key={prompt.id}>
+                        <label className="mb-1 block text-sm font-medium text-zinc-700">
+                          {prompt.text}
+                        </label>
+                        <textarea
+                          value={state.guidedResponses[prompt.id] || ""}
+                          onChange={(e) =>
+                            handleGuidedResponseChange(prompt.id, e.target.value)
+                          }
+                          placeholder={prompt.placeholder}
+                          className="h-20 w-full rounded-lg border border-zinc-200 p-3 text-sm text-zinc-700 placeholder:text-zinc-400 focus:border-zinc-400 focus:outline-none"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {state.error && (
-                <p className="mt-2 text-sm text-red-600">{state.error}</p>
+                <p className="mt-4 text-sm text-red-600">{state.error}</p>
               )}
               <ContinueButton
                 onClick={handleFinish}

@@ -3,6 +3,18 @@ import { VirtueScores } from "@/data/virtues";
 // Stage 12: User roles for RBAC
 export type UserRole = "student" | "educator";
 
+// Stage 16: Guided Reflection types
+export interface GuidedPromptResponse {
+  prompt: string;
+  response: string;
+}
+
+export interface GuidedResponses {
+  prompts: GuidedPromptResponse[];
+  archetypeId: string;
+  completedAt: string;
+}
+
 export interface Profile {
   id: string;
   user_id: string;
@@ -17,6 +29,7 @@ export interface StorySession {
   variant_id: string | null; // Stage 8: Which variant was played (null = base story)
   choices: string[];
   reflection: string | null;
+  guided_responses: GuidedResponses | null; // Stage 16: Structured reflection responses
   virtue_scores: VirtueScores | null;
   created_at: string;
 }
@@ -30,6 +43,7 @@ export interface StoryPoolConfig {
   story_order: string[];
   mode: StoryMode;
   single_story_id: string | null; // Stage 10: Explicit story selection for single_story mode
+  guided_reflection_enabled: boolean; // Stage 16: Opt-in for guided prompts (default false)
   created_at: string;
   updated_at: string;
 }

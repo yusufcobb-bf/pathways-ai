@@ -39,6 +39,9 @@ export default async function StudentHome() {
     config
   );
 
+  // Stage 16: Get guided reflection setting from config
+  const guidedReflectionEnabled = config?.guided_reflection_enabled ?? false;
+
   // Use async function for shuffled_sequence mode (requires DB access for per-student state)
   const selectedEntry =
     mode === "shuffled_sequence"
@@ -67,6 +70,7 @@ export default async function StudentHome() {
       archetypeId={archetypeId}
       variantId={variantId}
       isGenerated={isGenerated}
+      guidedReflectionEnabled={guidedReflectionEnabled}
     />
   );
 }

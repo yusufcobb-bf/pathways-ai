@@ -206,6 +206,31 @@ export default function SessionDetail({ session }: SessionDetailProps) {
         </div>
       )}
 
+      {/* Stage 16: Guided Reflection Responses */}
+      {session.guided_responses?.prompts &&
+        session.guided_responses.prompts.length > 0 && (
+          <div>
+            <h4 className="mb-3 text-sm font-semibold text-zinc-700">
+              Guided Reflection Responses
+            </h4>
+            <div className="space-y-3">
+              {session.guided_responses.prompts.map((item, index) => (
+                <div
+                  key={index}
+                  className="rounded-lg border border-zinc-200 bg-white p-4"
+                >
+                  <p className="mb-2 text-xs font-medium text-zinc-500">
+                    {item.prompt}
+                  </p>
+                  <p className="text-sm text-zinc-600 italic">
+                    &ldquo;{item.response}&rdquo;
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
       {/* Discussion Prompts */}
       {session.virtue_scores && (
         <DiscussionPromptsSection scores={session.virtue_scores} />
