@@ -56,3 +56,43 @@ export interface StudentStoryCycle {
   created_at: string;
   updated_at: string;
 }
+
+// Stage 21: Classrooms & Rosters
+export interface Classroom {
+  id: string;
+  name: string;
+  educator_id: string;
+  join_code: string;
+  created_at: string;
+}
+
+export interface ClassroomMember {
+  id: string;
+  classroom_id: string;
+  student_id: string;
+  joined_at: string;
+}
+
+// For educator roster display (joined with profiles)
+export interface ClassroomMemberWithProfile {
+  id: string;
+  classroom_id: string;
+  student_id: string;
+  joined_at: string;
+  profiles: {
+    user_id: string;
+    full_name?: string | null;
+    username?: string | null;
+  } | null;
+}
+
+// For student classroom list (joined with classroom)
+export interface StudentClassroomMembership {
+  id: string;
+  classroom_id: string;
+  joined_at: string;
+  classrooms: {
+    id: string;
+    name: string;
+  } | null;
+}

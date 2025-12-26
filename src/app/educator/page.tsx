@@ -127,6 +127,12 @@ export default function EducatorDashboard() {
         </div>
         <div className="flex gap-2">
           <Link
+            href="/educator/classrooms"
+            className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
+          >
+            Classrooms
+          </Link>
+          <Link
             href="/educator/story-settings"
             className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
           >

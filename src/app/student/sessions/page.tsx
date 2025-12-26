@@ -82,12 +82,20 @@ export default function PastSessionsPage() {
     <div className="py-8">
       <div className="mb-8 flex items-center justify-between">
         <h1 className="text-2xl font-bold text-zinc-900">Past Sessions</h1>
-        <Link
-          href="/student"
-          className="text-sm font-medium text-zinc-600 hover:text-zinc-900"
-        >
-          Play Story
-        </Link>
+        <div className="flex gap-4">
+          <Link
+            href="/student/classrooms"
+            className="text-sm text-zinc-500 hover:text-zinc-700"
+          >
+            My Classrooms
+          </Link>
+          <Link
+            href="/student"
+            className="text-sm font-medium text-zinc-600 hover:text-zinc-900"
+          >
+            Play Story
+          </Link>
+        </div>
       </div>
 
       {loading ? (
