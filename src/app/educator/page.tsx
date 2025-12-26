@@ -144,6 +144,12 @@ export default function EducatorDashboard() {
           >
             Preview Student Experience
           </Link>
+          <Link
+            href="/educator/info"
+            className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
+          >
+            How It Works
+          </Link>
         </div>
       </div>
 
