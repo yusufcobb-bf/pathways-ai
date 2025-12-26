@@ -1,14 +1,18 @@
 import Link from "next/link";
+import { getVirtueDefinitions } from "@/data/virtue-framework";
 
 /**
- * Educator Info Page (Stage 17)
+ * Educator Info Page (Stage 17 + Stage 18)
  *
  * Read-only documentation explaining how Pathways works.
  * No database writes, no logic changes.
  * Protected by educator layout RBAC.
+ *
+ * Stage 18: Uses canonical VIRTUE_FRAMEWORK for virtue definitions.
  */
 
 export default function EducatorInfoPage() {
+  const virtues = getVirtueDefinitions();
   return (
     <div className="py-8">
       {/* Header */}
@@ -237,10 +241,10 @@ export default function EducatorInfoPage() {
           </div>
         </section>
 
-        {/* Section 6: Virtues & Decision Tendencies */}
+        {/* Section 6: Virtue Framework & Learning Alignment (Stage 18) */}
         <section className="rounded-lg border border-zinc-200 bg-white p-6">
           <h2 className="mb-3 text-lg font-semibold text-zinc-900">
-            Virtues & Decision Tendencies (Reference)
+            Virtue Framework & Learning Alignment
           </h2>
           <div className="space-y-4 text-sm text-zinc-600">
             <p>
@@ -250,77 +254,43 @@ export default function EducatorInfoPage() {
               choices, not from any single decision.
             </p>
 
-            {/* Empathy */}
-            <div>
-              <h3 className="mb-1 font-medium text-zinc-800">Empathy</h3>
-              <p>
-                Considering others&apos; feelings and understanding different
-                perspectives.
-              </p>
-              <ul className="mt-2 list-disc space-y-1 pl-5 text-zinc-500">
-                <li>Noticing how others might feel</li>
-                <li>Understanding different perspectives</li>
-                <li>Thinking about group impact</li>
-              </ul>
-            </div>
+            {/* Virtue cards from canonical framework */}
+            {virtues.map((virtue) => (
+              <div
+                key={virtue.id}
+                className="rounded-lg border border-zinc-100 bg-zinc-50 p-4"
+              >
+                <h3 className="mb-1 font-medium text-zinc-800">{virtue.name}</h3>
+                <p className="text-zinc-600">{virtue.description}</p>
 
-            {/* Respect */}
-            <div>
-              <h3 className="mb-1 font-medium text-zinc-800">Respect</h3>
-              <p>
-                Treating others with consideration and recognizing boundaries or
-                differing perspectives.
-              </p>
-              <ul className="mt-2 list-disc space-y-1 pl-5 text-zinc-500">
-                <li>Listening before acting</li>
-                <li>Asking for input</li>
-                <li>Avoiding dismissive or dominating choices</li>
-              </ul>
-            </div>
+                <div className="mt-3">
+                  <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+                    Examples of Decision Tendencies
+                  </p>
+                  <ul className="mt-1 list-disc space-y-0.5 pl-5 text-zinc-500">
+                    {virtue.decisionTendencies.map((tendency, i) => (
+                      <li key={i}>{tendency}</li>
+                    ))}
+                  </ul>
+                </div>
 
-            {/* Responsibility */}
-            <div>
-              <h3 className="mb-1 font-medium text-zinc-800">Responsibility</h3>
-              <p>
-                Taking ownership of actions and following through on
-                commitments.
-              </p>
-              <ul className="mt-2 list-disc space-y-1 pl-5 text-zinc-500">
-                <li>Accepting accountability</li>
-                <li>Completing shared tasks</li>
-                <li>Thinking about consequences</li>
-              </ul>
-            </div>
-
-            {/* Courage */}
-            <div>
-              <h3 className="mb-1 font-medium text-zinc-800">Courage</h3>
-              <p>
-                Willingness to act despite discomfort or uncertainty.
-              </p>
-              <ul className="mt-2 list-disc space-y-1 pl-5 text-zinc-500">
-                <li>Speaking up</li>
-                <li>Addressing difficult situations</li>
-                <li>Making principled choices even when it&apos;s hard</li>
-              </ul>
-            </div>
-
-            {/* Self-Control */}
-            <div>
-              <h3 className="mb-1 font-medium text-zinc-800">Self-Control</h3>
-              <p>Managing impulses and thinking before acting.</p>
-              <ul className="mt-2 list-disc space-y-1 pl-5 text-zinc-500">
-                <li>Pausing before responding</li>
-                <li>Choosing calm or measured options</li>
-                <li>Avoiding reactive decisions</li>
-              </ul>
-            </div>
+                <div className="mt-3">
+                  <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+                    Learning Alignment
+                  </p>
+                  <p className="mt-1 text-xs text-zinc-400">
+                    CASEL: {virtue.caselDomains.join(", ")}
+                  </p>
+                </div>
+              </div>
+            ))}
 
             {/* Disclaimer */}
             <p className="mt-4 border-t border-zinc-100 pt-4 text-xs text-zinc-500">
               Virtue scores reflect tendencies shown within a single story. They
               should be used as discussion starters, not judgments of character
-              or behavior.
+              or behavior. These definitions are provided for educational
+              reference and curriculum alignment purposes.
             </p>
           </div>
         </section>
