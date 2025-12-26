@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getVirtueDefinitions, getVirtueById } from "@/data/virtue-framework";
-import { getAllLessonMetadata } from "@/data/lesson-metadata";
+import { getAllLessonMetadata, getLessonMetadata } from "@/data/lesson-metadata";
+import { getCurriculumScope } from "@/data/curriculum-scope";
 
 /**
  * Educator Info Page (Stage 17 + Stage 18)
@@ -15,6 +16,7 @@ import { getAllLessonMetadata } from "@/data/lesson-metadata";
 export default function EducatorInfoPage() {
   const virtues = getVirtueDefinitions();
   const lessons = getAllLessonMetadata();
+  const curriculum = getCurriculumScope();
   return (
     <div className="py-8">
       {/* Header */}
@@ -402,7 +404,70 @@ export default function EducatorInfoPage() {
           </div>
         </details>
 
-        {/* Section 8: Roles & Access */}
+        {/* Section 8: Curriculum Scope & Sequence (Stage 20) */}
+        <details className="group rounded-lg border border-zinc-200 bg-white">
+          <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-4 font-semibold text-zinc-900 hover:bg-zinc-50">
+            <span>Curriculum Scope & Sequence (Grades 4–5)</span>
+            <span className="text-zinc-400 transition-transform group-open:rotate-90">
+              ▶
+            </span>
+          </summary>
+          <div className="px-6 pb-6 pt-2">
+            {/* Intro text with refinements */}
+            <div className="mb-6 text-sm text-zinc-600">
+              <p>
+                Pathways is a 12-lesson social-emotional learning curriculum
+                designed for Grades 4–5. Lessons are organized into virtue-based
+                units, with each unit focusing on a specific character trait.
+              </p>
+              <p className="mt-2">
+                Some lessons (story archetypes) appear in multiple units and are
+                revisited with different instructional focus aligned to the
+                target virtue of each unit.
+              </p>
+              <p className="mt-2 text-zinc-500">
+                Educators may adjust pacing or sequence based on classroom
+                needs. Designed for approximately one lesson per week.
+              </p>
+            </div>
+
+            {/* Unit cards */}
+            <div className="space-y-4">
+              {curriculum.units.map((unit) => (
+                <div
+                  key={unit.unitId}
+                  className="rounded-lg border border-zinc-100 bg-zinc-50 p-4"
+                >
+                  <h3 className="font-medium text-zinc-800">{unit.unitTitle}</h3>
+                  <p className="mt-1 text-sm text-zinc-500">
+                    Target Virtue: {getVirtueById(unit.targetVirtue)?.name} •{" "}
+                    {unit.gradeBand}
+                  </p>
+
+                  {/* Ordered lesson list */}
+                  <ol className="mt-3 list-decimal space-y-1 pl-5 text-sm text-zinc-600">
+                    {unit.lessons.map((lessonRef) => {
+                      const lessonMeta = getLessonMetadata(lessonRef.archetypeId);
+                      return (
+                        <li key={`${unit.unitId}-${lessonRef.archetypeId}`}>
+                          {lessonMeta?.lessonTitle ?? lessonRef.archetypeId}
+                        </li>
+                      );
+                    })}
+                  </ol>
+                </div>
+              ))}
+            </div>
+
+            {/* Summary footer */}
+            <p className="mt-4 border-t border-zinc-100 pt-4 text-xs text-zinc-400">
+              {curriculum.units.length} units • {curriculum.totalLessons} total
+              lessons
+            </p>
+          </div>
+        </details>
+
+        {/* Section 9: Roles & Access */}
         <details className="group rounded-lg border border-zinc-200 bg-white">
           <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-4 font-semibold text-zinc-900 hover:bg-zinc-50">
             <span>Roles & Access</span>
@@ -433,7 +498,7 @@ export default function EducatorInfoPage() {
           </div>
         </details>
 
-        {/* Section 9: Common Questions */}
+        {/* Section 10: Common Questions */}
         <details className="group rounded-lg border border-zinc-200 bg-white">
           <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-4 font-semibold text-zinc-900 hover:bg-zinc-50">
             <span>Common Questions</span>
