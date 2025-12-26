@@ -65,10 +65,16 @@ export default async function StudentHome() {
   // Key includes session count to force remount even if storyId unchanged (fixed mode)
   return (
     <>
-      <div className="mb-4 flex justify-end">
+      <div className="mb-6 flex justify-end gap-3">
+        <Link
+          href="/student/sessions"
+          className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
+        >
+          Past Sessions
+        </Link>
         <Link
           href="/student/classrooms"
-          className="text-sm text-zinc-500 hover:text-zinc-700"
+          className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
         >
           My Classrooms
         </Link>
