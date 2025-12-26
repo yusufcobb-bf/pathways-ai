@@ -120,3 +120,21 @@ export interface AssignmentSubmission {
   created_at: string;
   completed_at?: string | null;
 }
+
+// Stage 24: Student Progress (Private, Non-Competitive)
+export interface StudentProgress {
+  id: string;
+  student_id: string;
+  xp: number;
+  level: number;
+  last_active_at: string | null;
+  created_at: string;
+}
+
+export interface StudentVirtueTrend {
+  id: string;
+  student_id: string;
+  virtue_id: string;
+  value: number;
+  updated_at: string;
+}

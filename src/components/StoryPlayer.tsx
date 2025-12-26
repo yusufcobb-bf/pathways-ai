@@ -309,6 +309,31 @@ export default function StoryPlayer({
       return;
     }
 
+    // Stage 24: Update student progress (XP + virtue trends)
+    // Calculate XP: +10 base, +5 bonus if assignment
+    const baseXp = 10;
+    const bonusXp = assignmentId ? 5 : 0;
+    const totalXp = baseXp + bonusXp;
+
+    // Increment XP via RPC (atomic, with role guard)
+    await supabase.rpc("increment_student_xp", {
+      p_student_id: user.id,
+      p_xp_delta: totalXp,
+    });
+
+    // Update virtue trends via RPC
+    if (virtueScores) {
+      for (const [virtueId, delta] of Object.entries(virtueScores)) {
+        if (delta !== 0) {
+          await supabase.rpc("increment_virtue_trend", {
+            p_student_id: user.id,
+            p_virtue_id: virtueId,
+            p_delta: delta,
+          });
+        }
+      }
+    }
+
     // Stage 22: Mark assignment submission as completed if this is an assignment
     if (assignmentId && sessionData?.id) {
       await supabase.from("assignment_submissions").upsert(

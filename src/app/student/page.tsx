@@ -112,6 +112,12 @@ export default async function StudentHome({ searchParams }: PageProps) {
     <>
       <div className="mb-6 flex justify-end gap-3">
         <Link
+          href="/student/progress"
+          className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
+        >
+          My Progress
+        </Link>
+        <Link
           href="/student/sessions"
           className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
         >
