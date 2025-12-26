@@ -13,7 +13,6 @@ interface ClassroomMemberData {
   student_id: string;
   joined_at: string;
   profile?: {
-    full_name?: string | null;
     username?: string | null;
   } | null;
 }
@@ -50,7 +49,6 @@ function ClassroomCard({
 
   function getStudentDisplayName(member: ClassroomMemberData): string {
     return (
-      member.profile?.full_name ??
       member.profile?.username ??
       `${member.student_id.slice(0, 8)}...`
     );
@@ -185,7 +183,7 @@ export default function EducatorClassroomsPage() {
         const studentIds = members.map((m) => m.student_id);
         const { data: profiles } = await supabase
           .from("profiles")
-          .select("user_id, full_name, username")
+          .select("user_id, username")
           .in("user_id", studentIds);
 
         // Create a map of user_id -> profile

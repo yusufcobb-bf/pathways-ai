@@ -19,6 +19,7 @@ export interface Profile {
   id: string;
   user_id: string;
   role: UserRole;
+  username?: string | null; // Stage 21b: For educator roster display
   created_at: string;
 }
 
@@ -81,7 +82,6 @@ export interface ClassroomMemberWithProfile {
   joined_at: string;
   profiles: {
     user_id: string;
-    full_name?: string | null;
     username?: string | null;
   } | null;
 }

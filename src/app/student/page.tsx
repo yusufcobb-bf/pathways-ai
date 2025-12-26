@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import StoryPlayer from "@/components/StoryPlayer";
 import { loadStoryPool } from "@/data/story";
@@ -63,14 +64,24 @@ export default async function StudentHome() {
 
   // Key includes session count to force remount even if storyId unchanged (fixed mode)
   return (
-    <StoryPlayer
-      key={`${storyId}-${completedSessions}`}
-      story={story}
-      storyId={storyId}
-      archetypeId={archetypeId}
-      variantId={variantId}
-      isGenerated={isGenerated}
-      guidedReflectionEnabled={guidedReflectionEnabled}
-    />
+    <>
+      <div className="mb-4 flex justify-end">
+        <Link
+          href="/student/classrooms"
+          className="text-sm text-zinc-500 hover:text-zinc-700"
+        >
+          My Classrooms
+        </Link>
+      </div>
+      <StoryPlayer
+        key={`${storyId}-${completedSessions}`}
+        story={story}
+        storyId={storyId}
+        archetypeId={archetypeId}
+        variantId={variantId}
+        isGenerated={isGenerated}
+        guidedReflectionEnabled={guidedReflectionEnabled}
+      />
+    </>
   );
 }

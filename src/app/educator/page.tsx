@@ -9,6 +9,11 @@ import { getStoryTitleById, getStoryPoolPosition } from "@/data/story";
 import { getVariantCountForArchetype, getVariantTitle, getVariantDisplayInfo } from "@/data/variants";
 import SessionDetail from "@/components/SessionDetail";
 
+// Extended session type with username
+interface SessionWithUsername extends StorySession {
+  username?: string | null;
+}
+
 function VirtueScoreBadges({ scores }: { scores: VirtueScores }) {
   return (
     <div className="mt-3 flex flex-wrap gap-2">
@@ -32,7 +37,7 @@ function VirtueScoreBadges({ scores }: { scores: VirtueScores }) {
   );
 }
 
-function SessionCard({ session }: { session: StorySession }) {
+function SessionCard({ session }: { session: SessionWithUsername }) {
   const [expanded, setExpanded] = useState(false);
 
   const formatDate = (dateString: string) => {
@@ -71,7 +76,7 @@ function SessionCard({ session }: { session: StorySession }) {
         </span>
       </div>
       <p className="text-xs text-zinc-400">
-        Student ID: {session.user_id.slice(0, 8)}...
+        Student: {session.username ?? `${session.user_id.slice(0, 8)}...`}
       </p>
       <p className="mt-2 text-sm text-zinc-600">
         Choices: {session.choices.length} decisions made
@@ -97,17 +102,44 @@ function SessionCard({ session }: { session: StorySession }) {
 
 export default function EducatorDashboard() {
   const supabase = createClient();
-  const [sessions, setSessions] = useState<StorySession[]>([]);
+  const [sessions, setSessions] = useState<SessionWithUsername[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchAllSessions() {
-      const { data } = await supabase
+      // Fetch sessions
+      const { data: sessionsData } = await supabase
         .from("story_sessions")
         .select("*")
         .order("created_at", { ascending: false });
 
-      setSessions(data || []);
+      if (!sessionsData || sessionsData.length === 0) {
+        setSessions([]);
+        setLoading(false);
+        return;
+      }
+
+      // Get unique user IDs
+      const userIds = [...new Set(sessionsData.map((s) => s.user_id))];
+
+      // Fetch profiles for all users
+      const { data: profiles } = await supabase
+        .from("profiles")
+        .select("user_id, username")
+        .in("user_id", userIds);
+
+      // Create map of user_id -> username
+      const usernameMap = new Map(
+        (profiles || []).map((p) => [p.user_id, p.username])
+      );
+
+      // Merge sessions with usernames
+      const sessionsWithUsernames: SessionWithUsername[] = sessionsData.map((s) => ({
+        ...s,
+        username: usernameMap.get(s.user_id) || null,
+      }));
+
+      setSessions(sessionsWithUsernames);
       setLoading(false);
     }
 
