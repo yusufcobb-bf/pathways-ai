@@ -74,8 +74,17 @@ function AssignmentCard({
     ? "On"
     : "Off";
 
+  const handleDelete = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onDelete(assignment.id, assignment.title);
+  };
+
   return (
-    <div className="rounded-lg border border-zinc-200 bg-white p-4">
+    <Link
+      href={`/educator/assignments/${assignment.id}`}
+      className="block rounded-lg border border-zinc-200 bg-white p-4 transition-colors hover:border-zinc-300"
+    >
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <h3 className="font-medium text-zinc-900">{assignment.title}</h3>
@@ -85,7 +94,7 @@ function AssignmentCard({
           )}
         </div>
         <button
-          onClick={() => onDelete(assignment.id, assignment.title)}
+          onClick={handleDelete}
           className="rounded px-2 py-1 text-sm text-red-600 hover:bg-red-50"
         >
           Delete
@@ -117,7 +126,11 @@ function AssignmentCard({
           {assignment.ends_at && <span>Ends: {formatDate(assignment.ends_at)}</span>}
         </div>
       )}
-    </div>
+
+      <div className="mt-3 text-sm text-zinc-500 hover:text-zinc-700">
+        View submissions &rarr;
+      </div>
+    </Link>
   );
 }
 
