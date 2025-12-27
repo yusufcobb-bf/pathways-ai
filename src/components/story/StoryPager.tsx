@@ -22,6 +22,10 @@ export interface StoryPagerProps {
   globalStartIndex?: number;
   totalStoryPages?: number;
   onPageChange?: (localIndex: number) => void;
+  // Stage 27: Cross-stage navigation
+  allowPrevAtStart?: boolean; // Show Previous button even on page 0
+  onPrevAtStart?: () => void; // Called when Previous clicked on page 0
+  initialPage?: number; // Start at a specific page (for back navigation)
 }
 
 export default function StoryPager({
@@ -33,17 +37,22 @@ export default function StoryPager({
   globalStartIndex = 0,
   totalStoryPages,
   onPageChange,
+  allowPrevAtStart = false,
+  onPrevAtStart,
+  initialPage = 0,
 }: StoryPagerProps) {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(initialPage);
   const totalPages = sentences.length;
 
   // V1: Reset page index when content changes to prevent index carryover
+  // Stage 27: Use initialPage instead of always 0
   // Note: onPageChange intentionally excluded from deps to prevent infinite loop
   useEffect(() => {
-    setCurrentPage(0);
-    onPageChange?.(0);
+    const startPage = Math.min(initialPage, sentences.length - 1);
+    setCurrentPage(startPage);
+    onPageChange?.(startPage);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sentences, archetypeId, stageType]);
+  }, [sentences, archetypeId, stageType, initialPage]);
 
   if (totalPages === 0) {
     return null;
@@ -54,6 +63,9 @@ export default function StoryPager({
       const newPage = currentPage - 1;
       setCurrentPage(newPage);
       onPageChange?.(newPage);
+    } else if (allowPrevAtStart && onPrevAtStart) {
+      // On page 0 but allowed to go back to previous stage
+      onPrevAtStart();
     }
   };
 
@@ -88,6 +100,11 @@ export default function StoryPager({
   const displayPageNumber = globalStartIndex + currentPage + 1;
   const displayTotalPages = totalStoryPages ?? totalPages;
 
+  // Show Previous button if:
+  // 1. We're not on page 0 (normal case), OR
+  // 2. We're on page 0 but cross-stage navigation is allowed
+  const showPrev = currentPage > 0 || (allowPrevAtStart && !!onPrevAtStart);
+
   return (
     <StoryPage
       sentence={sentence}
@@ -95,7 +112,7 @@ export default function StoryPager({
       fallbackGradient={gradient}
       pageNumber={displayPageNumber}
       totalPages={displayTotalPages}
-      onPrev={currentPage > 0 ? handlePrev : undefined}
+      onPrev={showPrev ? handlePrev : undefined}
       onNext={handleNext}
       isLast={isLast && !!onComplete}
     />

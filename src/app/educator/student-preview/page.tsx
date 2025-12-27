@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import StoryPlayer from "@/components/StoryPlayer";
-import { loadStoryPool, StoryPoolEntry } from "@/data/story";
+import { loadStoryPool, StoryPoolEntry, isVisualBeatStory } from "@/data/story";
 import {
   loadVariantsForArchetype,
   loadBaseStoryAsVariant,
@@ -66,13 +66,21 @@ export default function StudentPreviewPage() {
     return pool.find((e) => e.storyId === selectedStoryId) ?? pool[0];
   }, [pool, selectedStoryId]);
 
-  // Get selected variant (or base story)
+  // Stage 27: Check if selected story is a visual beat story
+  const isVisualBeat = useMemo(() => {
+    return selectedEntry ? isVisualBeatStory(selectedEntry.story) : false;
+  }, [selectedEntry]);
+
+  // Get selected variant (or base story) - only for prose stories
   const selectedVariant = useMemo(() => {
+    // Visual beat stories don't use variants
+    if (isVisualBeat) return null;
+
     if (selectedVariantId === null) {
       return baseStory;
     }
     return variants.find((v) => v.variantId === selectedVariantId) ?? baseStory;
-  }, [selectedVariantId, variants, baseStory]);
+  }, [selectedVariantId, variants, baseStory, isVisualBeat]);
 
   // Handle story change - reset variant selection
   const handleStoryChange = (storyId: string) => {
@@ -95,8 +103,9 @@ export default function StudentPreviewPage() {
     setPhase("setup");
   };
 
-  // If no story selected or no variant, show loading
-  if (!selectedEntry || !selectedVariant) {
+  // If no story selected, show loading
+  // Stage 27: Visual beat stories don't need variants
+  if (!selectedEntry || (!isVisualBeat && !selectedVariant)) {
     return (
       <div className="mx-auto max-w-2xl py-8">
         <p className="text-zinc-500">Loading preview...</p>
@@ -104,7 +113,10 @@ export default function StudentPreviewPage() {
     );
   }
 
-  const story = variantToStory(selectedVariant);
+  // Stage 27: Use story directly for visual beats, or convert variant for prose
+  const story = isVisualBeat
+    ? selectedEntry.story
+    : variantToStory(selectedVariant!);
 
   // Setup Phase: Show dropdowns and "Start Preview" button
   if (phase === "setup") {
@@ -152,32 +164,48 @@ export default function StudentPreviewPage() {
               </select>
             </div>
 
-            {/* Variant Selector */}
+            {/* Variant Selector - only for prose stories */}
             <div>
               <label className="mb-1 block text-sm font-medium text-zinc-700">
                 Variant
               </label>
-              <select
-                value={selectedVariantId ?? ""}
-                onChange={(e) => handleVariantChange(e.target.value)}
-                className="w-full rounded-lg border border-zinc-300 bg-white px-4 py-2 text-zinc-700 focus:border-zinc-500 focus:outline-none"
-              >
-                {allVersions.map((version) => (
-                  <option
-                    key={version.variantId ?? "base"}
-                    value={version.variantId ?? ""}
+              {isVisualBeat ? (
+                <>
+                  <select
+                    disabled
+                    className="w-full rounded-lg border border-zinc-200 bg-zinc-50 px-4 py-2 text-zinc-400"
                   >
-                    {version.variantId === null
-                      ? "Base Story"
-                      : version.title}
-                  </option>
-                ))}
-              </select>
-              <p className="mt-1 text-xs text-zinc-500">
-                {allVersions.length === 1
-                  ? "No variants available for this story"
-                  : `${allVersions.length - 1} variant${allVersions.length - 1 !== 1 ? "s" : ""} available`}
-              </p>
+                    <option>Visual Beat Story (no variants)</option>
+                  </select>
+                  <p className="mt-1 text-xs text-zinc-500">
+                    Visual beat stories are explicitly authored and don&apos;t support variants
+                  </p>
+                </>
+              ) : (
+                <>
+                  <select
+                    value={selectedVariantId ?? ""}
+                    onChange={(e) => handleVariantChange(e.target.value)}
+                    className="w-full rounded-lg border border-zinc-300 bg-white px-4 py-2 text-zinc-700 focus:border-zinc-500 focus:outline-none"
+                  >
+                    {allVersions.map((version) => (
+                      <option
+                        key={version.variantId ?? "base"}
+                        value={version.variantId ?? ""}
+                      >
+                        {version.variantId === null
+                          ? "Base Story"
+                          : version.title}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="mt-1 text-xs text-zinc-500">
+                    {allVersions.length === 1
+                      ? "No variants available for this story"
+                      : `${allVersions.length - 1} variant${allVersions.length - 1 !== 1 ? "s" : ""} available`}
+                  </p>
+                </>
+              )}
             </div>
           </div>
 
@@ -209,7 +237,7 @@ export default function StudentPreviewPage() {
       story={story}
       storyId={selectedStoryId}
       archetypeId={selectedEntry.archetypeId}
-      variantId={selectedVariant.variantId}
+      variantId={isVisualBeat ? null : selectedVariant?.variantId ?? null}
       isGenerated={selectedEntry.isGenerated}
       previewMode={true}
       onPreviewExit={handlePreviewExit}

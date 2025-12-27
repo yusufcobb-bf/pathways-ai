@@ -1,0 +1,333 @@
+{
+  "id": "missing-art-supplies",
+  "title": "The Missing Art Supplies",
+  "archetypeId": "missing-art-supplies",
+  "gradeLevel": "4-5",
+
+  "curriculum": {
+    "subject": "Social-Emotional Learning",
+    "unit": "Building Empathy & Understanding",
+    "lesson": "Seeking Context Before Judgment",
+    "learningObjectives": [
+      "Students will practice gathering information before making assumptions",
+      "Students will demonstrate empathy by considering others' circumstances",
+      "Students will identify constructive responses to peer conflicts"
+    ],
+    "standardRefs": ["CASEL.3a", "CASEL.5b"]
+  },
+
+  "selObjectives": [
+    "Practice perspective-taking when observing peer behavior",
+    "Recognize that actions may have underlying causes",
+    "Choose supportive responses over accusatory ones"
+  ],
+
+  "caselCoverage": {
+    "self-awareness": "Protagonist notices their own assumptions and reactions",
+    "self-management": "Taking time to observe before acting",
+    "social-awareness": "Understanding why a classmate might be struggling",
+    "relationship-skills": "Communicating with peers and offering help",
+    "responsible-decision-making": "Choosing how to handle a discovery fairly"
+  },
+
+  "intro": [
+    {
+      "id": "intro-1",
+      "text": "Art class is your favorite part of Fridays.",
+      "focus": "observation",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "intro-2",
+      "text": "You walk into the art room and head to the supply cabinet.",
+      "focus": "character-action",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "intro-3",
+      "text": "The cabinet door is slightly open.",
+      "focus": "object",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-4",
+      "text": "You look inside and notice something strange.",
+      "focus": "observation",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "intro-5",
+      "text": "Several paint sets are missing from their usual spots.",
+      "focus": "object",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-6",
+      "text": "Maya walks up beside you.",
+      "actor": "Maya",
+      "focus": "character-action",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-7",
+      "text": "\"The paints were here yesterday,\" she says with a frown.",
+      "actor": "Maya",
+      "focus": "dialogue",
+      "casel": ["relationship-skills"]
+    },
+    {
+      "id": "intro-8",
+      "text": "You notice Leo sitting alone at the back table.",
+      "focus": "observation",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-9",
+      "text": "He's looking down at his hands.",
+      "actor": "Leo",
+      "focus": "character-emotion",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-10",
+      "text": "Maya glances at Leo, then back at the cabinet.",
+      "actor": "Maya",
+      "focus": "character-action",
+      "casel": ["social-awareness"]
+    }
+  ],
+
+  "checkpoints": [
+    {
+      "id": "c1",
+      "beats": [
+        {
+          "id": "c1-1",
+          "text": "Maya leans closer to you.",
+          "actor": "Maya",
+          "focus": "character-action",
+          "casel": ["relationship-skills"]
+        },
+        {
+          "id": "c1-2",
+          "text": "\"I think Leo took them,\" she whispers.",
+          "actor": "Maya",
+          "focus": "dialogue",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c1-3",
+          "text": "You feel uncertain about jumping to conclusions.",
+          "focus": "character-emotion",
+          "casel": ["self-awareness", "self-management"]
+        },
+        {
+          "id": "c1-4",
+          "text": "Leo still hasn't looked up.",
+          "actor": "Leo",
+          "focus": "character-emotion",
+          "casel": ["social-awareness"]
+        }
+      ],
+      "choices": [
+        {
+          "id": "c1-a",
+          "text": "Walk over to Leo and ask if he's okay",
+          "casel": ["social-awareness", "relationship-skills"],
+          "virtues": ["Empathy", "Respect"],
+          "focus": "character-action",
+          "illustrationHint": "You walking toward Leo's table"
+        },
+        {
+          "id": "c1-b",
+          "text": "Suggest looking around the room first before assuming anything",
+          "casel": ["self-management", "responsible-decision-making"],
+          "virtues": ["Courage", "Responsibility"],
+          "focus": "observation",
+          "illustrationHint": "You gesturing toward the classroom"
+        },
+        {
+          "id": "c1-c",
+          "text": "Let Maya handle it and go find a seat",
+          "casel": ["self-awareness"],
+          "virtues": ["Responsibility"],
+          "focus": "character-action",
+          "illustrationHint": "You turning toward empty desks"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "beats": [
+        {
+          "id": "c2-1",
+          "text": "You walk toward Leo's table.",
+          "focus": "character-action",
+          "casel": ["relationship-skills"]
+        },
+        {
+          "id": "c2-2",
+          "text": "He looks up as you approach.",
+          "actor": "Leo",
+          "focus": "character-action",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c2-3",
+          "text": "His eyes look red, like he's been upset.",
+          "actor": "Leo",
+          "focus": "character-emotion",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c2-4",
+          "text": "\"My little sister's birthday is tomorrow,\" he says quietly.",
+          "actor": "Leo",
+          "focus": "dialogue",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c2-5",
+          "text": "\"I wanted to make her something special.\"",
+          "actor": "Leo",
+          "focus": "dialogue",
+          "casel": ["social-awareness", "self-awareness"]
+        }
+      ],
+      "choices": [
+        {
+          "id": "c2-a",
+          "text": "Ask Leo if he'd like help making something together during class",
+          "casel": ["relationship-skills", "social-awareness"],
+          "virtues": ["Empathy", "Respect"],
+          "focus": "dialogue",
+          "illustrationHint": "You offering a hand to Leo"
+        },
+        {
+          "id": "c2-b",
+          "text": "Explain that taking supplies isn't okay, but offer to talk to the teacher together",
+          "casel": ["responsible-decision-making", "relationship-skills"],
+          "virtues": ["Courage", "Responsibility"],
+          "focus": "dialogue",
+          "illustrationHint": "You speaking gently to Leo"
+        },
+        {
+          "id": "c2-c",
+          "text": "Tell Leo he should probably put the paints back",
+          "casel": ["responsible-decision-making"],
+          "virtues": ["Courage"],
+          "focus": "dialogue",
+          "illustrationHint": "You pointing toward the cabinet"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "beats": [
+        {
+          "id": "c3-1",
+          "text": "Leo reaches into his backpack.",
+          "actor": "Leo",
+          "focus": "character-action",
+          "casel": ["self-management"]
+        },
+        {
+          "id": "c3-2",
+          "text": "He pulls out two small paint sets.",
+          "actor": "Leo",
+          "focus": "object",
+          "casel": ["responsible-decision-making"]
+        },
+        {
+          "id": "c3-3",
+          "text": "\"I was going to bring them back,\" he says.",
+          "actor": "Leo",
+          "focus": "dialogue",
+          "casel": ["self-awareness"]
+        },
+        {
+          "id": "c3-4",
+          "text": "His voice sounds small and embarrassed.",
+          "actor": "Leo",
+          "focus": "character-emotion",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c3-5",
+          "text": "Maya has walked over and is standing nearby.",
+          "actor": "Maya",
+          "focus": "character-action",
+          "casel": ["social-awareness"]
+        }
+      ],
+      "choices": [
+        {
+          "id": "c3-a",
+          "text": "Suggest the three of you work on a card for Leo's sister together",
+          "casel": ["relationship-skills", "social-awareness"],
+          "virtues": ["Empathy", "Respect"],
+          "focus": "group",
+          "illustrationHint": "You, Leo, and Maya at the art table together"
+        },
+        {
+          "id": "c3-b",
+          "text": "Help Leo return the paints quietly before class starts",
+          "casel": ["responsible-decision-making", "relationship-skills"],
+          "virtues": ["Courage", "Responsibility"],
+          "focus": "character-action",
+          "illustrationHint": "You and Leo walking toward the cabinet"
+        },
+        {
+          "id": "c3-c",
+          "text": "Tell Leo it's his decision what to do next",
+          "casel": ["responsible-decision-making"],
+          "virtues": ["Respect", "Responsibility"],
+          "focus": "dialogue",
+          "illustrationHint": "You looking at Leo with open hands"
+        }
+      ]
+    }
+  ],
+
+  "ending": [
+    {
+      "id": "end-1",
+      "text": "The paint sets are back in the cabinet.",
+      "focus": "object",
+      "casel": ["responsible-decision-making"]
+    },
+    {
+      "id": "end-2",
+      "text": "Leo is working on a colorful card at his table.",
+      "actor": "Leo",
+      "focus": "character-action",
+      "casel": ["self-management"]
+    },
+    {
+      "id": "end-3",
+      "text": "Maya adds a small flower to the corner.",
+      "actor": "Maya",
+      "focus": "character-action",
+      "casel": ["relationship-skills"]
+    },
+    {
+      "id": "end-4",
+      "text": "You feel good about how things turned out.",
+      "focus": "character-emotion",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "end-5",
+      "text": "Sometimes people make mistakes when they're worried about someone they love.",
+      "focus": "observation",
+      "casel": ["social-awareness", "self-awareness"]
+    }
+  ],
+
+  "_meta": {
+    "authoredAt": "2025-12-27T00:00:00Z",
+    "authoringVersion": "27.0.0",
+    "totalBeats": 29,
+    "estimatedMinutes": 9
+  }
+}

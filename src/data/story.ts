@@ -3,6 +3,30 @@ import {
   safeValidateGeneratedStory,
 } from "@/lib/ai/story-schema";
 
+// Stage 27: Import visual beat story types for internal use
+import {
+  isVisualBeatStory,
+  extractBeatTexts,
+  type VisualBeatStory,
+  type VisualBeat,
+  type VisualChoice,
+  type VisualCheckpoint,
+  type CASELCompetency,
+  type VisualFocus,
+} from "./visual-story";
+
+// Stage 27: Re-export visual beat story types and utilities
+export {
+  isVisualBeatStory,
+  extractBeatTexts,
+  type VisualBeatStory,
+  type VisualBeat,
+  type VisualChoice,
+  type VisualCheckpoint,
+  type CASELCompetency,
+  type VisualFocus,
+};
+
 export interface Choice {
   id: string;
   text: string;
@@ -26,7 +50,7 @@ export interface Story {
 // ============================================================
 
 export interface StoryPoolEntry {
-  story: Story;
+  story: Story | VisualBeatStory; // Stage 27: Accept both story formats
   storyId: string;
   archetypeId: string; // Stage 8: Each story in pool is an archetype
   isGenerated: boolean;
@@ -46,28 +70,35 @@ function normalizeGeneratedStory(generated: GeneratedStory): Story {
   };
 }
 
-// Load story data from pool files (static imports)
-// Using require() for compatibility with Next.js build
-let storyPool1Data: unknown = null;
-let storyPool2Data: unknown = null;
-let storyPool3Data: unknown = null;
+// Stage 27: Load visual beat stories (primary format)
+// All stories are now visual beat format - no prose parsing needed
+let visualStory1Data: unknown = null;
+let visualStory2Data: unknown = null;
+let visualStory3Data: unknown = null;
+let visualStory4Data: unknown = null;
 
 try {
-  storyPool1Data = require("./stories/story-1.json");
+  visualStory1Data = require("./visual-stories/missing-art-supplies.json");
 } catch {
-  // File doesn't exist - will use fallback
+  // File doesn't exist
 }
 
 try {
-  storyPool2Data = require("./stories/story-2.json");
+  visualStory2Data = require("./visual-stories/community-garden-discovery.json");
 } catch {
-  // File doesn't exist - will use fallback
+  // File doesn't exist
 }
 
 try {
-  storyPool3Data = require("./stories/story-3.json");
+  visualStory3Data = require("./visual-stories/after-school-project-partners.json");
 } catch {
-  // File doesn't exist - will use fallback
+  // File doesn't exist
+}
+
+try {
+  visualStory4Data = require("./visual-stories/science-fair-mystery.json");
+} catch {
+  // File doesn't exist
 }
 
 // Build the story pool from loaded data
@@ -89,29 +120,36 @@ function buildStoryPoolEntry(data: unknown): StoryPoolEntry | null {
 
 /**
  * Load all stories in the pool.
- * Returns an array of valid stories in order [story-1, story-2, story-3].
- * Invalid or missing stories are excluded.
- *
- * Stage 6b will handle selection logic.
+ * Stage 27: All stories are now visual beat format.
  */
 export function loadStoryPool(): StoryPoolEntry[] {
   const pool: StoryPoolEntry[] = [];
 
-  // Load stories in order
-  const entry1 = buildStoryPoolEntry(storyPool1Data);
-  const entry2 = buildStoryPoolEntry(storyPool2Data);
-  const entry3 = buildStoryPoolEntry(storyPool3Data);
+  // Stage 27: Load all visual beat stories (no parsing needed)
+  const visualStories = [
+    visualStory1Data,
+    visualStory2Data,
+    visualStory3Data,
+    visualStory4Data,
+  ];
 
-  if (entry1) pool.push(entry1);
-  if (entry2) pool.push(entry2);
-  if (entry3) pool.push(entry3);
+  for (const data of visualStories) {
+    if (data && isVisualBeatStory(data)) {
+      pool.push({
+        story: data as VisualBeatStory,
+        storyId: (data as VisualBeatStory).id,
+        archetypeId: (data as VisualBeatStory).archetypeId,
+        isGenerated: false,
+      });
+    }
+  }
 
   // If no stories in pool, add fallback
   if (pool.length === 0) {
     pool.push({
       story: fallbackStory,
       storyId: "the-new-student",
-      archetypeId: "the-new-student", // Stage 8: fallback uses storyId as archetypeId
+      archetypeId: "the-new-student",
       isGenerated: false,
     });
   }
@@ -145,8 +183,9 @@ try {
  *
  * Currently returns the FIRST valid story from the pool.
  * Stage 6b will handle selection logic (round-robin, etc.)
+ * Stage 27: Returns either prose Story or VisualBeatStory.
  */
-export function loadStory(): { story: Story; storyId: string; archetypeId: string; isGenerated: boolean } {
+export function loadStory(): { story: Story | VisualBeatStory; storyId: string; archetypeId: string; isGenerated: boolean } {
   // First, check the story pool
   const pool = loadStoryPool();
 

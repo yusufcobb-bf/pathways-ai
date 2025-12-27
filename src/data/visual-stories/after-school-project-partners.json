@@ -1,0 +1,357 @@
+{
+  "id": "after-school-project-partners",
+  "title": "After School Project Partners",
+  "archetypeId": "after-school-project-partners",
+  "gradeLevel": "4-5",
+
+  "curriculum": {
+    "subject": "Social-Emotional Learning",
+    "unit": "Collaboration & Inclusion",
+    "lesson": "Including Others in Group Work",
+    "learningObjectives": [
+      "Students will practice including peers who need support",
+      "Students will demonstrate flexibility in group dynamics",
+      "Students will recognize the value of sharing knowledge"
+    ],
+    "standardRefs": ["CASEL.4b", "CASEL.3b"]
+  },
+
+  "selObjectives": [
+    "Practice including others who may feel left out",
+    "Recognize when peers need support and respond helpfully",
+    "Value sharing ideas and learning from others"
+  ],
+
+  "caselCoverage": {
+    "self-awareness": "Recognizing your own ability to help others",
+    "self-management": "Balancing your own work with helping a peer",
+    "social-awareness": "Noticing when someone needs inclusion",
+    "relationship-skills": "Collaborating and sharing ideas across groups",
+    "responsible-decision-making": "Choosing to include and support others"
+  },
+
+  "intro": [
+    {
+      "id": "intro-1",
+      "text": "You walk into Ms. Chen's classroom after school.",
+      "focus": "character-action",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "intro-2",
+      "text": "It's time to work on your science project about renewable energy.",
+      "focus": "observation",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "intro-3",
+      "text": "The room is quieter than usual.",
+      "focus": "environment",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-4",
+      "text": "Only a few students are scattered at different tables.",
+      "focus": "observation",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-5",
+      "text": "Your project partner, Kai, is already setting up materials near the window.",
+      "actor": "Kai",
+      "focus": "character-action",
+      "casel": ["relationship-skills"]
+    },
+    {
+      "id": "intro-6",
+      "text": "You notice Elena sitting alone at a nearby table.",
+      "focus": "observation",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-7",
+      "text": "She has books and papers spread out in front of her.",
+      "actor": "Elena",
+      "focus": "character-action",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-8",
+      "text": "Elena keeps glancing over at you and Kai.",
+      "actor": "Elena",
+      "focus": "character-emotion",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-9",
+      "text": "The whiteboard shows that Devon, her partner, is absent today.",
+      "focus": "object",
+      "casel": ["social-awareness"]
+    }
+  ],
+
+  "checkpoints": [
+    {
+      "id": "c1",
+      "beats": [
+        {
+          "id": "c1-1",
+          "text": "You set your backpack down and start unpacking.",
+          "focus": "character-action",
+          "casel": ["self-awareness"]
+        },
+        {
+          "id": "c1-2",
+          "text": "Elena closes her textbook.",
+          "actor": "Elena",
+          "focus": "character-action",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c1-3",
+          "text": "She walks over to your table.",
+          "actor": "Elena",
+          "focus": "character-action",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c1-4",
+          "text": "\"Hey, could I join you two today?\" she asks.",
+          "actor": "Elena",
+          "focus": "dialogue",
+          "casel": ["relationship-skills"]
+        },
+        {
+          "id": "c1-5",
+          "text": "\"Devon's sick and I really need to get some work done.\"",
+          "actor": "Elena",
+          "focus": "dialogue",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c1-6",
+          "text": "Kai looks up from organizing the craft supplies.",
+          "actor": "Kai",
+          "focus": "character-action",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c1-7",
+          "text": "He glances between you and Elena.",
+          "actor": "Kai",
+          "focus": "character-action",
+          "casel": ["relationship-skills"]
+        }
+      ],
+      "choices": [
+        {
+          "id": "c1-a",
+          "text": "Tell Elena she can definitely join your group for today",
+          "casel": ["relationship-skills", "social-awareness"],
+          "virtues": ["Empathy", "Respect"],
+          "focus": "dialogue",
+          "illustrationHint": "You welcoming Elena to join"
+        },
+        {
+          "id": "c1-b",
+          "text": "Suggest Elena work at the table next to yours so you can help each other",
+          "casel": ["self-management", "relationship-skills"],
+          "virtues": ["Respect", "Responsibility"],
+          "focus": "dialogue",
+          "illustrationHint": "You pointing to the nearby table"
+        },
+        {
+          "id": "c1-c",
+          "text": "Ask Kai what he thinks about Elena working with you today",
+          "casel": ["relationship-skills", "social-awareness"],
+          "virtues": ["Respect", "Empathy"],
+          "focus": "dialogue",
+          "illustrationHint": "You turning to consult with Kai"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "beats": [
+        {
+          "id": "c2-1",
+          "text": "Elena pulls up a chair and starts explaining her project.",
+          "actor": "Elena",
+          "focus": "character-action",
+          "casel": ["relationship-skills"]
+        },
+        {
+          "id": "c2-2",
+          "text": "You realize her project is very similar to yours.",
+          "focus": "observation",
+          "casel": ["self-awareness"]
+        },
+        {
+          "id": "c2-3",
+          "text": "Both groups are building models about solar energy.",
+          "focus": "observation",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c2-4",
+          "text": "Kai starts comparing the two approaches.",
+          "actor": "Kai",
+          "focus": "character-action",
+          "casel": ["relationship-skills"]
+        },
+        {
+          "id": "c2-5",
+          "text": "He points out that Elena's group solved a problem you've been stuck on.",
+          "actor": "Kai",
+          "focus": "dialogue",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c2-6",
+          "text": "Your eyes widen with interest.",
+          "focus": "character-emotion",
+          "casel": ["self-awareness"]
+        }
+      ],
+      "choices": [
+        {
+          "id": "c2-a",
+          "text": "Propose that both groups share their different solutions and techniques",
+          "casel": ["relationship-skills", "responsible-decision-making"],
+          "virtues": ["Empathy", "Courage"],
+          "focus": "dialogue",
+          "illustrationHint": "You suggesting collaboration enthusiastically"
+        },
+        {
+          "id": "c2-b",
+          "text": "Continue working on your own project while Elena works on hers nearby",
+          "casel": ["self-management", "self-awareness"],
+          "virtues": ["Responsibility", "Self-Control"],
+          "focus": "character-action",
+          "illustrationHint": "You focusing on your own materials"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "beats": [
+        {
+          "id": "c3-1",
+          "text": "Ms. Chen walks over to check on everyone's progress.",
+          "actor": "Ms. Chen",
+          "focus": "character-action",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c3-2",
+          "text": "She notices the solar panel components spread across both tables.",
+          "actor": "Ms. Chen",
+          "focus": "observation",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c3-3",
+          "text": "\"How are the projects going?\" she asks.",
+          "actor": "Ms. Chen",
+          "focus": "dialogue",
+          "casel": ["relationship-skills"]
+        },
+        {
+          "id": "c3-4",
+          "text": "Elena explains she's been working with you and Kai today.",
+          "actor": "Elena",
+          "focus": "dialogue",
+          "casel": ["relationship-skills"]
+        },
+        {
+          "id": "c3-5",
+          "text": "Ms. Chen nods approvingly.",
+          "actor": "Ms. Chen",
+          "focus": "character-emotion",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c3-6",
+          "text": "She mentions the science fair presentation is next Friday.",
+          "actor": "Ms. Chen",
+          "focus": "dialogue",
+          "casel": ["responsible-decision-making"]
+        }
+      ],
+      "choices": [
+        {
+          "id": "c3-a",
+          "text": "Ask Ms. Chen if there's time to combine both projects into one presentation",
+          "casel": ["relationship-skills", "responsible-decision-making"],
+          "virtues": ["Courage", "Empathy"],
+          "focus": "dialogue",
+          "illustrationHint": "You asking Ms. Chen an ambitious question"
+        },
+        {
+          "id": "c3-b",
+          "text": "Tell Ms. Chen about the techniques you've been sharing between projects",
+          "casel": ["relationship-skills", "self-awareness"],
+          "virtues": ["Respect", "Responsibility"],
+          "focus": "dialogue",
+          "illustrationHint": "You explaining the collaboration to Ms. Chen"
+        },
+        {
+          "id": "c3-c",
+          "text": "Continue listening as Ms. Chen gives feedback on the current designs",
+          "casel": ["self-management", "social-awareness"],
+          "virtues": ["Respect", "Self-Control"],
+          "focus": "observation",
+          "illustrationHint": "You listening attentively to Ms. Chen"
+        }
+      ]
+    }
+  ],
+
+  "ending": [
+    {
+      "id": "end-1",
+      "text": "Ms. Chen smiles and tells all three of you to keep up the excellent work.",
+      "actor": "Ms. Chen",
+      "focus": "dialogue",
+      "casel": ["relationship-skills"]
+    },
+    {
+      "id": "end-2",
+      "text": "She walks back to her desk.",
+      "actor": "Ms. Chen",
+      "focus": "character-action",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "end-3",
+      "text": "Afternoon sunlight streams through the classroom windows.",
+      "focus": "environment",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "end-4",
+      "text": "You can hear other students heading home in the hallway.",
+      "focus": "observation",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "end-5",
+      "text": "Tomorrow Devon will be back.",
+      "focus": "observation",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "end-6",
+      "text": "You're curious to see how both projects will turn out for the science fair.",
+      "focus": "character-emotion",
+      "casel": ["self-awareness", "responsible-decision-making"]
+    }
+  ],
+
+  "_meta": {
+    "authoredAt": "2025-12-27T00:00:00Z",
+    "authoringVersion": "27.0.0",
+    "totalBeats": 34,
+    "estimatedMinutes": 10
+  }
+}

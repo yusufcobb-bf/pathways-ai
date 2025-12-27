@@ -1,0 +1,358 @@
+{
+  "id": "science-fair-mystery",
+  "title": "The Missing Project",
+  "archetypeId": "science-fair-mystery",
+  "gradeLevel": "4-5",
+
+  "curriculum": {
+    "subject": "Social-Emotional Learning",
+    "unit": "Empathy & Helping Others",
+    "lesson": "Responding When Things Go Wrong",
+    "learningObjectives": [
+      "Students will practice offering help when peers face setbacks",
+      "Students will demonstrate empathy in difficult situations",
+      "Students will choose helpful responses over passive observation"
+    ],
+    "standardRefs": ["CASEL.3a", "CASEL.4b"]
+  },
+
+  "selObjectives": [
+    "Recognize when peers need support during setbacks",
+    "Practice offering help without being asked",
+    "Balance personal goals with supporting others"
+  ],
+
+  "caselCoverage": {
+    "self-awareness": "Noticing your own reactions to others' problems",
+    "self-management": "Balancing your own tasks with helping others",
+    "social-awareness": "Recognizing distress and need in peers",
+    "relationship-skills": "Offering help and working together during setbacks",
+    "responsible-decision-making": "Choosing to help when it might affect your own work"
+  },
+
+  "intro": [
+    {
+      "id": "intro-1",
+      "text": "You arrive at school early on science fair day.",
+      "focus": "character-action",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "intro-2",
+      "text": "You're excited to set up your volcano project in the gym.",
+      "focus": "character-emotion",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "intro-3",
+      "text": "The hallways echo with your footsteps.",
+      "focus": "environment",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "intro-4",
+      "text": "You push through the gymnasium's double doors.",
+      "focus": "character-action",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "intro-5",
+      "text": "Something looks wrong.",
+      "focus": "observation",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-6",
+      "text": "Your assigned table sits empty.",
+      "focus": "object",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "intro-7",
+      "text": "Scattered around it are pieces of what looks like a broken model.",
+      "focus": "object",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-8",
+      "text": "Across the gym, Kai is frantically searching through a box.",
+      "actor": "Kai",
+      "focus": "character-action",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-9",
+      "text": "Maya stands nearby, holding a crumpled piece of paper.",
+      "actor": "Maya",
+      "focus": "character-action",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-10",
+      "text": "Mr. Rodriguez is setting up chairs at the far end of the room.",
+      "actor": "Mr. Rodriguez",
+      "focus": "character-action",
+      "casel": ["social-awareness"]
+    }
+  ],
+
+  "checkpoints": [
+    {
+      "id": "c1",
+      "beats": [
+        {
+          "id": "c1-1",
+          "text": "You set your volcano materials on your table.",
+          "focus": "character-action",
+          "casel": ["self-awareness"]
+        },
+        {
+          "id": "c1-2",
+          "text": "You look more closely at the scattered pieces.",
+          "focus": "observation",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c1-3",
+          "text": "Some appear to be painted planets.",
+          "focus": "object",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c1-4",
+          "text": "There's a bent wire that might have held them in orbit.",
+          "focus": "object",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c1-5",
+          "text": "Kai looks up from his box and catches your eye.",
+          "actor": "Kai",
+          "focus": "character-action",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c1-6",
+          "text": "He glances toward Maya with a worried expression.",
+          "actor": "Kai",
+          "focus": "character-emotion",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c1-7",
+          "text": "Maya is reading the crumpled paper more carefully.",
+          "actor": "Maya",
+          "focus": "character-action",
+          "casel": ["social-awareness"]
+        }
+      ],
+      "choices": [
+        {
+          "id": "c1-a",
+          "text": "Walk over to Kai and ask what happened to the solar system project",
+          "casel": ["relationship-skills", "social-awareness"],
+          "virtues": ["Empathy", "Courage"],
+          "focus": "character-action",
+          "illustrationHint": "You walking toward Kai"
+        },
+        {
+          "id": "c1-b",
+          "text": "Gather the scattered planet pieces and place them on the empty table",
+          "casel": ["responsible-decision-making", "social-awareness"],
+          "virtues": ["Empathy", "Responsibility"],
+          "focus": "character-action",
+          "illustrationHint": "You carefully picking up planet pieces"
+        },
+        {
+          "id": "c1-c",
+          "text": "Continue setting up your volcano while keeping an eye on them",
+          "casel": ["self-management", "self-awareness"],
+          "virtues": ["Responsibility", "Self-Control"],
+          "focus": "character-action",
+          "illustrationHint": "You setting up your volcano, looking over"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "beats": [
+        {
+          "id": "c2-1",
+          "text": "Maya unfolds the paper completely.",
+          "actor": "Maya",
+          "focus": "character-action",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c2-2",
+          "text": "It's covered with drawings and measurements.",
+          "focus": "object",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c2-3",
+          "text": "She walks over to the scattered pieces and kneels down.",
+          "actor": "Maya",
+          "focus": "character-action",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c2-4",
+          "text": "She compares something on the paper to the broken pieces.",
+          "actor": "Maya",
+          "focus": "character-action",
+          "casel": ["self-management"]
+        },
+        {
+          "id": "c2-5",
+          "text": "\"I thought I put everything away safely last night,\" Maya says quietly.",
+          "actor": "Maya",
+          "focus": "dialogue",
+          "casel": ["self-awareness"]
+        },
+        {
+          "id": "c2-6",
+          "text": "Her voice sounds sad and confused.",
+          "actor": "Maya",
+          "focus": "character-emotion",
+          "casel": ["social-awareness"]
+        }
+      ],
+      "choices": [
+        {
+          "id": "c2-a",
+          "text": "Ask Maya if she needs help fixing her project",
+          "casel": ["relationship-skills", "social-awareness"],
+          "virtues": ["Empathy", "Courage"],
+          "focus": "dialogue",
+          "illustrationHint": "You kneeling beside Maya, offering help"
+        },
+        {
+          "id": "c2-b",
+          "text": "Look around the gym for any other clues about what might have happened",
+          "casel": ["responsible-decision-making", "self-management"],
+          "virtues": ["Responsibility", "Courage"],
+          "focus": "observation",
+          "illustrationHint": "You scanning the gymnasium carefully"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "beats": [
+        {
+          "id": "c3-1",
+          "text": "You notice a small trail of glitter on the floor.",
+          "focus": "observation",
+          "casel": ["self-awareness"]
+        },
+        {
+          "id": "c3-2",
+          "text": "It leads from Maya's table toward the storage closet.",
+          "focus": "observation",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c3-3",
+          "text": "The closet door is slightly open.",
+          "focus": "object",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c3-4",
+          "text": "Kai has returned and is now helping Maya sort through the pieces.",
+          "actor": "Kai",
+          "focus": "character-action",
+          "casel": ["relationship-skills"]
+        },
+        {
+          "id": "c3-5",
+          "text": "Other students are starting to arrive with their projects.",
+          "focus": "environment",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c3-6",
+          "text": "The room fills with sounds of setup and conversation.",
+          "focus": "environment",
+          "casel": ["social-awareness"]
+        }
+      ],
+      "choices": [
+        {
+          "id": "c3-a",
+          "text": "Follow the glitter trail to the storage closet and investigate",
+          "casel": ["responsible-decision-making", "self-management"],
+          "virtues": ["Courage", "Responsibility"],
+          "focus": "character-action",
+          "illustrationHint": "You following the glitter trail"
+        },
+        {
+          "id": "c3-b",
+          "text": "Approach Mr. Rodriguez and mention what you observed",
+          "casel": ["relationship-skills", "responsible-decision-making"],
+          "virtues": ["Responsibility", "Respect"],
+          "focus": "character-action",
+          "illustrationHint": "You walking toward Mr. Rodriguez"
+        },
+        {
+          "id": "c3-c",
+          "text": "Focus on perfecting your own volcano setup while staying nearby",
+          "casel": ["self-management", "self-awareness"],
+          "virtues": ["Responsibility", "Self-Control"],
+          "focus": "character-action",
+          "illustrationHint": "You adjusting your volcano project"
+        }
+      ]
+    }
+  ],
+
+  "ending": [
+    {
+      "id": "end-1",
+      "text": "The gym fills with students and parents as the science fair begins.",
+      "focus": "environment",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "end-2",
+      "text": "Maya has created a new display using her drawings and salvageable pieces.",
+      "actor": "Maya",
+      "focus": "character-action",
+      "casel": ["self-management"]
+    },
+    {
+      "id": "end-3",
+      "text": "Kai helps her explain the solar system to visitors.",
+      "actor": "Kai",
+      "focus": "character-action",
+      "casel": ["relationship-skills"]
+    },
+    {
+      "id": "end-4",
+      "text": "Your volcano demonstration draws a small crowd.",
+      "focus": "observation",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "end-5",
+      "text": "Mr. Rodriguez makes notes on his clipboard as he moves between projects.",
+      "actor": "Mr. Rodriguez",
+      "focus": "character-action",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "end-6",
+      "text": "The morning unfolds with presentations, questions, and excited discovery.",
+      "focus": "environment",
+      "casel": ["self-awareness", "relationship-skills"]
+    }
+  ],
+
+  "_meta": {
+    "authoredAt": "2025-12-27T00:00:00Z",
+    "authoringVersion": "27.0.0",
+    "totalBeats": 35,
+    "estimatedMinutes": 11
+  }
+}

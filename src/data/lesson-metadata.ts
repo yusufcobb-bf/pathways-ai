@@ -28,6 +28,20 @@ export interface LessonMetadata {
  * Virtue IDs must match virtue-framework.ts exactly.
  */
 export const LESSON_METADATA: Record<string, LessonMetadata> = {
+  "missing-art-supplies": {
+    archetypeId: "missing-art-supplies",
+    lessonTitle: "Seeking Context Before Judgment",
+    learningObjectives: [
+      "Practice gathering information before making assumptions",
+      "Demonstrate empathy by considering others' circumstances",
+      "Identify constructive responses to peer conflicts",
+    ],
+    essentialQuestion:
+      "How can we understand situations better before reacting?",
+    targetVirtues: ["empathy", "respect", "responsibility"],
+    caselDomains: ["Social Awareness", "Responsible Decision-Making"],
+    estimatedTimeMinutes: 30,
+  },
   "community-garden-discovery": {
     archetypeId: "community-garden-discovery",
     lessonTitle: "Discovering Solutions Together",

@@ -1,0 +1,367 @@
+{
+  "id": "community-garden-discovery",
+  "title": "The Community Garden Mystery",
+  "archetypeId": "community-garden-discovery",
+  "gradeLevel": "4-5",
+
+  "curriculum": {
+    "subject": "Social-Emotional Learning",
+    "unit": "Problem-Solving & Collaboration",
+    "lesson": "Working Together to Investigate",
+    "learningObjectives": [
+      "Students will practice collaborative problem-solving",
+      "Students will demonstrate patience when facing uncertainty",
+      "Students will show respect for others' ideas and observations"
+    ],
+    "standardRefs": ["CASEL.4a", "CASEL.5a"]
+  },
+
+  "selObjectives": [
+    "Practice gathering information before drawing conclusions",
+    "Work cooperatively with peers to solve problems",
+    "Show patience and curiosity when facing the unknown"
+  ],
+
+  "caselCoverage": {
+    "self-awareness": "Noticing personal reactions to unexpected situations",
+    "self-management": "Staying calm and curious when facing a mystery",
+    "social-awareness": "Observing and considering others' perspectives",
+    "relationship-skills": "Collaborating with peers and adults to investigate",
+    "responsible-decision-making": "Choosing thoughtful approaches to problem-solving"
+  },
+
+  "intro": [
+    {
+      "id": "intro-1",
+      "text": "You arrive at Riverside Community Center on Saturday morning.",
+      "focus": "environment",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "intro-2",
+      "text": "The morning air is crisp and cool.",
+      "focus": "observation",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "intro-3",
+      "text": "You walk toward the tool shed for your volunteer shift.",
+      "focus": "character-action",
+      "casel": ["responsibility"]
+    },
+    {
+      "id": "intro-4",
+      "text": "The garden area seems unusually quiet today.",
+      "focus": "observation",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-5",
+      "text": "You approach the main garden beds.",
+      "focus": "character-action",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "intro-6",
+      "text": "Something looks wrong with the tomato seedlings.",
+      "focus": "observation",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-7",
+      "text": "Several plants that were thriving yesterday now look wilted and brown.",
+      "focus": "object",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-8",
+      "text": "Small holes are scattered throughout the soil.",
+      "focus": "object",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-9",
+      "text": "You hear footsteps on the gravel path behind you.",
+      "focus": "observation",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "intro-10",
+      "text": "Kai and Zara walk up with confused expressions.",
+      "actor": "Kai",
+      "focus": "character-action",
+      "casel": ["social-awareness"]
+    }
+  ],
+
+  "checkpoints": [
+    {
+      "id": "c1",
+      "beats": [
+        {
+          "id": "c1-1",
+          "text": "Kai points to the damaged plants.",
+          "actor": "Kai",
+          "focus": "character-action",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c1-2",
+          "text": "\"This wasn't like this yesterday,\" he says.",
+          "actor": "Kai",
+          "focus": "dialogue",
+          "casel": ["relationship-skills"]
+        },
+        {
+          "id": "c1-3",
+          "text": "Zara kneels down near one of the holes.",
+          "actor": "Zara",
+          "focus": "character-action",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c1-4",
+          "text": "\"Look at these marks in the dirt,\" she says.",
+          "actor": "Zara",
+          "focus": "dialogue",
+          "casel": ["relationship-skills"]
+        },
+        {
+          "id": "c1-5",
+          "text": "You notice a garden spade lying near the compost bin.",
+          "focus": "observation",
+          "casel": ["self-awareness"]
+        },
+        {
+          "id": "c1-6",
+          "text": "Fresh dirt clings to its blade.",
+          "focus": "object",
+          "casel": ["social-awareness"]
+        }
+      ],
+      "choices": [
+        {
+          "id": "c1-a",
+          "text": "Pick up the spade and examine it for more clues",
+          "casel": ["responsible-decision-making", "self-awareness"],
+          "virtues": ["Courage", "Responsibility"],
+          "focus": "character-action",
+          "illustrationHint": "You reaching for the garden spade"
+        },
+        {
+          "id": "c1-b",
+          "text": "Ask Kai and Zara what they think might have caused this",
+          "casel": ["relationship-skills", "social-awareness"],
+          "virtues": ["Empathy", "Respect"],
+          "focus": "dialogue",
+          "illustrationHint": "You turning to talk with Kai and Zara"
+        },
+        {
+          "id": "c1-c",
+          "text": "Look around the garden for other signs of disturbance",
+          "casel": ["self-management", "responsible-decision-making"],
+          "virtues": ["Responsibility", "Self-Control"],
+          "focus": "observation",
+          "illustrationHint": "You scanning the garden carefully"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "beats": [
+        {
+          "id": "c2-1",
+          "text": "You hear the community center's back door open.",
+          "focus": "observation",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c2-2",
+          "text": "Ms. Rodriguez emerges with her clipboard and coffee mug.",
+          "actor": "Ms. Rodriguez",
+          "focus": "character-action",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c2-3",
+          "text": "She walks briskly toward your group.",
+          "actor": "Ms. Rodriguez",
+          "focus": "character-action",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c2-4",
+          "text": "She stops short when she sees the damaged garden bed.",
+          "actor": "Ms. Rodriguez",
+          "focus": "character-emotion",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c2-5",
+          "text": "\"Oh my,\" she says, setting down her mug.",
+          "actor": "Ms. Rodriguez",
+          "focus": "dialogue",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c2-6",
+          "text": "\"I was hoping I wouldn't find this.\"",
+          "actor": "Ms. Rodriguez",
+          "focus": "dialogue",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c2-7",
+          "text": "She explains the night guard saw unusual activity around midnight.",
+          "actor": "Ms. Rodriguez",
+          "focus": "dialogue",
+          "casel": ["relationship-skills"]
+        }
+      ],
+      "choices": [
+        {
+          "id": "c2-a",
+          "text": "Ask Ms. Rodriguez what kind of activity the guard saw",
+          "casel": ["relationship-skills", "social-awareness"],
+          "virtues": ["Courage", "Respect"],
+          "focus": "dialogue",
+          "illustrationHint": "You asking Ms. Rodriguez a question"
+        },
+        {
+          "id": "c2-b",
+          "text": "Suggest checking if any tools or supplies are missing",
+          "casel": ["responsible-decision-making", "self-management"],
+          "virtues": ["Responsibility", "Self-Control"],
+          "focus": "dialogue",
+          "illustrationHint": "You gesturing toward the tool shed"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "beats": [
+        {
+          "id": "c3-1",
+          "text": "Ms. Rodriguez mentions the guard saw small moving shadows.",
+          "actor": "Ms. Rodriguez",
+          "focus": "dialogue",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c3-2",
+          "text": "You notice movement in the nearby bushes.",
+          "focus": "observation",
+          "casel": ["self-awareness"]
+        },
+        {
+          "id": "c3-3",
+          "text": "A rustling sound draws everyone's attention.",
+          "focus": "observation",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c3-4",
+          "text": "The branches are moving, but there's no wind.",
+          "focus": "object",
+          "casel": ["social-awareness"]
+        },
+        {
+          "id": "c3-5",
+          "text": "Zara whispers, \"There's definitely something in there.\"",
+          "actor": "Zara",
+          "focus": "dialogue",
+          "casel": ["relationship-skills"]
+        },
+        {
+          "id": "c3-6",
+          "text": "Ms. Rodriguez takes a careful step closer.",
+          "actor": "Ms. Rodriguez",
+          "focus": "character-action",
+          "casel": ["social-awareness"]
+        }
+      ],
+      "choices": [
+        {
+          "id": "c3-a",
+          "text": "Walk over to the bushes to see what's causing the movement",
+          "casel": ["responsible-decision-making", "self-management"],
+          "virtues": ["Courage", "Responsibility"],
+          "focus": "character-action",
+          "illustrationHint": "You walking toward the bushes"
+        },
+        {
+          "id": "c3-b",
+          "text": "Stay back and call out to whatever might be in the bushes",
+          "casel": ["self-management", "social-awareness"],
+          "virtues": ["Self-Control", "Respect"],
+          "focus": "dialogue",
+          "illustrationHint": "You calling out while staying at a safe distance"
+        },
+        {
+          "id": "c3-c",
+          "text": "Wait quietly to see if anything emerges on its own",
+          "casel": ["self-management", "self-awareness"],
+          "virtues": ["Self-Control", "Respect"],
+          "focus": "observation",
+          "illustrationHint": "You watching the bushes patiently"
+        }
+      ]
+    }
+  ],
+
+  "ending": [
+    {
+      "id": "end-1",
+      "text": "A small brown rabbit hops out from the bushes.",
+      "focus": "character-action",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "end-2",
+      "text": "Two smaller rabbits follow behind it.",
+      "focus": "character-action",
+      "casel": ["social-awareness"]
+    },
+    {
+      "id": "end-3",
+      "text": "Ms. Rodriguez laughs and shakes her head.",
+      "actor": "Ms. Rodriguez",
+      "focus": "character-emotion",
+      "casel": ["self-awareness"]
+    },
+    {
+      "id": "end-4",
+      "text": "\"That explains the holes and damaged seedlings,\" she says.",
+      "actor": "Ms. Rodriguez",
+      "focus": "dialogue",
+      "casel": ["responsible-decision-making"]
+    },
+    {
+      "id": "end-5",
+      "text": "Kai suggests building a small fence around the vegetable beds.",
+      "actor": "Kai",
+      "focus": "dialogue",
+      "casel": ["relationship-skills"]
+    },
+    {
+      "id": "end-6",
+      "text": "Ms. Rodriguez nods, making notes on her clipboard.",
+      "actor": "Ms. Rodriguez",
+      "focus": "character-action",
+      "casel": ["responsible-decision-making"]
+    },
+    {
+      "id": "end-7",
+      "text": "The morning volunteer work begins with a new project to plan.",
+      "focus": "observation",
+      "casel": ["self-awareness", "relationship-skills"]
+    }
+  ],
+
+  "_meta": {
+    "authoredAt": "2025-12-27T00:00:00Z",
+    "authoringVersion": "27.0.0",
+    "totalBeats": 36,
+    "estimatedMinutes": 11
+  }
+}

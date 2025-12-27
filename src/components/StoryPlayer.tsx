@@ -3,7 +3,13 @@
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Story, Choice } from "@/data/story";
+import {
+  Story,
+  Choice,
+  isVisualBeatStory,
+  extractBeatTexts,
+  VisualBeatStory,
+} from "@/data/story";
 import {
   computeVirtueScores,
   computePositionBasedVirtueScores,
@@ -24,7 +30,7 @@ import StoryPager from "./story/StoryPager";
 import { parseNarrativeWithLimit } from "@/lib/comic/sentence-parser";
 
 interface StoryPlayerProps {
-  story: Story;
+  story: Story | VisualBeatStory; // Stage 27: Accept either prose or visual beat stories
   storyId: string;
   archetypeId: string; // Stage 8: Story archetype ID
   variantId: string | null; // Stage 8: Variant ID (null = base/canonical story)
@@ -50,6 +56,7 @@ interface StoryState {
   guidedResponses: Record<string, string>; // Stage 16: Maps prompt.id to response
   checkpointNarrativeComplete: boolean; // Stage 26: Track if checkpoint narrative is read
   globalPageIndex: number; // Stage 26b: Current global page position
+  introLastPage: number; // Stage 27: Track last page for back navigation
 }
 
 function CheckpointProgress({
@@ -222,6 +229,7 @@ export default function StoryPlayer({
     guidedResponses: {},
     checkpointNarrativeComplete: false,
     globalPageIndex: 0,
+    introLastPage: 0,
   });
 
   // Stage 25b: Track if user has clicked "Begin Story"
@@ -229,13 +237,31 @@ export default function StoryPlayer({
 
   const totalCheckpoints = story.checkpoints.length;
 
-  // Stage 26d: Compute all pages once for global page tracking
+  // Stage 27: Detect visual beat story format
+  const isVisualBeat = isVisualBeatStory(story);
+
+  // Stage 26d/27: Compute all pages once for global page tracking
+  // Visual beat stories use extractBeatTexts, prose stories use parseNarrativeWithLimit
   const storySegments = useMemo(() => {
-    const introSentences = parseNarrativeWithLimit(story.intro);
-    const checkpointSentences = story.checkpoints.map((cp) =>
-      parseNarrativeWithLimit(cp.narrative)
-    );
-    const endingSentences = parseNarrativeWithLimit(story.ending);
+    let introSentences: string[];
+    let checkpointSentences: string[][];
+    let endingSentences: string[];
+
+    if (isVisualBeatStory(story)) {
+      // Stage 27: Visual beat story - extract text directly from beats
+      introSentences = extractBeatTexts(story.intro);
+      checkpointSentences = story.checkpoints.map((cp) =>
+        extractBeatTexts(cp.beats)
+      );
+      endingSentences = extractBeatTexts(story.ending);
+    } else {
+      // Legacy prose story - parse narrative into sentences
+      introSentences = parseNarrativeWithLimit(story.intro);
+      checkpointSentences = story.checkpoints.map((cp) =>
+        parseNarrativeWithLimit(cp.narrative)
+      );
+      endingSentences = parseNarrativeWithLimit(story.ending);
+    }
 
     // Calculate cumulative offsets for each segment
     let offset = 0;
@@ -264,8 +290,26 @@ export default function StoryPlayer({
     };
   }, [story]);
 
+  // Stage 27: Track intro page for back navigation
+  const [introCurrentPage, setIntroCurrentPage] = useState(0);
+
   const handleStartStory = () => {
-    setState((prev) => ({ ...prev, stage: "checkpoint" }));
+    // Store the last page of intro when transitioning
+    setState((prev) => ({
+      ...prev,
+      stage: "checkpoint",
+      introLastPage: storySegments.introSentences.length - 1,
+    }));
+  };
+
+  // Stage 27: Handler to go back from checkpoint 0 to intro
+  const handleBackToIntro = () => {
+    setIntroCurrentPage(storySegments.introSentences.length - 1);
+    setState((prev) => ({
+      ...prev,
+      stage: "intro",
+      globalPageIndex: storySegments.introSentences.length - 1,
+    }));
   };
 
   // Stage 26: Handler for when checkpoint narrative is fully read
@@ -541,10 +585,12 @@ export default function StoryPlayer({
           stageType="intro"
           globalStartIndex={storySegments.introOffset}
           totalStoryPages={storySegments.totalPages}
-          onPageChange={(localIndex) =>
-            handleGlobalPageChange(storySegments.introOffset + localIndex)
-          }
+          onPageChange={(localIndex) => {
+            setIntroCurrentPage(localIndex);
+            handleGlobalPageChange(storySegments.introOffset + localIndex);
+          }}
           onComplete={handleStartStory}
+          initialPage={introCurrentPage}
         />
       )}
 
@@ -569,6 +615,9 @@ export default function StoryPlayer({
                 )
               }
               onComplete={handleCheckpointNarrativeComplete}
+              // Stage 27: Allow going back to intro from checkpoint 0
+              allowPrevAtStart={state.checkpointIndex === 0}
+              onPrevAtStart={state.checkpointIndex === 0 ? handleBackToIntro : undefined}
             />
           ) : (
             <>

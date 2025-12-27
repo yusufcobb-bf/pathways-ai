@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import StoryPlayer from "@/components/StoryPlayer";
-import { loadStoryPool } from "@/data/story";
+import { loadStoryPool, isVisualBeatStory, getStoryFromPool } from "@/data/story";
 import {
   getStoryPoolConfig,
   applyStoryPoolConfig,
@@ -96,16 +96,27 @@ export default async function StudentHome({ searchParams }: PageProps) {
     variantId = variant.variantId;
   }
 
-  // Stage 8: Get the story/variant for StoryPlayer
-  const variant = selectVariantForStory(archetypeId, completedSessions);
-  // If we have a specific variantId from assignment, find that variant instead
-  let finalVariant = variant;
-  if (variantId && variantId !== variant.variantId) {
-    const variants = loadVariantsForArchetype(archetypeId);
-    const found = variants.find((v) => v.variantId === variantId);
-    if (found) finalVariant = found;
+  // Stage 27: Get the story for StoryPlayer
+  // Visual beat stories are used directly; prose stories go through variant system
+  const poolEntry = getStoryFromPool(archetypeId);
+  let story;
+
+  if (poolEntry && isVisualBeatStory(poolEntry.story)) {
+    // Visual beat story - use directly (no variant system)
+    story = poolEntry.story;
+    variantId = null; // Visual beat stories don't have variants
+  } else {
+    // Prose story - use variant system
+    const variant = selectVariantForStory(archetypeId, completedSessions);
+    // If we have a specific variantId from assignment, find that variant instead
+    let finalVariant = variant;
+    if (variantId && variantId !== variant.variantId) {
+      const variants = loadVariantsForArchetype(archetypeId);
+      const found = variants.find((v) => v.variantId === variantId);
+      if (found) finalVariant = found;
+    }
+    story = variantToStory(finalVariant);
   }
-  const story = variantToStory(finalVariant);
 
   // Key includes session count to force remount even if storyId unchanged (fixed mode)
   return (

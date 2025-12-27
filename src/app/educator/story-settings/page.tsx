@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
-import { loadStoryPool, StoryPoolEntry } from "@/data/story";
+import { loadStoryPool, StoryPoolEntry, isVisualBeatStory } from "@/data/story";
 import { StoryPoolConfig, StoryMode } from "@/lib/supabase/types";
 import { loadVariantsForArchetype } from "@/data/variants";
 
@@ -58,10 +58,20 @@ export default function StorySettingsPage() {
             ? new Set(config.enabled_story_ids as string[])
             : defaultEnabled;
 
-        const order =
+        // Start with stored order, but append any new stories not in the stored order
+        let order =
           config.story_order.length > 0
             ? (config.story_order as string[])
             : defaultOrder;
+
+        // Find stories in pool that aren't in the stored order and append them
+        const storedOrderSet = new Set(order);
+        const newStories = defaultOrder.filter((id) => !storedOrderSet.has(id));
+        if (newStories.length > 0) {
+          order = [...order, ...newStories];
+          // Also enable new stories by default
+          newStories.forEach((id) => enabledSet.add(id));
+        }
 
         setState({
           loading: false,
@@ -392,13 +402,17 @@ export default function StorySettingsPage() {
                       <span className="font-medium text-zinc-900">
                         {entry.story.title}
                       </span>
-                      {entry.isGenerated ? (
+                      {isVisualBeatStory(entry.story) ? (
+                        <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700">
+                          Visual Beat
+                        </span>
+                      ) : entry.isGenerated ? (
                         <span className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">
                           AI-Generated
                         </span>
                       ) : (
                         <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">
-                          Fallback
+                          Prose
                         </span>
                       )}
                     </div>

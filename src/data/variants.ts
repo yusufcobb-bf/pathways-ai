@@ -10,7 +10,7 @@
  * - Variant: Cosmetic variation of an archetype (different narrative text only)
  */
 
-import { Checkpoint, Story, getStoryFromPool } from "./story";
+import { Checkpoint, Story, getStoryFromPool, isVisualBeatStory } from "./story";
 import { safeValidateGeneratedStory } from "@/lib/ai/story-schema";
 
 /**
@@ -179,13 +179,20 @@ export function loadBaseStoryAsVariant(archetypeId: string): StoryVariant | null
   const poolEntry = getStoryFromPool(archetypeId);
   if (!poolEntry) return null;
 
+  // Stage 27: Visual beat stories don't support variants (explicitly authored)
+  if (isVisualBeatStory(poolEntry.story)) {
+    return null;
+  }
+
+  // Prose story - return as variant
+  const proseStory = poolEntry.story as Story;
   return {
     archetypeId: archetypeId,
     variantId: null, // Explicitly null for base/canonical story
-    title: poolEntry.story.title,
-    intro: poolEntry.story.intro,
-    checkpoints: poolEntry.story.checkpoints,
-    ending: poolEntry.story.ending,
+    title: proseStory.title,
+    intro: proseStory.intro,
+    checkpoints: proseStory.checkpoints,
+    ending: proseStory.ending,
   };
 }
 

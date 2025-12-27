@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { loadStoryPool } from "@/data/story";
+import { loadStoryPool, isVisualBeatStory } from "@/data/story";
 import { loadVariantsForArchetype } from "@/data/variants";
 
 /**
@@ -73,13 +73,17 @@ export default function StoryLibraryPage() {
                     </span>
                   )}
 
-                  {entry.isGenerated ? (
+                  {isVisualBeatStory(entry.story) ? (
+                    <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700">
+                      Visual Beat
+                    </span>
+                  ) : entry.isGenerated ? (
                     <span className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">
                       AI-Generated
                     </span>
                   ) : (
                     <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">
-                      Fallback
+                      Prose
                     </span>
                   )}
                 </div>
