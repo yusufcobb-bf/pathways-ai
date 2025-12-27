@@ -43,7 +43,7 @@ export default async function StudentHome({ searchParams }: PageProps) {
   let assignmentId: string | null = null;
   let storyId: string;
   let archetypeId: string;
-  let variantId: string | null;
+  let variantId: string | null = null;
   let isGenerated: boolean;
   let guidedReflectionEnabled: boolean;
 
@@ -92,8 +92,11 @@ export default async function StudentHome({ searchParams }: PageProps) {
     archetypeId = selectedEntry.archetypeId;
     isGenerated = selectedEntry.isGenerated;
 
-    const variant = selectVariantForStory(archetypeId, completedSessions);
-    variantId = variant.variantId;
+    // Only select variants for prose stories - visual beat stories don't use variants
+    if (!isVisualBeatStory(selectedEntry.story)) {
+      const variant = selectVariantForStory(archetypeId, completedSessions);
+      variantId = variant.variantId;
+    }
   }
 
   // Stage 27: Get the story for StoryPlayer

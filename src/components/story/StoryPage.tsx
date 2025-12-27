@@ -7,6 +7,8 @@
  * One sentence per page for immersive reading experience.
  */
 
+import { useState, useEffect } from "react";
+
 export interface StoryPageProps {
   sentence: string;
   imageUrl?: string;
@@ -28,16 +30,27 @@ export default function StoryPage({
   onPrev,
   isLast,
 }: StoryPageProps) {
+  // Track if image failed to load - fall back to gradient
+  const [imageError, setImageError] = useState(false);
+
+  // Reset error state when imageUrl changes
+  useEffect(() => {
+    setImageError(false);
+  }, [imageUrl]);
+
+  const showImage = imageUrl && !imageError;
+
   return (
     <div className="space-y-4">
       {/* Large image - 16:10 aspect ratio for immersive visuals */}
       <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl">
-        {imageUrl ? (
+        {showImage ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={imageUrl}
             alt="" // Decorative - caption provides context
             className="h-full w-full object-cover"
+            onError={() => setImageError(true)}
           />
         ) : (
           <div

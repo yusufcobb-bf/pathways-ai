@@ -27,23 +27,102 @@ export interface StoryIllustrations {
 
 /**
  * Story illustrations registry.
- * Phase 1: Empty - illustrations are generated dynamically.
- * Future: Can be populated with pre-generated image URLs.
+ * Stage 28: Populated with reusable theme-based images for science-fair-mystery.
+ *
+ * NOTE: Checkpoint beats use local indices (0-6) which map to intro array.
+ * This is intentional MVP behavior - checkpoints reuse intro images.
  */
 export const storyIllustrations: Record<string, StoryIllustrations> = {
-  // Example structure for future use:
-  // "community-garden-discovery": {
-  //   archetypeId: "community-garden-discovery",
-  //   intro: [
-  //     { sentenceIndex: 0, illustrationPrompt: "...", imageUrl: "/comic/cgd/intro-0.png" },
-  //   ],
-  //   checkpoints: [
-  //     { checkpointId: "c1", illustrationPrompt: "...", imageUrl: "/comic/cgd/cp-0.png" },
-  //   ],
-  //   ending: [
-  //     { sentenceIndex: 0, illustrationPrompt: "...", imageUrl: "/comic/cgd/end-0.png" },
-  //   ],
-  // },
+  "science-fair-mystery": {
+    archetypeId: "science-fair-mystery",
+    intro: [
+      // Intro beats (indices 0-9)
+      // Note: Checkpoint beats also lookup intro[0-6] due to StoryPager behavior
+      {
+        sentenceIndex: 0,
+        illustrationPrompt: "arriving at school",
+        imageUrl: "/images/science-fair-mystery/student-searching.png",
+      },
+      {
+        sentenceIndex: 1,
+        illustrationPrompt: "excited about project",
+        imageUrl: "/images/science-fair-mystery/student-concerned.png",
+      },
+      {
+        sentenceIndex: 2,
+        illustrationPrompt: "hallways echo",
+        imageUrl: "/images/science-fair-mystery/gym-wide.png",
+      },
+      {
+        sentenceIndex: 3,
+        illustrationPrompt: "push through doors",
+        imageUrl: "/images/science-fair-mystery/gym-wide.png",
+      },
+      {
+        sentenceIndex: 4,
+        illustrationPrompt: "something wrong",
+        imageUrl: "/images/science-fair-mystery/broken-pieces.png",
+      },
+      {
+        sentenceIndex: 5,
+        illustrationPrompt: "empty table",
+        imageUrl: "/images/science-fair-mystery/broken-pieces.png",
+      },
+      {
+        sentenceIndex: 6,
+        illustrationPrompt: "scattered pieces",
+        imageUrl: "/images/science-fair-mystery/broken-pieces.png",
+      },
+      {
+        sentenceIndex: 7,
+        illustrationPrompt: "Kai searching",
+        imageUrl: "/images/science-fair-mystery/student-searching.png",
+      },
+      {
+        sentenceIndex: 8,
+        illustrationPrompt: "Maya with paper",
+        imageUrl: "/images/science-fair-mystery/two-students.png",
+      },
+      {
+        sentenceIndex: 9,
+        illustrationPrompt: "Mr. Rodriguez chairs",
+        imageUrl: "/images/science-fair-mystery/classroom-setup.png",
+      },
+    ],
+    checkpoints: [], // Empty - checkpoints use intro array via StoryPager mapping
+    ending: [
+      {
+        sentenceIndex: 0,
+        illustrationPrompt: "gym fills",
+        imageUrl: "/images/science-fair-mystery/gym-wide.png",
+      },
+      {
+        sentenceIndex: 1,
+        illustrationPrompt: "Maya display",
+        imageUrl: "/images/science-fair-mystery/two-students.png",
+      },
+      {
+        sentenceIndex: 2,
+        illustrationPrompt: "Kai helps",
+        imageUrl: "/images/science-fair-mystery/two-students.png",
+      },
+      {
+        sentenceIndex: 3,
+        illustrationPrompt: "volcano demonstration",
+        imageUrl: "/images/science-fair-mystery/classroom-setup.png",
+      },
+      {
+        sentenceIndex: 4,
+        illustrationPrompt: "Mr. Rodriguez notes",
+        imageUrl: "/images/science-fair-mystery/classroom-setup.png",
+      },
+      {
+        sentenceIndex: 5,
+        illustrationPrompt: "morning unfolds",
+        imageUrl: "/images/science-fair-mystery/gym-wide.png",
+      },
+    ],
+  },
 };
 
 /**
