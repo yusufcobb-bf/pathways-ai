@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Story, Choice } from "@/data/story";
@@ -18,6 +18,10 @@ import StorySceneHeader from "./StorySceneHeader";
 import { getStoryEnvironment, getStoryGradient } from "@/data/story-environments";
 import { getSceneSubtitle } from "@/data/story-scenes";
 import { getReflectionPrompts } from "@/data/reflection-prompts";
+import StoryStartScreen from "./comic/StoryStartScreen";
+import DecisionChoiceGrid from "./comic/DecisionChoiceGrid";
+import StoryPager from "./story/StoryPager";
+import { parseNarrativeWithLimit } from "@/lib/comic/sentence-parser";
 
 interface StoryPlayerProps {
   story: Story;
@@ -44,6 +48,8 @@ interface StoryState {
   selectedChoice: { id: string; text: string } | null; // Stage 14: Choice feedback
   isTransitioning: boolean; // Stage 14: Fade transitions
   guidedResponses: Record<string, string>; // Stage 16: Maps prompt.id to response
+  checkpointNarrativeComplete: boolean; // Stage 26: Track if checkpoint narrative is read
+  globalPageIndex: number; // Stage 26b: Current global page position
 }
 
 function CheckpointProgress({
@@ -63,6 +69,27 @@ function CheckpointProgress({
           }`}
         />
       ))}
+    </div>
+  );
+}
+
+// Stage 26b: Global story progress bar (continuous, not segmented)
+function GlobalProgressBar({
+  current,
+  total,
+}: {
+  current: number;
+  total: number;
+}) {
+  const progress = Math.min((current / total) * 100, 100);
+  return (
+    <div className="mb-6">
+      <div className="h-1.5 w-full rounded-full bg-zinc-200">
+        <div
+          className="h-1.5 rounded-full bg-zinc-700 transition-all duration-300"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
     </div>
   );
 }
@@ -193,12 +220,62 @@ export default function StoryPlayer({
     selectedChoice: null,
     isTransitioning: false,
     guidedResponses: {},
+    checkpointNarrativeComplete: false,
+    globalPageIndex: 0,
   });
+
+  // Stage 25b: Track if user has clicked "Begin Story"
+  const [hasStartedStory, setHasStartedStory] = useState(false);
 
   const totalCheckpoints = story.checkpoints.length;
 
+  // Stage 26d: Compute all pages once for global page tracking
+  const storySegments = useMemo(() => {
+    const introSentences = parseNarrativeWithLimit(story.intro);
+    const checkpointSentences = story.checkpoints.map((cp) =>
+      parseNarrativeWithLimit(cp.narrative)
+    );
+    const endingSentences = parseNarrativeWithLimit(story.ending);
+
+    // Calculate cumulative offsets for each segment
+    let offset = 0;
+    const introOffset = offset;
+    offset += introSentences.length;
+
+    const checkpointOffsets = checkpointSentences.map((sentences) => {
+      const cpOffset = offset;
+      offset += sentences.length;
+      return cpOffset;
+    });
+
+    const endingOffset = offset;
+    offset += endingSentences.length;
+
+    const totalPages = offset;
+
+    return {
+      introSentences,
+      introOffset,
+      checkpointSentences,
+      checkpointOffsets,
+      endingSentences,
+      endingOffset,
+      totalPages,
+    };
+  }, [story]);
+
   const handleStartStory = () => {
     setState((prev) => ({ ...prev, stage: "checkpoint" }));
+  };
+
+  // Stage 26: Handler for when checkpoint narrative is fully read
+  const handleCheckpointNarrativeComplete = () => {
+    setState((prev) => ({ ...prev, checkpointNarrativeComplete: true }));
+  };
+
+  // Stage 26b: Handler for global page updates
+  const handleGlobalPageChange = (globalIndex: number) => {
+    setState((prev) => ({ ...prev, globalPageIndex: globalIndex }));
   };
 
   const handleChoice = (choiceId: string) => {
@@ -231,6 +308,7 @@ export default function StoryPlayer({
           checkpointIndex: isLastCheckpoint ? currentIndex : nextIndex,
           selectedChoice: null,
           isTransitioning: false,
+          checkpointNarrativeComplete: false, // Stage 26: Reset for next checkpoint
         }));
       }, 200);
     }, 800);
@@ -387,46 +465,87 @@ export default function StoryPlayer({
       )}
 
       {/* Stage 13: Visual Story Header */}
-      {/* Stage 14: Add scene-specific subtitle based on current stage */}
-      {/* Stage 15: Add mood-based gradient based on current stage */}
-      <StorySceneHeader
-        title={story.title}
-        subtitle={environment?.subtitle}
-        sceneSubtitle={getSceneSubtitle(
-          archetypeId,
-          state.stage === "intro" ? "intro" : state.checkpointIndex
-        )}
-        gradientStyle={getStoryGradient(
-          archetypeId,
-          state.stage === "intro" ? "intro" : state.checkpointIndex
-        )}
-        imageSrc={environment?.imageSrc}
-      />
+      {/* Stage 25b: Hide header when showing start screen */}
+      {!(state.stage === "intro" && !hasStartedStory) && (
+        <StorySceneHeader
+          title={story.title}
+          subtitle={environment?.subtitle}
+          sceneSubtitle={getSceneSubtitle(
+            archetypeId,
+            state.stage === "intro" ? "intro" : state.checkpointIndex
+          )}
+          gradientStyle={getStoryGradient(
+            archetypeId,
+            state.stage === "intro" ? "intro" : state.checkpointIndex
+          )}
+          imageSrc={environment?.imageSrc}
+        />
+      )}
 
-      {/* Navigation Link */}
-      <div className="mb-6 text-right">
-        {previewMode ? (
-          <Link
-            href="/educator"
-            className="text-sm text-zinc-500 hover:text-zinc-700"
-          >
-            Back to Dashboard
-          </Link>
-        ) : (
-          <Link
-            href="/student/sessions"
-            className="text-sm text-zinc-500 hover:text-zinc-700"
-          >
-            View Past Sessions
-          </Link>
-        )}
-      </div>
-
-      {state.stage === "intro" && (
-        <div>
-          <StoryText>{story.intro}</StoryText>
-          <ContinueButton onClick={handleStartStory} label="Begin" />
+      {/* Navigation Link - hidden on start screen */}
+      {!(state.stage === "intro" && !hasStartedStory) && (
+        <div className="mb-6 flex justify-end gap-4">
+          {previewMode ? (
+            <>
+              {onPreviewExit && (
+                <button
+                  onClick={onPreviewExit}
+                  className="text-sm text-zinc-500 hover:text-zinc-700"
+                >
+                  Back to Preview Settings
+                </button>
+              )}
+              <Link
+                href="/educator"
+                className="text-sm text-zinc-500 hover:text-zinc-700"
+              >
+                Back to Dashboard
+              </Link>
+            </>
+          ) : (
+            <Link
+              href="/student/sessions"
+              className="text-sm text-zinc-500 hover:text-zinc-700"
+            >
+              View Past Sessions
+            </Link>
+          )}
         </div>
+      )}
+
+      {/* Stage 25b: Story Start Screen (before intro content) */}
+      {state.stage === "intro" && !hasStartedStory && (
+        <StoryStartScreen
+          title={story.title}
+          subtitle={environment?.subtitle}
+          gradientStyle={getStoryGradient(archetypeId, "intro")}
+          onBegin={() => setHasStartedStory(true)}
+        />
+      )}
+
+      {/* Stage 26b: Global progress bar (visible during active story, not on decision screens) */}
+      {hasStartedStory &&
+        !["reflection", "completed"].includes(state.stage) &&
+        !(state.stage === "checkpoint" && state.checkpointNarrativeComplete) && (
+          <GlobalProgressBar
+            current={state.globalPageIndex + 1}
+            total={storySegments.totalPages}
+          />
+        )}
+
+      {/* Stage 26b: Intro pages (after clicking Begin Story) - one sentence per page */}
+      {state.stage === "intro" && hasStartedStory && (
+        <StoryPager
+          sentences={storySegments.introSentences}
+          archetypeId={archetypeId}
+          stageType="intro"
+          globalStartIndex={storySegments.introOffset}
+          totalStoryPages={storySegments.totalPages}
+          onPageChange={(localIndex) =>
+            handleGlobalPageChange(storySegments.introOffset + localIndex)
+          }
+          onComplete={handleStartStory}
+        />
       )}
 
       {state.stage === "checkpoint" && (
@@ -435,35 +554,57 @@ export default function StoryPlayer({
             state.isTransitioning ? "opacity-0" : "opacity-100"
           }`}
         >
-          <CheckpointProgress
-            current={state.checkpointIndex + 1}
-            total={totalCheckpoints}
-          />
-          <StoryText>
-            {story.checkpoints[state.checkpointIndex].narrative}
-          </StoryText>
-          <ChoiceList
-            choices={story.checkpoints[state.checkpointIndex].choices}
-            onSelect={handleChoice}
-            selectedChoiceId={state.selectedChoice?.id}
-          />
-          {/* Stage 14: Neutral choice acknowledgment */}
-          {state.selectedChoice && (
-            <p className="mt-4 text-sm text-zinc-500">
-              You chose to {state.selectedChoice.text.toLowerCase().replace(/\.$/, "")}
-            </p>
+          {/* Stage 26b: Show narrative pages FIRST, then choices */}
+          {!state.checkpointNarrativeComplete ? (
+            <StoryPager
+              sentences={storySegments.checkpointSentences[state.checkpointIndex]}
+              archetypeId={archetypeId}
+              stageType="checkpoint"
+              stageIndex={state.checkpointIndex}
+              globalStartIndex={storySegments.checkpointOffsets[state.checkpointIndex]}
+              totalStoryPages={storySegments.totalPages}
+              onPageChange={(localIndex) =>
+                handleGlobalPageChange(
+                  storySegments.checkpointOffsets[state.checkpointIndex] + localIndex
+                )
+              }
+              onComplete={handleCheckpointNarrativeComplete}
+            />
+          ) : (
+            <>
+              {/* Decision choices appear only after narrative is read */}
+              <DecisionChoiceGrid
+                choices={story.checkpoints[state.checkpointIndex].choices}
+                archetypeId={archetypeId}
+                checkpointIndex={state.checkpointIndex}
+                onSelect={handleChoice}
+                selectedChoiceId={state.selectedChoice?.id}
+              />
+              {/* Stage 14: Neutral choice acknowledgment */}
+              {state.selectedChoice && (
+                <p className="mt-4 text-sm text-zinc-500">
+                  You chose to{" "}
+                  {state.selectedChoice.text.toLowerCase().replace(/\.$/, "")}
+                </p>
+              )}
+            </>
           )}
         </div>
       )}
 
+      {/* Stage 26b: Ending pages - one sentence per page */}
       {state.stage === "ending" && (
-        <div>
-          <StoryText>{story.ending}</StoryText>
-          <ContinueButton
-            onClick={handleContinueToReflection}
-            label="Continue to Reflection"
-          />
-        </div>
+        <StoryPager
+          sentences={storySegments.endingSentences}
+          archetypeId={archetypeId}
+          stageType="ending"
+          globalStartIndex={storySegments.endingOffset}
+          totalStoryPages={storySegments.totalPages}
+          onPageChange={(localIndex) =>
+            handleGlobalPageChange(storySegments.endingOffset + localIndex)
+          }
+          onComplete={handleContinueToReflection}
+        />
       )}
 
       {state.stage === "reflection" && (
