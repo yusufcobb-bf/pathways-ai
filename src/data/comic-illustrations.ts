@@ -18,11 +18,18 @@ export interface CheckpointIllustration {
   imageUrl?: string; // Optional: pre-generated image URL
 }
 
+// Stage 28b: Choice card illustrations
+export interface ChoiceIllustration {
+  choiceId: string;
+  imageUrl: string;
+}
+
 export interface StoryIllustrations {
   archetypeId: string;
   intro: SentenceIllustration[];
   checkpoints: CheckpointIllustration[];
   ending: SentenceIllustration[];
+  choices?: ChoiceIllustration[]; // Stage 28b: Optional choice card images
 }
 
 /**
@@ -122,6 +129,17 @@ export const storyIllustrations: Record<string, StoryIllustrations> = {
         imageUrl: "/images/science-fair-mystery/gym-wide.png",
       },
     ],
+    // Stage 28b: Choice card images
+    choices: [
+      { choiceId: "c1-a", imageUrl: "/images/science-fair-mystery/choice-c1-a.png" },
+      { choiceId: "c1-b", imageUrl: "/images/science-fair-mystery/choice-c1-b.png" },
+      { choiceId: "c1-c", imageUrl: "/images/science-fair-mystery/choice-c1-c.png" },
+      { choiceId: "c2-a", imageUrl: "/images/science-fair-mystery/choice-c2-a.png" },
+      { choiceId: "c2-b", imageUrl: "/images/science-fair-mystery/choice-c2-b.png" },
+      { choiceId: "c3-a", imageUrl: "/images/science-fair-mystery/choice-c3-a.png" },
+      { choiceId: "c3-b", imageUrl: "/images/science-fair-mystery/choice-c3-b.png" },
+      { choiceId: "c3-c", imageUrl: "/images/science-fair-mystery/choice-c3-c.png" },
+    ],
   },
 };
 
@@ -156,5 +174,20 @@ export function getCheckpointImageUrl(
   const match = storyData.checkpoints.find(
     (ill) => ill.checkpointId === checkpointId
   );
+  return match?.imageUrl;
+}
+
+/**
+ * Stage 28b: Get pre-generated illustration URL for a choice card.
+ * Returns undefined if no image exists (use gradient fallback).
+ */
+export function getChoiceImageUrl(
+  archetypeId: string,
+  choiceId: string
+): string | undefined {
+  const storyData = storyIllustrations[archetypeId];
+  if (!storyData?.choices) return undefined;
+
+  const match = storyData.choices.find((c) => c.choiceId === choiceId);
   return match?.imageUrl;
 }

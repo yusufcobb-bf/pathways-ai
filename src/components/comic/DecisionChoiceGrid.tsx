@@ -2,15 +2,17 @@
 
 /**
  * Stage 25b: Decision Choice Grid
+ * Stage 28b: Added choice card image support
  *
  * Illustrated choice panels replacing text buttons.
  * Each choice is a clickable card with 16:9 illustration and caption.
  */
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Choice } from "@/data/story";
 import { generateIllustrationPrompt } from "@/lib/comic/illustration-prompts";
 import { getStoryGradient } from "@/data/story-environments";
+import { getChoiceImageUrl } from "@/data/comic-illustrations";
 
 export interface DecisionChoiceGridProps {
   choices: Choice[];
@@ -27,6 +29,9 @@ export default function DecisionChoiceGrid({
   onSelect,
   selectedChoiceId,
 }: DecisionChoiceGridProps) {
+  // Stage 28b: Track which choice images have failed to load
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
+
   // Generate gradients for each choice (vary by index for visual distinction)
   const choiceGradients = useMemo(() => {
     return choices.map((choice, index) => {
@@ -49,11 +54,20 @@ export default function DecisionChoiceGrid({
 
   const isDisabled = selectedChoiceId !== undefined;
 
+  // Stage 28b: Handle image load error
+  const handleImageError = (choiceId: string) => {
+    setFailedImages((prev) => new Set(prev).add(choiceId));
+  };
+
   return (
     <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
       {choices.map((choice, index) => {
         const isSelected = choice.id === selectedChoiceId;
         const gradient = choiceGradients[index];
+
+        // Stage 28b: Get choice image URL (defensive lookup)
+        const imageUrl = getChoiceImageUrl(archetypeId, choice.id);
+        const showImage = imageUrl && !failedImages.has(choice.id);
 
         return (
           <button
@@ -70,29 +84,41 @@ export default function DecisionChoiceGrid({
           >
             {/* Illustration area - 16:9 aspect ratio */}
             <div
-              className="aspect-[16/9] w-full"
+              className="relative aspect-[16/9] w-full"
               style={{
                 background:
                   gradient ||
                   "linear-gradient(to bottom right, #f4f4f5, #e4e4e7)",
               }}
             >
-              {/* Placeholder icon */}
-              <div className="flex h-full w-full items-center justify-center">
-                <svg
-                  className="h-10 w-10 text-white/30"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-              </div>
+              {/* Stage 28b: Choice image with fallback */}
+              {showImage ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={imageUrl}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-full w-full object-cover"
+                  onError={() => handleImageError(choice.id)}
+                />
+              ) : (
+                /* Placeholder icon - shown when no image or image failed */
+                <div className="flex h-full w-full items-center justify-center">
+                  <svg
+                    className="h-10 w-10 text-white/30"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+              )}
             </div>
 
             {/* Caption */}
