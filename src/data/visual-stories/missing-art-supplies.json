@@ -181,14 +181,14 @@
         },
         {
           "id": "c2-4",
-          "text": "\"My little sister's birthday is tomorrow,\" he says quietly.",
+          "text": "\"My little sister has been really sad lately,\" he says quietly.",
           "actor": "Leo",
           "focus": "dialogue",
           "casel": ["social-awareness"]
         },
         {
           "id": "c2-5",
-          "text": "\"I wanted to make her something special.\"",
+          "text": "\"I wanted to make her something to cheer her up.\"",
           "actor": "Leo",
           "focus": "dialogue",
           "casel": ["social-awareness", "self-awareness"]
@@ -263,7 +263,7 @@
       "choices": [
         {
           "id": "c3-a",
-          "text": "Suggest the three of you work on a card for Leo's sister together",
+          "text": "Suggest the three of you make something for Leo's sister together",
           "casel": ["relationship-skills", "social-awareness"],
           "virtues": ["Empathy", "Respect"],
           "focus": "group",
@@ -298,7 +298,7 @@
     },
     {
       "id": "end-2",
-      "text": "Leo is working on a colorful card at his table.",
+      "text": "Leo is working on a colorful painting at his table.",
       "actor": "Leo",
       "focus": "character-action",
       "casel": ["self-management"]
