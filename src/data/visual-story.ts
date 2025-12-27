@@ -46,6 +46,12 @@ export interface VisualBeat {
   illustrationHint?: string; // Optional guidance for image generation
 }
 
+// Feedback shown after selecting a choice (Stage 29)
+export interface ChoiceFeedback {
+  xp: number; // XP gained: 1 | 3 | 5
+  encouragement: string; // Short positive sentence
+}
+
 // Visual choice with scoring data
 export interface VisualChoice {
   id: string; // "c1-a", "c1-b", "c1-c"
@@ -54,6 +60,7 @@ export interface VisualChoice {
   virtues: Virtue[]; // REQUIRED for scoring continuity
   focus: VisualFocus; // Illustration guidance for choice card
   illustrationHint?: string; // Optional image generation guidance
+  feedback?: ChoiceFeedback; // Optional encouragement feedback (Stage 29)
 }
 
 // Checkpoint with visual beats and choices

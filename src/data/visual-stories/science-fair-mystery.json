@@ -153,7 +153,11 @@
           "casel": ["relationship-skills", "social-awareness"],
           "virtues": ["Empathy", "Courage"],
           "focus": "character-action",
-          "illustrationHint": "You walking toward Kai"
+          "illustrationHint": "You walking toward Kai",
+          "feedback": {
+            "xp": 5,
+            "encouragement": "You chose to step forward and check on someone."
+          }
         },
         {
           "id": "c1-b",
@@ -161,7 +165,11 @@
           "casel": ["responsible-decision-making", "social-awareness"],
           "virtues": ["Empathy", "Responsibility"],
           "focus": "character-action",
-          "illustrationHint": "You carefully picking up planet pieces"
+          "illustrationHint": "You carefully picking up planet pieces",
+          "feedback": {
+            "xp": 3,
+            "encouragement": "You took action to help without being asked."
+          }
         },
         {
           "id": "c1-c",
@@ -169,7 +177,11 @@
           "casel": ["self-management", "self-awareness"],
           "virtues": ["Responsibility", "Self-Control"],
           "focus": "character-action",
-          "illustrationHint": "You setting up your volcano, looking over"
+          "illustrationHint": "You setting up your volcano, looking over",
+          "feedback": {
+            "xp": 1,
+            "encouragement": "You stayed aware of others while focusing on your task."
+          }
         }
       ]
     },
@@ -225,7 +237,11 @@
           "casel": ["relationship-skills", "social-awareness"],
           "virtues": ["Empathy", "Courage"],
           "focus": "dialogue",
-          "illustrationHint": "You kneeling beside Maya, offering help"
+          "illustrationHint": "You kneeling beside Maya, offering help",
+          "feedback": {
+            "xp": 5,
+            "encouragement": "You offered support when someone was struggling."
+          }
         },
         {
           "id": "c2-b",
@@ -233,7 +249,11 @@
           "casel": ["responsible-decision-making", "self-management"],
           "virtues": ["Responsibility", "Courage"],
           "focus": "observation",
-          "illustrationHint": "You scanning the gymnasium carefully"
+          "illustrationHint": "You scanning the gymnasium carefully",
+          "feedback": {
+            "xp": 3,
+            "encouragement": "You looked for ways to understand the situation."
+          }
         }
       ]
     },
@@ -285,7 +305,11 @@
           "casel": ["responsible-decision-making", "self-management"],
           "virtues": ["Courage", "Responsibility"],
           "focus": "character-action",
-          "illustrationHint": "You following the glitter trail"
+          "illustrationHint": "You following the glitter trail",
+          "feedback": {
+            "xp": 5,
+            "encouragement": "You took initiative to investigate and help solve the problem."
+          }
         },
         {
           "id": "c3-b",
@@ -293,7 +317,11 @@
           "casel": ["relationship-skills", "responsible-decision-making"],
           "virtues": ["Responsibility", "Respect"],
           "focus": "character-action",
-          "illustrationHint": "You walking toward Mr. Rodriguez"
+          "illustrationHint": "You walking toward Mr. Rodriguez",
+          "feedback": {
+            "xp": 3,
+            "encouragement": "You shared important information with a trusted adult."
+          }
         },
         {
           "id": "c3-c",
@@ -301,7 +329,11 @@
           "casel": ["self-management", "self-awareness"],
           "virtues": ["Responsibility", "Self-Control"],
           "focus": "character-action",
-          "illustrationHint": "You adjusting your volcano project"
+          "illustrationHint": "You adjusting your volcano project",
+          "feedback": {
+            "xp": 1,
+            "encouragement": "You balanced your own work while staying present."
+          }
         }
       ]
     }

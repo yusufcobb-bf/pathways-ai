@@ -9,7 +9,10 @@ import {
   isVisualBeatStory,
   extractBeatTexts,
   VisualBeatStory,
+  VisualChoice,
 } from "@/data/story";
+import { Virtue } from "@/data/virtues";
+import { FeedbackOverlay } from "./story/FeedbackOverlay";
 import {
   computeVirtueScores,
   computePositionBasedVirtueScores,
@@ -57,6 +60,11 @@ interface StoryState {
   checkpointNarrativeComplete: boolean; // Stage 26: Track if checkpoint narrative is read
   globalPageIndex: number; // Stage 26b: Current global page position
   introLastPage: number; // Stage 27: Track last page for back navigation
+  activeFeedback: { // Stage 29: Live encouragement feedback
+    xp: number;
+    virtues: Virtue[];
+    encouragement: string;
+  } | null;
 }
 
 function CheckpointProgress({
@@ -230,6 +238,7 @@ export default function StoryPlayer({
     checkpointNarrativeComplete: false,
     globalPageIndex: 0,
     introLastPage: 0,
+    activeFeedback: null,
   });
 
   // Stage 25b: Track if user has clicked "Begin Story"
@@ -330,32 +339,51 @@ export default function StoryPlayer({
 
     if (!selectedChoice) return;
 
-    // Show selection feedback
+    // Stage 29: Compute feedback with fallback defaults
+    const visualChoice = selectedChoice as VisualChoice;
+    const feedback = visualChoice.feedback ?? {
+      xp: 1,
+      encouragement: "You made a thoughtful choice.",
+    };
+    const virtues = visualChoice.virtues ?? [];
+
+    // Show selection feedback and activate feedback overlay
     setState((prev) => ({
       ...prev,
       selectedChoice: { id: choiceId, text: selectedChoice.text },
+      activeFeedback: {
+        xp: feedback.xp,
+        virtues,
+        encouragement: feedback.encouragement,
+      },
     }));
+  };
 
-    // After brief delay, transition to next scene
+  // Stage 29: Handler for when feedback overlay completes
+  const handleFeedbackComplete = () => {
+    const currentIndex = state.checkpointIndex;
+    const choiceId = state.selectedChoice?.id;
+
+    if (!choiceId) return;
+
+    setState((prev) => ({ ...prev, isTransitioning: true }));
+
+    // After fade out, advance and fade back in
     setTimeout(() => {
-      setState((prev) => ({ ...prev, isTransitioning: true }));
+      const nextIndex = currentIndex + 1;
+      const isLastCheckpoint = nextIndex >= totalCheckpoints;
 
-      // After fade out, advance and fade back in
-      setTimeout(() => {
-        const nextIndex = currentIndex + 1;
-        const isLastCheckpoint = nextIndex >= totalCheckpoints;
-
-        setState((prev) => ({
-          ...prev,
-          choices: [...prev.choices, choiceId],
-          stage: isLastCheckpoint ? "ending" : "checkpoint",
-          checkpointIndex: isLastCheckpoint ? currentIndex : nextIndex,
-          selectedChoice: null,
-          isTransitioning: false,
-          checkpointNarrativeComplete: false, // Stage 26: Reset for next checkpoint
-        }));
-      }, 200);
-    }, 800);
+      setState((prev) => ({
+        ...prev,
+        choices: [...prev.choices, choiceId],
+        stage: isLastCheckpoint ? "ending" : "checkpoint",
+        checkpointIndex: isLastCheckpoint ? currentIndex : nextIndex,
+        selectedChoice: null,
+        isTransitioning: false,
+        checkpointNarrativeComplete: false, // Stage 26: Reset for next checkpoint
+        activeFeedback: null, // Stage 29: Clear feedback
+      }));
+    }, 200);
   };
 
   const handleContinueToReflection = () => {
@@ -732,6 +760,16 @@ export default function StoryPlayer({
             </>
           )}
         </div>
+      )}
+
+      {/* Stage 29: Feedback Overlay */}
+      {state.activeFeedback && (
+        <FeedbackOverlay
+          xp={state.activeFeedback.xp}
+          virtues={state.activeFeedback.virtues}
+          encouragement={state.activeFeedback.encouragement}
+          onComplete={handleFeedbackComplete}
+        />
       )}
 
       {state.stage === "completed" && (
