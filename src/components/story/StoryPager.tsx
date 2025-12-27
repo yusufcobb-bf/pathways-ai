@@ -89,11 +89,12 @@ export default function StoryPager({
     "linear-gradient(to bottom right, #f4f4f5, #e4e4e7)";
 
   // Check for pre-generated image
-  // For checkpoints, use "intro" type since we don't have checkpoint-specific images yet
+  // Stage 28c: Pass checkpoint identity for unique checkpoint images
   const imageUrl = getSentenceImageUrl(
     archetypeId,
-    stageType === "checkpoint" ? "intro" : stageType,
-    currentPage
+    stageType === "checkpoint" ? "checkpoint" : stageType,
+    currentPage,
+    stageType === "checkpoint" ? `c${stageIndex + 1}` : undefined
   );
 
   // Stage 26b: Calculate display numbers (global if provided, otherwise local)
