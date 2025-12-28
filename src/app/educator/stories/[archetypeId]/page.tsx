@@ -8,6 +8,7 @@ import {
   loadBaseStoryAsVariant,
   StoryVariant,
 } from "@/data/variants";
+import { StoryTypeBadge } from "@/components/educator/StoryTypeBadge";
 
 /**
  * Educator Story Preview Page (Stage 9)
@@ -109,6 +110,8 @@ function VisualBeatStoryPreview({
           <span className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
             Visual Beat Story
           </span>
+          {/* Stage 38: Story type badge */}
+          <StoryTypeBadge story={story} />
           <span className="text-xs text-zinc-400">
             Archetype: {archetypeId}
           </span>

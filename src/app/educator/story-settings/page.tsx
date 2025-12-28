@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import { loadStoryPool, StoryPoolEntry, isVisualBeatStory } from "@/data/story";
 import { StoryPoolConfig, StoryMode } from "@/lib/supabase/types";
 import { loadVariantsForArchetype } from "@/data/variants";
+import { StoryTypeBadge } from "@/components/educator/StoryTypeBadge";
 
 interface SettingsState {
   loading: boolean;
@@ -414,6 +415,11 @@ export default function StorySettingsPage() {
                         <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">
                           Prose
                         </span>
+                      )}
+
+                      {/* Stage 38: Story type badge */}
+                      {isVisualBeatStory(entry.story) && (
+                        <StoryTypeBadge story={entry.story} />
                       )}
                     </div>
                     <p className="text-xs text-zinc-500">ID: {entry.storyId}</p>
