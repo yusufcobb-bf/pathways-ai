@@ -12,9 +12,11 @@ import {
   VisualChoice,
   DiagnosticProfile,
   TrainingPracticeProfile,
+  TrainingSummary,
 } from "@/data/story";
 import { buildDiagnosticProfile } from "@/lib/diagnostics/diagnosticScoring";
 import { buildTrainingEvent } from "@/lib/training/buildTrainingEvent";
+import { buildTrainingSummary } from "@/lib/training/buildTrainingSummary";
 import { Virtue } from "@/data/virtues";
 import { FeedbackOverlay } from "./story/FeedbackOverlay";
 import {
@@ -71,6 +73,7 @@ interface StoryState {
   } | null;
   diagnosticProfile: DiagnosticProfile | null; // Stage 31: Internal only
   trainingProfile: TrainingPracticeProfile | null; // Stage 32: Internal only
+  trainingSummary: TrainingSummary | null; // Stage 33: Internal only
 }
 
 function CheckpointProgress({
@@ -258,6 +261,7 @@ export default function StoryPlayer({
     activeFeedback: null,
     diagnosticProfile: null, // Stage 31
     trainingProfile: initialTrainingProfile, // Stage 32
+    trainingSummary: null, // Stage 33
   });
 
   // Stage 25b: Track if user has clicked "Begin Story"
@@ -432,6 +436,17 @@ export default function StoryPlayer({
       diagnosticProfile = buildDiagnosticProfile(story.id, allChoices);
     }
 
+    // Stage 33: Compute final training summary (consumed in later recommendation stages)
+    let trainingSummary = state.trainingSummary;
+    if (
+      isLastCheckpoint &&
+      isVisualBeatStory(story) &&
+      story.storyType === "training" &&
+      state.trainingProfile
+    ) {
+      trainingSummary = buildTrainingSummary(state.trainingProfile);
+    }
+
     setState((prev) => ({ ...prev, isTransitioning: true }));
 
     setTimeout(() => {
@@ -445,6 +460,7 @@ export default function StoryPlayer({
         checkpointNarrativeComplete: false, // Stage 26: Reset for next checkpoint
         activeFeedback: null, // Stage 29: Clear feedback
         diagnosticProfile, // Stage 31: Store computed profile
+        trainingSummary, // Stage 33: Store computed summary
       }));
     }, 200);
   };

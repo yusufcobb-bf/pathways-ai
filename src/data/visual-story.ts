@@ -49,6 +49,23 @@ export interface TrainingPracticeProfile {
   events: TrainingPracticeEvent[];
 }
 
+// Stage 33: Training summary (internal only)
+export type TrainingOutcome = "weak" | "emerging" | "strong";
+
+export interface TrainingSummary {
+  storyId: string;
+  virtue: Virtue;
+  totalEvents: number;
+  intensityCounts: {
+    low: number;
+    medium: number;
+    high: number;
+  };
+  averageIntensity: PracticeIntensity;
+  outcome: TrainingOutcome;
+  completedAt: string;
+}
+
 // Visual focus type for illustration guidance
 export type VisualFocus =
   | "character-action" // A character doing something

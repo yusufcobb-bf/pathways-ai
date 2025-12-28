@@ -6,6 +6,7 @@ import {
 // Stage 27: Import visual beat story types for internal use
 // Stage 31: Added DiagnosticProfile and VirtueLevel
 // Stage 32: Added TrainingPracticeProfile and PracticeIntensity
+// Stage 33: Added TrainingSummary and TrainingOutcome
 import {
   isVisualBeatStory,
   extractBeatTexts,
@@ -19,11 +20,14 @@ import {
   type VirtueLevel,
   type TrainingPracticeProfile,
   type PracticeIntensity,
+  type TrainingSummary,
+  type TrainingOutcome,
 } from "./visual-story";
 
 // Stage 27: Re-export visual beat story types and utilities
 // Stage 31: Added DiagnosticProfile and VirtueLevel
 // Stage 32: Added TrainingPracticeProfile and PracticeIntensity
+// Stage 33: Added TrainingSummary and TrainingOutcome
 export {
   isVisualBeatStory,
   extractBeatTexts,
@@ -37,6 +41,8 @@ export {
   type VirtueLevel,
   type TrainingPracticeProfile,
   type PracticeIntensity,
+  type TrainingSummary,
+  type TrainingOutcome,
 };
 
 export interface Choice {
