@@ -11,8 +11,10 @@ import {
   VisualBeatStory,
   VisualChoice,
   DiagnosticProfile,
+  TrainingPracticeProfile,
 } from "@/data/story";
 import { buildDiagnosticProfile } from "@/lib/diagnostics/diagnosticScoring";
+import { buildTrainingEvent } from "@/lib/training/buildTrainingEvent";
 import { Virtue } from "@/data/virtues";
 import { FeedbackOverlay } from "./story/FeedbackOverlay";
 import {
@@ -68,6 +70,7 @@ interface StoryState {
     encouragement: string;
   } | null;
   diagnosticProfile: DiagnosticProfile | null; // Stage 31: Internal only
+  trainingProfile: TrainingPracticeProfile | null; // Stage 32: Internal only
 }
 
 function CheckpointProgress({
@@ -227,6 +230,17 @@ export default function StoryPlayer({
   // Stage 13: Get environment visuals for this story
   const environment = getStoryEnvironment(archetypeId);
 
+  // Stage 32: Compute initial training profile for training stories
+  const visualStoryRef = isVisualBeatStory(story) ? story : null;
+  const initialTrainingProfile: TrainingPracticeProfile | null =
+    visualStoryRef?.storyType === "training" && visualStoryRef.focusedVirtue
+      ? {
+          storyId: storyId,
+          virtue: visualStoryRef.focusedVirtue,
+          events: [],
+        }
+      : null;
+
   const [state, setState] = useState<StoryState>({
     stage: "intro",
     checkpointIndex: 0,
@@ -243,6 +257,7 @@ export default function StoryPlayer({
     introLastPage: 0,
     activeFeedback: null,
     diagnosticProfile: null, // Stage 31
+    trainingProfile: initialTrainingProfile, // Stage 32
   });
 
   // Stage 25b: Track if user has clicked "Begin Story"
@@ -372,6 +387,20 @@ export default function StoryPlayer({
         ? rawVirtues.filter(v => v === focusedVirtue)
         : rawVirtues;
 
+      // Stage 32: Build training practice event (training stories only)
+      // Always use currentCheckpoint.id, never derived from index (Refinement 2)
+      const trainingEvent =
+        visualStory?.storyType === "training" && focusedVirtue
+          ? buildTrainingEvent(
+              storyId,
+              currentCheckpoint.id,
+              choiceId,
+              focusedVirtue,
+              feedback.xp
+            )
+          : null;
+
+      // Stage 32: Single setState for both activeFeedback and trainingProfile (Refinement 3)
       setState((prev) => ({
         ...prev,
         activeFeedback: {
@@ -379,6 +408,13 @@ export default function StoryPlayer({
           virtues: displayVirtues,
           encouragement: feedback.encouragement,
         },
+        trainingProfile:
+          trainingEvent && prev.trainingProfile
+            ? {
+                ...prev.trainingProfile,
+                events: [...prev.trainingProfile.events, trainingEvent],
+              }
+            : prev.trainingProfile,
       }));
     }
   };

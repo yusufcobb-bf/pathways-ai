@@ -30,6 +30,25 @@ export interface DiagnosticProfile {
   completedAt: string; // ISO timestamp
 }
 
+// Stage 32: Training practice signal types (internal only)
+export type PracticeIntensity = "low" | "medium" | "high";
+
+export interface TrainingPracticeEvent {
+  storyId: string;
+  checkpointId: string;
+  choiceId: string;
+  virtue: Virtue;
+  intensity: PracticeIntensity;
+  xp: number;
+  timestamp: string;
+}
+
+export interface TrainingPracticeProfile {
+  storyId: string;
+  virtue: Virtue;
+  events: TrainingPracticeEvent[];
+}
+
 // Visual focus type for illustration guidance
 export type VisualFocus =
   | "character-action" // A character doing something
