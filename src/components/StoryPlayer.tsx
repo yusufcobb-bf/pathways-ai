@@ -14,11 +14,13 @@ import {
   TrainingPracticeProfile,
   TrainingSummary,
   RecommendationCandidate,
+  NextAction,
 } from "@/data/story";
 import { buildDiagnosticProfile } from "@/lib/diagnostics/diagnosticScoring";
 import { buildTrainingEvent } from "@/lib/training/buildTrainingEvent";
 import { buildTrainingSummary } from "@/lib/training/buildTrainingSummary";
 import { buildRecommendations } from "@/lib/recommendations/buildRecommendations";
+import { resolveRecommendation } from "@/lib/recommendations/resolveRecommendation";
 import { Virtue } from "@/data/virtues";
 import { FeedbackOverlay } from "./story/FeedbackOverlay";
 import {
@@ -77,6 +79,7 @@ interface StoryState {
   trainingProfile: TrainingPracticeProfile | null; // Stage 32: Internal only
   trainingSummary: TrainingSummary | null; // Stage 33: Internal only
   recommendations: RecommendationCandidate[] | null; // Stage 34: Internal only
+  nextAction: NextAction | null; // Stage 35: Internal intent only
 }
 
 function CheckpointProgress({
@@ -266,6 +269,7 @@ export default function StoryPlayer({
     trainingProfile: initialTrainingProfile, // Stage 32
     trainingSummary: null, // Stage 33
     recommendations: null, // Stage 34
+    nextAction: null, // Stage 35
   });
 
   // Stage 25b: Track if user has clicked "Begin Story"
@@ -460,6 +464,16 @@ export default function StoryPlayer({
       recommendations = buildRecommendations(diagProfile, trainSum);
     }
 
+    // Stage 35: Resolve next-action intent ONLY.
+    // IMPORTANT:
+    // - This does NOT trigger navigation
+    // - This does NOT assign a story
+    // - Execution happens in a future routing stage (Stage 36)
+    let nextAction = state.nextAction;
+    if (isLastCheckpoint) {
+      nextAction = resolveRecommendation(recommendations);
+    }
+
     setState((prev) => ({ ...prev, isTransitioning: true }));
 
     setTimeout(() => {
@@ -475,6 +489,7 @@ export default function StoryPlayer({
         diagnosticProfile, // Stage 31: Store computed profile
         trainingSummary, // Stage 33: Store computed summary
         recommendations, // Stage 34: Store computed candidates
+        nextAction, // Stage 35: Stored intent only
       }));
     }, 200);
   };

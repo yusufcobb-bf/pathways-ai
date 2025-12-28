@@ -8,6 +8,7 @@ import {
 // Stage 32: Added TrainingPracticeProfile and PracticeIntensity
 // Stage 33: Added TrainingSummary and TrainingOutcome
 // Stage 34: Added RecommendationCandidate and RecommendationReason
+// Stage 35: Added NextAction and NextActionType
 import {
   isVisualBeatStory,
   extractBeatTexts,
@@ -25,6 +26,8 @@ import {
   type TrainingOutcome,
   type RecommendationCandidate,
   type RecommendationReason,
+  type NextAction,
+  type NextActionType,
 } from "./visual-story";
 
 // Stage 27: Re-export visual beat story types and utilities
@@ -32,6 +35,7 @@ import {
 // Stage 32: Added TrainingPracticeProfile and PracticeIntensity
 // Stage 33: Added TrainingSummary and TrainingOutcome
 // Stage 34: Added RecommendationCandidate and RecommendationReason
+// Stage 35: Added NextAction and NextActionType
 export {
   isVisualBeatStory,
   extractBeatTexts,
@@ -49,6 +53,8 @@ export {
   type TrainingOutcome,
   type RecommendationCandidate,
   type RecommendationReason,
+  type NextAction,
+  type NextActionType,
 };
 
 export interface Choice {

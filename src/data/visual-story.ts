@@ -78,6 +78,19 @@ export interface RecommendationCandidate {
   confidence: "low" | "medium" | "high";
 }
 
+// Stage 35: Resolved next action (internal only)
+export type NextActionType =
+  | "assign_training"
+  | "repeat_training"
+  | "await_choice"
+  | "none";
+
+export interface NextAction {
+  type: NextActionType;
+  virtue?: Virtue;
+  source: "diagnostic" | "training" | "system";
+}
+
 // Visual focus type for illustration guidance
 export type VisualFocus =
   | "character-action" // A character doing something
