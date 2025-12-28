@@ -668,6 +668,30 @@ export default function StoryPlayer({
     }));
   };
 
+  // Stage 44: Generate decision recap from last narrative beat(s)
+  const getDecisionRecap = (sentences: string[]): string => {
+    if (!sentences || sentences.length === 0) {
+      return "You've reached an important moment in the story. Now it's time to choose what to do next.";
+    }
+
+    // Get last 1-2 non-dialogue sentences for context
+    const nonDialogue = sentences.filter(
+      (s) => !s.includes('"') && !s.includes("'")
+    );
+    const contextSentences =
+      nonDialogue.length > 0 ? nonDialogue.slice(-2) : sentences.slice(-2);
+
+    // Join and present as recap
+    const recap = contextSentences.join(" ");
+
+    // Fallback if empty
+    if (!recap.trim()) {
+      return "You've reached an important moment in the story. Now it's time to choose what to do next.";
+    }
+
+    return recap;
+  };
+
   return (
     <div className="mx-auto max-w-2xl py-8">
       {/* Stage 11: Preview Mode Banner */}
@@ -797,6 +821,20 @@ export default function StoryPlayer({
             />
           ) : (
             <>
+              {/* Stage 44: Decision recap and instruction */}
+              <div className="mb-6 space-y-3">
+                {/* Recap - derived from last narrative beat(s) */}
+                <p className="text-sm leading-relaxed text-zinc-600">
+                  {getDecisionRecap(
+                    storySegments.checkpointSentences[state.checkpointIndex]
+                  )}
+                </p>
+                {/* Instruction */}
+                <p className="text-sm font-medium text-zinc-700">
+                  Click one option below to choose what happens next.
+                </p>
+              </div>
+
               {/* Decision choices appear only after narrative is read */}
               <DecisionChoiceGrid
                 choices={story.checkpoints[state.checkpointIndex].choices}
