@@ -53,24 +53,37 @@ export default function StoryPage({
             onError={() => setImageError(true)}
           />
         ) : (
-          <div
-            className="flex h-full w-full items-center justify-center"
-            style={{ background: fallbackGradient }}
-          >
-            {/* Placeholder icon */}
-            <svg
-              className="h-16 w-16 text-white/30"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
+          <div className="relative h-full w-full overflow-hidden rounded-lg">
+            {/* Stage 39: Gradient placeholder background */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  fallbackGradient ||
+                  "linear-gradient(135deg, #f1f5f9 0%, #e5e7eb 50%, #d1d5db 100%)",
+              }}
+            />
+
+            {/* Soft overlay for depth */}
+            <div className="absolute inset-0 bg-white/40" />
+
+            {/* Center icon */}
+            <div className="relative z-10 flex h-full w-full items-center justify-center opacity-40">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-12 w-12 text-slate-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M3 5h18M3 19h18M5 7v10M19 7v10M8 11h8M8 15h8"
+                />
+              </svg>
+            </div>
           </div>
         )}
       </div>
