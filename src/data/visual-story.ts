@@ -66,6 +66,18 @@ export interface TrainingSummary {
   completedAt: string;
 }
 
+// Stage 34: Recommendation candidates (internal only)
+export type RecommendationReason =
+  | "diagnostic_gap"
+  | "needs_more_practice"
+  | "ready_for_next_virtue";
+
+export interface RecommendationCandidate {
+  virtue: Virtue;
+  reason: RecommendationReason;
+  confidence: "low" | "medium" | "high";
+}
+
 // Visual focus type for illustration guidance
 export type VisualFocus =
   | "character-action" // A character doing something

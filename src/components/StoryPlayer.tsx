@@ -13,10 +13,12 @@ import {
   DiagnosticProfile,
   TrainingPracticeProfile,
   TrainingSummary,
+  RecommendationCandidate,
 } from "@/data/story";
 import { buildDiagnosticProfile } from "@/lib/diagnostics/diagnosticScoring";
 import { buildTrainingEvent } from "@/lib/training/buildTrainingEvent";
 import { buildTrainingSummary } from "@/lib/training/buildTrainingSummary";
+import { buildRecommendations } from "@/lib/recommendations/buildRecommendations";
 import { Virtue } from "@/data/virtues";
 import { FeedbackOverlay } from "./story/FeedbackOverlay";
 import {
@@ -74,6 +76,7 @@ interface StoryState {
   diagnosticProfile: DiagnosticProfile | null; // Stage 31: Internal only
   trainingProfile: TrainingPracticeProfile | null; // Stage 32: Internal only
   trainingSummary: TrainingSummary | null; // Stage 33: Internal only
+  recommendations: RecommendationCandidate[] | null; // Stage 34: Internal only
 }
 
 function CheckpointProgress({
@@ -262,6 +265,7 @@ export default function StoryPlayer({
     diagnosticProfile: null, // Stage 31
     trainingProfile: initialTrainingProfile, // Stage 32
     trainingSummary: null, // Stage 33
+    recommendations: null, // Stage 34
   });
 
   // Stage 25b: Track if user has clicked "Begin Story"
@@ -447,6 +451,15 @@ export default function StoryPlayer({
       trainingSummary = buildTrainingSummary(state.trainingProfile);
     }
 
+    // Stage 34: Build recommendation candidates (consumed in later routing stages)
+    let recommendations = state.recommendations;
+    if (isLastCheckpoint) {
+      // Use newly computed values if available, fall back to state
+      const diagProfile = diagnosticProfile ?? state.diagnosticProfile;
+      const trainSum = trainingSummary ?? state.trainingSummary;
+      recommendations = buildRecommendations(diagProfile, trainSum);
+    }
+
     setState((prev) => ({ ...prev, isTransitioning: true }));
 
     setTimeout(() => {
@@ -461,6 +474,7 @@ export default function StoryPlayer({
         activeFeedback: null, // Stage 29: Clear feedback
         diagnosticProfile, // Stage 31: Store computed profile
         trainingSummary, // Stage 33: Store computed summary
+        recommendations, // Stage 34: Store computed candidates
       }));
     }, 200);
   };
