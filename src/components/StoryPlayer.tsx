@@ -15,12 +15,14 @@ import {
   TrainingSummary,
   RecommendationCandidate,
   NextAction,
+  RoutingDecision,
 } from "@/data/story";
 import { buildDiagnosticProfile } from "@/lib/diagnostics/diagnosticScoring";
 import { buildTrainingEvent } from "@/lib/training/buildTrainingEvent";
 import { buildTrainingSummary } from "@/lib/training/buildTrainingSummary";
 import { buildRecommendations } from "@/lib/recommendations/buildRecommendations";
 import { resolveRecommendation } from "@/lib/recommendations/resolveRecommendation";
+import { executeNextAction } from "@/lib/routing/executeNextAction";
 import { Virtue } from "@/data/virtues";
 import { FeedbackOverlay } from "./story/FeedbackOverlay";
 import {
@@ -80,6 +82,7 @@ interface StoryState {
   trainingSummary: TrainingSummary | null; // Stage 33: Internal only
   recommendations: RecommendationCandidate[] | null; // Stage 34: Internal only
   nextAction: NextAction | null; // Stage 35: Internal intent only
+  routingDecision: RoutingDecision | null; // Stage 36: Execution result (internal only)
 }
 
 function CheckpointProgress({
@@ -270,6 +273,7 @@ export default function StoryPlayer({
     trainingSummary: null, // Stage 33
     recommendations: null, // Stage 34
     nextAction: null, // Stage 35
+    routingDecision: null, // Stage 36
   });
 
   // Stage 25b: Track if user has clicked "Begin Story"
@@ -474,6 +478,17 @@ export default function StoryPlayer({
       nextAction = resolveRecommendation(recommendations);
     }
 
+    // Stage 36: Execute routing intent ONLY.
+    // IMPORTANT:
+    // - This does NOT navigate
+    // - This does NOT assign a story
+    // - This does NOT persist data
+    // - Real routing happens in a future stage (Stage 37+)
+    let routingDecision = state.routingDecision;
+    if (isLastCheckpoint) {
+      routingDecision = executeNextAction(nextAction);
+    }
+
     setState((prev) => ({ ...prev, isTransitioning: true }));
 
     setTimeout(() => {
@@ -490,6 +505,7 @@ export default function StoryPlayer({
         trainingSummary, // Stage 33: Store computed summary
         recommendations, // Stage 34: Store computed candidates
         nextAction, // Stage 35: Stored intent only
+        routingDecision, // Stage 36: Stored execution result only
       }));
     }, 200);
   };

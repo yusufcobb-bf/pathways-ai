@@ -91,6 +91,20 @@ export interface NextAction {
   source: "diagnostic" | "training" | "system";
 }
 
+// Stage 36: Routing / assignment execution (internal only)
+export type RoutingDecisionType =
+  | "assign_training"
+  | "repeat_training"
+  | "await_choice"
+  | "noop";
+
+export interface RoutingDecision {
+  type: RoutingDecisionType;
+  virtue?: Virtue;
+  source: "diagnostic" | "training" | "system";
+  reason?: string;
+}
+
 // Visual focus type for illustration guidance
 export type VisualFocus =
   | "character-action" // A character doing something
