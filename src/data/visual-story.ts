@@ -19,6 +19,17 @@ export type CASELCompetency =
 // Stage 30: Story type for MVP restructure
 export type StoryType = "diagnostic" | "training";
 
+// Stage 31: Diagnostic profile types (internal only - not for UI display)
+export type VirtueLevel = "low" | "medium" | "high";
+
+export interface DiagnosticProfile {
+  storyId: string;
+  scores: Record<Virtue, number>;
+  levels: Record<Virtue, VirtueLevel>;
+  primaryGrowthVirtue: Virtue;
+  completedAt: string; // ISO timestamp
+}
+
 // Visual focus type for illustration guidance
 export type VisualFocus =
   | "character-action" // A character doing something

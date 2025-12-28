@@ -10,7 +10,9 @@ import {
   extractBeatTexts,
   VisualBeatStory,
   VisualChoice,
+  DiagnosticProfile,
 } from "@/data/story";
+import { buildDiagnosticProfile } from "@/lib/diagnostics/diagnosticScoring";
 import { Virtue } from "@/data/virtues";
 import { FeedbackOverlay } from "./story/FeedbackOverlay";
 import {
@@ -65,6 +67,7 @@ interface StoryState {
     virtues: Virtue[];
     encouragement: string;
   } | null;
+  diagnosticProfile: DiagnosticProfile | null; // Stage 31: Internal only
 }
 
 function CheckpointProgress({
@@ -239,6 +242,7 @@ export default function StoryPlayer({
     globalPageIndex: 0,
     introLastPage: 0,
     activeFeedback: null,
+    diagnosticProfile: null, // Stage 31
   });
 
   // Stage 25b: Track if user has clicked "Begin Story"
@@ -382,12 +386,19 @@ export default function StoryPlayer({
   // Stage 30: Helper function to advance to next checkpoint
   const advanceToNextCheckpoint = (choiceId: string) => {
     const currentIndex = state.checkpointIndex;
+    const nextIndex = currentIndex + 1;
+    const isLastCheckpoint = nextIndex >= totalCheckpoints;
+
+    // Stage 31: Compute diagnostic profile on final checkpoint (internal only)
+    let diagnosticProfile = state.diagnosticProfile;
+    if (isLastCheckpoint && isVisualBeatStory(story) && story.storyType === "diagnostic") {
+      const allChoices = [...state.choices, choiceId];
+      diagnosticProfile = buildDiagnosticProfile(story.id, allChoices);
+    }
+
     setState((prev) => ({ ...prev, isTransitioning: true }));
 
     setTimeout(() => {
-      const nextIndex = currentIndex + 1;
-      const isLastCheckpoint = nextIndex >= totalCheckpoints;
-
       setState((prev) => ({
         ...prev,
         choices: [...prev.choices, choiceId],
@@ -397,6 +408,7 @@ export default function StoryPlayer({
         isTransitioning: false,
         checkpointNarrativeComplete: false, // Stage 26: Reset for next checkpoint
         activeFeedback: null, // Stage 29: Clear feedback
+        diagnosticProfile, // Stage 31: Store computed profile
       }));
     }, 200);
   };

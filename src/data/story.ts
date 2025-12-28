@@ -4,6 +4,7 @@ import {
 } from "@/lib/ai/story-schema";
 
 // Stage 27: Import visual beat story types for internal use
+// Stage 31: Added DiagnosticProfile and VirtueLevel
 import {
   isVisualBeatStory,
   extractBeatTexts,
@@ -13,9 +14,12 @@ import {
   type VisualCheckpoint,
   type CASELCompetency,
   type VisualFocus,
+  type DiagnosticProfile,
+  type VirtueLevel,
 } from "./visual-story";
 
 // Stage 27: Re-export visual beat story types and utilities
+// Stage 31: Added DiagnosticProfile and VirtueLevel
 export {
   isVisualBeatStory,
   extractBeatTexts,
@@ -25,6 +29,8 @@ export {
   type VisualCheckpoint,
   type CASELCompetency,
   type VisualFocus,
+  type DiagnosticProfile,
+  type VirtueLevel,
 };
 
 export interface Choice {
