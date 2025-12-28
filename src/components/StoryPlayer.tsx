@@ -23,6 +23,7 @@ import { buildTrainingSummary } from "@/lib/training/buildTrainingSummary";
 import { buildRecommendations } from "@/lib/recommendations/buildRecommendations";
 import { resolveRecommendation } from "@/lib/recommendations/resolveRecommendation";
 import { executeNextAction } from "@/lib/routing/executeNextAction";
+import { resolveRoute, RouteResult } from "@/lib/routing/resolveRoute";
 import { Virtue } from "@/data/virtues";
 import { FeedbackOverlay } from "./story/FeedbackOverlay";
 import {
@@ -83,6 +84,7 @@ interface StoryState {
   recommendations: RecommendationCandidate[] | null; // Stage 34: Internal only
   nextAction: NextAction | null; // Stage 35: Internal intent only
   routingDecision: RoutingDecision | null; // Stage 36: Execution result (internal only)
+  routeResult: RouteResult | null; // Stage 37: Final route execution
 }
 
 function CheckpointProgress({
@@ -274,10 +276,14 @@ export default function StoryPlayer({
     recommendations: null, // Stage 34
     nextAction: null, // Stage 35
     routingDecision: null, // Stage 36
+    routeResult: null, // Stage 37
   });
 
   // Stage 25b: Track if user has clicked "Begin Story"
   const [hasStartedStory, setHasStartedStory] = useState(false);
+
+  // Stage 37: routeResult is computed but NOT auto-executed.
+  // Routing execution is deferred to educator dashboard or future policy stages.
 
   const totalCheckpoints = story.checkpoints.length;
 
@@ -483,10 +489,16 @@ export default function StoryPlayer({
     // - This does NOT navigate
     // - This does NOT assign a story
     // - This does NOT persist data
-    // - Real routing happens in a future stage (Stage 37+)
+    // - Real routing happens in Stage 37
     let routingDecision = state.routingDecision;
     if (isLastCheckpoint) {
       routingDecision = executeNextAction(nextAction);
+    }
+
+    // Stage 37: Resolve final route
+    let routeResult = state.routeResult;
+    if (isLastCheckpoint && routingDecision) {
+      routeResult = resolveRoute(routingDecision);
     }
 
     setState((prev) => ({ ...prev, isTransitioning: true }));
@@ -506,6 +518,7 @@ export default function StoryPlayer({
         recommendations, // Stage 34: Store computed candidates
         nextAction, // Stage 35: Stored intent only
         routingDecision, // Stage 36: Stored execution result only
+        routeResult, // Stage 37: Final route result
       }));
     }, 200);
   };
