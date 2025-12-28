@@ -83,17 +83,12 @@ export default function PastSessionsPage() {
       <div className="mb-8 flex items-center justify-between">
         <h1 className="text-2xl font-bold text-zinc-900">Past Sessions</h1>
         <div className="flex gap-4">
-          <Link
-            href="/student/classrooms"
-            className="text-sm text-zinc-500 hover:text-zinc-700"
-          >
-            My Classrooms
-          </Link>
+          {/* Stage 41: My Classrooms link removed for MVP */}
           <Link
             href="/student"
             className="text-sm font-medium text-zinc-600 hover:text-zinc-900"
           >
-            Play Story
+            Choose a Story
           </Link>
         </div>
       </div>

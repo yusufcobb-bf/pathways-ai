@@ -158,6 +158,8 @@ export default function EducatorDashboard() {
           </p>
         </div>
         <div className="flex gap-2">
+          {/* Stage 41: MVP — Classroom features deactivated */}
+          {/*
           <Link
             href="/educator/classrooms"
             className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
@@ -176,6 +178,7 @@ export default function EducatorDashboard() {
           >
             Story Settings
           </Link>
+          */}
           <Link
             href="/educator/stories"
             className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"

@@ -960,7 +960,7 @@ export default function StoryPlayer({
                   onClick={handlePlayAgain}
                   className="rounded-lg bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
                 >
-                  Play Again
+                  Choose Another Story
                 </button>
                 <Link
                   href="/student/sessions"
