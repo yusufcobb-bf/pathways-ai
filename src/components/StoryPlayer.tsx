@@ -335,40 +335,55 @@ export default function StoryPlayer({
     // Stage 14: Find the selected choice text for feedback
     const currentCheckpoint = story.checkpoints[state.checkpointIndex];
     const selectedChoice = currentCheckpoint.choices.find(c => c.id === choiceId);
-    const currentIndex = state.checkpointIndex;
 
     if (!selectedChoice) return;
 
-    // Stage 29: Compute feedback with fallback defaults
-    const visualChoice = selectedChoice as VisualChoice;
-    const feedback = visualChoice.feedback ?? {
-      xp: 1,
-      encouragement: "You made a thoughtful choice.",
-    };
-    const virtues = visualChoice.virtues ?? [];
+    // Stage 30: Check if this is a visual beat story with diagnostic mode
+    const visualStory = isVisualBeatStory(story) ? story : null;
+    const isDiagnostic = visualStory?.storyType === "diagnostic";
 
-    // Show selection feedback and activate feedback overlay
+    // Show selection feedback (choice lock animation)
     setState((prev) => ({
       ...prev,
       selectedChoice: { id: choiceId, text: selectedChoice.text },
-      activeFeedback: {
-        xp: feedback.xp,
-        virtues,
-        encouragement: feedback.encouragement,
-      },
     }));
+
+    if (isDiagnostic) {
+      // Stage 30: Diagnostic mode - skip feedback overlay, proceed after brief delay
+      setTimeout(() => {
+        advanceToNextCheckpoint(choiceId);
+      }, 400); // Brief pause for choice lock animation
+    } else {
+      // Stage 29/30: Training mode - show feedback overlay
+      const visualChoice = selectedChoice as VisualChoice;
+      const feedback = visualChoice.feedback ?? {
+        xp: 1,
+        encouragement: "You made a thoughtful choice.",
+      };
+
+      // Stage 30: Filter virtues to focused virtue only for training stories
+      const rawVirtues = visualChoice.virtues ?? [];
+      const focusedVirtue = visualStory?.focusedVirtue;
+      const displayVirtues = focusedVirtue
+        ? rawVirtues.filter(v => v === focusedVirtue)
+        : rawVirtues;
+
+      setState((prev) => ({
+        ...prev,
+        activeFeedback: {
+          xp: feedback.xp,
+          virtues: displayVirtues,
+          encouragement: feedback.encouragement,
+        },
+      }));
+    }
   };
 
-  // Stage 29: Handler for when feedback overlay completes
-  const handleFeedbackComplete = () => {
+  // Stage 30: Helper function to advance to next checkpoint
+  const advanceToNextCheckpoint = (choiceId: string) => {
     const currentIndex = state.checkpointIndex;
-    const choiceId = state.selectedChoice?.id;
-
-    if (!choiceId) return;
-
     setState((prev) => ({ ...prev, isTransitioning: true }));
 
-    // After fade out, advance and fade back in
     setTimeout(() => {
       const nextIndex = currentIndex + 1;
       const isLastCheckpoint = nextIndex >= totalCheckpoints;
@@ -384,6 +399,13 @@ export default function StoryPlayer({
         activeFeedback: null, // Stage 29: Clear feedback
       }));
     }, 200);
+  };
+
+  // Stage 29: Handler for when feedback overlay completes
+  const handleFeedbackComplete = () => {
+    const choiceId = state.selectedChoice?.id;
+    if (!choiceId) return;
+    advanceToNextCheckpoint(choiceId);
   };
 
   const handleContinueToReflection = () => {
@@ -591,6 +613,8 @@ export default function StoryPlayer({
           title={story.title}
           subtitle={environment?.subtitle}
           gradientStyle={getStoryGradient(archetypeId, "intro")}
+          storyType={isVisualBeatStory(story) ? story.storyType : undefined}
+          focusedVirtue={isVisualBeatStory(story) ? story.focusedVirtue : undefined}
           onBegin={() => setHasStartedStory(true)}
         />
       )}

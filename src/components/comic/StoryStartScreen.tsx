@@ -9,6 +9,8 @@ export interface StoryStartScreenProps {
   title: string;
   subtitle?: string;
   gradientStyle?: string;
+  storyType?: "diagnostic" | "training"; // Stage 30: Story type for badge
+  focusedVirtue?: string; // Stage 30: Focused virtue for training badge
   onBegin: () => void;
 }
 
@@ -16,6 +18,8 @@ export default function StoryStartScreen({
   title,
   subtitle,
   gradientStyle,
+  storyType,
+  focusedVirtue,
   onBegin,
 }: StoryStartScreenProps) {
   return (
@@ -33,6 +37,23 @@ export default function StoryStartScreen({
       {/* Content */}
       <div className="p-8 text-center">
         <h1 className="text-3xl font-bold text-zinc-900">{title}</h1>
+
+        {/* Stage 30: Story type badge */}
+        {storyType && (
+          <div className="mt-3">
+            <span
+              className={`inline-block rounded-full px-3 py-1 text-sm font-medium ${
+                storyType === "diagnostic"
+                  ? "bg-blue-100 text-blue-700"
+                  : "bg-emerald-100 text-emerald-700"
+              }`}
+            >
+              {storyType === "diagnostic"
+                ? "Diagnostic Assessment"
+                : `Skill Practice: ${focusedVirtue}`}
+            </span>
+          </div>
+        )}
 
         {subtitle && (
           <p className="mt-2 text-lg text-zinc-600">{subtitle}</p>

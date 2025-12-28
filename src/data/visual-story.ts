@@ -16,6 +16,9 @@ export type CASELCompetency =
   | "relationship-skills"
   | "responsible-decision-making";
 
+// Stage 30: Story type for MVP restructure
+export type StoryType = "diagnostic" | "training";
+
 // Visual focus type for illustration guidance
 export type VisualFocus =
   | "character-action" // A character doing something
@@ -96,6 +99,10 @@ export interface VisualBeatStory {
   title: string;
   archetypeId: string; // Links to environment/gradient config
   gradeLevel: "4-5"; // Target audience
+
+  // Stage 30: Story type and focused virtue for MVP modes
+  storyType?: StoryType; // "diagnostic" or "training" (undefined = legacy training behavior)
+  focusedVirtue?: Virtue; // For training stories: the single virtue to display
 
   // Curriculum alignment
   curriculum: CurriculumAlignment;

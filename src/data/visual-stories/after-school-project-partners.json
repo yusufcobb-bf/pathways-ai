@@ -3,6 +3,8 @@
   "title": "After School Project Partners",
   "archetypeId": "after-school-project-partners",
   "gradeLevel": "4-5",
+  "storyType": "training",
+  "focusedVirtue": "Empathy",
 
   "curriculum": {
     "subject": "Social-Emotional Learning",
@@ -150,7 +152,11 @@
           "casel": ["relationship-skills", "social-awareness"],
           "virtues": ["Empathy", "Respect"],
           "focus": "dialogue",
-          "illustrationHint": "You welcoming Elena to join"
+          "illustrationHint": "You welcoming Elena to join",
+          "feedback": {
+            "xp": 5,
+            "encouragement": "You showed strong Empathy by reaching out and connecting."
+          }
         },
         {
           "id": "c1-b",
@@ -158,7 +164,11 @@
           "casel": ["self-management", "relationship-skills"],
           "virtues": ["Respect", "Responsibility"],
           "focus": "dialogue",
-          "illustrationHint": "You pointing to the nearby table"
+          "illustrationHint": "You pointing to the nearby table",
+          "feedback": {
+            "xp": 3,
+            "encouragement": "You practiced Empathy in a thoughtful way."
+          }
         },
         {
           "id": "c1-c",
@@ -166,7 +176,11 @@
           "casel": ["relationship-skills", "social-awareness"],
           "virtues": ["Respect", "Empathy"],
           "focus": "dialogue",
-          "illustrationHint": "You turning to consult with Kai"
+          "illustrationHint": "You turning to consult with Kai",
+          "feedback": {
+            "xp": 3,
+            "encouragement": "You practiced Empathy in a thoughtful way."
+          }
         }
       ]
     },
@@ -220,7 +234,11 @@
           "casel": ["relationship-skills", "responsible-decision-making"],
           "virtues": ["Empathy", "Courage"],
           "focus": "dialogue",
-          "illustrationHint": "You suggesting collaboration enthusiastically"
+          "illustrationHint": "You suggesting collaboration enthusiastically",
+          "feedback": {
+            "xp": 5,
+            "encouragement": "You showed strong Empathy by reaching out and connecting."
+          }
         },
         {
           "id": "c2-b",
@@ -228,7 +246,11 @@
           "casel": ["self-management", "self-awareness"],
           "virtues": ["Responsibility", "Self-Control"],
           "focus": "character-action",
-          "illustrationHint": "You focusing on your own materials"
+          "illustrationHint": "You focusing on your own materials",
+          "feedback": {
+            "xp": 1,
+            "encouragement": "You made a careful choice."
+          }
         }
       ]
     },
@@ -285,7 +307,11 @@
           "casel": ["relationship-skills", "responsible-decision-making"],
           "virtues": ["Courage", "Empathy"],
           "focus": "dialogue",
-          "illustrationHint": "You asking Ms. Chen an ambitious question"
+          "illustrationHint": "You asking Ms. Chen an ambitious question",
+          "feedback": {
+            "xp": 5,
+            "encouragement": "You showed strong Empathy by reaching out and connecting."
+          }
         },
         {
           "id": "c3-b",
@@ -293,7 +319,11 @@
           "casel": ["relationship-skills", "self-awareness"],
           "virtues": ["Respect", "Responsibility"],
           "focus": "dialogue",
-          "illustrationHint": "You explaining the collaboration to Ms. Chen"
+          "illustrationHint": "You explaining the collaboration to Ms. Chen",
+          "feedback": {
+            "xp": 3,
+            "encouragement": "You practiced Empathy in a thoughtful way."
+          }
         },
         {
           "id": "c3-c",
@@ -301,7 +331,11 @@
           "casel": ["self-management", "social-awareness"],
           "virtues": ["Respect", "Self-Control"],
           "focus": "observation",
-          "illustrationHint": "You listening attentively to Ms. Chen"
+          "illustrationHint": "You listening attentively to Ms. Chen",
+          "feedback": {
+            "xp": 1,
+            "encouragement": "You made a careful choice."
+          }
         }
       ]
     }
