@@ -6,7 +6,7 @@
  * Output: Prompts ready for DALL-E, Midjourney, or other image generators
  */
 
-import storyData from "../src/data/visual-stories/science-fair-mystery.json";
+import storyData from "../src/data/visual-stories/the-missing-project.json";
 
 const ART_STYLE = `Comic book style illustration, clean lines, soft watercolor colors, educational graphic novel aesthetic. School science fair setting, bright gymnasium. Suitable for grades 4-5, calm and friendly tone. No text, speech bubbles, or written words. Neutral, inclusive character designs. 16:9 aspect ratio, 800x500px.`;
 

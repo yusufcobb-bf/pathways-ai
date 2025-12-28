@@ -132,7 +132,23 @@ try {
 }
 
 try {
-  visualStory4Data = require("./visual-stories/science-fair-mystery.json");
+  visualStory4Data = require("./visual-stories/the-missing-project.json");
+} catch {
+  // File doesn't exist
+}
+
+// Stage 40: Add remaining training stories
+let visualStory5Data: unknown = null;
+let visualStory6Data: unknown = null;
+
+try {
+  visualStory5Data = require("./visual-stories/park-cleanup-puzzle.json");
+} catch {
+  // File doesn't exist
+}
+
+try {
+  visualStory6Data = require("./visual-stories/science-lab-mystery.json");
 } catch {
   // File doesn't exist
 }
@@ -162,11 +178,14 @@ export function loadStoryPool(): StoryPoolEntry[] {
   const pool: StoryPoolEntry[] = [];
 
   // Stage 27: Load all visual beat stories (no parsing needed)
+  // Stage 40: Complete 5-virtue training set (1 diagnostic + 5 training)
   const visualStories = [
     visualStory1Data,
     visualStory2Data,
     visualStory3Data,
     visualStory4Data,
+    visualStory5Data,
+    visualStory6Data,
   ];
 
   for (const data of visualStories) {

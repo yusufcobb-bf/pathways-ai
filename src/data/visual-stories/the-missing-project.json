@@ -1,8 +1,10 @@
 {
-  "id": "science-fair-mystery",
+  "id": "the-missing-project",
   "title": "The Missing Project",
-  "archetypeId": "science-fair-mystery",
+  "archetypeId": "the-missing-project",
   "gradeLevel": "4-5",
+  "storyType": "training",
+  "focusedVirtue": "Courage",
 
   "curriculum": {
     "subject": "Social-Emotional Learning",
