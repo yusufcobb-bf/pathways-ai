@@ -26,19 +26,59 @@ export default function AuthForm({ mode, role = "student" }: AuthFormProps) {
 
     try {
       if (mode === "signup") {
-        const { error } = await supabase.auth.signUp({
+        const effectiveRole = role ?? "student";
+        const { data, error } = await supabase.auth.signUp({
           email,
           password,
+          options: {
+            data: { role: effectiveRole }
+          }
         });
         if (error) throw error;
-        router.push("/student");
+
+        const user = data.user;
+        if (!user) {
+          throw new Error("Signup succeeded but no user returned");
+        }
+
+        // Wait for trigger, then fetch profile with retry (scoped by user_id)
+        await new Promise((r) => setTimeout(r, 200));
+        let { data: profile } = await supabase
+          .from("profiles")
+          .select("role")
+          .eq("user_id", user.id)
+          .single();
+        if (!profile) {
+          await new Promise((r) => setTimeout(r, 200));
+          const retry = await supabase
+            .from("profiles")
+            .select("role")
+            .eq("user_id", user.id)
+            .single();
+          profile = retry.data;
+        }
+        const finalRole = profile?.role ?? effectiveRole ?? "student";
+        router.push(finalRole === "educator" ? "/educator" : "/student");
       } else {
-        const { error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
           email,
           password,
         });
         if (error) throw error;
-        router.push("/student");
+
+        const user = data.user;
+        if (!user) {
+          throw new Error("Login succeeded but no user returned");
+        }
+
+        // Fetch profile role (no delays, no retries, scoped by user_id)
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("role")
+          .eq("user_id", user.id)
+          .single();
+        const finalRole = profile?.role ?? "student";
+        router.push(finalRole === "educator" ? "/educator" : "/student");
       }
       router.refresh();
     } catch (err) {
