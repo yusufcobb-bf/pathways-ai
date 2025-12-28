@@ -150,12 +150,12 @@
           "id": "c1-a",
           "text": "Tell Elena she can definitely join your group for today",
           "casel": ["relationship-skills", "social-awareness"],
-          "virtues": ["Empathy", "Respect"],
+          "virtues": ["Empathy"],
           "focus": "dialogue",
           "illustrationHint": "You welcoming Elena to join",
           "feedback": {
             "xp": 5,
-            "encouragement": "You showed strong Empathy by reaching out and connecting."
+            "encouragement": "You showed empathy by welcoming Elena right away."
           }
         },
         {
@@ -167,19 +167,19 @@
           "illustrationHint": "You pointing to the nearby table",
           "feedback": {
             "xp": 3,
-            "encouragement": "You practiced Empathy in a thoughtful way."
+            "encouragement": "You offered some support from a distance."
           }
         },
         {
           "id": "c1-c",
           "text": "Ask Kai what he thinks about Elena working with you today",
           "casel": ["relationship-skills", "social-awareness"],
-          "virtues": ["Respect", "Empathy"],
+          "virtues": ["Respect"],
           "focus": "dialogue",
           "illustrationHint": "You turning to consult with Kai",
           "feedback": {
-            "xp": 3,
-            "encouragement": "You practiced Empathy in a thoughtful way."
+            "xp": 1,
+            "encouragement": "That didn't show empathy—you deferred instead of including her."
           }
         }
       ]
@@ -232,12 +232,12 @@
           "id": "c2-a",
           "text": "Propose that both groups share their different solutions and techniques",
           "casel": ["relationship-skills", "responsible-decision-making"],
-          "virtues": ["Empathy", "Courage"],
+          "virtues": ["Empathy"],
           "focus": "dialogue",
           "illustrationHint": "You suggesting collaboration enthusiastically",
           "feedback": {
             "xp": 5,
-            "encouragement": "You showed strong Empathy by reaching out and connecting."
+            "encouragement": "You showed empathy by reaching out and connecting."
           }
         },
         {
@@ -249,7 +249,19 @@
           "illustrationHint": "You focusing on your own materials",
           "feedback": {
             "xp": 1,
-            "encouragement": "You made a careful choice."
+            "encouragement": "That didn't show empathy—you stayed distant from others."
+          }
+        },
+        {
+          "id": "c2-c",
+          "text": "Ask Elena more about her project approach",
+          "casel": ["relationship-skills", "social-awareness"],
+          "virtues": ["Respect", "Empathy"],
+          "focus": "dialogue",
+          "illustrationHint": "You listening to Elena explain",
+          "feedback": {
+            "xp": 3,
+            "encouragement": "You showed some interest in her work."
           }
         }
       ]
@@ -305,12 +317,12 @@
           "id": "c3-a",
           "text": "Ask Ms. Chen if there's time to combine both projects into one presentation",
           "casel": ["relationship-skills", "responsible-decision-making"],
-          "virtues": ["Courage", "Empathy"],
+          "virtues": ["Empathy"],
           "focus": "dialogue",
           "illustrationHint": "You asking Ms. Chen an ambitious question",
           "feedback": {
             "xp": 5,
-            "encouragement": "You showed strong Empathy by reaching out and connecting."
+            "encouragement": "You showed strong empathy by reaching out and connecting."
           }
         },
         {
@@ -334,7 +346,7 @@
           "illustrationHint": "You listening attentively to Ms. Chen",
           "feedback": {
             "xp": 1,
-            "encouragement": "You made a careful choice."
+            "encouragement": "That didn't show empathy—you stayed passive instead of connecting."
           }
         }
       ]

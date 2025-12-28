@@ -140,36 +140,36 @@
           "id": "c1-a",
           "text": "Pick up the trowel and examine it more closely",
           "casel": ["responsible-decision-making", "self-awareness"],
-          "virtues": ["Responsibility", "Courage"],
+          "virtues": ["Responsibility"],
           "focus": "character-action",
           "illustrationHint": "You reaching for the garden trowel",
           "feedback": {
             "xp": 5,
-            "encouragement": "You showed strong Responsibility by taking initiative to investigate."
+            "encouragement": "You showed responsibility by taking initiative to investigate."
           }
         },
         {
           "id": "c1-b",
           "text": "Ask Jaylen and Sophie what they think caused this damage",
           "casel": ["relationship-skills", "social-awareness"],
-          "virtues": ["Respect", "Empathy"],
+          "virtues": ["Respect"],
           "focus": "dialogue",
           "illustrationHint": "You talking with Jaylen and Sophie",
           "feedback": {
-            "xp": 3,
-            "encouragement": "You practiced Responsibility by gathering information."
+            "xp": 1,
+            "encouragement": "That didn't show responsibility—you asked others instead of taking action."
           }
         },
         {
           "id": "c1-c",
           "text": "Follow the trail of scattered mulch toward the pond",
           "casel": ["self-management", "responsible-decision-making"],
-          "virtues": ["Responsibility", "Courage"],
+          "virtues": ["Courage"],
           "focus": "observation",
           "illustrationHint": "You following the mulch trail",
           "feedback": {
             "xp": 3,
-            "encouragement": "You practiced Responsibility by tracking the problem."
+            "encouragement": "You showed some initiative by tracking the problem."
           }
         }
       ]
@@ -231,24 +231,36 @@
           "id": "c2-a",
           "text": "Ask Mr. Patterson what kind of sounds Mrs. Lee heard",
           "casel": ["relationship-skills", "social-awareness"],
-          "virtues": ["Responsibility", "Respect"],
+          "virtues": ["Responsibility"],
           "focus": "dialogue",
           "illustrationHint": "You asking Mr. Patterson a question",
           "feedback": {
             "xp": 5,
-            "encouragement": "You showed strong Responsibility by seeking details."
+            "encouragement": "You showed responsibility by seeking important details."
           }
         },
         {
           "id": "c2-b",
           "text": "Suggest checking if any supplies are missing from the shed",
           "casel": ["responsible-decision-making", "self-management"],
-          "virtues": ["Responsibility", "Self-Control"],
+          "virtues": ["Self-Control"],
           "focus": "dialogue",
           "illustrationHint": "You gesturing toward the shed",
           "feedback": {
             "xp": 3,
-            "encouragement": "You practiced Responsibility with a practical suggestion."
+            "encouragement": "You showed some initiative with a practical suggestion."
+          }
+        },
+        {
+          "id": "c2-c",
+          "text": "Wait for Mr. Patterson to tell you what to do next",
+          "casel": ["self-awareness"],
+          "virtues": ["Respect"],
+          "focus": "observation",
+          "illustrationHint": "You standing and waiting",
+          "feedback": {
+            "xp": 1,
+            "encouragement": "That didn't show responsibility—you waited instead of taking action."
           }
         }
       ]
@@ -300,36 +312,36 @@
           "id": "c3-a",
           "text": "Walk toward the tall grass to see what's hiding there",
           "casel": ["responsible-decision-making", "self-management"],
-          "virtues": ["Responsibility", "Courage"],
+          "virtues": ["Responsibility"],
           "focus": "character-action",
           "illustrationHint": "You walking toward the tall grass",
           "feedback": {
             "xp": 5,
-            "encouragement": "You showed strong Responsibility by investigating thoroughly."
+            "encouragement": "You showed responsibility by investigating thoroughly."
           }
         },
         {
           "id": "c3-b",
           "text": "Stay where you are and call out gently to whatever is in the grass",
           "casel": ["self-management", "social-awareness"],
-          "virtues": ["Self-Control", "Respect"],
+          "virtues": ["Self-Control"],
           "focus": "dialogue",
           "illustrationHint": "You calling out while staying at a safe distance",
           "feedback": {
             "xp": 3,
-            "encouragement": "You practiced Responsibility with a careful approach."
+            "encouragement": "You showed some care with a cautious approach."
           }
         },
         {
           "id": "c3-c",
           "text": "Wait patiently to see if something emerges on its own",
           "casel": ["self-management", "self-awareness"],
-          "virtues": ["Self-Control", "Responsibility"],
+          "virtues": ["Self-Control"],
           "focus": "observation",
           "illustrationHint": "You watching the grass patiently",
           "feedback": {
             "xp": 1,
-            "encouragement": "You made a careful choice."
+            "encouragement": "That didn't show responsibility—you waited instead of taking action."
           }
         }
       ]

@@ -140,36 +140,36 @@
           "id": "c1-a",
           "text": "Pick up the watering can and check if it was recently used",
           "casel": ["responsible-decision-making", "self-awareness"],
-          "virtues": ["Respect", "Responsibility"],
+          "virtues": ["Responsibility"],
           "focus": "character-action",
           "illustrationHint": "You reaching for the watering can",
           "feedback": {
-            "xp": 5,
-            "encouragement": "You showed strong Respect for the shared experiment by investigating carefully."
+            "xp": 3,
+            "encouragement": "You gathered information about the situation."
           }
         },
         {
           "id": "c1-b",
           "text": "Ask Emma and Marcus if they have any ideas about what happened",
           "casel": ["relationship-skills", "social-awareness"],
-          "virtues": ["Respect", "Empathy"],
+          "virtues": ["Respect"],
           "focus": "dialogue",
           "illustrationHint": "You talking with Emma and Marcus",
           "feedback": {
             "xp": 5,
-            "encouragement": "You showed strong Respect by valuing your teammates' perspectives."
+            "encouragement": "You showed respect by valuing your teammates' ideas."
           }
         },
         {
           "id": "c1-c",
           "text": "Follow the water trail to see where it leads",
           "casel": ["self-management", "responsible-decision-making"],
-          "virtues": ["Responsibility", "Courage"],
+          "virtues": ["Responsibility"],
           "focus": "observation",
           "illustrationHint": "You following the water droplets",
           "feedback": {
-            "xp": 3,
-            "encouragement": "You practiced Respect by carefully investigating."
+            "xp": 1,
+            "encouragement": "That didn't show respect—you investigated alone without your teammates."
           }
         }
       ]
@@ -225,24 +225,36 @@
           "id": "c2-a",
           "text": "Ask Mr. Chen what kind of noises the custodian heard",
           "casel": ["relationship-skills", "social-awareness"],
-          "virtues": ["Respect", "Courage"],
+          "virtues": ["Respect"],
           "focus": "dialogue",
           "illustrationHint": "You asking Mr. Chen respectfully",
           "feedback": {
             "xp": 5,
-            "encouragement": "You showed strong Respect by asking questions politely."
+            "encouragement": "You showed respect by asking questions politely."
           }
         },
         {
           "id": "c2-b",
           "text": "Suggest checking if any lab supplies are missing",
           "casel": ["responsible-decision-making", "self-management"],
-          "virtues": ["Responsibility", "Respect"],
+          "virtues": ["Responsibility"],
           "focus": "dialogue",
           "illustrationHint": "You gesturing toward the supply area",
           "feedback": {
             "xp": 3,
-            "encouragement": "You practiced Respect for the shared lab space."
+            "encouragement": "You showed some care for the shared lab space."
+          }
+        },
+        {
+          "id": "c2-c",
+          "text": "Interrupt and say you already know what happened",
+          "casel": ["self-awareness"],
+          "virtues": ["Courage"],
+          "focus": "dialogue",
+          "illustrationHint": "You speaking up abruptly",
+          "feedback": {
+            "xp": 1,
+            "encouragement": "That didn't show respect—you interrupted instead of listening."
           }
         }
       ]
@@ -294,36 +306,36 @@
           "id": "c3-a",
           "text": "Step forward and offer to open the closet door",
           "casel": ["responsible-decision-making", "self-management"],
-          "virtues": ["Courage", "Respect"],
+          "virtues": ["Respect"],
           "focus": "character-action",
           "illustrationHint": "You stepping toward the closet door",
           "feedback": {
             "xp": 5,
-            "encouragement": "You showed strong Respect by taking initiative to help the group."
+            "encouragement": "You showed respect by taking initiative to help the group."
           }
         },
         {
           "id": "c3-b",
           "text": "Stay back and ask if anyone knows what might be in there",
           "casel": ["self-management", "social-awareness"],
-          "virtues": ["Respect", "Self-Control"],
+          "virtues": ["Self-Control"],
           "focus": "dialogue",
           "illustrationHint": "You asking the group a question",
           "feedback": {
             "xp": 3,
-            "encouragement": "You practiced Respect by considering everyone's input."
+            "encouragement": "You showed some consideration for others' ideas."
           }
         },
         {
           "id": "c3-c",
           "text": "Wait quietly to see if anything comes out on its own",
           "casel": ["self-management", "self-awareness"],
-          "virtues": ["Self-Control", "Respect"],
+          "virtues": ["Self-Control"],
           "focus": "observation",
           "illustrationHint": "You watching quietly",
           "feedback": {
             "xp": 1,
-            "encouragement": "You made a careful choice."
+            "encouragement": "That didn't show respect—you stayed silent instead of contributing."
           }
         }
       ]

@@ -148,7 +148,11 @@
           "casel": ["responsible-decision-making", "self-awareness"],
           "virtues": ["Courage", "Responsibility"],
           "focus": "character-action",
-          "illustrationHint": "You reaching for the garden spade"
+          "illustrationHint": "You reaching for the garden spade",
+          "feedback": {
+            "xp": 3,
+            "encouragement": "You gathered information calmly."
+          }
         },
         {
           "id": "c1-b",
@@ -156,15 +160,23 @@
           "casel": ["relationship-skills", "social-awareness"],
           "virtues": ["Empathy", "Respect"],
           "focus": "dialogue",
-          "illustrationHint": "You turning to talk with Kai and Zara"
+          "illustrationHint": "You turning to talk with Kai and Zara",
+          "feedback": {
+            "xp": 1,
+            "encouragement": "That didn't show self-control—you let others decide."
+          }
         },
         {
           "id": "c1-c",
           "text": "Look around the garden for other signs of disturbance",
           "casel": ["self-management", "responsible-decision-making"],
-          "virtues": ["Responsibility", "Self-Control"],
+          "virtues": ["Self-Control"],
           "focus": "observation",
-          "illustrationHint": "You scanning the garden carefully"
+          "illustrationHint": "You scanning the garden carefully",
+          "feedback": {
+            "xp": 5,
+            "encouragement": "That shows strong self-control—observing before acting."
+          }
         }
       ]
     },
@@ -227,15 +239,35 @@
           "casel": ["relationship-skills", "social-awareness"],
           "virtues": ["Courage", "Respect"],
           "focus": "dialogue",
-          "illustrationHint": "You asking Ms. Rodriguez a question"
+          "illustrationHint": "You asking Ms. Rodriguez a question",
+          "feedback": {
+            "xp": 3,
+            "encouragement": "You asked a helpful question."
+          }
         },
         {
           "id": "c2-b",
           "text": "Suggest checking if any tools or supplies are missing",
           "casel": ["responsible-decision-making", "self-management"],
-          "virtues": ["Responsibility", "Self-Control"],
+          "virtues": ["Self-Control"],
           "focus": "dialogue",
-          "illustrationHint": "You gesturing toward the tool shed"
+          "illustrationHint": "You gesturing toward the tool shed",
+          "feedback": {
+            "xp": 5,
+            "encouragement": "That shows strong self-control—thinking methodically."
+          }
+        },
+        {
+          "id": "c2-c",
+          "text": "Rush over to investigate the tool shed immediately",
+          "casel": ["self-awareness"],
+          "virtues": ["Courage"],
+          "focus": "character-action",
+          "illustrationHint": "You hurrying toward the shed",
+          "feedback": {
+            "xp": 1,
+            "encouragement": "That didn't show self-control—you acted without thinking."
+          }
         }
       ]
     },
@@ -289,7 +321,11 @@
           "casel": ["responsible-decision-making", "self-management"],
           "virtues": ["Courage", "Responsibility"],
           "focus": "character-action",
-          "illustrationHint": "You walking toward the bushes"
+          "illustrationHint": "You walking toward the bushes",
+          "feedback": {
+            "xp": 1,
+            "encouragement": "That didn't show self-control—you rushed without pausing."
+          }
         },
         {
           "id": "c3-b",
@@ -297,15 +333,23 @@
           "casel": ["self-management", "social-awareness"],
           "virtues": ["Self-Control", "Respect"],
           "focus": "dialogue",
-          "illustrationHint": "You calling out while staying at a safe distance"
+          "illustrationHint": "You calling out while staying at a safe distance",
+          "feedback": {
+            "xp": 3,
+            "encouragement": "You showed some restraint."
+          }
         },
         {
           "id": "c3-c",
           "text": "Wait quietly to see if anything emerges on its own",
           "casel": ["self-management", "self-awareness"],
-          "virtues": ["Self-Control", "Respect"],
+          "virtues": ["Self-Control"],
           "focus": "observation",
-          "illustrationHint": "You watching the bushes patiently"
+          "illustrationHint": "You watching the bushes patiently",
+          "feedback": {
+            "xp": 5,
+            "encouragement": "That shows strong self-control—patience pays off."
+          }
         }
       ]
     }

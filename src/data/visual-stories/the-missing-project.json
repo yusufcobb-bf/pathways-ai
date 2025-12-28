@@ -153,12 +153,12 @@
           "id": "c1-a",
           "text": "Walk over to Kai and ask what happened to the solar system project",
           "casel": ["relationship-skills", "social-awareness"],
-          "virtues": ["Empathy", "Courage"],
+          "virtues": ["Courage"],
           "focus": "character-action",
           "illustrationHint": "You walking toward Kai",
           "feedback": {
             "xp": 5,
-            "encouragement": "You chose to step forward and check on someone."
+            "encouragement": "That was a courageous choice—you stepped forward."
           }
         },
         {
@@ -182,7 +182,7 @@
           "illustrationHint": "You setting up your volcano, looking over",
           "feedback": {
             "xp": 1,
-            "encouragement": "You stayed aware of others while focusing on your task."
+            "encouragement": "That didn't show courage—you stayed back instead of helping."
           }
         }
       ]
@@ -237,12 +237,12 @@
           "id": "c2-a",
           "text": "Ask Maya if she needs help fixing her project",
           "casel": ["relationship-skills", "social-awareness"],
-          "virtues": ["Empathy", "Courage"],
+          "virtues": ["Courage"],
           "focus": "dialogue",
           "illustrationHint": "You kneeling beside Maya, offering help",
           "feedback": {
             "xp": 5,
-            "encouragement": "You offered support when someone was struggling."
+            "encouragement": "That was a courageous choice—offering help takes bravery."
           }
         },
         {
@@ -255,6 +255,18 @@
           "feedback": {
             "xp": 3,
             "encouragement": "You looked for ways to understand the situation."
+          }
+        },
+        {
+          "id": "c2-c",
+          "text": "Keep working on your own volcano project nearby",
+          "casel": ["self-management", "self-awareness"],
+          "virtues": ["Responsibility"],
+          "focus": "character-action",
+          "illustrationHint": "You focusing on your own project",
+          "feedback": {
+            "xp": 1,
+            "encouragement": "That didn't show courage—you avoided stepping forward."
           }
         }
       ]
@@ -305,12 +317,12 @@
           "id": "c3-a",
           "text": "Follow the glitter trail to the storage closet and investigate",
           "casel": ["responsible-decision-making", "self-management"],
-          "virtues": ["Courage", "Responsibility"],
+          "virtues": ["Courage"],
           "focus": "character-action",
           "illustrationHint": "You following the glitter trail",
           "feedback": {
             "xp": 5,
-            "encouragement": "You took initiative to investigate and help solve the problem."
+            "encouragement": "That was a courageous choice—you took the lead."
           }
         },
         {
@@ -334,7 +346,7 @@
           "illustrationHint": "You adjusting your volcano project",
           "feedback": {
             "xp": 1,
-            "encouragement": "You balanced your own work while staying present."
+            "encouragement": "That didn't show courage—you stayed focused on yourself."
           }
         }
       ]
