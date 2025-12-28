@@ -403,15 +403,13 @@ export default function StorySettingsPage() {
                       <span className="font-medium text-zinc-900">
                         {entry.story.title}
                       </span>
-                      {isVisualBeatStory(entry.story) ? (
-                        <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700">
-                          Visual Beat
-                        </span>
-                      ) : entry.isGenerated ? (
+                      {/* Stage 42: Removed "Visual Beat" badge per MC-5 */}
+                      {!isVisualBeatStory(entry.story) && entry.isGenerated && (
                         <span className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">
                           AI-Generated
                         </span>
-                      ) : (
+                      )}
+                      {!isVisualBeatStory(entry.story) && !entry.isGenerated && (
                         <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">
                           Prose
                         </span>

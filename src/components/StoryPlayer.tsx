@@ -730,6 +730,7 @@ export default function StoryPlayer({
       )}
 
       {/* Stage 25b: Story Start Screen (before intro content) */}
+      {/* Stage 42: Added onBack for safe navigation before story starts (MC-3) */}
       {state.stage === "intro" && !hasStartedStory && (
         <StoryStartScreen
           title={story.title}
@@ -738,6 +739,7 @@ export default function StoryPlayer({
           storyType={isVisualBeatStory(story) ? story.storyType : undefined}
           focusedVirtue={isVisualBeatStory(story) ? story.focusedVirtue : undefined}
           onBegin={() => setHasStartedStory(true)}
+          onBack={() => router.push("/student")}
         />
       )}
 

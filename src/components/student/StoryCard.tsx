@@ -1,8 +1,9 @@
 /**
  * Stage 41: StoryCard Component
+ * Stage 42: Removed "Visual Beat" badge per MC-5
  *
  * Displays a story card for the Student Home grid.
- * Shows title, Visual Beat badge, story type badge, and focused virtue (if training).
+ * Shows title, story type badge, and focused virtue (if training).
  *
  * CHECK E compliance:
  * - storyType read directly from story metadata
@@ -50,13 +51,9 @@ export default function StoryCard({
 
       {/* Content */}
       <div className="p-4">
-        {/* Visual Beat Badge (always present) */}
+        {/* Stage 42: Removed "Visual Beat" badge per MC-5 */}
+        {/* Story Type Badge - CHECK E: Read directly from metadata */}
         <div className="mb-2 flex flex-wrap gap-2">
-          <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700">
-            Visual Beat
-          </span>
-
-          {/* Story Type Badge - CHECK E: Read directly from metadata */}
           {storyType === "diagnostic" ? (
             <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-700">
               Diagnostic Assessment

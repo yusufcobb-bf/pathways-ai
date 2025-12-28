@@ -1,221 +1,71 @@
-"use client";
+/**
+ * Stage 42: Educator Dashboard
+ *
+ * Simplified card-based navigation to educator features.
+ * Sessions moved to /educator/sessions for cleaner UI.
+ */
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/client";
-import { StorySession } from "@/lib/supabase/types";
-import { VIRTUES, VirtueScores } from "@/data/virtues";
-import { getStoryTitleById, getStoryPoolPosition } from "@/data/story";
-import { getVariantCountForArchetype, getVariantTitle, getVariantDisplayInfo } from "@/data/variants";
-import SessionDetail from "@/components/SessionDetail";
 
-// Extended session type with username
-interface SessionWithUsername extends StorySession {
-  username?: string | null;
-}
-
-function VirtueScoreBadges({ scores }: { scores: VirtueScores }) {
-  return (
-    <div className="mt-3 flex flex-wrap gap-2">
-      {VIRTUES.map((virtue) => {
-        const score = scores[virtue];
-        if (score === 0) return null;
-        return (
-          <span
-            key={virtue}
-            className={`rounded-full px-2 py-1 text-xs font-medium ${
-              score > 0
-                ? "bg-green-100 text-green-700"
-                : "bg-zinc-100 text-zinc-600"
-            }`}
-          >
-            {virtue}: {score > 0 ? `+${score}` : score}
-          </span>
-        );
-      })}
-    </div>
-  );
-}
-
-function SessionCard({ session }: { session: SessionWithUsername }) {
-  const [expanded, setExpanded] = useState(false);
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
-
-  return (
-    <div className="rounded-lg border border-zinc-200 bg-white p-6">
-      {/* Summary Header */}
-      <div className="mb-2 flex items-center justify-between">
-        <div>
-          <span className="font-medium text-zinc-900">
-            {/* Stage 8: Show variant title if available, otherwise archetype title */}
-            {getVariantTitle(session.story_id, session.variant_id) ?? getStoryTitleById(session.story_id)}
-          </span>
-          <p className="text-xs text-zinc-500">
-            {(() => {
-              const pos = getStoryPoolPosition(session.story_id);
-              const poolInfo = pos ? `Story ${pos.position} of ${pos.total}` : "Custom Story";
-
-              // Stage 8: Show which variant was played
-              const variantDisplay = getVariantDisplayInfo(session.story_id, session.variant_id);
-
-              return `${poolInfo} • Variant: ${variantDisplay}`;
-            })()}
-          </p>
-        </div>
-        <span className="text-sm text-zinc-500">
-          {formatDate(session.created_at)}
-        </span>
-      </div>
-      <p className="text-xs text-zinc-400">
-        Student: {session.username ?? `${session.user_id.slice(0, 8)}...`}
-      </p>
-      <p className="mt-2 text-sm text-zinc-600">
-        Choices: {session.choices.length} decisions made
-      </p>
-
-      {session.virtue_scores && (
-        <VirtueScoreBadges scores={session.virtue_scores} />
-      )}
-
-      {/* Expand/Collapse Button */}
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="mt-4 text-sm font-medium text-zinc-600 hover:text-zinc-900"
-      >
-        {expanded ? "Hide Details ▲" : "View Details ▼"}
-      </button>
-
-      {/* Expandable Detail Section */}
-      {expanded && <SessionDetail session={session} />}
-    </div>
-  );
-}
+const dashboardCards = [
+  {
+    title: "Sessions",
+    subtitle: "View student story completions",
+    href: "/educator/sessions",
+  },
+  {
+    title: "Story Library",
+    subtitle: "Browse available stories",
+    href: "/educator/stories",
+  },
+  {
+    title: "Student Experience",
+    subtitle: "Preview the student view",
+    href: "/educator/student-preview",
+  },
+  {
+    title: "How It Works",
+    subtitle: "Learn about the platform",
+    href: "/educator/info",
+  },
+];
 
 export default function EducatorDashboard() {
-  const supabase = createClient();
-  const [sessions, setSessions] = useState<SessionWithUsername[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchAllSessions() {
-      // Fetch sessions
-      const { data: sessionsData } = await supabase
-        .from("story_sessions")
-        .select("*")
-        .order("created_at", { ascending: false });
-
-      if (!sessionsData || sessionsData.length === 0) {
-        setSessions([]);
-        setLoading(false);
-        return;
-      }
-
-      // Get unique user IDs
-      const userIds = [...new Set(sessionsData.map((s) => s.user_id))];
-
-      // Fetch profiles for all users
-      const { data: profiles } = await supabase
-        .from("profiles")
-        .select("user_id, username")
-        .in("user_id", userIds);
-
-      // Create map of user_id -> username
-      const usernameMap = new Map(
-        (profiles || []).map((p) => [p.user_id, p.username])
-      );
-
-      // Merge sessions with usernames
-      const sessionsWithUsernames: SessionWithUsername[] = sessionsData.map((s) => ({
-        ...s,
-        username: usernameMap.get(s.user_id) || null,
-      }));
-
-      setSessions(sessionsWithUsernames);
-      setLoading(false);
-    }
-
-    fetchAllSessions();
-  }, [supabase]);
-
   return (
     <div className="py-8">
-      <div className="mb-8 flex items-start justify-between">
-        <div>
-          <h1 className="mb-2 text-2xl font-bold text-zinc-900">
-            Educator Dashboard
-          </h1>
-          <p className="text-zinc-600">
-            Review student sessions, virtue outcomes, and discussion prompts.
-          </p>
-        </div>
-        <div className="flex gap-2">
-          {/* Stage 41: MVP — Classroom features deactivated */}
-          {/*
-          <Link
-            href="/educator/classrooms"
-            className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
-          >
-            Classrooms
-          </Link>
-          <Link
-            href="/educator/assignments"
-            className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
-          >
-            Assignments
-          </Link>
-          <Link
-            href="/educator/story-settings"
-            className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
-          >
-            Story Settings
-          </Link>
-          */}
-          <Link
-            href="/educator/stories"
-            className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
-          >
-            Story Library
-          </Link>
-          <Link
-            href="/educator/student-preview"
-            className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
-          >
-            Preview Student Experience
-          </Link>
-          <Link
-            href="/educator/info"
-            className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
-          >
-            How It Works
-          </Link>
-        </div>
+      <div className="mb-8">
+        <h1 className="mb-2 text-2xl font-bold text-zinc-900">
+          Educator Dashboard
+        </h1>
+        <p className="text-zinc-600">
+          Review student sessions, explore stories, and learn how the platform works.
+        </p>
       </div>
 
-      {loading ? (
-        <p className="text-zinc-500">Loading sessions...</p>
-      ) : sessions.length === 0 ? (
-        <div className="rounded-lg border border-zinc-200 bg-white p-8 text-center">
-          <p className="text-zinc-500">No student sessions yet.</p>
-        </div>
-      ) : (
-        <div className="space-y-4">
-          <p className="text-sm text-zinc-500">
-            {sessions.length} session{sessions.length !== 1 ? "s" : ""} recorded
-          </p>
-          {sessions.map((session) => (
-            <SessionCard key={session.id} session={session} />
-          ))}
-        </div>
-      )}
+      {/* Card Grid - MC-4: Entire card is clickable */}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {dashboardCards.map((card) => (
+          <Link
+            key={card.href}
+            href={card.href}
+            className="group rounded-lg border border-zinc-200 bg-white p-6 transition-all hover:border-zinc-300 hover:bg-zinc-50 hover:shadow-sm"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-lg font-semibold text-zinc-900 group-hover:text-zinc-800">
+                  {card.title}
+                </h2>
+                <p className="mt-1 text-sm text-zinc-600">
+                  {card.subtitle}
+                </p>
+              </div>
+              <span className="text-zinc-400 group-hover:text-zinc-600">
+                →
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

@@ -169,16 +169,17 @@ export default function StudentPreviewPage() {
               <label className="mb-1 block text-sm font-medium text-zinc-700">
                 Variant
               </label>
+              {/* Stage 42: Removed "Visual Beat" terminology per MC-5 */}
               {isVisualBeat ? (
                 <>
                   <select
                     disabled
                     className="w-full rounded-lg border border-zinc-200 bg-zinc-50 px-4 py-2 text-zinc-400"
                   >
-                    <option>Visual Beat Story (no variants)</option>
+                    <option>Interactive Story (no variants)</option>
                   </select>
                   <p className="mt-1 text-xs text-zinc-500">
-                    Visual beat stories are explicitly authored and don&apos;t support variants
+                    Interactive stories are explicitly authored and don&apos;t support variants
                   </p>
                 </>
               ) : (

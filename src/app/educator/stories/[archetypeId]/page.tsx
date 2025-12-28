@@ -105,11 +105,8 @@ function VisualBeatStoryPreview({
           </Link>
         </div>
 
-        {/* Story source badge */}
+        {/* Stage 42: Removed "Visual Beat Story" badge per MC-5 */}
         <div className="flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
-            Visual Beat Story
-          </span>
           {/* Stage 38: Story type badge */}
           <StoryTypeBadge story={story} />
           <span className="text-xs text-zinc-400">

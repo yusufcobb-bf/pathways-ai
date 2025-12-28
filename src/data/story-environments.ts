@@ -16,7 +16,19 @@ export interface StoryEnvironment {
 
 // Keys must match the actual story IDs from the JSON files
 // Stage 15: moodGradients indexing: [0]=intro, [1]=cp0, [2]=cp1, [3]=cp2
+// Stage 42: Added missing stories for MC-2 (visual parity)
 export const storyEnvironments: Record<string, StoryEnvironment> = {
+  // Diagnostic story - MC-2: Must look equally polished
+  "missing-art-supplies": {
+    gradientStyle: "linear-gradient(to bottom right, #fef3c7, #fcd34d)", // amber-100 to amber-300
+    moodGradients: [
+      "linear-gradient(to bottom right, #fef3c7, #fcd34d)", // intro: warm amber
+      "linear-gradient(to bottom right, #e0e7ff, #c7d2fe)", // cp0: thoughtful indigo
+      "linear-gradient(to bottom right, #fce7f3, #fbcfe8)", // cp1: attentive pink
+      "linear-gradient(to bottom right, #dcfce7, #a7f3d0)", // cp2: resolved green
+    ],
+    subtitle: "A mystery in art class",
+  },
   "community-garden-discovery": {
     gradientStyle: "linear-gradient(to bottom right, #dcfce7, #a7f3d0)", // green-100 to emerald-200
     moodGradients: [
@@ -37,15 +49,35 @@ export const storyEnvironments: Record<string, StoryEnvironment> = {
     ],
     subtitle: "After school in Ms. Chen's classroom",
   },
-  "science-fair-mystery": {
-    gradientStyle: "linear-gradient(to bottom right, #fef3c7, #fed7aa)", // amber-100 to orange-200
+  "science-lab-mystery": {
+    gradientStyle: "linear-gradient(to bottom right, #ede9fe, #ddd6fe)", // violet-100 to violet-200
     moodGradients: [
-      "linear-gradient(to bottom right, #fef3c7, #fed7aa)", // intro: energetic amber
-      "linear-gradient(to bottom right, #ede9fe, #ddd6fe)", // cp0: curious purple
-      "linear-gradient(to bottom right, #fce7f3, #fbcfe8)", // cp1: collaborative pink
+      "linear-gradient(to bottom right, #ede9fe, #ddd6fe)", // intro: curious violet
+      "linear-gradient(to bottom right, #dbeafe, #bae6fd)", // cp0: analytical blue
+      "linear-gradient(to bottom right, #fef3c7, #fed7aa)", // cp1: discovery amber
       "linear-gradient(to bottom right, #dcfce7, #bbf7d0)", // cp2: resolved green
     ],
-    subtitle: "Science fair day at school",
+    subtitle: "A science experiment gone wrong",
+  },
+  "park-cleanup-puzzle": {
+    gradientStyle: "linear-gradient(to bottom right, #ccfbf1, #99f6e4)", // teal-100 to teal-200
+    moodGradients: [
+      "linear-gradient(to bottom right, #ccfbf1, #99f6e4)", // intro: fresh teal
+      "linear-gradient(to bottom right, #dcfce7, #a7f3d0)", // cp0: nature green
+      "linear-gradient(to bottom right, #fef3c7, #fde68a)", // cp1: energetic amber
+      "linear-gradient(to bottom right, #dbeafe, #bae6fd)", // cp2: calm blue
+    ],
+    subtitle: "An afternoon at the neighborhood park",
+  },
+  "the-missing-project": {
+    gradientStyle: "linear-gradient(to bottom right, #fce7f3, #fbcfe8)", // pink-100 to pink-200
+    moodGradients: [
+      "linear-gradient(to bottom right, #fce7f3, #fbcfe8)", // intro: gentle pink
+      "linear-gradient(to bottom right, #e0e7ff, #c7d2fe)", // cp0: uncertain indigo
+      "linear-gradient(to bottom right, #fef3c7, #fed7aa)", // cp1: hopeful amber
+      "linear-gradient(to bottom right, #dcfce7, #a7f3d0)", // cp2: resolved green
+    ],
+    subtitle: "A project presentation day dilemma",
   },
 };
 
