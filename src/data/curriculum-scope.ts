@@ -43,9 +43,9 @@ export const CURRICULUM_SCOPE: CurriculumScope = {
   totalLessons: 12,
   units: [
     {
-      unitId: "empathy",
-      unitTitle: "Empathy & Understanding Others",
-      targetVirtue: "empathy",
+      unitId: "kindness",
+      unitTitle: "Kindness & Understanding Others",
+      targetVirtue: "kindness",
       gradeBand: "Grades 4–5",
       lessons: [
         { archetypeId: "the-new-student", lessonOrder: 1 },
@@ -54,9 +54,9 @@ export const CURRICULUM_SCOPE: CurriculumScope = {
       ],
     },
     {
-      unitId: "responsibility",
-      unitTitle: "Responsibility & Accountability",
-      targetVirtue: "responsibility",
+      unitId: "knowledge",
+      unitTitle: "Knowledge & Accountability",
+      targetVirtue: "knowledge",
       gradeBand: "Grades 4–5",
       lessons: [
         { archetypeId: "science-fair-mystery", lessonOrder: 1 },
@@ -65,9 +65,9 @@ export const CURRICULUM_SCOPE: CurriculumScope = {
       ],
     },
     {
-      unitId: "respect",
-      unitTitle: "Respect & Working With Others",
-      targetVirtue: "respect",
+      unitId: "generosity",
+      unitTitle: "Generosity & Working With Others",
+      targetVirtue: "generosity",
       gradeBand: "Grades 4–5",
       lessons: [
         { archetypeId: "after-school-project-partners", lessonOrder: 1 },
@@ -85,9 +85,9 @@ export const CURRICULUM_SCOPE: CurriculumScope = {
       ],
     },
     {
-      unitId: "self-control",
-      unitTitle: "Self-Control & Managing Reactions",
-      targetVirtue: "self_control",
+      unitId: "resilience",
+      unitTitle: "Resilience & Managing Reactions",
+      targetVirtue: "resilience",
       gradeBand: "Grades 4–5",
       lessons: [
         { archetypeId: "science-fair-mystery", lessonOrder: 1 },

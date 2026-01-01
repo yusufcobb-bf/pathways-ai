@@ -11,8 +11,8 @@
  */
 
 export interface VirtueDefinition {
-  id: string; // e.g. "empathy"
-  name: string; // "Empathy"
+  id: string; // e.g. "kindness"
+  name: string; // "Kindness"
   description: string; // Plain-language definition
   decisionTendencies: string[]; // What types of choices reflect this virtue
   caselDomains: string[]; // Alignment labels (informational only)
@@ -26,9 +26,9 @@ export interface VirtueDefinition {
  * competency domains for school/district legibility.
  */
 export const VIRTUE_FRAMEWORK: Record<string, VirtueDefinition> = {
-  empathy: {
-    id: "empathy",
-    name: "Empathy",
+  kindness: {
+    id: "kindness",
+    name: "Kindness",
     description:
       "Noticing and considering how others may feel or be affected by a situation.",
     decisionTendencies: [
@@ -38,11 +38,11 @@ export const VIRTUE_FRAMEWORK: Record<string, VirtueDefinition> = {
     ],
     caselDomains: ["Social Awareness"],
   },
-  respect: {
-    id: "respect",
-    name: "Respect",
+  generosity: {
+    id: "generosity",
+    name: "Generosity",
     description:
-      "Treating others with consideration and recognizing boundaries.",
+      "Treating others with consideration and sharing openly.",
     decisionTendencies: [
       "Using thoughtful language",
       "Honoring rules or shared agreements",
@@ -50,11 +50,11 @@ export const VIRTUE_FRAMEWORK: Record<string, VirtueDefinition> = {
     ],
     caselDomains: ["Social Awareness", "Relationship Skills"],
   },
-  responsibility: {
-    id: "responsibility",
-    name: "Responsibility",
+  knowledge: {
+    id: "knowledge",
+    name: "Knowledge",
     description:
-      "Taking ownership of actions and following through on commitments.",
+      "Taking ownership of actions and seeking to understand situations fully.",
     decisionTendencies: [
       "Accepting consequences",
       "Completing agreed tasks",
@@ -74,9 +74,9 @@ export const VIRTUE_FRAMEWORK: Record<string, VirtueDefinition> = {
     ],
     caselDomains: ["Self-Awareness", "Responsible Decision-Making"],
   },
-  self_control: {
-    id: "self_control",
-    name: "Self-Control",
+  resilience: {
+    id: "resilience",
+    name: "Resilience",
     description:
       "Managing impulses, emotions, and reactions in challenging situations.",
     decisionTendencies: [
