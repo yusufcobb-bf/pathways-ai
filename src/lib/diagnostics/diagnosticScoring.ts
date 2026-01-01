@@ -16,19 +16,19 @@ const DIAGNOSTIC_RUBRICS: Record<
 > = {
   "missing-art-supplies": {
     // Checkpoint 1
-    "c1-a": { Empathy: 2, Respect: 1 }, // Walk over to Leo - strong empathy
-    "c1-b": { Courage: 2, Responsibility: 1 }, // Suggest looking around - cautious approach
-    "c1-c": { Responsibility: 1 }, // Let Maya handle it - minimal engagement
+    "c1-a": { Kindness: 2, Generosity: 1 }, // Walk over to Leo - strong kindness
+    "c1-b": { Courage: 2, Knowledge: 1 }, // Suggest looking around - cautious approach
+    "c1-c": { Knowledge: 1 }, // Let Maya handle it - minimal engagement
 
     // Checkpoint 2
-    "c2-a": { Empathy: 2, Respect: 1 }, // Ask Leo if he'd like help - supportive
-    "c2-b": { Courage: 2, Responsibility: 2 }, // Explain & offer to talk to teacher
+    "c2-a": { Kindness: 2, Generosity: 1 }, // Ask Leo if he'd like help - supportive
+    "c2-b": { Courage: 2, Knowledge: 2 }, // Explain & offer to talk to teacher
     "c2-c": { Courage: 1 }, // Tell Leo to put paints back - direct
 
     // Checkpoint 3
-    "c3-a": { Empathy: 2, Respect: 2 }, // Make something together - collaborative
-    "c3-b": { Courage: 1, Responsibility: 2 }, // Help return paints quietly
-    "c3-c": { Respect: 2, Responsibility: 1 }, // Let Leo decide - respectful autonomy
+    "c3-a": { Kindness: 2, Generosity: 2 }, // Make something together - collaborative
+    "c3-b": { Courage: 1, Knowledge: 2 }, // Help return paints quietly
+    "c3-c": { Generosity: 2, Knowledge: 1 }, // Let Leo decide - generous autonomy
   },
 };
 
@@ -39,11 +39,11 @@ const DIAGNOSTIC_RUBRICS: Record<
 function computeMaxScores(storyId: string): Record<Virtue, number> {
   const rubric = DIAGNOSTIC_RUBRICS[storyId];
   const maxScores: Record<Virtue, number> = {
-    Empathy: 0,
-    Respect: 0,
-    Responsibility: 0,
     Courage: 0,
-    "Self-Control": 0,
+    Generosity: 0,
+    Kindness: 0,
+    Knowledge: 0,
+    Resilience: 0,
   };
 
   if (!rubric) return maxScores;
@@ -103,7 +103,7 @@ export function getPrimaryGrowthVirtue(
   maxScores: Record<Virtue, number>
 ): Virtue {
   let minRatio = Infinity;
-  let growthVirtue: Virtue = "Empathy";
+  let growthVirtue: Virtue = "Kindness";
 
   for (const virtue of VIRTUES) {
     const max = maxScores[virtue];
@@ -121,7 +121,7 @@ export function getPrimaryGrowthVirtue(
 
 /**
  * Dev-time validation: warn if any virtue is missing from rubric.
- * Self-Control gap is intentional for MVP (R2).
+ * Resilience gap is intentional for MVP (R2).
  */
 function validateRubricCoverage(storyId: string): void {
   if (process.env.NODE_ENV !== "development") return;
@@ -152,11 +152,11 @@ export function buildDiagnosticProfile(
 
   // Initialize scores
   const scores: Record<Virtue, number> = {
-    Empathy: 0,
-    Respect: 0,
-    Responsibility: 0,
     Courage: 0,
-    "Self-Control": 0,
+    Generosity: 0,
+    Kindness: 0,
+    Knowledge: 0,
+    Resilience: 0,
   };
 
   // If unknown story, return safe default
@@ -165,13 +165,13 @@ export function buildDiagnosticProfile(
       storyId,
       scores,
       levels: {
-        Empathy: "low",
-        Respect: "low",
-        Responsibility: "low",
         Courage: "low",
-        "Self-Control": "low",
+        Generosity: "low",
+        Kindness: "low",
+        Knowledge: "low",
+        Resilience: "low",
       },
-      primaryGrowthVirtue: "Empathy",
+      primaryGrowthVirtue: "Kindness",
       completedAt: new Date().toISOString(),
     };
   }

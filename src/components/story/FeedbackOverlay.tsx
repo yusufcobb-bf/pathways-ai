@@ -24,19 +24,19 @@ interface FeedbackOverlayProps {
 // Virtue color mapping (soft, educational palette)
 const VIRTUE_COLORS: Record<Virtue, string> = {
   Courage: "text-amber-500",
-  Empathy: "text-emerald-500",
-  Responsibility: "text-blue-500",
-  Respect: "text-purple-500",
-  "Self-Control": "text-teal-500",
+  Generosity: "text-purple-500",
+  Kindness: "text-emerald-500",
+  Knowledge: "text-blue-500",
+  Resilience: "text-teal-500",
 };
 
 // Virtue icons (simple emoji representation)
 const VIRTUE_ICONS: Record<Virtue, string> = {
   Courage: "💛",
-  Empathy: "💚",
-  Responsibility: "💙",
-  Respect: "💜",
-  "Self-Control": "🩵",
+  Generosity: "💜",
+  Kindness: "💚",
+  Knowledge: "💙",
+  Resilience: "🩵",
 };
 
 export function FeedbackOverlay({

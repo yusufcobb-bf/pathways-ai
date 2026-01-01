@@ -1,16 +1,17 @@
 // SEL Virtue definitions
 export const VIRTUES = [
-  "Empathy",
-  "Respect",
-  "Responsibility",
   "Courage",
-  "Self-Control",
+  "Generosity",
+  "Kindness",
+  "Knowledge",
+  "Resilience",
 ] as const;
 
 export type Virtue = (typeof VIRTUES)[number];
 
 export type VirtueScores = Record<Virtue, number>;
 
+// TEMPORARY — Stage 1 compatibility only
 // Static scoring map for each choice
 // Positive choices: +1 or +2
 // Neutral: 0
@@ -19,66 +20,66 @@ export const CHOICE_VIRTUE_MAP: Record<string, Partial<VirtueScores>> = {
   // Checkpoint 1: First interaction opportunity
   "c1-a": {
     // "Walk over and introduce yourself to the new student"
-    Empathy: 2,
+    Kindness: 2,
     Courage: 2,
   },
   "c1-b": {
     // "Stay with your friends but smile at the new student"
-    Empathy: 1,
-    "Self-Control": 1,
+    Kindness: 1,
+    Resilience: 1,
   },
   "c1-c": {
     // "Focus on catching up with your friends for now"
-    Empathy: -1,
+    Kindness: -1,
   },
 
   // Checkpoint 2: Group project partner decision
   "c2-a": {
     // "Ask if the new student wants to join your group"
-    Empathy: 2,
+    Kindness: 2,
     Courage: 1,
-    Responsibility: 1,
+    Knowledge: 1,
   },
   "c2-b": {
     // "Partner with your friend and hope someone else includes them"
-    Empathy: -1,
-    Responsibility: -1,
+    Kindness: -1,
+    Knowledge: -1,
   },
 
   // Checkpoint 3: Lunch table decision
   "c3-a": {
     // "Invite the new student to come sit with your group"
-    Empathy: 2,
+    Kindness: 2,
     Courage: 2,
   },
   "c3-b": {
     // "Sit at your usual table but save a seat in case they want to join"
-    Empathy: 1,
-    Respect: 1,
+    Kindness: 1,
+    Generosity: 1,
   },
   "c3-c": {
     // "Eat with your friends — they'll probably find their own group soon"
-    Empathy: -1,
+    Kindness: -1,
   },
 };
 
 // Static explanatory text for each virtue
 export const VIRTUE_DESCRIPTIONS: Record<Virtue, string> = {
-  Empathy: "Understanding and sharing the feelings of others.",
-  Respect: "Treating others with consideration and dignity.",
-  Responsibility: "Being accountable for your actions and their impact.",
-  Courage: "Doing what is right even when it feels uncomfortable.",
-  "Self-Control": "Managing your impulses and thinking before acting.",
+  Courage: "Standing up for what is right, even when it feels hard.",
+  Generosity: "Sharing your time, resources, or kindness with others.",
+  Kindness: "Treating others with care and compassion.",
+  Knowledge: "Seeking to learn and understand the world around you.",
+  Resilience: "Bouncing back from challenges and keeping going.",
 };
 
 // Compute virtue scores from an array of choice IDs
 export function computeVirtueScores(choices: string[]): VirtueScores {
   const scores: VirtueScores = {
-    Empathy: 0,
-    Respect: 0,
-    Responsibility: 0,
     Courage: 0,
-    "Self-Control": 0,
+    Generosity: 0,
+    Kindness: 0,
+    Knowledge: 0,
+    Resilience: 0,
   };
 
   for (const choiceId of choices) {
@@ -106,13 +107,14 @@ export function getVirtueSummary(virtue: Virtue, score: number): string {
   }
 }
 
+// TEMPORARY — Stage 1 compatibility only
 // Position-based virtue mapping for AI-generated stories
 // Since AI doesn't generate scores, we use the choice position to determine virtue impacts
-// The system prompt ensures: a = most empathetic, b = moderate, c = least engaged
+// The system prompt ensures: a = most engaged, b = moderate, c = least engaged
 const POSITION_VIRTUE_MAP: Record<string, Partial<VirtueScores>> = {
-  a: { Empathy: 2, Courage: 2 },
-  b: { Empathy: 1, "Self-Control": 1 },
-  c: { Empathy: -1 },
+  a: { Kindness: 2, Courage: 2 },
+  b: { Kindness: 1, Resilience: 1 },
+  c: { Kindness: -1 },
 };
 
 // Get virtue impact for a choice based on its position (a, b, or c)
@@ -132,11 +134,11 @@ export function computePositionBasedVirtueScores(
   choices: string[]
 ): VirtueScores {
   const scores: VirtueScores = {
-    Empathy: 0,
-    Respect: 0,
-    Responsibility: 0,
     Courage: 0,
-    "Self-Control": 0,
+    Generosity: 0,
+    Kindness: 0,
+    Knowledge: 0,
+    Resilience: 0,
   };
 
   for (const choiceId of choices) {

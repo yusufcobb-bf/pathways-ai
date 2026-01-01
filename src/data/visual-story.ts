@@ -118,11 +118,11 @@ export type VisualFocus =
 
 // CASEL to Virtue mapping (bidirectional bridge for scoring continuity)
 export const CASEL_TO_VIRTUE_MAP: Record<CASELCompetency, Virtue[]> = {
-  "self-awareness": ["Courage", "Responsibility"],
-  "self-management": ["Self-Control", "Responsibility"],
-  "social-awareness": ["Empathy", "Respect"],
-  "relationship-skills": ["Empathy", "Respect"],
-  "responsible-decision-making": ["Courage", "Responsibility"],
+  "self-awareness": ["Courage", "Knowledge"],
+  "self-management": ["Resilience", "Knowledge"],
+  "social-awareness": ["Kindness", "Generosity"],
+  "relationship-skills": ["Kindness", "Generosity"],
+  "responsible-decision-making": ["Courage", "Knowledge"],
 };
 
 // Single visual story beat

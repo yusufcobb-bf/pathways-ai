@@ -1,6 +1,6 @@
 /**
  * Stage 37: Resolve RoutingDecision into a RouteResult.
- * MVP: Hard-coded routing for Empathy virtue only.
+ * MVP: Hard-coded routing for Kindness virtue only.
  */
 import { RoutingDecision } from "@/data/visual-story";
 
@@ -15,11 +15,11 @@ export function resolveRoute(
     return { type: "end" };
   }
 
-  // MVP: Only route Empathy virtue to training story
+  // MVP: Only route Kindness virtue to training story
   if (
     (decision.type === "assign_training" ||
       decision.type === "repeat_training") &&
-    decision.virtue === "Empathy"
+    decision.virtue === "Kindness"
   ) {
     return {
       type: "navigate",

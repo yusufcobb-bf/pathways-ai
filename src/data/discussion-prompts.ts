@@ -12,7 +12,7 @@ export interface DiscussionPrompt {
 // Discussion prompts organized by virtue
 // Educators use these to guide reflection conversations with students
 export const VIRTUE_DISCUSSION_PROMPTS: Record<Virtue, DiscussionPrompt[]> = {
-  Empathy: [
+  Kindness: [
     {
       question: "What do you think the new student might have been feeling during this moment?",
       context: "Helps students consider others' perspectives",
@@ -26,21 +26,21 @@ export const VIRTUE_DISCUSSION_PROMPTS: Record<Virtue, DiscussionPrompt[]> = {
       context: "Builds awareness of emotional cues",
     },
   ],
-  Respect: [
+  Generosity: [
     {
       question: "How can small actions show someone they matter?",
-      context: "Explores everyday ways to show respect",
+      context: "Explores everyday ways to show generosity",
     },
     {
       question: "What does it mean to treat someone with dignity, even if you don't know them well?",
-      context: "Discusses respect for all people",
+      context: "Discusses generosity toward all people",
     },
     {
       question: "How might saving a seat or making space for someone make them feel included?",
       context: "Connects actions to feelings of belonging",
     },
   ],
-  Responsibility: [
+  Knowledge: [
     {
       question: "How do your choices affect the people around you?",
       context: "Builds awareness of impact on others",
@@ -68,7 +68,7 @@ export const VIRTUE_DISCUSSION_PROMPTS: Record<Virtue, DiscussionPrompt[]> = {
       context: "Builds language for supporting others",
     },
   ],
-  "Self-Control": [
+  Resilience: [
     {
       question: "What helped you think before acting in this situation?",
       context: "Identifies self-regulation strategies",
