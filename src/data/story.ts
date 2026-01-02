@@ -153,6 +153,15 @@ try {
   // File doesn't exist
 }
 
+// Stage 4 (Arraadia): Add Mono introduction diagnostic story
+let visualStory7Data: unknown = null;
+
+try {
+  visualStory7Data = require("./visual-stories/arraadia-mono-intro.json");
+} catch {
+  // File doesn't exist
+}
+
 // Build the story pool from loaded data
 function buildStoryPoolEntry(data: unknown): StoryPoolEntry | null {
   if (!data) return null;
@@ -179,6 +188,7 @@ export function loadStoryPool(): StoryPoolEntry[] {
 
   // Stage 27: Load all visual beat stories (no parsing needed)
   // Stage 40: Complete 5-virtue training set (1 diagnostic + 5 training)
+  // Stage 4 (Arraadia): Added Mono introduction diagnostic
   const visualStories = [
     visualStory1Data,
     visualStory2Data,
@@ -186,6 +196,7 @@ export function loadStoryPool(): StoryPoolEntry[] {
     visualStory4Data,
     visualStory5Data,
     visualStory6Data,
+    visualStory7Data,
   ];
 
   for (const data of visualStories) {

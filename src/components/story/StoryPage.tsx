@@ -101,9 +101,8 @@ export default function StoryPage({
           Previous
         </button>
 
-        <span className="text-sm text-zinc-500">
-          {pageNumber} of {totalPages}
-        </span>
+        {/* Numeric pagination removed - progress bar handles progress display */}
+        <span className="text-sm text-zinc-500" aria-hidden="true" />
 
         <button
           onClick={onNext}

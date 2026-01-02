@@ -1,0 +1,1951 @@
+{
+  "id": "arraadia-mono-intro",
+  "title": "Mono's Journey Begins",
+  "archetypeId": "arraadia-mono-intro",
+  "gradeLevel": "4-5",
+  "storyType": "diagnostic",
+  "curriculum": {
+    "subject": "Social-Emotional Learning",
+    "unit": "Virtue Development Through Challenge",
+    "lesson": "Finding Courage in Difficult Times",
+    "learningObjectives": [
+      "Students will practice responding thoughtfully to injustice",
+      "Students will demonstrate consideration for others under pressure",
+      "Students will identify their core values when facing challenges"
+    ],
+    "standardRefs": [
+      "CASEL.3a",
+      "CASEL.4b",
+      "CASEL.5b"
+    ]
+  },
+  "selObjectives": [
+    "Practice thoughtful responses when witnessing unfair treatment",
+    "Consider the needs and feelings of others during conflict",
+    "Identify personal values when stakes are high"
+  ],
+  "caselCoverage": {
+    "self-awareness": "Mono recognizes their own emotions and values",
+    "self-management": "Managing reactions under pressure",
+    "social-awareness": "Understanding the struggles of Thumur villagers",
+    "relationship-skills": "Building trust with new communities",
+    "responsible-decision-making": "Choosing how to respond to injustice"
+  },
+  "intro": [
+    {
+      "id": "intro-1",
+      "text": "Once upon a time, in the ancient world of Arraadia, several nations existed with inhabitants in different shapes, colors, tongues, and cultures.",
+      "focus": "environment",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-2",
+      "text": "The south was home to Hadarah, known for knowledge, wisdom, trade, and wealth.",
+      "focus": "environment",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-3",
+      "text": "The east held Thumur, where the peace-loving Qulul lived as farmers, blacksmiths, and builders.",
+      "focus": "environment",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-4",
+      "text": "The north was Burudia, a cold nation of imposing giants called the Abraaj.",
+      "focus": "environment",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-5",
+      "text": "And the west... the nation of Odwan, a war-waging machine interested only in strength and dominance.",
+      "focus": "environment",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-6",
+      "text": "The center of Arraadia was once Madlan, before Odwan attacked and occupied it.",
+      "focus": "environment",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-7",
+      "text": "The Madlan people became displaced, seeking refuge in Hadarah.",
+      "focus": "observation",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-8",
+      "text": "Mono is a young person from Madlan who lives with their parents in Hadarah.",
+      "actor": "Mono",
+      "focus": "character-action",
+      "casel": [
+        "self-awareness"
+      ]
+    },
+    {
+      "id": "intro-9",
+      "text": "One night, Mono hears a terrible cry outside the window.",
+      "actor": "Mono",
+      "focus": "character-emotion",
+      "casel": [
+        "self-awareness"
+      ]
+    },
+    {
+      "id": "intro-10",
+      "text": "A dark shadow crashes through the wall on a fierce riding beast called a Simasi.",
+      "focus": "character-action",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-11",
+      "text": "\"There is nothing that makes me more angry than seeing a warm and happy family,\" the figure speaks.",
+      "actor": "Aqrab",
+      "focus": "dialogue",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-12",
+      "text": "\"I am the mighty Aqrab, and it will be my pleasure to make you an orphan!\" says Aqrab.",
+      "actor": "Aqrab",
+      "focus": "dialogue",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-13",
+      "text": "Mono hides in the guestroom, paralyzed with fear.",
+      "actor": "Mono",
+      "focus": "character-emotion",
+      "casel": [
+        "self-awareness",
+        "self-management"
+      ]
+    },
+    {
+      "id": "intro-14",
+      "text": "Through the keyhole, Mono sees their father shielding their mother.",
+      "focus": "observation",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-15",
+      "text": "Aqrab uses a mechanical claw to capture both parents and flies off into the night.",
+      "actor": "Aqrab",
+      "focus": "character-action",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-16",
+      "text": "When Mono finds the courage to leave the house, they see Zephir, their father's riding beast.",
+      "actor": "Mono",
+      "focus": "character-action",
+      "casel": [
+        "self-management"
+      ]
+    },
+    {
+      "id": "intro-17",
+      "text": "Mono realizes there is only one choice now\u2014to find Uncle Arbaab, their father's longtime friend.",
+      "focus": "observation",
+      "casel": [
+        "responsible-decision-making"
+      ]
+    },
+    {
+      "id": "intro-18",
+      "text": "Mono rides to Arbaab's house and pounds on the door.",
+      "actor": "Mono",
+      "focus": "character-action",
+      "casel": [
+        "self-management"
+      ]
+    },
+    {
+      "id": "intro-19",
+      "text": "\"He took my parents! An Odwani warlord named Aqrab!\" shouts Mono.",
+      "actor": "Mono",
+      "focus": "dialogue",
+      "casel": [
+        "self-awareness"
+      ]
+    },
+    {
+      "id": "intro-20",
+      "text": "\"Aqrab was once Odwan's most powerful general,\" Arbaab explains. \"He was banished and built his own army in Burudia,\"",
+      "actor": "Arbaab",
+      "focus": "dialogue",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-21",
+      "text": "\"Hadarah's elders will not send an army for someone with temporary status,\" Arbaab says sadly.",
+      "actor": "Arbaab",
+      "focus": "dialogue",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-22",
+      "text": "\"Travel east to Thumur. Find someone named Widodo. He might know what to do,\" says Arbaab.",
+      "actor": "Arbaab",
+      "focus": "dialogue",
+      "casel": [
+        "responsible-decision-making"
+      ]
+    },
+    {
+      "id": "intro-23",
+      "text": "Arbaab gives Mono a sword, food, and golden coins for the journey.",
+      "actor": "Arbaab",
+      "focus": "object",
+      "casel": [
+        "relationship-skills"
+      ]
+    },
+    {
+      "id": "intro-24",
+      "text": "After days of travel, Mono reaches the peaceful nation of Thumur.",
+      "actor": "Mono",
+      "focus": "environment",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-25",
+      "text": "\"You are not from here. Would you like to buy some peanuts?\" a friendly villager asks.",
+      "actor": "Villager",
+      "focus": "dialogue",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-26",
+      "text": "Mono thanks the villager politely and continues through the village, searching for someone who might know Widodo.",
+      "actor": "Mono",
+      "focus": "character-action",
+      "casel": [
+        "relationship-skills"
+      ]
+    },
+    {
+      "id": "intro-27",
+      "text": "At a blacksmith shop, Mono asks about Widodo.",
+      "actor": "Mono",
+      "focus": "character-action",
+      "casel": [
+        "relationship-skills"
+      ]
+    },
+    {
+      "id": "intro-28",
+      "text": "\"You're looking for our Ketua? Come with me, friend of Arbaab!\" a worker asks.",
+      "actor": "Worker",
+      "focus": "dialogue",
+      "casel": [
+        "relationship-skills"
+      ]
+    },
+    {
+      "id": "intro-29",
+      "text": "The worker leads Mono through round houses and harvest stores to Widodo's meeting hall.",
+      "focus": "environment",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-30",
+      "text": "An elderly Qulul with a long white beard sits on a cushioned stool.",
+      "actor": "Widodo",
+      "focus": "character-action",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-31",
+      "text": "\"Your father is Hani, yes? I recognize something of him in your face,\" asks Widodo.",
+      "actor": "Widodo",
+      "focus": "dialogue",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-32",
+      "text": "Mono tells Widodo everything about Aqrab and the kidnapping.",
+      "actor": "Mono",
+      "focus": "dialogue",
+      "casel": [
+        "self-awareness"
+      ]
+    },
+    {
+      "id": "intro-33",
+      "text": "\"We are peaceful people. We cannot help you wage war,\" Widodo says gently.",
+      "actor": "Widodo",
+      "focus": "dialogue",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-34",
+      "text": "\"Stay with us while you gather your thoughts. Perhaps wisdom will come with rest,\" says Widodo.",
+      "actor": "Widodo",
+      "focus": "dialogue",
+      "casel": [
+        "self-management"
+      ]
+    },
+    {
+      "id": "intro-35",
+      "text": "The next morning, commotion erupts outside.",
+      "focus": "observation",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-36",
+      "text": "\"The Odwani are here! Three soldiers demanding tribute!\" a villager shouts.",
+      "actor": "Villager",
+      "focus": "dialogue",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-37",
+      "text": "Mono follows Widodo to the village center where armored soldiers wait.",
+      "actor": "Mono",
+      "focus": "character-action",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-38",
+      "text": "\"Old man! We've come for our due. Ten bushels and twenty gold pieces!\" a soldier shouts.",
+      "actor": "Soldier",
+      "focus": "dialogue",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-39",
+      "text": "Widodo bows, \"Of course, my lord. It will be brought immediately.\"",
+      "actor": "Widodo",
+      "focus": "dialogue",
+      "casel": [
+        "self-management"
+      ]
+    },
+    {
+      "id": "intro-40",
+      "text": "The soldiers grab Widodo by his collar. \"Work harder! Next week, we expect better!\"",
+      "actor": "Soldier",
+      "focus": "character-action",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-41",
+      "text": "After they leave, Widodo explains: \"Fifty years of this arrangement. We endure,\" says Widodo.",
+      "actor": "Widodo",
+      "focus": "dialogue",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "intro-42",
+      "text": "One week passes. The soldiers return, this time demanding double.",
+      "focus": "transition",
+      "casel": [
+        "social-awareness"
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "c1",
+      "beats": [
+        {
+          "id": "c1-1",
+          "text": "\"Time for our weekly collection. And this time, we want double!\" a soldier says.",
+          "actor": "Soldier",
+          "focus": "dialogue",
+          "casel": [
+            "social-awareness"
+          ]
+        },
+        {
+          "id": "c1-2",
+          "text": "The villagers look frightened. Children hide behind their parents.",
+          "focus": "observation",
+          "casel": [
+            "social-awareness"
+          ]
+        },
+        {
+          "id": "c1-3",
+          "text": "Widodo prepares to comply, as he always has.",
+          "actor": "Widodo",
+          "focus": "character-action",
+          "casel": [
+            "social-awareness"
+          ]
+        },
+        {
+          "id": "c1-4",
+          "text": "Mono feels something stirring inside\u2014this isn't right.",
+          "actor": "Mono",
+          "focus": "character-emotion",
+          "casel": [
+            "self-awareness"
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "id": "c1-a",
+          "text": "Fight off the soldiers without preparation",
+          "casel": [
+            "responsible-decision-making",
+            "self-management"
+          ],
+          "virtues": [
+            "Courage"
+          ],
+          "focus": "character-action",
+          "illustrationHint": "Mono stepping forward toward the soldiers",
+          "branchBeats": [
+            {
+              "id": "c1-a-1",
+              "text": "\"No more! You've taken enough from these people!\" shouts Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "self-management",
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c1-a-2",
+              "text": "\"Look at this! The visitor has courage!\" shouts the Odwani soldier.",
+              "actor": "Odwani Soldier",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c1-a-3",
+              "text": "\"Leave now or face me!\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "self-management"
+              ]
+            },
+            {
+              "id": "c1-a-4",
+              "text": "Combat ensues, but Mono is quickly overwhelmed by the three trained soldiers.",
+              "focus": "observation",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c1-a-5",
+              "text": "\"Not much of a fighter, are you?\" asks another Odwani soldier.",
+              "actor": "Odwani Soldier",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c1-a-6",
+              "text": "\"For his insolence, you'll give triple tribute from now on. And keep your visitor in check, or next time we won't be so merciful,\" says the Odwani soldier.",
+              "actor": "Odwani Soldier",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c1-a-7",
+              "text": "The soldiers take triple tribute and leave.",
+              "focus": "observation",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c1-a-8",
+              "text": "\"Courage is admirable, but without wisdom, it leads to greater suffering,\" says Widodo.",
+              "actor": "Widodo",
+              "focus": "dialogue",
+              "casel": [
+                "relationship-skills"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "c1-b",
+          "text": "Hand over whatever they demand",
+          "casel": [
+            "self-management",
+            "social-awareness"
+          ],
+          "virtues": [
+            "Resilience",
+            "Knowledge"
+          ],
+          "focus": "observation",
+          "illustrationHint": "Mono watching carefully from the side",
+          "branchBeats": [
+            {
+              "id": "c1-b-1",
+              "text": "Mono reluctantly steps back.",
+              "actor": "Mono",
+              "focus": "character-action",
+              "casel": [
+                "self-management"
+              ]
+            },
+            {
+              "id": "c1-b-2",
+              "text": "\"Here is what you asked for,\" says Widodo.",
+              "actor": "Widodo",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c1-b-3",
+              "text": "Villagers bring forward the tribute.",
+              "focus": "observation",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c1-b-4",
+              "text": "\"Smart choice. See you next week, little people,\" says the Odwani soldier.",
+              "actor": "Odwani Soldier",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c1-b-5",
+              "text": "The soldiers leave with their tribute.",
+              "focus": "observation",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c1-b-6",
+              "text": "\"This isn't right,\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "self-awareness"
+              ]
+            },
+            {
+              "id": "c1-b-7",
+              "text": "\"It is the way things have been. But your presence makes me wonder if there could be change,\" says Widodo.",
+              "actor": "Widodo",
+              "focus": "dialogue",
+              "casel": [
+                "relationship-skills"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "c1-c",
+          "text": "Negotiate with the soldiers to give them less",
+          "casel": [
+            "relationship-skills",
+            "responsible-decision-making"
+          ],
+          "virtues": [
+            "Kindness",
+            "Knowledge"
+          ],
+          "focus": "dialogue",
+          "illustrationHint": "Mono speaking with open hands",
+          "branchBeats": [
+            {
+              "id": "c1-c-1",
+              "text": "\"Wait. The harvest has been poor. Taking double will leave children hungry,\" calls out Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "relationship-skills",
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c1-c-2",
+              "text": "\"That's not our concern,\" says the Odwani soldier.",
+              "actor": "Odwani Soldier",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c1-c-3",
+              "text": "\"If you take too much now, there won't be enough seed for next season. Then what will you collect?\" asks Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c1-c-4",
+              "text": "\"He has a point,\" says another Odwani soldier.",
+              "actor": "Odwani Soldier",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c1-c-5",
+              "text": "\"Take half your usual tribute today. When the next harvest comes in, you'll get more than double,\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c1-c-6",
+              "text": "\"Hmm... fine. Half today. But we'll remember your promise,\" says the Odwani soldier.",
+              "actor": "Odwani Soldier",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c1-c-7",
+              "text": "The soldiers take reduced tribute and leave.",
+              "focus": "observation",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c1-c-8",
+              "text": "\"I've never seen them yield before. Perhaps there are ways to resist without fighting,\" says Widodo.",
+              "actor": "Widodo",
+              "focus": "dialogue",
+              "casel": [
+                "relationship-skills"
+              ]
+            },
+            {
+              "id": "c1-c-9",
+              "text": "\"You stood up to them!\" says a villager.",
+              "actor": "Villager",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c1-c-10",
+              "text": "\"And they listened!\" says another villager.",
+              "actor": "Villager",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c1-c-11",
+              "text": "\"The people are inspired by what you did, Mono. They ask what we should do next,\" says Widodo.",
+              "actor": "Widodo",
+              "focus": "dialogue",
+              "casel": [
+                "relationship-skills"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "beats": [
+        {
+          "id": "c2-1",
+          "text": "The soldiers have left, but they will return.",
+          "focus": "transition",
+          "casel": [
+            "social-awareness"
+          ]
+        },
+        {
+          "id": "c2-2",
+          "text": "\"We must prepare. The question is how,\" says Widodo.",
+          "actor": "Widodo",
+          "focus": "dialogue",
+          "casel": [
+            "responsible-decision-making"
+          ]
+        },
+        {
+          "id": "c2-3",
+          "text": "\"What should we do to be ready for their return?\" asks Widodo.",
+          "actor": "Widodo",
+          "focus": "dialogue",
+          "casel": [
+            "responsible-decision-making"
+          ]
+        },
+        {
+          "id": "c2-4",
+          "text": "Villagers gather around, looking to Mono for guidance.",
+          "focus": "group",
+          "casel": [
+            "social-awareness",
+            "relationship-skills"
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "id": "c2-a",
+          "text": "Prepare a load of low quality crops for the soldiers",
+          "casel": [
+            "responsible-decision-making"
+          ],
+          "virtues": [
+            "Knowledge"
+          ],
+          "focus": "object",
+          "illustrationHint": "Villagers sorting crops into two piles",
+          "branchBeats": [
+            {
+              "id": "c2-a-1",
+              "text": "\"We'll give them what they ask for, but not our best. Save the good crops for yourselves,\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c2-a-2",
+              "text": "\"Deception carries its own risks,\" says Widodo.",
+              "actor": "Widodo",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c2-a-3",
+              "text": "\"It's not deception - it's self-preservation,\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c2-a-4",
+              "text": "Villagers begin sorting crops, setting aside lower quality ones.",
+              "focus": "observation",
+              "casel": [
+                "relationship-skills"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "c2-b",
+          "text": "Start producing weapons for military prowess",
+          "casel": [
+            "responsible-decision-making",
+            "self-management"
+          ],
+          "virtues": [
+            "Courage",
+            "Resilience"
+          ],
+          "focus": "character-action",
+          "illustrationHint": "Mono at the forge with blacksmiths",
+          "branchBeats": [
+            {
+              "id": "c2-b-1",
+              "text": "\"You're skilled blacksmiths. You could make weapons to defend yourselves,\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c2-b-2",
+              "text": "\"Weapons? We've never..,\" a villager asks.",
+              "actor": "Villager",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c2-b-3",
+              "text": "\"This goes against our ways,\" says Widodo.",
+              "actor": "Widodo",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c2-b-4",
+              "text": "\"Sometimes new ways are needed when old ways lead to suffering,\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c2-b-5",
+              "text": "Reluctantly, some blacksmiths begin converting their tools to create simple weapons.",
+              "focus": "observation",
+              "casel": [
+                "self-management"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "c2-c",
+          "text": "Build walls around the nation",
+          "casel": [
+            "responsible-decision-making",
+            "relationship-skills"
+          ],
+          "virtues": [
+            "Knowledge",
+            "Resilience"
+          ],
+          "focus": "environment",
+          "illustrationHint": "Villagers constructing wooden walls together",
+          "branchBeats": [
+            {
+              "id": "c2-c-1",
+              "text": "\"Your people are master builders. Why not use those skills to protect yourselves?\" asks Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c2-c-2",
+              "text": "\"Walls... not to attack, but to defend,\" says Widodo.",
+              "actor": "Widodo",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c2-c-3",
+              "text": "\"Exactly. You wouldn't be fighting - just making it harder for others to harm you,\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c2-c-4",
+              "text": "\"This... this could work with our values,\" says Widodo.",
+              "actor": "Widodo",
+              "focus": "dialogue",
+              "casel": [
+                "relationship-skills"
+              ]
+            },
+            {
+              "id": "c2-c-5",
+              "text": "Villagers excitedly begin planning and constructing walls.",
+              "focus": "observation",
+              "casel": [
+                "relationship-skills"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "beats": [
+        {
+          "id": "c3-1",
+          "text": "One week passes. The soldiers return for their tribute.",
+          "focus": "transition",
+          "casel": [
+            "social-awareness"
+          ]
+        },
+        {
+          "id": "c3-2",
+          "text": "\"Time for our tribute!\" the lead soldier shouts.",
+          "actor": "Odwani Soldier",
+          "focus": "dialogue",
+          "casel": [
+            "social-awareness"
+          ]
+        },
+        {
+          "id": "c3-3",
+          "text": "The villagers gather nervously as the soldiers approach.",
+          "focus": "observation",
+          "casel": [
+            "social-awareness"
+          ]
+        }
+      ],
+      "choices": [],
+      "autoBranch": {
+        "dependsOnCheckpointId": "c2",
+        "beatsByChoiceId": {
+          "c2-a": [
+            {
+              "id": "c3-crops-1",
+              "text": "\"Here's your tribute as promised,\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "relationship-skills"
+              ]
+            },
+            {
+              "id": "c3-crops-2",
+              "text": "The soldiers inspect the crops.",
+              "focus": "observation",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c3-crops-3",
+              "text": "\"This is garbage! You dare give us your scraps?\" asks the Odwani soldier.",
+              "actor": "Odwani Soldier",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c3-crops-4",
+              "text": "\"We should burn their fields for this insult!\" shouts another Odwani soldier.",
+              "actor": "Odwani Soldier",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c3-crops-5",
+              "text": "\"Next time, we'll bring torches. You'll regret this deception!\" says the Odwani soldier.",
+              "actor": "Odwani Soldier",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c3-crops-6",
+              "text": "The soldiers leave. The villagers look worried.",
+              "focus": "observation",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c3-crops-7",
+              "text": "\"What have we done? They'll destroy everything!\" a villager asks.",
+              "actor": "Villager",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            }
+          ],
+          "c2-b": [
+            {
+              "id": "c3-weapons-1",
+              "text": "\"Stop right there,\" calls out Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "self-management"
+              ]
+            },
+            {
+              "id": "c3-weapons-2",
+              "text": "Villagers emerge with crude but numerous weapons.",
+              "focus": "observation",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c3-weapons-3",
+              "text": "\"We've prepared for your visit. Take what we offer freely, or take nothing at all,\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c3-weapons-4",
+              "text": "\"The little farmers have teeth now?\" asks the Odwani soldier.",
+              "actor": "Odwani Soldier",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c3-weapons-5",
+              "text": "\"There are many of them..,\" says another Odwani soldier.",
+              "actor": "Odwani Soldier",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c3-weapons-6",
+              "text": "\"Our generals will hear of this! This defiance won't stand!\" shouts the Odwani soldier.",
+              "actor": "Odwani Soldier",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c3-weapons-7",
+              "text": "The soldiers retreat.",
+              "focus": "observation",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c3-weapons-8",
+              "text": "\"They left! We stood our ground!\" shouts a villager.",
+              "actor": "Villager",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c3-weapons-9",
+              "text": "\"But they'll return with more..,\" says another villager.",
+              "actor": "Villager",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            }
+          ],
+          "c2-c": [
+            {
+              "id": "c3-walls-1",
+              "text": "As the soldiers approach, the villagers hide behind their newly built walls.",
+              "focus": "observation",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c3-walls-2",
+              "text": "\"What is this? Come out with our tribute!\" asks the Odwani soldier.",
+              "actor": "Odwani Soldier",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c3-walls-3",
+              "text": "\"Leave your weapons and we'll open the gate,\" says Widodo.",
+              "actor": "Widodo",
+              "focus": "dialogue",
+              "casel": [
+                "self-management",
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c3-walls-4",
+              "text": "\"You dare give us orders? We'll be back with more men to tear down these walls!\" asks the Odwani soldier.",
+              "actor": "Odwani Soldier",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c3-walls-5",
+              "text": "The soldiers leave, frustrated but unable to breach the defenses.",
+              "focus": "observation",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c3-walls-6",
+              "text": "\"We're safe for now,\" a villager says.",
+              "actor": "Villager",
+              "focus": "dialogue",
+              "casel": [
+                "self-awareness"
+              ]
+            },
+            {
+              "id": "c3-walls-7",
+              "text": "\"But for how long?\" asks Widodo.",
+              "actor": "Widodo",
+              "focus": "dialogue",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "beats": [
+        {
+          "id": "c4-1",
+          "text": "\"The soldiers will return, likely with greater numbers. What should we do to prepare?\" asks Widodo.",
+          "actor": "Widodo",
+          "focus": "dialogue",
+          "casel": [
+            "responsible-decision-making"
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "id": "c4-a",
+          "text": "Train townspeople in basic combat",
+          "casel": [
+            "self-management",
+            "responsible-decision-making"
+          ],
+          "virtues": [
+            "Courage",
+            "Kindness"
+          ],
+          "focus": "character-action",
+          "illustrationHint": "Mono stepping forward to face General Khashin",
+          "branchBeats": [
+            {
+              "id": "c4-a-1",
+              "text": "\"You've built with your hands, farmed with your hands. Now you must learn to defend with those same hands,\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "self-management",
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c4-a-2",
+              "text": "The villagers begin training, awkwardly at first, but with growing determination.",
+              "focus": "observation",
+              "casel": [
+                "self-management"
+              ]
+            },
+            {
+              "id": "c4-a-3",
+              "text": "\"I never thought I'd hold a weapon, but it feels... right to protect my family,\" a villager says.",
+              "actor": "Villager",
+              "focus": "dialogue",
+              "casel": [
+                "self-awareness"
+              ]
+            },
+            {
+              "id": "c4-a-4",
+              "text": "\"Our people change before my eyes. Is this the right path?\" asks Widodo.",
+              "actor": "Widodo",
+              "focus": "dialogue",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c4-a-5",
+              "text": "\"The right path is the one that leads to freedom,\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "c4-b",
+          "text": "Send messenger to negotiate peace terms",
+          "casel": [
+            "responsible-decision-making",
+            "relationship-skills"
+          ],
+          "virtues": [
+            "Knowledge",
+            "Resilience"
+          ],
+          "focus": "dialogue",
+          "illustrationHint": "Mono gesturing toward a potential messenger",
+          "branchBeats": [
+            {
+              "id": "c4-b-1",
+              "text": "\"Perhaps we can reach an understanding without bloodshed,\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "relationship-skills"
+              ]
+            },
+            {
+              "id": "c4-b-2",
+              "text": "A messenger is dispatched to the Odwan encampment.",
+              "focus": "observation",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c4-b-3",
+              "text": "Days pass as the village waits anxiously for a response.",
+              "focus": "transition",
+              "casel": [
+                "self-management"
+              ]
+            },
+            {
+              "id": "c4-b-4",
+              "text": "\"They laughed at our offer of peace. They demand twice the original tribute and threaten to enslave our children if we refuse,\" a messenger says.",
+              "actor": "Messenger",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c4-b-5",
+              "text": "\"Odwan knows only the language of power,\" says Widodo.",
+              "actor": "Widodo",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c4-b-6",
+              "text": "\"Then we must learn to speak it,\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "c4-c",
+          "text": "Form alliance with a neighboring Hadarah settlement",
+          "casel": [
+            "relationship-skills",
+            "social-awareness"
+          ],
+          "virtues": [
+            "Kindness",
+            "Generosity"
+          ],
+          "focus": "group",
+          "illustrationHint": "Mono bringing villagers together in a circle",
+          "branchBeats": [
+            {
+              "id": "c4-c-1",
+              "text": "\"We need allies. I know of a small Hadarah settlement nearby,\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "relationship-skills"
+              ]
+            },
+            {
+              "id": "c4-c-2",
+              "text": "\"Will they help us? We have little to offer,\" asks Widodo.",
+              "actor": "Widodo",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c4-c-3",
+              "text": "\"They too suffer Odwan raids. United, we stand a better chance,\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "relationship-skills"
+              ]
+            },
+            {
+              "id": "c4-c-4",
+              "text": "Mono and a small group travel to the neighboring Hadarah settlement.",
+              "focus": "transition",
+              "casel": [
+                "relationship-skills"
+              ]
+            },
+            {
+              "id": "c4-c-5",
+              "text": "\"The Qulul, asking for alliance? Times have indeed changed,\" the Hadarah leader asks.",
+              "actor": "Hadarah Leader",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c4-c-6",
+              "text": "\"Changed for all of us. Alone, we fall one by one. Together, we might stand,\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "relationship-skills"
+              ]
+            },
+            {
+              "id": "c4-c-7",
+              "text": "\"We will send archers, medics, and supplies. May our unity bring much good,\" the Hadarah leader says.",
+              "actor": "Hadarah Leader",
+              "focus": "dialogue",
+              "casel": [
+                "relationship-skills"
+              ]
+            },
+            {
+              "id": "c4-c-8",
+              "text": "The alliance is formed. The Qulul are no longer alone.",
+              "focus": "observation",
+              "casel": [
+                "relationship-skills",
+                "social-awareness"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "beats": [
+        {
+          "id": "c5-1",
+          "text": "Two weeks pass as the village prepares for the inevitable.",
+          "focus": "transition",
+          "casel": [
+            "self-management"
+          ]
+        },
+        {
+          "id": "c5-2",
+          "text": "\"A large force approaches! The Odwan general himself leads them!\" a scout shouts.",
+          "actor": "Scout",
+          "focus": "dialogue",
+          "casel": [
+            "social-awareness"
+          ]
+        },
+        {
+          "id": "c5-3",
+          "text": "\"This is the storm we feared,\" says Widodo.",
+          "actor": "Widodo",
+          "focus": "dialogue",
+          "casel": [
+            "social-awareness"
+          ]
+        },
+        {
+          "id": "c5-4",
+          "text": "The Odwan force arrives, armor gleaming, banners flying. General Khashin rides at the front on a massive Simasi.",
+          "focus": "environment",
+          "casel": [
+            "social-awareness"
+          ]
+        },
+        {
+          "id": "c5-5",
+          "text": "\"I am General Khashin! Who is this outsider who incites rebellion? Step forward!\" shouts General Khashin.",
+          "actor": "General Khashin",
+          "focus": "dialogue",
+          "casel": [
+            "social-awareness"
+          ]
+        },
+        {
+          "id": "c5-6",
+          "text": "Mono steps forward to face the general.",
+          "actor": "Mono",
+          "focus": "character-action",
+          "casel": [
+            "self-management"
+          ]
+        },
+        {
+          "id": "c5-7",
+          "text": "\"Surrender now, or I will burn this village to ash and take its people as slaves!\" shouts General Khashin.",
+          "actor": "General Khashin",
+          "focus": "dialogue",
+          "casel": [
+            "social-awareness"
+          ]
+        }
+      ],
+      "choices": [
+        {
+          "id": "c5-a",
+          "text": "Ask for 1-on-1 battle with three of their best",
+          "casel": [
+            "self-management",
+            "responsible-decision-making"
+          ],
+          "virtues": [
+            "Courage"
+          ],
+          "focus": "character-action",
+          "illustrationHint": "Mono drawing sword, calling out a challenge",
+          "branchBeats": [
+            {
+              "id": "c5-a-1",
+              "text": "\"Let's settle this honorably! Three of your best warriors against three of ours!\" shouts Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "self-management",
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c5-a-2",
+              "text": "\"The little farmers wish to fight? So be it!\" asks General Khashin.",
+              "actor": "General Khashin",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c5-a-3",
+              "text": "Combat ensues. The Qulul fighters give everything they have.",
+              "focus": "observation",
+              "casel": [
+                "self-management"
+              ]
+            },
+            {
+              "id": "c5-a-4",
+              "text": "\"We held our ground, but..,\" a Qulul fighter says.",
+              "actor": "Qulul Fighter",
+              "focus": "dialogue",
+              "casel": [
+                "self-awareness"
+              ]
+            },
+            {
+              "id": "c5-a-5",
+              "text": "\"We weren't ready for this kind of fighting,\" says Widodo.",
+              "actor": "Widodo",
+              "focus": "dialogue",
+              "casel": [
+                "self-awareness"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "c5-b",
+          "text": "Prepare for battle using terrain and town's skills",
+          "casel": [
+            "responsible-decision-making",
+            "relationship-skills"
+          ],
+          "virtues": [
+            "Knowledge",
+            "Generosity"
+          ],
+          "focus": "group",
+          "illustrationHint": "Villagers implementing defensive strategies together",
+          "branchBeats": [
+            {
+              "id": "c5-b-1",
+              "text": "Mono whispers to Widodo: \"We need time. Keep them talking while our archers get in position.\"",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c5-b-2",
+              "text": "\"We wish to discuss terms!\" says Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "relationship-skills"
+              ]
+            },
+            {
+              "id": "c5-b-3",
+              "text": "Behind the scenes, villagers implement their defensive strategies.",
+              "focus": "observation",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            },
+            {
+              "id": "c5-b-4",
+              "text": "\"Enough talk! Your defiance ends today!\" shouts General Khashin.",
+              "actor": "General Khashin",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c5-b-5",
+              "text": "Traps are set, archers in position. The Qulul are ready.",
+              "focus": "observation",
+              "casel": [
+                "responsible-decision-making"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "c5-c",
+          "text": "Attempt to avoid escalation by offering high-quality crops",
+          "casel": [
+            "social-awareness",
+            "self-management"
+          ],
+          "virtues": [
+            "Kindness",
+            "Resilience"
+          ],
+          "focus": "object",
+          "illustrationHint": "Mono presenting harvest offerings",
+          "branchBeats": [
+            {
+              "id": "c5-c-1",
+              "text": "\"Our finest harvest! Take it and leave us in peace!\" shouts Mono.",
+              "actor": "Mono",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness",
+                "self-management"
+              ]
+            },
+            {
+              "id": "c5-c-2",
+              "text": "\"I'll take your offering... and then I'll take everything else!\" says General Khashin.",
+              "actor": "General Khashin",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c5-c-3",
+              "text": "General Khashin signals his forces to attack.",
+              "actor": "General Khashin",
+              "focus": "character-action",
+              "casel": [
+                "social-awareness"
+              ]
+            },
+            {
+              "id": "c5-c-4",
+              "text": "\"There is no honor in them!\" says Widodo.",
+              "actor": "Widodo",
+              "focus": "dialogue",
+              "casel": [
+                "social-awareness"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tacticalLoop": {
+    "id": "final-confrontation",
+    "introBeats": [
+      {
+        "id": "tac-intro-1",
+        "text": "\"Crush them!\" shouts General Khashin.",
+        "actor": "General Khashin",
+        "focus": "dialogue",
+        "casel": [
+          "social-awareness"
+        ]
+      }
+    ],
+    "options": [
+      {
+        "id": "tac-archers",
+        "label": "Archers",
+        "beats": [
+          {
+            "id": "tac-archers-1",
+            "text": "Arrows rain down on the advancing soldiers.",
+            "focus": "observation",
+            "casel": [
+              "responsible-decision-making"
+            ]
+          },
+          {
+            "id": "tac-archers-2",
+            "text": "\"They fight from a distance! Cowards!\" an Odwani soldier shouts.",
+            "actor": "Odwani Soldier",
+            "focus": "dialogue",
+            "casel": [
+              "social-awareness"
+            ]
+          },
+          {
+            "id": "tac-archers-3",
+            "text": "\"Push forward! Shields up!\" shouts General Khashin.",
+            "actor": "General Khashin",
+            "focus": "dialogue",
+            "casel": [
+              "social-awareness"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tac-catapult",
+        "label": "Catapult",
+        "beats": [
+          {
+            "id": "tac-catapult-1",
+            "text": "Catapults launch boulders into the enemy ranks.",
+            "focus": "observation",
+            "casel": [
+              "responsible-decision-making"
+            ]
+          },
+          {
+            "id": "tac-catapult-2",
+            "text": "\"Their farmers build weapons of war?!\" asks General Khashin.",
+            "actor": "General Khashin",
+            "focus": "dialogue",
+            "casel": [
+              "social-awareness"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tac-traps",
+        "label": "Traps",
+        "beats": [
+          {
+            "id": "tac-traps-1",
+            "text": "Soldiers fall into pits and are caught in nets.",
+            "focus": "observation",
+            "casel": [
+              "responsible-decision-making"
+            ]
+          },
+          {
+            "id": "tac-traps-2",
+            "text": "\"It's a trap! They've prepared the battlefield!\" the Odwan commander shouts.",
+            "actor": "Odwan Commander",
+            "focus": "dialogue",
+            "casel": [
+              "social-awareness"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tac-swordsmen",
+        "label": "Swordsmen",
+        "beats": [
+          {
+            "id": "tac-swordsmen-1",
+            "text": "The Qulul fighters engage the enemy in close combat.",
+            "focus": "observation",
+            "casel": [
+              "self-management"
+            ]
+          },
+          {
+            "id": "tac-swordsmen-2",
+            "text": "\"For fifty years of tribute! For our freedom!\" shouts Widodo.",
+            "actor": "Widodo",
+            "focus": "dialogue",
+            "casel": [
+              "self-awareness",
+              "relationship-skills"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tac-medics",
+        "label": "Medics",
+        "beats": [
+          {
+            "id": "tac-medics-1",
+            "text": "Hadarah allies rush to treat the wounded.",
+            "focus": "observation",
+            "casel": [
+              "relationship-skills"
+            ]
+          },
+          {
+            "id": "tac-medics-2",
+            "text": "\"I can still fight!\" a wounded fighter says.",
+            "actor": "Wounded Fighter",
+            "focus": "dialogue",
+            "casel": [
+              "self-management"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tac-archers-final",
+        "label": "Archers again",
+        "isHidden": true,
+        "beats": [
+          {
+            "id": "tac-final-1",
+            "text": "A final volley of arrows targets General Khashin. His Simasi is struck.",
+            "focus": "observation",
+            "casel": [
+              "responsible-decision-making"
+            ]
+          },
+          {
+            "id": "tac-final-2",
+            "text": "\"Retreat! Retreat!\" shouts General Khashin.",
+            "actor": "General Khashin",
+            "focus": "dialogue",
+            "casel": [
+              "social-awareness"
+            ]
+          }
+        ]
+      }
+    ],
+    "conclusionBeats": [
+      {
+        "id": "tac-end-1",
+        "text": "The Odwan forces flee in disarray.",
+        "focus": "observation",
+        "casel": [
+          "social-awareness"
+        ]
+      }
+    ]
+  },
+  "ending": [
+    {
+      "id": "end-1",
+      "text": "\"You've done what we thought impossible. You've given us courage,\" says Widodo.",
+      "actor": "Widodo",
+      "focus": "dialogue",
+      "casel": [
+        "relationship-skills"
+      ]
+    },
+    {
+      "id": "end-2",
+      "text": "\"The Odwan will think twice before returning to Thumur,\" the Qulul elder says.",
+      "actor": "Qulul Elder",
+      "focus": "dialogue",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "end-3",
+      "text": "\"Word of this victory will spread. Others will find their courage too,\" a Hadarah ally says.",
+      "actor": "Hadarah Ally",
+      "focus": "dialogue",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "end-4",
+      "text": "\"This is the Kesatria Badge, symbol of a leader. No Qulul has worn it in generations. It belongs to you now,\" says Widodo.",
+      "actor": "Widodo",
+      "focus": "dialogue",
+      "casel": [
+        "relationship-skills"
+      ]
+    },
+    {
+      "id": "end-5",
+      "text": "Villagers present food. \"Peanut rice, peanut chicken, peanut bread\u2014our finest!\" a villager says.",
+      "actor": "Villager",
+      "focus": "dialogue",
+      "casel": [
+        "relationship-skills"
+      ]
+    },
+    {
+      "id": "end-6",
+      "text": "\"Thank you all, but my journey isn't over. My parents still need me,\" says Mono.",
+      "actor": "Mono",
+      "focus": "dialogue",
+      "casel": [
+        "self-awareness"
+      ]
+    },
+    {
+      "id": "end-7",
+      "text": "\"You've changed us, Mono. We were content to bend, but you've shown us we can stand tall despite our stature. What you've learned here\u2014that courage doesn't always mean rushing into battle, but finding the right way to fight\u2014take that wisdom with you,\" says Widodo.",
+      "actor": "Widodo",
+      "focus": "dialogue",
+      "casel": [
+        "self-awareness",
+        "responsible-decision-making"
+      ]
+    },
+    {
+      "id": "end-8",
+      "text": "\"I've heard rumors that Aqrab has a fortress in the northern mountains of Burudia. The giants there might know more,\" a Hadarah ally says.",
+      "actor": "Hadarah Ally",
+      "focus": "dialogue",
+      "casel": [
+        "social-awareness"
+      ]
+    },
+    {
+      "id": "end-9",
+      "text": "\"Then that's where I must go next,\" says Mono.",
+      "actor": "Mono",
+      "focus": "dialogue",
+      "casel": [
+        "responsible-decision-making"
+      ]
+    },
+    {
+      "id": "end-10",
+      "text": "\"The Qulul will always be your allies, my dear Mono. May your virtues guide you to your parents,\" says Widodo.",
+      "actor": "Widodo",
+      "focus": "dialogue",
+      "casel": [
+        "relationship-skills"
+      ]
+    },
+    {
+      "id": "end-11",
+      "text": "Mono mounts Zephir.",
+      "actor": "Mono",
+      "focus": "character-action",
+      "casel": [
+        "self-management"
+      ]
+    },
+    {
+      "id": "end-12",
+      "text": "\"Hold on, mother, father. I'm coming,\" says Mono.",
+      "actor": "Mono",
+      "focus": "dialogue",
+      "casel": [
+        "self-awareness"
+      ]
+    },
+    {
+      "id": "end-13",
+      "text": "The scene fades as Mono rides toward Burudia...",
+      "focus": "transition",
+      "casel": [
+        "self-awareness"
+      ]
+    }
+  ],
+  "_meta": {
+    "authoredAt": "2026-01-02T00:00:00Z",
+    "authoringVersion": "4C.0.0",
+    "totalBeats": 180,
+    "estimatedMinutes": 55
+  }
+}

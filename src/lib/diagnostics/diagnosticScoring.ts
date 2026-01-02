@@ -30,6 +30,33 @@ const DIAGNOSTIC_RUBRICS: Record<
     "c3-b": { Courage: 1, Knowledge: 2 }, // Help return paints quietly
     "c3-c": { Generosity: 2, Knowledge: 1 }, // Let Leo decide - generous autonomy
   },
+
+  "arraadia-mono-intro": {
+    // Checkpoint 1: Reaction to Injustice
+    "c1-a": { Courage: 2 }, // Confront soldiers directly
+    "c1-b": { Resilience: 1, Knowledge: 1 }, // Stay quiet and observe
+    "c1-c": { Kindness: 2, Knowledge: 1 }, // Negotiate calmly
+
+    // Checkpoint 2: Preparation Strategy
+    "c2-a": { Knowledge: 2 }, // Lower-quality crops
+    "c2-b": { Courage: 2, Resilience: 1 }, // Create defensive tools
+    "c2-c": { Knowledge: 1, Resilience: 2 }, // Build protective walls
+
+    // Checkpoint 3: Treatment of Others
+    "c3-a": { Kindness: 2, Generosity: 1 }, // Comfort young villager
+    "c3-b": { Kindness: 1, Knowledge: 2 }, // Explain to elder respectfully
+    "c3-c": { Resilience: 2 }, // Focus on task
+
+    // Checkpoint 4: Facing Fear Under Pressure
+    "c4-a": { Courage: 2, Kindness: 1 }, // Stand tall against general
+    "c4-b": { Knowledge: 2, Resilience: 1 }, // Propose negotiation
+    "c4-c": { Kindness: 2, Generosity: 2 }, // Rally villagers together
+
+    // Checkpoint 5: Identity / Values Choice
+    "c5-a": { Courage: 2 }, // Challenge to combat
+    "c5-b": { Knowledge: 2, Generosity: 1 }, // Use village strengths
+    "c5-c": { Kindness: 1, Resilience: 2 }, // Offer harvest to prevent bloodshed
+  },
 };
 
 /**
@@ -48,11 +75,18 @@ function computeMaxScores(storyId: string): Record<Virtue, number> {
 
   if (!rubric) return maxScores;
 
+  // Dynamically detect checkpoints from rubric keys (e.g., "c1-a" -> "c1")
+  const checkpointSet = new Set<string>();
+  for (const choiceId of Object.keys(rubric)) {
+    const match = choiceId.match(/^(c\d+)/);
+    if (match) checkpointSet.add(match[1]);
+  }
+  const checkpoints = Array.from(checkpointSet).sort();
+
   // For each checkpoint, take the max contribution from any choice
-  const checkpoints = ["c1", "c2", "c3"];
   for (const cp of checkpoints) {
     const cpChoices = Object.entries(rubric).filter(([id]) =>
-      id.startsWith(cp)
+      id.startsWith(cp + "-")
     );
     for (const virtue of VIRTUES) {
       const maxForCp = Math.max(

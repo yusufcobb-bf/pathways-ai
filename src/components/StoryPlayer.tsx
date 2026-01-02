@@ -17,6 +17,9 @@ import {
   NextAction,
   RoutingDecision,
 } from "@/data/story";
+import { VisualBeat, TacticalLoop, VisualCheckpoint } from "@/data/visual-story";
+import BranchBeatPlayer from "./story/BranchBeatPlayer";
+import TacticalLoopUI from "./story/TacticalLoopUI";
 import { buildDiagnosticProfile } from "@/lib/diagnostics/diagnosticScoring";
 import { buildTrainingEvent } from "@/lib/training/buildTrainingEvent";
 import { buildTrainingSummary } from "@/lib/training/buildTrainingSummary";
@@ -57,7 +60,8 @@ interface StoryPlayerProps {
   assignmentId?: string | null; // Stage 22: Assignment ID if launched from assignment
 }
 
-type Stage = "intro" | "checkpoint" | "ending" | "reflection" | "completed";
+// Stage 4B: Added "tactical" for tactical loop after c5
+type Stage = "intro" | "checkpoint" | "ending" | "reflection" | "completed" | "tactical";
 
 interface StoryState {
   stage: Stage;
@@ -85,6 +89,15 @@ interface StoryState {
   nextAction: NextAction | null; // Stage 35: Internal intent only
   routingDecision: RoutingDecision | null; // Stage 36: Execution result (internal only)
   routeResult: RouteResult | null; // Stage 37: Final route execution
+
+  // Stage 4B: Branch playback state
+  branchBeatsToPlay: VisualBeat[] | null;
+  isAutoCheckpoint: boolean; // True when processing c3 (no player choice)
+
+  // Stage 4B: Tactical loop state (non-scoring)
+  tacticalStage: "inactive" | "intro" | "selecting" | "playing" | "conclusion";
+  usedTactics: Set<string>;
+  currentTacticalBeats: VisualBeat[] | null;
 }
 
 function CheckpointProgress({
@@ -104,27 +117,6 @@ function CheckpointProgress({
           }`}
         />
       ))}
-    </div>
-  );
-}
-
-// Stage 26b: Global story progress bar (continuous, not segmented)
-function GlobalProgressBar({
-  current,
-  total,
-}: {
-  current: number;
-  total: number;
-}) {
-  const progress = Math.min((current / total) * 100, 100);
-  return (
-    <div className="mb-6">
-      <div className="h-1.5 w-full rounded-full bg-zinc-200">
-        <div
-          className="h-1.5 rounded-full bg-zinc-700 transition-all duration-300"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
     </div>
   );
 }
@@ -277,6 +269,13 @@ export default function StoryPlayer({
     nextAction: null, // Stage 35
     routingDecision: null, // Stage 36
     routeResult: null, // Stage 37
+    // Stage 4B: Branch playback
+    branchBeatsToPlay: null,
+    isAutoCheckpoint: false,
+    // Stage 4B: Tactical loop
+    tacticalStage: "inactive",
+    usedTactics: new Set<string>(),
+    currentTacticalBeats: null,
   });
 
   // Stage 25b: Track if user has clicked "Begin Story"
@@ -383,11 +382,24 @@ export default function StoryPlayer({
     const visualStory = isVisualBeatStory(story) ? story : null;
     const isDiagnostic = visualStory?.storyType === "diagnostic";
 
+    // Stage 4B: Check if choice has branch beats
+    const visualChoice = selectedChoice as VisualChoice;
+    const hasBranchBeats = visualChoice.branchBeats && visualChoice.branchBeats.length > 0;
+
     // Show selection feedback (choice lock animation)
+    // Stage 4B: Also queue branch beats if present
     setState((prev) => ({
       ...prev,
       selectedChoice: { id: choiceId, text: selectedChoice.text },
+      branchBeatsToPlay: hasBranchBeats ? visualChoice.branchBeats! : null,
     }));
+
+    // Stage 4B: If branch beats exist, they will play first
+    // BranchBeatPlayer's onComplete will call advanceToNextCheckpoint
+    if (hasBranchBeats) {
+      // Branch beats will handle the flow - no immediate advance
+      return;
+    }
 
     if (isDiagnostic) {
       // Stage 30: Diagnostic mode - skip feedback overlay, proceed after brief delay
@@ -503,24 +515,98 @@ export default function StoryPlayer({
 
     setState((prev) => ({ ...prev, isTransitioning: true }));
 
+    // Stage 4B: Determine next stage
+    // If last checkpoint and story has tacticalLoop, go to tactical stage
+    let nextStage: Stage = isLastCheckpoint ? "ending" : "checkpoint";
+    if (isLastCheckpoint && isVisualBeatStory(story) && story.tacticalLoop) {
+      nextStage = "tactical";
+    }
+
     setTimeout(() => {
       setState((prev) => ({
         ...prev,
         choices: [...prev.choices, choiceId],
-        stage: isLastCheckpoint ? "ending" : "checkpoint",
+        stage: nextStage,
         checkpointIndex: isLastCheckpoint ? currentIndex : nextIndex,
         selectedChoice: null,
         isTransitioning: false,
         checkpointNarrativeComplete: false, // Stage 26: Reset for next checkpoint
         activeFeedback: null, // Stage 29: Clear feedback
+        branchBeatsToPlay: null, // Stage 4B: Clear branch beats
         diagnosticProfile, // Stage 31: Store computed profile
         trainingSummary, // Stage 33: Store computed summary
         recommendations, // Stage 34: Store computed candidates
         nextAction, // Stage 35: Stored intent only
         routingDecision, // Stage 36: Stored execution result only
         routeResult, // Stage 37: Final route result
+        // Stage 4B: If going to tactical, set initial tactical stage
+        tacticalStage: nextStage === "tactical" ? "intro" : prev.tacticalStage,
       }));
     }, 200);
+  };
+
+  // Stage 4B: Advance from auto-checkpoint (c3) WITHOUT adding to state.choices
+  const advanceFromAutoCheckpoint = () => {
+    const currentIndex = state.checkpointIndex;
+    const nextIndex = currentIndex + 1;
+
+    setState((prev) => ({
+      ...prev,
+      isTransitioning: true,
+    }));
+
+    setTimeout(() => {
+      setState((prev) => ({
+        ...prev,
+        // NOTE: Does NOT add to choices - auto-checkpoint is not scored
+        stage: "checkpoint",
+        checkpointIndex: nextIndex,
+        selectedChoice: null,
+        isTransitioning: false,
+        checkpointNarrativeComplete: false,
+        branchBeatsToPlay: null,
+        isAutoCheckpoint: false,
+      }));
+    }, 200);
+  };
+
+  // Stage 4B: Handler for when branch beats complete
+  // Fix 4: Removed early branchBeatsToPlay clear - advanceToNextCheckpoint/advanceFromAutoCheckpoint
+  // already handle this, and the early clear caused a decision screen flash
+  const handleBranchBeatsComplete = () => {
+    const choiceId = state.selectedChoice?.id;
+
+    // If this was an auto-checkpoint, advance without adding to choices
+    if (state.isAutoCheckpoint) {
+      advanceFromAutoCheckpoint();
+    } else if (choiceId) {
+      // Normal choice - advance with the choice ID
+      advanceToNextCheckpoint(choiceId);
+    }
+  };
+
+  // Stage 4B: Handler to trigger auto-checkpoint branch beats
+  const triggerAutoCheckpointBranch = () => {
+    const currentCheckpoint = story.checkpoints[state.checkpointIndex];
+    const visualCheckpoint = currentCheckpoint as import("@/data/visual-story").VisualCheckpoint;
+
+    if (!visualCheckpoint.autoBranch) return;
+
+    // Find which prior choice determines our branch
+    const dependsOnId = visualCheckpoint.autoBranch.dependsOnCheckpointId;
+    const priorChoice = state.choices.find(c => c.startsWith(dependsOnId + "-"));
+
+    if (priorChoice && visualCheckpoint.autoBranch.beatsByChoiceId[priorChoice]) {
+      const branchBeats = visualCheckpoint.autoBranch.beatsByChoiceId[priorChoice];
+      setState((prev) => ({
+        ...prev,
+        branchBeatsToPlay: branchBeats,
+        isAutoCheckpoint: true,
+      }));
+    } else {
+      // No matching branch, advance anyway
+      advanceFromAutoCheckpoint();
+    }
   };
 
   // Stage 29: Handler for when feedback overlay completes
@@ -528,6 +614,64 @@ export default function StoryPlayer({
     const choiceId = state.selectedChoice?.id;
     if (!choiceId) return;
     advanceToNextCheckpoint(choiceId);
+  };
+
+  // Stage 4B: Tactical loop handlers
+  const handleTacticSelect = (tacticId: string) => {
+    if (!isVisualBeatStory(story) || !story.tacticalLoop) return;
+
+    const option = story.tacticalLoop.options.find(o => o.id === tacticId);
+    if (!option) return;
+
+    setState((prev) => ({
+      ...prev,
+      tacticalStage: "playing",
+      currentTacticalBeats: option.beats,
+      usedTactics: new Set([...prev.usedTactics, tacticId]),
+      // NOTE: Does NOT modify state.choices - tactical loop is non-scoring
+    }));
+  };
+
+  const handleTacticalIntroComplete = () => {
+    setState((prev) => ({
+      ...prev,
+      tacticalStage: "selecting",
+    }));
+  };
+
+  const handleTacticBeatsComplete = () => {
+    if (!isVisualBeatStory(story) || !story.tacticalLoop) return;
+
+    const baseTacticsCount = story.tacticalLoop.options.filter(o => !o.isHidden).length;
+    const allBaseUsed = state.usedTactics.size >= baseTacticsCount;
+    const hiddenOption = story.tacticalLoop.options.find(o => o.isHidden);
+    const finalUsed = hiddenOption && state.usedTactics.has(hiddenOption.id);
+
+    if (finalUsed) {
+      // All done including final -> play conclusion
+      setState((prev) => ({
+        ...prev,
+        tacticalStage: "conclusion",
+        currentTacticalBeats: null,
+      }));
+    } else {
+      // Return to menu (with "Archers again" revealed if allBaseUsed)
+      setState((prev) => ({
+        ...prev,
+        tacticalStage: "selecting",
+        currentTacticalBeats: null,
+      }));
+    }
+  };
+
+  const handleTacticalConclusionComplete = () => {
+    // Proceed to ending stage
+    setState((prev) => ({
+      ...prev,
+      stage: "ending",
+      tacticalStage: "inactive",
+      currentTacticalBeats: null,
+    }));
   };
 
   const handleContinueToReflection = () => {
@@ -767,16 +911,6 @@ export default function StoryPlayer({
         />
       )}
 
-      {/* Stage 26b: Global progress bar (visible during active story, not on decision screens) */}
-      {hasStartedStory &&
-        !["reflection", "completed"].includes(state.stage) &&
-        !(state.stage === "checkpoint" && state.checkpointNarrativeComplete) && (
-          <GlobalProgressBar
-            current={state.globalPageIndex + 1}
-            total={storySegments.totalPages}
-          />
-        )}
-
       {/* Stage 26b: Intro pages (after clicking Begin Story) - one sentence per page */}
       {state.stage === "intro" && hasStartedStory && (
         <StoryPager
@@ -800,8 +934,17 @@ export default function StoryPlayer({
             state.isTransitioning ? "opacity-0" : "opacity-100"
           }`}
         >
-          {/* Stage 26b: Show narrative pages FIRST, then choices */}
-          {!state.checkpointNarrativeComplete ? (
+          {/* Stage 4B: Branch beat playback takes priority */}
+          {state.branchBeatsToPlay && state.branchBeatsToPlay.length > 0 ? (
+            <BranchBeatPlayer
+              beats={state.branchBeatsToPlay}
+              archetypeId={archetypeId}
+              stageType="checkpoint"
+              stageIndex={state.checkpointIndex}
+              onComplete={handleBranchBeatsComplete}
+            />
+          ) : !state.checkpointNarrativeComplete ? (
+            /* Stage 26b: Show narrative pages FIRST, then choices */
             <StoryPager
               sentences={storySegments.checkpointSentences[state.checkpointIndex]}
               archetypeId={archetypeId}
@@ -814,44 +957,79 @@ export default function StoryPlayer({
                   storySegments.checkpointOffsets[state.checkpointIndex] + localIndex
                 )
               }
-              onComplete={handleCheckpointNarrativeComplete}
+              onComplete={() => {
+                handleCheckpointNarrativeComplete();
+                // Stage 4B: Check if this is an auto-checkpoint (c3)
+                const currentCp = story.checkpoints[state.checkpointIndex];
+                const visualCp = currentCp as import("@/data/visual-story").VisualCheckpoint;
+                if (currentCp.choices.length === 0 && visualCp.autoBranch) {
+                  // Auto-checkpoint: trigger branch beats after a brief delay
+                  setTimeout(() => triggerAutoCheckpointBranch(), 200);
+                }
+              }}
               // Stage 27: Allow going back to intro from checkpoint 0
               allowPrevAtStart={state.checkpointIndex === 0}
               onPrevAtStart={state.checkpointIndex === 0 ? handleBackToIntro : undefined}
             />
           ) : (
             <>
-              {/* Stage 44: Decision recap and instruction */}
-              <div className="mb-6 space-y-3">
-                {/* Recap - derived from last narrative beat(s) */}
-                <p className="text-sm leading-relaxed text-zinc-600">
-                  {getDecisionRecap(
-                    storySegments.checkpointSentences[state.checkpointIndex]
-                  )}
-                </p>
-                {/* Instruction */}
-                <p className="text-sm font-medium text-zinc-700">
-                  Click one option below to choose what happens next.
-                </p>
-              </div>
+              {/* Stage 4B: Skip choice UI for auto-checkpoints */}
+              {story.checkpoints[state.checkpointIndex].choices.length > 0 ? (
+                <>
+                  {/* Stage 44: Decision recap and instruction */}
+                  <div className="mb-6 space-y-3">
+                    {/* Recap - derived from last narrative beat(s) */}
+                    <p className="text-sm leading-relaxed text-zinc-600">
+                      {getDecisionRecap(
+                        storySegments.checkpointSentences[state.checkpointIndex]
+                      )}
+                    </p>
+                    {/* Instruction */}
+                    <p className="text-sm font-medium text-zinc-700">
+                      Click one option below to choose what happens next.
+                    </p>
+                  </div>
 
-              {/* Decision choices appear only after narrative is read */}
-              <DecisionChoiceGrid
-                choices={story.checkpoints[state.checkpointIndex].choices}
-                archetypeId={archetypeId}
-                checkpointIndex={state.checkpointIndex}
-                onSelect={handleChoice}
-                selectedChoiceId={state.selectedChoice?.id}
-              />
-              {/* Stage 14: Neutral choice acknowledgment */}
-              {state.selectedChoice && (
-                <p className="mt-4 text-sm text-zinc-500">
-                  You chose to{" "}
-                  {state.selectedChoice.text.toLowerCase().replace(/\.$/, "")}
-                </p>
-              )}
+                  {/* Decision choices appear only after narrative is read */}
+                  <DecisionChoiceGrid
+                    choices={story.checkpoints[state.checkpointIndex].choices}
+                    archetypeId={archetypeId}
+                    checkpointIndex={state.checkpointIndex}
+                    onSelect={handleChoice}
+                    selectedChoiceId={state.selectedChoice?.id}
+                  />
+                  {/* Stage 14: Neutral choice acknowledgment */}
+                  {state.selectedChoice && (
+                    <p className="mt-4 text-sm text-zinc-500">
+                      You chose to{" "}
+                      {state.selectedChoice.text.toLowerCase().replace(/\.$/, "")}
+                    </p>
+                  )}
+                </>
+              ) : null}
             </>
           )}
+        </div>
+      )}
+
+      {/* Stage 4B: Tactical loop (after c5, before ending) */}
+      {state.stage === "tactical" && isVisualBeatStory(story) && story.tacticalLoop && (
+        <div
+          className={`transition-opacity duration-200 ${
+            state.isTransitioning ? "opacity-0" : "opacity-100"
+          }`}
+        >
+          <TacticalLoopUI
+            tacticalLoop={story.tacticalLoop}
+            usedTactics={state.usedTactics}
+            stage={state.tacticalStage === "inactive" ? "intro" : state.tacticalStage}
+            currentBeats={state.currentTacticalBeats}
+            archetypeId={archetypeId}
+            onTacticSelect={handleTacticSelect}
+            onIntroComplete={handleTacticalIntroComplete}
+            onBeatsComplete={handleTacticBeatsComplete}
+            onConclusionComplete={handleTacticalConclusionComplete}
+          />
         </div>
       )}
 

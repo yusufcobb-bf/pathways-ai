@@ -150,13 +150,36 @@ export interface VisualChoice {
   focus: VisualFocus; // Illustration guidance for choice card
   illustrationHint?: string; // Optional image generation guidance
   feedback?: ChoiceFeedback; // Optional encouragement feedback (Stage 29)
+  branchBeats?: VisualBeat[]; // Stage 4B: Beats to play AFTER this choice is selected
+}
+
+// Stage 4B: Auto-branch config for conditional checkpoints (e.g., c3)
+export interface AutoBranch {
+  dependsOnCheckpointId: string; // e.g., "c2"
+  beatsByChoiceId: Record<string, VisualBeat[]>; // keys: "c2-a", "c2-b", "c2-c"
 }
 
 // Checkpoint with visual beats and choices
 export interface VisualCheckpoint {
   id: string; // "c1", "c2", "c3"
   beats: VisualBeat[]; // Narrative beats before choice
-  choices: VisualChoice[]; // 3 visual choice cards
+  choices: VisualChoice[]; // 3 visual choice cards (empty for auto-checkpoints)
+  autoBranch?: AutoBranch; // Stage 4B: For conditional checkpoints with choices: []
+}
+
+// Stage 4B: Tactical loop types for Final Confrontation
+export interface TacticalOption {
+  id: string; // e.g., "tac-archers"
+  label: string; // Button text, e.g., "Deploy Archers"
+  beats: VisualBeat[]; // Dialogue beats when this tactic is used
+  isHidden?: boolean; // For "Archers again" - revealed after all others used
+}
+
+export interface TacticalLoop {
+  id: string; // e.g., "final-confrontation"
+  introBeats: VisualBeat[]; // Context before tactical UI
+  options: TacticalOption[]; // 5 tactics + 1 hidden final
+  conclusionBeats: VisualBeat[]; // After all tactics used
 }
 
 // Curriculum alignment (first-class data for educator trust)
@@ -203,6 +226,9 @@ export interface VisualBeatStory {
   intro: VisualBeat[]; // Opening beats (8-12 recommended)
   checkpoints: VisualCheckpoint[]; // Decision points (exactly 3)
   ending: VisualBeat[]; // Closing beats (4-6 recommended)
+
+  // Stage 4B: Optional tactical loop (plays after c5, before ending)
+  tacticalLoop?: TacticalLoop;
 
   // Metadata
   _meta: VisualBeatStoryMeta;
