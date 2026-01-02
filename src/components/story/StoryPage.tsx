@@ -2,12 +2,24 @@
 
 /**
  * Stage 26: Story Page Component
+ * Stage 5: Visual metadata placeholder card
  *
  * Single full-page story unit with large image and caption.
  * One sentence per page for immersive reading experience.
+ * Shows visual metadata placeholder when no image AND meta exists.
  */
 
 import { useState, useEffect } from "react";
+
+// Stage 5: Small beatMeta object for placeholder card
+export interface BeatMeta {
+  location?: string;
+  shot?: string;
+  mood?: string;
+  actor?: string;
+  props?: string[];
+  illustrationKey?: string;
+}
 
 export interface StoryPageProps {
   sentence: string;
@@ -18,6 +30,13 @@ export interface StoryPageProps {
   onNext?: () => void;
   onPrev?: () => void;
   isLast?: boolean;
+  beatMeta?: BeatMeta; // Stage 5: Visual metadata for placeholder card
+}
+
+// Stage 5: Check if beatMeta has any displayable fields
+function hasMetaFields(meta?: BeatMeta): boolean {
+  if (!meta) return false;
+  return !!(meta.location || meta.shot || meta.mood || meta.actor || meta.props?.length);
 }
 
 export default function StoryPage({
@@ -29,6 +48,7 @@ export default function StoryPage({
   onNext,
   onPrev,
   isLast,
+  beatMeta,
 }: StoryPageProps) {
   // Track if image failed to load - fall back to gradient
   const [imageError, setImageError] = useState(false);
@@ -39,6 +59,9 @@ export default function StoryPage({
   }, [imageUrl]);
 
   const showImage = imageUrl && !imageError;
+
+  // Stage 5: Show placeholder card when no image AND beatMeta has fields
+  const showPlaceholderCard = !showImage && hasMetaFields(beatMeta);
 
   return (
     <div className="space-y-4">
@@ -67,23 +90,60 @@ export default function StoryPage({
             {/* Soft overlay for depth */}
             <div className="absolute inset-0 bg-white/40" />
 
-            {/* Center icon */}
-            <div className="relative z-10 flex h-full w-full items-center justify-center opacity-40">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-12 w-12 text-slate-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M3 5h18M3 19h18M5 7v10M19 7v10M8 11h8M8 15h8"
-                />
-              </svg>
-            </div>
+            {/* Stage 5: Placeholder card with visual metadata OR center icon */}
+            {showPlaceholderCard && beatMeta ? (
+              <div className="relative z-10 flex h-full w-full items-center justify-center p-4">
+                <div className="rounded-lg bg-white/80 px-4 py-3 text-sm text-zinc-600 shadow-sm backdrop-blur-sm">
+                  {beatMeta.location && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-zinc-400">Location:</span>
+                      <span>{beatMeta.location}</span>
+                    </div>
+                  )}
+                  {beatMeta.shot && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-zinc-400">Shot:</span>
+                      <span>{beatMeta.shot}</span>
+                    </div>
+                  )}
+                  {beatMeta.mood && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-zinc-400">Mood:</span>
+                      <span>{beatMeta.mood}</span>
+                    </div>
+                  )}
+                  {beatMeta.actor && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-zinc-400">Actor:</span>
+                      <span>{beatMeta.actor}</span>
+                    </div>
+                  )}
+                  {beatMeta.props && beatMeta.props.length > 0 && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-zinc-400">Props:</span>
+                      <span>{beatMeta.props.join(", ")}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div className="relative z-10 flex h-full w-full items-center justify-center opacity-40">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-12 w-12 text-slate-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M3 5h18M3 19h18M5 7v10M19 7v10M8 11h8M8 15h8"
+                  />
+                </svg>
+              </div>
+            )}
           </div>
         )}
       </div>

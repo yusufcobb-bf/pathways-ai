@@ -125,6 +125,9 @@ export const CASEL_TO_VIRTUE_MAP: Record<CASELCompetency, Virtue[]> = {
   "responsible-decision-making": ["Courage", "Knowledge"],
 };
 
+// Stage 5: Shot types for visual composition
+export type ShotType = "wide" | "medium" | "close-up" | "over-shoulder" | "top-down";
+
 // Single visual story beat
 export interface VisualBeat {
   id: string; // Unique beat ID (e.g., "intro-1", "c1-3")
@@ -133,6 +136,14 @@ export interface VisualBeat {
   focus: VisualFocus; // Illustration guidance
   casel: CASELCompetency[]; // Which competencies this beat supports (1-2 max)
   illustrationHint?: string; // Optional guidance for image generation
+
+  // Stage 5: Visual metadata for illustrator-ready beats
+  location?: string; // Scene location (e.g., "Thumur village square")
+  shot?: ShotType; // Camera shot type
+  mood?: string; // Emotional tone (e.g., "tense", "hopeful")
+  props?: string[]; // Key visible objects (e.g., ["sword", "tribute sacks"])
+  illustrationPrompt?: string; // Concrete, drawable scene description
+  illustrationKey?: string; // Unique key: "arraadia:{section}:{beat.id}"
 }
 
 // Feedback shown after selecting a choice (Stage 29)

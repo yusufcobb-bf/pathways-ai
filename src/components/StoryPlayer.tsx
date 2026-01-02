@@ -290,19 +290,31 @@ export default function StoryPlayer({
   const isVisualBeat = isVisualBeatStory(story);
 
   // Stage 26d/27: Compute all pages once for global page tracking
-  // Visual beat stories use extractBeatTexts, prose stories use parseNarrativeWithLimit
+  // Stage 5: Store full beats for visual beat stories, sentences for legacy
   const storySegments = useMemo(() => {
-    let introSentences: string[];
-    let checkpointSentences: string[][];
-    let endingSentences: string[];
+    // Stage 5: Store full beat arrays for visual beat stories
+    let introBeats: VisualBeat[] | undefined;
+    let checkpointBeats: VisualBeat[][] | undefined;
+    let endingBeats: VisualBeat[] | undefined;
+
+    // Legacy sentences for prose stories
+    let introSentences: string[] | undefined;
+    let checkpointSentences: string[][] | undefined;
+    let endingSentences: string[] | undefined;
+
+    let introLength: number;
+    let checkpointLengths: number[];
+    let endingLength: number;
 
     if (isVisualBeatStory(story)) {
-      // Stage 27: Visual beat story - extract text directly from beats
-      introSentences = extractBeatTexts(story.intro);
-      checkpointSentences = story.checkpoints.map((cp) =>
-        extractBeatTexts(cp.beats)
-      );
-      endingSentences = extractBeatTexts(story.ending);
+      // Stage 5: Visual beat story - store full beats with metadata
+      introBeats = story.intro;
+      checkpointBeats = story.checkpoints.map((cp) => cp.beats);
+      endingBeats = story.ending;
+
+      introLength = introBeats.length;
+      checkpointLengths = checkpointBeats.map((beats) => beats.length);
+      endingLength = endingBeats.length;
     } else {
       // Legacy prose story - parse narrative into sentences
       introSentences = parseNarrativeWithLimit(story.intro);
@@ -310,30 +322,40 @@ export default function StoryPlayer({
         parseNarrativeWithLimit(cp.narrative)
       );
       endingSentences = parseNarrativeWithLimit(story.ending);
+
+      introLength = introSentences.length;
+      checkpointLengths = checkpointSentences.map((s) => s.length);
+      endingLength = endingSentences.length;
     }
 
     // Calculate cumulative offsets for each segment
     let offset = 0;
     const introOffset = offset;
-    offset += introSentences.length;
+    offset += introLength;
 
-    const checkpointOffsets = checkpointSentences.map((sentences) => {
+    const checkpointOffsets = checkpointLengths.map((len) => {
       const cpOffset = offset;
-      offset += sentences.length;
+      offset += len;
       return cpOffset;
     });
 
     const endingOffset = offset;
-    offset += endingSentences.length;
+    offset += endingLength;
 
     const totalPages = offset;
 
     return {
+      // Stage 5: Full beat arrays for visual beat stories
+      introBeats,
+      checkpointBeats,
+      endingBeats,
+      // Legacy: sentences for prose stories
       introSentences,
-      introOffset,
       checkpointSentences,
-      checkpointOffsets,
       endingSentences,
+      // Offsets and totals
+      introOffset,
+      checkpointOffsets,
       endingOffset,
       totalPages,
     };
@@ -342,22 +364,25 @@ export default function StoryPlayer({
   // Stage 27: Track intro page for back navigation
   const [introCurrentPage, setIntroCurrentPage] = useState(0);
 
+  // Stage 5: Helper to get intro length (beats or sentences)
+  const introLength = storySegments.introBeats?.length ?? storySegments.introSentences?.length ?? 0;
+
   const handleStartStory = () => {
     // Store the last page of intro when transitioning
     setState((prev) => ({
       ...prev,
       stage: "checkpoint",
-      introLastPage: storySegments.introSentences.length - 1,
+      introLastPage: introLength - 1,
     }));
   };
 
   // Stage 27: Handler to go back from checkpoint 0 to intro
   const handleBackToIntro = () => {
-    setIntroCurrentPage(storySegments.introSentences.length - 1);
+    setIntroCurrentPage(introLength - 1);
     setState((prev) => ({
       ...prev,
       stage: "intro",
-      globalPageIndex: storySegments.introSentences.length - 1,
+      globalPageIndex: introLength - 1,
     }));
   };
 
@@ -912,8 +937,10 @@ export default function StoryPlayer({
       )}
 
       {/* Stage 26b: Intro pages (after clicking Begin Story) - one sentence per page */}
+      {/* Stage 5: Pass beats for visual beat stories, sentences for legacy */}
       {state.stage === "intro" && hasStartedStory && (
         <StoryPager
+          beats={storySegments.introBeats}
           sentences={storySegments.introSentences}
           archetypeId={archetypeId}
           stageType="intro"
@@ -945,8 +972,10 @@ export default function StoryPlayer({
             />
           ) : !state.checkpointNarrativeComplete ? (
             /* Stage 26b: Show narrative pages FIRST, then choices */
+            /* Stage 5: Pass beats for visual beat stories, sentences for legacy */
             <StoryPager
-              sentences={storySegments.checkpointSentences[state.checkpointIndex]}
+              beats={storySegments.checkpointBeats?.[state.checkpointIndex]}
+              sentences={storySegments.checkpointSentences?.[state.checkpointIndex]}
               archetypeId={archetypeId}
               stageType="checkpoint"
               stageIndex={state.checkpointIndex}
@@ -979,9 +1008,12 @@ export default function StoryPlayer({
                   {/* Stage 44: Decision recap and instruction */}
                   <div className="mb-6 space-y-3">
                     {/* Recap - derived from last narrative beat(s) */}
+                    {/* Stage 5: Extract text from beats or use sentences */}
                     <p className="text-sm leading-relaxed text-zinc-600">
                       {getDecisionRecap(
-                        storySegments.checkpointSentences[state.checkpointIndex]
+                        storySegments.checkpointBeats?.[state.checkpointIndex]?.map(b => b.text) ??
+                        storySegments.checkpointSentences?.[state.checkpointIndex] ??
+                        []
                       )}
                     </p>
                     {/* Instruction */}
@@ -1034,8 +1066,10 @@ export default function StoryPlayer({
       )}
 
       {/* Stage 26b: Ending pages - one sentence per page */}
+      {/* Stage 5: Pass beats for visual beat stories, sentences for legacy */}
       {state.stage === "ending" && (
         <StoryPager
+          beats={storySegments.endingBeats}
           sentences={storySegments.endingSentences}
           archetypeId={archetypeId}
           stageType="ending"

@@ -38,7 +38,12 @@
       "focus": "environment",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "wide",
+      "mood": "epic",
+      "illustrationPrompt": "Vast fantasy continent with diverse nations, viewed from above",
+      "illustrationKey": "arraadia:intro:intro-1",
+      "location": "Arraadia - overview"
     },
     {
       "id": "intro-2",
@@ -46,7 +51,12 @@
       "focus": "environment",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "wide",
+      "mood": "epic",
+      "illustrationPrompt": "Golden desert city with towering libraries and bustling markets",
+      "illustrationKey": "arraadia:intro:intro-2",
+      "location": "Hadarah - southern nation"
     },
     {
       "id": "intro-3",
@@ -54,7 +64,12 @@
       "focus": "environment",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "wide",
+      "mood": "somber",
+      "illustrationPrompt": "Peaceful farming village with round houses and green fields",
+      "illustrationKey": "arraadia:intro:intro-3",
+      "location": "Thumur - eastern farmlands"
     },
     {
       "id": "intro-4",
@@ -62,7 +77,12 @@
       "focus": "environment",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "wide",
+      "mood": "epic",
+      "illustrationPrompt": "Snowy mountain peaks with massive stone fortresses",
+      "illustrationKey": "arraadia:intro:intro-4",
+      "location": "Burudia - northern mountains"
     },
     {
       "id": "intro-5",
@@ -70,7 +90,12 @@
       "focus": "environment",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "wide",
+      "mood": "epic",
+      "illustrationPrompt": "Dark fortress nation with war banners and armored soldiers",
+      "illustrationKey": "arraadia:intro:intro-5",
+      "location": "Odwan - western nation"
     },
     {
       "id": "intro-6",
@@ -78,7 +103,12 @@
       "focus": "environment",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "wide",
+      "mood": "epic",
+      "illustrationPrompt": "Vast fantasy continent with diverse nations, viewed from above",
+      "illustrationKey": "arraadia:intro:intro-6",
+      "location": "Arraadia - overview"
     },
     {
       "id": "intro-7",
@@ -86,7 +116,12 @@
       "focus": "observation",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "epic",
+      "illustrationPrompt": "Wide shot observing the scene",
+      "illustrationKey": "arraadia:intro:intro-7",
+      "location": "Hadarah - southern nation"
     },
     {
       "id": "intro-8",
@@ -95,7 +130,12 @@
       "focus": "character-action",
       "casel": [
         "self-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "tense",
+      "illustrationPrompt": "Mono in action",
+      "illustrationKey": "arraadia:intro:intro-8",
+      "location": "Mono's home in Hadarah"
     },
     {
       "id": "intro-9",
@@ -104,7 +144,12 @@
       "focus": "character-emotion",
       "casel": [
         "self-awareness"
-      ]
+      ],
+      "shot": "close-up",
+      "mood": "tense",
+      "illustrationPrompt": "Close-up of Mono's face with concerned expression",
+      "illustrationKey": "arraadia:intro:intro-9",
+      "location": "Mono's home in Hadarah"
     },
     {
       "id": "intro-10",
@@ -112,6 +157,14 @@
       "focus": "character-action",
       "casel": [
         "social-awareness"
+      ],
+      "shot": "medium",
+      "mood": "tense",
+      "illustrationPrompt": "Character performing action",
+      "illustrationKey": "arraadia:intro:intro-10",
+      "location": "Mono's home in Hadarah",
+      "props": [
+        "wooden walls"
       ]
     },
     {
@@ -121,7 +174,12 @@
       "focus": "dialogue",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "menacing",
+      "illustrationPrompt": "Aqrab speaking, mid-sentence",
+      "illustrationKey": "arraadia:intro:intro-11",
+      "location": "Mono's home in Hadarah"
     },
     {
       "id": "intro-12",
@@ -130,7 +188,12 @@
       "focus": "dialogue",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "tense",
+      "illustrationPrompt": "Aqrab speaking, mid-sentence",
+      "illustrationKey": "arraadia:intro:intro-12",
+      "location": "Mono's home in Hadarah"
     },
     {
       "id": "intro-13",
@@ -140,7 +203,12 @@
       "casel": [
         "self-awareness",
         "self-management"
-      ]
+      ],
+      "shot": "close-up",
+      "mood": "fearful",
+      "illustrationPrompt": "Close-up of Mono's face with fearful, hiding expression",
+      "illustrationKey": "arraadia:intro:intro-13",
+      "location": "Mono's home in Hadarah"
     },
     {
       "id": "intro-14",
@@ -148,6 +216,14 @@
       "focus": "observation",
       "casel": [
         "social-awareness"
+      ],
+      "shot": "medium",
+      "mood": "tense",
+      "illustrationPrompt": "Wide shot observing the scene",
+      "illustrationKey": "arraadia:intro:intro-14",
+      "location": "Mono's home in Hadarah",
+      "props": [
+        "shields"
       ]
     },
     {
@@ -157,7 +233,12 @@
       "focus": "character-action",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "tense",
+      "illustrationPrompt": "Aqrab in action",
+      "illustrationKey": "arraadia:intro:intro-15",
+      "location": "Mono's home in Hadarah"
     },
     {
       "id": "intro-16",
@@ -166,15 +247,25 @@
       "focus": "character-action",
       "casel": [
         "self-management"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "menacing",
+      "illustrationPrompt": "Mono in action",
+      "illustrationKey": "arraadia:intro:intro-16",
+      "location": "Arbaab's house"
     },
     {
       "id": "intro-17",
-      "text": "Mono realizes there is only one choice now\u2014to find Uncle Arbaab, their father's longtime friend.",
+      "text": "Mono realizes there is only one choice now—to find Uncle Arbaab, their father's longtime friend.",
       "focus": "observation",
       "casel": [
         "responsible-decision-making"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "warm",
+      "illustrationPrompt": "Wide shot observing the scene",
+      "illustrationKey": "arraadia:intro:intro-17",
+      "location": "Arbaab's house"
     },
     {
       "id": "intro-18",
@@ -183,7 +274,12 @@
       "focus": "character-action",
       "casel": [
         "self-management"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "urgent",
+      "illustrationPrompt": "Mono riding a beast",
+      "illustrationKey": "arraadia:intro:intro-18",
+      "location": "Arbaab's house"
     },
     {
       "id": "intro-19",
@@ -192,7 +288,12 @@
       "focus": "dialogue",
       "casel": [
         "self-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "aggressive",
+      "illustrationPrompt": "Mono speaking, mid-sentence",
+      "illustrationKey": "arraadia:intro:intro-19",
+      "location": "Arbaab's house"
     },
     {
       "id": "intro-20",
@@ -201,7 +302,12 @@
       "focus": "dialogue",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "urgent",
+      "illustrationPrompt": "Arbaab speaking, mid-sentence",
+      "illustrationKey": "arraadia:intro:intro-20",
+      "location": "Arbaab's house"
     },
     {
       "id": "intro-21",
@@ -210,7 +316,12 @@
       "focus": "dialogue",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "somber",
+      "illustrationPrompt": "Arbaab speaking, mid-sentence",
+      "illustrationKey": "arraadia:intro:intro-21",
+      "location": "Arbaab's house"
     },
     {
       "id": "intro-22",
@@ -219,7 +330,12 @@
       "focus": "dialogue",
       "casel": [
         "responsible-decision-making"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "urgent",
+      "illustrationPrompt": "Arbaab speaking, mid-sentence",
+      "illustrationKey": "arraadia:intro:intro-22",
+      "location": "Arbaab's house"
     },
     {
       "id": "intro-23",
@@ -228,6 +344,16 @@
       "focus": "object",
       "casel": [
         "relationship-skills"
+      ],
+      "shot": "close-up",
+      "mood": "urgent",
+      "illustrationPrompt": "Sword and supplies laid out on a table",
+      "illustrationKey": "arraadia:intro:intro-23",
+      "location": "Arbaab's house",
+      "props": [
+        "sword",
+        "gold coins",
+        "food supplies"
       ]
     },
     {
@@ -237,7 +363,12 @@
       "focus": "environment",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "wide",
+      "mood": "somber",
+      "illustrationPrompt": "Peaceful farming village with round houses and green fields",
+      "illustrationKey": "arraadia:intro:intro-24",
+      "location": "Thumur village"
     },
     {
       "id": "intro-25",
@@ -246,6 +377,14 @@
       "focus": "dialogue",
       "casel": [
         "social-awareness"
+      ],
+      "shot": "medium",
+      "mood": "warm",
+      "illustrationPrompt": "Villager speaking, mid-sentence",
+      "illustrationKey": "arraadia:intro:intro-25",
+      "location": "Thumur village",
+      "props": [
+        "peanut dishes"
       ]
     },
     {
@@ -255,7 +394,12 @@
       "focus": "character-action",
       "casel": [
         "relationship-skills"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "warm",
+      "illustrationPrompt": "Mono in action",
+      "illustrationKey": "arraadia:intro:intro-26",
+      "location": "Thumur village"
     },
     {
       "id": "intro-27",
@@ -264,7 +408,12 @@
       "focus": "character-action",
       "casel": [
         "relationship-skills"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "curious",
+      "illustrationPrompt": "Mono in action",
+      "illustrationKey": "arraadia:intro:intro-27",
+      "location": "Thumur village"
     },
     {
       "id": "intro-28",
@@ -273,7 +422,12 @@
       "focus": "dialogue",
       "casel": [
         "relationship-skills"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "warm",
+      "illustrationPrompt": "Worker speaking, mid-sentence",
+      "illustrationKey": "arraadia:intro:intro-28",
+      "location": "Thumur village"
     },
     {
       "id": "intro-29",
@@ -281,6 +435,14 @@
       "focus": "environment",
       "casel": [
         "social-awareness"
+      ],
+      "shot": "wide",
+      "mood": "curious",
+      "illustrationPrompt": "Wide establishing shot of the scene",
+      "illustrationKey": "arraadia:intro:intro-29",
+      "location": "Thumur village",
+      "props": [
+        "crops"
       ]
     },
     {
@@ -290,7 +452,12 @@
       "focus": "character-action",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "curious",
+      "illustrationPrompt": "Widodo in action",
+      "illustrationKey": "arraadia:intro:intro-30",
+      "location": "Thumur village"
     },
     {
       "id": "intro-31",
@@ -299,7 +466,12 @@
       "focus": "dialogue",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "curious",
+      "illustrationPrompt": "Widodo speaking, mid-sentence",
+      "illustrationKey": "arraadia:intro:intro-31",
+      "location": "Thumur village"
     },
     {
       "id": "intro-32",
@@ -308,7 +480,12 @@
       "focus": "dialogue",
       "casel": [
         "self-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "curious",
+      "illustrationPrompt": "Mono speaking, facing forward",
+      "illustrationKey": "arraadia:intro:intro-32",
+      "location": "Thumur village"
     },
     {
       "id": "intro-33",
@@ -317,7 +494,12 @@
       "focus": "dialogue",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "somber",
+      "illustrationPrompt": "Widodo speaking, mid-sentence",
+      "illustrationKey": "arraadia:intro:intro-33",
+      "location": "Thumur village"
     },
     {
       "id": "intro-34",
@@ -326,7 +508,12 @@
       "focus": "dialogue",
       "casel": [
         "self-management"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "curious",
+      "illustrationPrompt": "Widodo speaking, mid-sentence",
+      "illustrationKey": "arraadia:intro:intro-34",
+      "location": "Thumur village"
     },
     {
       "id": "intro-35",
@@ -334,7 +521,12 @@
       "focus": "observation",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "curious",
+      "illustrationPrompt": "Wide shot observing the scene",
+      "illustrationKey": "arraadia:intro:intro-35",
+      "location": "Thumur village square"
     },
     {
       "id": "intro-36",
@@ -343,6 +535,14 @@
       "focus": "dialogue",
       "casel": [
         "social-awareness"
+      ],
+      "shot": "medium",
+      "mood": "aggressive",
+      "illustrationPrompt": "Villager speaking, mid-sentence",
+      "illustrationKey": "arraadia:intro:intro-36",
+      "location": "Thumur village square",
+      "props": [
+        "tribute sacks"
       ]
     },
     {
@@ -352,6 +552,14 @@
       "focus": "character-action",
       "casel": [
         "social-awareness"
+      ],
+      "shot": "medium",
+      "mood": "curious",
+      "illustrationPrompt": "Mono in action",
+      "illustrationKey": "arraadia:intro:intro-37",
+      "location": "Thumur village square",
+      "props": [
+        "armor"
       ]
     },
     {
@@ -361,6 +569,15 @@
       "focus": "dialogue",
       "casel": [
         "social-awareness"
+      ],
+      "shot": "medium",
+      "mood": "aggressive",
+      "illustrationPrompt": "Soldier speaking, mid-sentence",
+      "illustrationKey": "arraadia:intro:intro-38",
+      "location": "Thumur village square",
+      "props": [
+        "gold coins",
+        "crops"
       ]
     },
     {
@@ -370,7 +587,12 @@
       "focus": "dialogue",
       "casel": [
         "self-management"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "curious",
+      "illustrationPrompt": "Widodo speaking, mid-sentence",
+      "illustrationKey": "arraadia:intro:intro-39",
+      "location": "Thumur village square"
     },
     {
       "id": "intro-40",
@@ -379,7 +601,12 @@
       "focus": "character-action",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "curious",
+      "illustrationPrompt": "Soldier aggressively grabbing someone",
+      "illustrationKey": "arraadia:intro:intro-40",
+      "location": "Thumur village square"
     },
     {
       "id": "intro-41",
@@ -388,7 +615,12 @@
       "focus": "dialogue",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "curious",
+      "illustrationPrompt": "Widodo speaking, mid-sentence",
+      "illustrationKey": "arraadia:intro:intro-41",
+      "location": "Thumur village square"
     },
     {
       "id": "intro-42",
@@ -396,7 +628,12 @@
       "focus": "transition",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "wide",
+      "mood": "aggressive",
+      "illustrationPrompt": "Sun moving across the sky, time passing",
+      "illustrationKey": "arraadia:intro:intro-42",
+      "location": "Thumur village square"
     }
   ],
   "checkpoints": [
@@ -410,7 +647,12 @@
           "focus": "dialogue",
           "casel": [
             "social-awareness"
-          ]
+          ],
+          "shot": "medium",
+          "mood": "conversational",
+          "illustrationPrompt": "Soldier speaking, mid-sentence",
+          "illustrationKey": "arraadia:c1:c1-1",
+          "location": "Thumur village square"
         },
         {
           "id": "c1-2",
@@ -418,7 +660,12 @@
           "focus": "observation",
           "casel": [
             "social-awareness"
-          ]
+          ],
+          "shot": "medium",
+          "mood": "fearful",
+          "illustrationPrompt": "Villagers gathered together, expressions visible",
+          "illustrationKey": "arraadia:c1:c1-2",
+          "location": "Thumur village square"
         },
         {
           "id": "c1-3",
@@ -427,16 +674,26 @@
           "focus": "character-action",
           "casel": [
             "social-awareness"
-          ]
+          ],
+          "shot": "medium",
+          "mood": "tense",
+          "illustrationPrompt": "Widodo in action",
+          "illustrationKey": "arraadia:c1:c1-3",
+          "location": "Thumur village square"
         },
         {
           "id": "c1-4",
-          "text": "Mono feels something stirring inside\u2014this isn't right.",
+          "text": "Mono feels something stirring inside—this isn't right.",
           "actor": "Mono",
           "focus": "character-emotion",
           "casel": [
             "self-awareness"
-          ]
+          ],
+          "shot": "close-up",
+          "mood": "emotional",
+          "illustrationPrompt": "Close-up of Mono's face with determined, resolved expression",
+          "illustrationKey": "arraadia:c1:c1-4",
+          "location": "Thumur village square"
         }
       ],
       "choices": [
@@ -461,7 +718,12 @@
               "casel": [
                 "self-management",
                 "responsible-decision-making"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "aggressive",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-a:c1-a-1",
+              "location": "Thumur village square"
             },
             {
               "id": "c1-a-2",
@@ -470,7 +732,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "menacing",
+              "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-a:c1-a-2",
+              "location": "Thumur village square"
             },
             {
               "id": "c1-a-3",
@@ -479,7 +746,12 @@
               "focus": "dialogue",
               "casel": [
                 "self-management"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-a:c1-a-3",
+              "location": "Thumur village square"
             },
             {
               "id": "c1-a-4",
@@ -487,7 +759,12 @@
               "focus": "observation",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Fierce melee combat between fighters",
+              "illustrationKey": "arraadia:c1-a:c1-a-4",
+              "location": "Thumur village square"
             },
             {
               "id": "c1-a-5",
@@ -496,7 +773,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-a:c1-a-5",
+              "location": "Thumur village square"
             },
             {
               "id": "c1-a-6",
@@ -505,6 +787,14 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-a:c1-a-6",
+              "location": "Thumur village square",
+              "props": [
+                "tribute sacks"
               ]
             },
             {
@@ -513,6 +803,14 @@
               "focus": "observation",
               "casel": [
                 "social-awareness"
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Villagers carrying baskets and sacks of goods",
+              "illustrationKey": "arraadia:c1-a:c1-a-7",
+              "location": "Thumur village square",
+              "props": [
+                "tribute sacks"
               ]
             },
             {
@@ -522,7 +820,12 @@
               "focus": "dialogue",
               "casel": [
                 "relationship-skills"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "menacing",
+              "illustrationPrompt": "Widodo speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-a:c1-a-8",
+              "location": "Thumur village square"
             }
           ]
         },
@@ -547,7 +850,12 @@
               "focus": "character-action",
               "casel": [
                 "self-management"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Mono stepping forward with determination",
+              "illustrationKey": "arraadia:c1-b:c1-b-1",
+              "location": "Thumur village square"
             },
             {
               "id": "c1-b-2",
@@ -556,7 +864,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Widodo speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-b:c1-b-2",
+              "location": "Thumur village square"
             },
             {
               "id": "c1-b-3",
@@ -564,6 +877,14 @@
               "focus": "observation",
               "casel": [
                 "social-awareness"
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Villagers carrying baskets and sacks of goods",
+              "illustrationKey": "arraadia:c1-b:c1-b-3",
+              "location": "Thumur village square",
+              "props": [
+                "tribute sacks"
               ]
             },
             {
@@ -573,7 +894,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-b:c1-b-4",
+              "location": "Thumur village square"
             },
             {
               "id": "c1-b-5",
@@ -581,6 +907,14 @@
               "focus": "observation",
               "casel": [
                 "social-awareness"
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Villagers carrying baskets and sacks of goods",
+              "illustrationKey": "arraadia:c1-b:c1-b-5",
+              "location": "Thumur village square",
+              "props": [
+                "tribute sacks"
               ]
             },
             {
@@ -590,7 +924,12 @@
               "focus": "dialogue",
               "casel": [
                 "self-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-b:c1-b-6",
+              "location": "Thumur village square"
             },
             {
               "id": "c1-b-7",
@@ -599,7 +938,12 @@
               "focus": "dialogue",
               "casel": [
                 "relationship-skills"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Widodo speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-b:c1-b-7",
+              "location": "Thumur village square"
             }
           ]
         },
@@ -625,6 +969,14 @@
               "casel": [
                 "relationship-skills",
                 "responsible-decision-making"
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-c:c1-c-1",
+              "location": "Thumur village square",
+              "props": [
+                "crops"
               ]
             },
             {
@@ -634,7 +986,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-c:c1-c-2",
+              "location": "Thumur village square"
             },
             {
               "id": "c1-c-3",
@@ -643,7 +1000,12 @@
               "focus": "dialogue",
               "casel": [
                 "responsible-decision-making"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-c:c1-c-3",
+              "location": "Thumur village square"
             },
             {
               "id": "c1-c-4",
@@ -652,7 +1014,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-c:c1-c-4",
+              "location": "Thumur village square"
             },
             {
               "id": "c1-c-5",
@@ -661,6 +1028,15 @@
               "focus": "dialogue",
               "casel": [
                 "responsible-decision-making"
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-c:c1-c-5",
+              "location": "Thumur village square",
+              "props": [
+                "crops",
+                "tribute sacks"
               ]
             },
             {
@@ -670,7 +1046,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-c:c1-c-6",
+              "location": "Thumur village square"
             },
             {
               "id": "c1-c-7",
@@ -678,6 +1059,14 @@
               "focus": "observation",
               "casel": [
                 "social-awareness"
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Villagers carrying baskets and sacks of goods",
+              "illustrationKey": "arraadia:c1-c:c1-c-7",
+              "location": "Thumur village square",
+              "props": [
+                "tribute sacks"
               ]
             },
             {
@@ -687,7 +1076,12 @@
               "focus": "dialogue",
               "casel": [
                 "relationship-skills"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Widodo speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-c:c1-c-8",
+              "location": "Thumur village square"
             },
             {
               "id": "c1-c-9",
@@ -696,7 +1090,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Villager speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-c:c1-c-9",
+              "location": "Thumur village square"
             },
             {
               "id": "c1-c-10",
@@ -705,7 +1104,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Villager speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-c:c1-c-10",
+              "location": "Thumur village square"
             },
             {
               "id": "c1-c-11",
@@ -714,7 +1118,12 @@
               "focus": "dialogue",
               "casel": [
                 "relationship-skills"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "hopeful",
+              "illustrationPrompt": "Widodo speaking, mid-sentence",
+              "illustrationKey": "arraadia:c1-c:c1-c-11",
+              "location": "Thumur village square"
             }
           ]
         }
@@ -729,7 +1138,12 @@
           "focus": "transition",
           "casel": [
             "social-awareness"
-          ]
+          ],
+          "shot": "wide",
+          "mood": "tense",
+          "illustrationPrompt": "Scene transition visual",
+          "illustrationKey": "arraadia:c2:c2-1",
+          "location": "Thumur village square"
         },
         {
           "id": "c2-2",
@@ -738,7 +1152,12 @@
           "focus": "dialogue",
           "casel": [
             "responsible-decision-making"
-          ]
+          ],
+          "shot": "medium",
+          "mood": "conversational",
+          "illustrationPrompt": "Widodo speaking, mid-sentence",
+          "illustrationKey": "arraadia:c2:c2-2",
+          "location": "Thumur village square"
         },
         {
           "id": "c2-3",
@@ -747,7 +1166,12 @@
           "focus": "dialogue",
           "casel": [
             "responsible-decision-making"
-          ]
+          ],
+          "shot": "medium",
+          "mood": "conversational",
+          "illustrationPrompt": "Widodo speaking, mid-sentence",
+          "illustrationKey": "arraadia:c2:c2-3",
+          "location": "Thumur village square"
         },
         {
           "id": "c2-4",
@@ -756,7 +1180,12 @@
           "casel": [
             "social-awareness",
             "relationship-skills"
-          ]
+          ],
+          "shot": "wide",
+          "mood": "tense",
+          "illustrationPrompt": "Multiple characters gathered together",
+          "illustrationKey": "arraadia:c2:c2-4",
+          "location": "Thumur village square"
         }
       ],
       "choices": [
@@ -779,6 +1208,14 @@
               "focus": "dialogue",
               "casel": [
                 "responsible-decision-making"
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c2-a:c2-a-1",
+              "location": "Thumur village square",
+              "props": [
+                "crops"
               ]
             },
             {
@@ -788,7 +1225,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Widodo speaking, mid-sentence",
+              "illustrationKey": "arraadia:c2-a:c2-a-2",
+              "location": "Thumur village square"
             },
             {
               "id": "c2-a-3",
@@ -797,7 +1239,12 @@
               "focus": "dialogue",
               "casel": [
                 "responsible-decision-making"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c2-a:c2-a-3",
+              "location": "Thumur village square"
             },
             {
               "id": "c2-a-4",
@@ -805,6 +1252,14 @@
               "focus": "observation",
               "casel": [
                 "relationship-skills"
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Villagers gathered together, expressions visible",
+              "illustrationKey": "arraadia:c2-a:c2-a-4",
+              "location": "Thumur village square",
+              "props": [
+                "crops"
               ]
             }
           ]
@@ -830,6 +1285,14 @@
               "focus": "dialogue",
               "casel": [
                 "responsible-decision-making"
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c2-b:c2-b-1",
+              "location": "Thumur village square",
+              "props": [
+                "weapons"
               ]
             },
             {
@@ -839,6 +1302,14 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Villager speaking, mid-sentence",
+              "illustrationKey": "arraadia:c2-b:c2-b-2",
+              "location": "Thumur village square",
+              "props": [
+                "weapons"
               ]
             },
             {
@@ -848,7 +1319,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Widodo speaking, mid-sentence",
+              "illustrationKey": "arraadia:c2-b:c2-b-3",
+              "location": "Thumur village square"
             },
             {
               "id": "c2-b-4",
@@ -857,7 +1333,12 @@
               "focus": "dialogue",
               "casel": [
                 "responsible-decision-making"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c2-b:c2-b-4",
+              "location": "Thumur village square"
             },
             {
               "id": "c2-b-5",
@@ -865,6 +1346,14 @@
               "focus": "observation",
               "casel": [
                 "self-management"
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Wide shot observing the scene",
+              "illustrationKey": "arraadia:c2-b:c2-b-5",
+              "location": "Thumur village square",
+              "props": [
+                "weapons"
               ]
             }
           ]
@@ -890,7 +1379,12 @@
               "focus": "dialogue",
               "casel": [
                 "responsible-decision-making"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c2-c:c2-c-1",
+              "location": "Thumur village square"
             },
             {
               "id": "c2-c-2",
@@ -899,6 +1393,14 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Widodo speaking, mid-sentence",
+              "illustrationKey": "arraadia:c2-c:c2-c-2",
+              "location": "Thumur village square",
+              "props": [
+                "wooden walls"
               ]
             },
             {
@@ -908,7 +1410,12 @@
               "focus": "dialogue",
               "casel": [
                 "responsible-decision-making"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c2-c:c2-c-3",
+              "location": "Thumur village square"
             },
             {
               "id": "c2-c-4",
@@ -917,7 +1424,12 @@
               "focus": "dialogue",
               "casel": [
                 "relationship-skills"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Widodo speaking, mid-sentence",
+              "illustrationKey": "arraadia:c2-c:c2-c-4",
+              "location": "Thumur village square"
             },
             {
               "id": "c2-c-5",
@@ -925,6 +1437,14 @@
               "focus": "observation",
               "casel": [
                 "relationship-skills"
+              ],
+              "shot": "medium",
+              "mood": "hopeful",
+              "illustrationPrompt": "Villagers gathered together, expressions visible",
+              "illustrationKey": "arraadia:c2-c:c2-c-5",
+              "location": "Thumur village square",
+              "props": [
+                "wooden walls"
               ]
             }
           ]
@@ -940,6 +1460,14 @@
           "focus": "transition",
           "casel": [
             "social-awareness"
+          ],
+          "shot": "wide",
+          "mood": "tense",
+          "illustrationPrompt": "Sun moving across the sky, time passing",
+          "illustrationKey": "arraadia:c3:c3-1",
+          "location": "Thumur village square",
+          "props": [
+            "tribute sacks"
           ]
         },
         {
@@ -949,6 +1477,14 @@
           "focus": "dialogue",
           "casel": [
             "social-awareness"
+          ],
+          "shot": "medium",
+          "mood": "aggressive",
+          "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+          "illustrationKey": "arraadia:c3:c3-2",
+          "location": "Thumur village square",
+          "props": [
+            "tribute sacks"
           ]
         },
         {
@@ -957,7 +1493,12 @@
           "focus": "observation",
           "casel": [
             "social-awareness"
-          ]
+          ],
+          "shot": "medium",
+          "mood": "tense",
+          "illustrationPrompt": "Armored soldiers standing menacingly",
+          "illustrationKey": "arraadia:c3:c3-3",
+          "location": "Thumur village square"
         }
       ],
       "choices": [],
@@ -972,6 +1513,14 @@
               "focus": "dialogue",
               "casel": [
                 "relationship-skills"
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-crops:c3-crops-1",
+              "location": "Thumur village square",
+              "props": [
+                "tribute sacks"
               ]
             },
             {
@@ -980,6 +1529,14 @@
               "focus": "observation",
               "casel": [
                 "social-awareness"
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Armored soldiers standing menacingly",
+              "illustrationKey": "arraadia:c3-crops:c3-crops-2",
+              "location": "Thumur village square",
+              "props": [
+                "crops"
               ]
             },
             {
@@ -989,7 +1546,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-crops:c3-crops-3",
+              "location": "Thumur village square"
             },
             {
               "id": "c3-crops-4",
@@ -998,7 +1560,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "menacing",
+              "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-crops:c3-crops-4",
+              "location": "Thumur village square"
             },
             {
               "id": "c3-crops-5",
@@ -1007,7 +1574,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-crops:c3-crops-5",
+              "location": "Thumur village square"
             },
             {
               "id": "c3-crops-6",
@@ -1015,7 +1587,12 @@
               "focus": "observation",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "fearful",
+              "illustrationPrompt": "Armored soldiers standing menacingly",
+              "illustrationKey": "arraadia:c3-crops:c3-crops-6",
+              "location": "Thumur village square"
             },
             {
               "id": "c3-crops-7",
@@ -1024,7 +1601,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Villager speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-crops:c3-crops-7",
+              "location": "Thumur village square"
             }
           ],
           "c2-b": [
@@ -1035,7 +1617,12 @@
               "focus": "dialogue",
               "casel": [
                 "self-management"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-weapons:c3-weapons-1",
+              "location": "Thumur village square"
             },
             {
               "id": "c3-weapons-2",
@@ -1043,6 +1630,14 @@
               "focus": "observation",
               "casel": [
                 "social-awareness"
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Villagers gathered together, expressions visible",
+              "illustrationKey": "arraadia:c3-weapons:c3-weapons-2",
+              "location": "Thumur village square",
+              "props": [
+                "weapons"
               ]
             },
             {
@@ -1052,7 +1647,12 @@
               "focus": "dialogue",
               "casel": [
                 "responsible-decision-making"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-weapons:c3-weapons-3",
+              "location": "Thumur village square"
             },
             {
               "id": "c3-weapons-4",
@@ -1061,7 +1661,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-weapons:c3-weapons-4",
+              "location": "Thumur village square"
             },
             {
               "id": "c3-weapons-5",
@@ -1070,7 +1675,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-weapons:c3-weapons-5",
+              "location": "Thumur village square"
             },
             {
               "id": "c3-weapons-6",
@@ -1079,7 +1689,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "aggressive",
+              "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-weapons:c3-weapons-6",
+              "location": "Thumur village square"
             },
             {
               "id": "c3-weapons-7",
@@ -1087,7 +1702,12 @@
               "focus": "observation",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "chaotic",
+              "illustrationPrompt": "Armored soldiers standing menacingly",
+              "illustrationKey": "arraadia:c3-weapons:c3-weapons-7",
+              "location": "Thumur village square"
             },
             {
               "id": "c3-weapons-8",
@@ -1096,7 +1716,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "aggressive",
+              "illustrationPrompt": "Villager speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-weapons:c3-weapons-8",
+              "location": "Thumur village square"
             },
             {
               "id": "c3-weapons-9",
@@ -1105,7 +1730,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Villager speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-weapons:c3-weapons-9",
+              "location": "Thumur village square"
             }
           ],
           "c2-c": [
@@ -1115,6 +1745,14 @@
               "focus": "observation",
               "casel": [
                 "social-awareness"
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Armored soldiers standing menacingly",
+              "illustrationKey": "arraadia:c3-walls:c3-walls-1",
+              "location": "Thumur village square",
+              "props": [
+                "wooden walls"
               ]
             },
             {
@@ -1124,6 +1762,14 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-walls:c3-walls-2",
+              "location": "Thumur village square",
+              "props": [
+                "tribute sacks"
               ]
             },
             {
@@ -1134,6 +1780,14 @@
               "casel": [
                 "self-management",
                 "responsible-decision-making"
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Widodo speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-walls:c3-walls-3",
+              "location": "Thumur village square",
+              "props": [
+                "weapons"
               ]
             },
             {
@@ -1143,6 +1797,14 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-walls:c3-walls-4",
+              "location": "Thumur village square",
+              "props": [
+                "wooden walls"
               ]
             },
             {
@@ -1151,7 +1813,12 @@
               "focus": "observation",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Armored soldiers standing menacingly",
+              "illustrationKey": "arraadia:c3-walls:c3-walls-5",
+              "location": "Thumur village square"
             },
             {
               "id": "c3-walls-6",
@@ -1160,7 +1827,12 @@
               "focus": "dialogue",
               "casel": [
                 "self-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Villager speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-walls:c3-walls-6",
+              "location": "Thumur village square"
             },
             {
               "id": "c3-walls-7",
@@ -1169,7 +1841,12 @@
               "focus": "dialogue",
               "casel": [
                 "responsible-decision-making"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Widodo speaking, mid-sentence",
+              "illustrationKey": "arraadia:c3-walls:c3-walls-7",
+              "location": "Thumur village square"
             }
           ]
         }
@@ -1185,7 +1862,12 @@
           "focus": "dialogue",
           "casel": [
             "responsible-decision-making"
-          ]
+          ],
+          "shot": "medium",
+          "mood": "conversational",
+          "illustrationPrompt": "Widodo speaking, mid-sentence",
+          "illustrationKey": "arraadia:c4:c4-1",
+          "location": "Thumur village square"
         }
       ],
       "choices": [
@@ -1211,7 +1893,12 @@
               "casel": [
                 "self-management",
                 "responsible-decision-making"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c4-a:c4-a-1",
+              "location": "Thumur village square"
             },
             {
               "id": "c4-a-2",
@@ -1219,7 +1906,12 @@
               "focus": "observation",
               "casel": [
                 "self-management"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Villagers gathered together, expressions visible",
+              "illustrationKey": "arraadia:c4-a:c4-a-2",
+              "location": "Thumur village square"
             },
             {
               "id": "c4-a-3",
@@ -1228,6 +1920,14 @@
               "focus": "dialogue",
               "casel": [
                 "self-awareness"
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Villager speaking, mid-sentence",
+              "illustrationKey": "arraadia:c4-a:c4-a-3",
+              "location": "Thumur village square",
+              "props": [
+                "weapons"
               ]
             },
             {
@@ -1237,7 +1937,12 @@
               "focus": "dialogue",
               "casel": [
                 "responsible-decision-making"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Widodo speaking, mid-sentence",
+              "illustrationKey": "arraadia:c4-a:c4-a-4",
+              "location": "Thumur village square"
             },
             {
               "id": "c4-a-5",
@@ -1246,7 +1951,12 @@
               "focus": "dialogue",
               "casel": [
                 "responsible-decision-making"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "triumphant",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c4-a:c4-a-5",
+              "location": "Thumur village square"
             }
           ]
         },
@@ -1271,7 +1981,12 @@
               "focus": "dialogue",
               "casel": [
                 "relationship-skills"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c4-b:c4-b-1",
+              "location": "Thumur village square"
             },
             {
               "id": "c4-b-2",
@@ -1279,7 +1994,12 @@
               "focus": "observation",
               "casel": [
                 "responsible-decision-making"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Wide shot observing the scene",
+              "illustrationKey": "arraadia:c4-b:c4-b-2",
+              "location": "Thumur village square"
             },
             {
               "id": "c4-b-3",
@@ -1287,7 +2007,12 @@
               "focus": "transition",
               "casel": [
                 "self-management"
-              ]
+              ],
+              "shot": "wide",
+              "mood": "fearful",
+              "illustrationPrompt": "Sun moving across the sky, time passing",
+              "illustrationKey": "arraadia:c4-b:c4-b-3",
+              "location": "Thumur village square"
             },
             {
               "id": "c4-b-4",
@@ -1296,6 +2021,14 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
+              ],
+              "shot": "medium",
+              "mood": "aggressive",
+              "illustrationPrompt": "Messenger speaking, mid-sentence",
+              "illustrationKey": "arraadia:c4-b:c4-b-4",
+              "location": "Thumur village square",
+              "props": [
+                "tribute sacks"
               ]
             },
             {
@@ -1305,7 +2038,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Widodo speaking, mid-sentence",
+              "illustrationKey": "arraadia:c4-b:c4-b-5",
+              "location": "Thumur village square"
             },
             {
               "id": "c4-b-6",
@@ -1314,7 +2052,12 @@
               "focus": "dialogue",
               "casel": [
                 "responsible-decision-making"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c4-b:c4-b-6",
+              "location": "Thumur village square"
             }
           ]
         },
@@ -1339,7 +2082,12 @@
               "focus": "dialogue",
               "casel": [
                 "relationship-skills"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c4-c:c4-c-1",
+              "location": "Thumur village square"
             },
             {
               "id": "c4-c-2",
@@ -1348,7 +2096,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Widodo speaking, mid-sentence",
+              "illustrationKey": "arraadia:c4-c:c4-c-2",
+              "location": "Thumur village square"
             },
             {
               "id": "c4-c-3",
@@ -1357,7 +2110,12 @@
               "focus": "dialogue",
               "casel": [
                 "relationship-skills"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c4-c:c4-c-3",
+              "location": "Thumur village square"
             },
             {
               "id": "c4-c-4",
@@ -1365,7 +2123,12 @@
               "focus": "transition",
               "casel": [
                 "relationship-skills"
-              ]
+              ],
+              "shot": "wide",
+              "mood": "tense",
+              "illustrationPrompt": "Scene transition visual",
+              "illustrationKey": "arraadia:c4-c:c4-c-4",
+              "location": "Thumur village square"
             },
             {
               "id": "c4-c-5",
@@ -1374,7 +2137,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Hadarah Leader speaking, mid-sentence",
+              "illustrationKey": "arraadia:c4-c:c4-c-5",
+              "location": "Thumur village square"
             },
             {
               "id": "c4-c-6",
@@ -1383,7 +2151,12 @@
               "focus": "dialogue",
               "casel": [
                 "relationship-skills"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c4-c:c4-c-6",
+              "location": "Thumur village square"
             },
             {
               "id": "c4-c-7",
@@ -1392,6 +2165,14 @@
               "focus": "dialogue",
               "casel": [
                 "relationship-skills"
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Hadarah Leader speaking, mid-sentence",
+              "illustrationKey": "arraadia:c4-c:c4-c-7",
+              "location": "Thumur village square",
+              "props": [
+                "arrows"
               ]
             },
             {
@@ -1401,7 +2182,12 @@
               "casel": [
                 "relationship-skills",
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Wide shot observing the scene",
+              "illustrationKey": "arraadia:c4-c:c4-c-8",
+              "location": "Thumur village square"
             }
           ]
         }
@@ -1416,7 +2202,12 @@
           "focus": "transition",
           "casel": [
             "self-management"
-          ]
+          ],
+          "shot": "wide",
+          "mood": "tense",
+          "illustrationPrompt": "Sun moving across the sky, time passing",
+          "illustrationKey": "arraadia:c5:c5-1",
+          "location": "Thumur village square"
         },
         {
           "id": "c5-2",
@@ -1425,7 +2216,12 @@
           "focus": "dialogue",
           "casel": [
             "social-awareness"
-          ]
+          ],
+          "shot": "medium",
+          "mood": "aggressive",
+          "illustrationPrompt": "Scout speaking, mid-sentence",
+          "illustrationKey": "arraadia:c5:c5-2",
+          "location": "Thumur village square"
         },
         {
           "id": "c5-3",
@@ -1434,7 +2230,12 @@
           "focus": "dialogue",
           "casel": [
             "social-awareness"
-          ]
+          ],
+          "shot": "medium",
+          "mood": "fearful",
+          "illustrationPrompt": "Widodo speaking, mid-sentence",
+          "illustrationKey": "arraadia:c5:c5-3",
+          "location": "Thumur village square"
         },
         {
           "id": "c5-4",
@@ -1442,6 +2243,15 @@
           "focus": "environment",
           "casel": [
             "social-awareness"
+          ],
+          "shot": "wide",
+          "mood": "atmospheric",
+          "illustrationPrompt": "Dark fortress nation with war banners and armored soldiers",
+          "illustrationKey": "arraadia:c5:c5-4",
+          "location": "Thumur village square",
+          "props": [
+            "war banners",
+            "armor"
           ]
         },
         {
@@ -1451,7 +2261,12 @@
           "focus": "dialogue",
           "casel": [
             "social-awareness"
-          ]
+          ],
+          "shot": "medium",
+          "mood": "aggressive",
+          "illustrationPrompt": "General Khashin speaking, mid-sentence",
+          "illustrationKey": "arraadia:c5:c5-5",
+          "location": "Thumur village square"
         },
         {
           "id": "c5-6",
@@ -1460,7 +2275,12 @@
           "focus": "character-action",
           "casel": [
             "self-management"
-          ]
+          ],
+          "shot": "medium",
+          "mood": "tense",
+          "illustrationPrompt": "Mono stepping forward with determination",
+          "illustrationKey": "arraadia:c5:c5-6",
+          "location": "Thumur village square"
         },
         {
           "id": "c5-7",
@@ -1469,7 +2289,12 @@
           "focus": "dialogue",
           "casel": [
             "social-awareness"
-          ]
+          ],
+          "shot": "medium",
+          "mood": "menacing",
+          "illustrationPrompt": "General Khashin speaking, mid-sentence",
+          "illustrationKey": "arraadia:c5:c5-7",
+          "location": "Thumur village square"
         }
       ],
       "choices": [
@@ -1494,7 +2319,12 @@
               "casel": [
                 "self-management",
                 "responsible-decision-making"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "aggressive",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c5-a:c5-a-1",
+              "location": "Thumur village square"
             },
             {
               "id": "c5-a-2",
@@ -1503,7 +2333,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "General Khashin speaking, mid-sentence",
+              "illustrationKey": "arraadia:c5-a:c5-a-2",
+              "location": "Thumur village square"
             },
             {
               "id": "c5-a-3",
@@ -1511,7 +2346,12 @@
               "focus": "observation",
               "casel": [
                 "self-management"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Fierce melee combat between fighters",
+              "illustrationKey": "arraadia:c5-a:c5-a-3",
+              "location": "Thumur village square"
             },
             {
               "id": "c5-a-4",
@@ -1520,7 +2360,12 @@
               "focus": "dialogue",
               "casel": [
                 "self-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Qulul Fighter speaking, mid-sentence",
+              "illustrationKey": "arraadia:c5-a:c5-a-4",
+              "location": "Thumur village square"
             },
             {
               "id": "c5-a-5",
@@ -1529,7 +2374,12 @@
               "focus": "dialogue",
               "casel": [
                 "self-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Widodo speaking, mid-sentence",
+              "illustrationKey": "arraadia:c5-a:c5-a-5",
+              "location": "Thumur village square"
             }
           ]
         },
@@ -1554,6 +2404,14 @@
               "focus": "dialogue",
               "casel": [
                 "responsible-decision-making"
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c5-b:c5-b-1",
+              "location": "Thumur village square",
+              "props": [
+                "arrows"
               ]
             },
             {
@@ -1563,7 +2421,12 @@
               "focus": "dialogue",
               "casel": [
                 "relationship-skills"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c5-b:c5-b-2",
+              "location": "Thumur village square"
             },
             {
               "id": "c5-b-3",
@@ -1571,7 +2434,12 @@
               "focus": "observation",
               "casel": [
                 "responsible-decision-making"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Villagers gathered together, expressions visible",
+              "illustrationKey": "arraadia:c5-b:c5-b-3",
+              "location": "Thumur village square"
             },
             {
               "id": "c5-b-4",
@@ -1580,7 +2448,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "aggressive",
+              "illustrationPrompt": "General Khashin speaking, mid-sentence",
+              "illustrationKey": "arraadia:c5-b:c5-b-4",
+              "location": "Thumur village square"
             },
             {
               "id": "c5-b-5",
@@ -1588,6 +2461,14 @@
               "focus": "observation",
               "casel": [
                 "responsible-decision-making"
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "Soldiers caught in pit traps and nets",
+              "illustrationKey": "arraadia:c5-b:c5-b-5",
+              "location": "Thumur village square",
+              "props": [
+                "arrows"
               ]
             }
           ]
@@ -1614,6 +2495,14 @@
               "casel": [
                 "social-awareness",
                 "self-management"
+              ],
+              "shot": "medium",
+              "mood": "aggressive",
+              "illustrationPrompt": "Mono speaking, mid-sentence",
+              "illustrationKey": "arraadia:c5-c:c5-c-1",
+              "location": "Thumur village square",
+              "props": [
+                "crops"
               ]
             },
             {
@@ -1623,7 +2512,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "General Khashin speaking, mid-sentence",
+              "illustrationKey": "arraadia:c5-c:c5-c-2",
+              "location": "Thumur village square"
             },
             {
               "id": "c5-c-3",
@@ -1632,7 +2526,12 @@
               "focus": "character-action",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "tense",
+              "illustrationPrompt": "General Khashin in action",
+              "illustrationKey": "arraadia:c5-c:c5-c-3",
+              "location": "Thumur village square"
             },
             {
               "id": "c5-c-4",
@@ -1641,7 +2540,12 @@
               "focus": "dialogue",
               "casel": [
                 "social-awareness"
-              ]
+              ],
+              "shot": "medium",
+              "mood": "conversational",
+              "illustrationPrompt": "Widodo speaking, mid-sentence",
+              "illustrationKey": "arraadia:c5-c:c5-c-4",
+              "location": "Thumur village square"
             }
           ]
         }
@@ -1658,7 +2562,12 @@
         "focus": "dialogue",
         "casel": [
           "social-awareness"
-        ]
+        ],
+        "shot": "medium",
+        "mood": "aggressive",
+        "illustrationPrompt": "General Khashin speaking, mid-sentence",
+        "illustrationKey": "arraadia:tactical:intro:tac-intro-1",
+        "location": "Thumur battlefield"
       }
     ],
     "options": [
@@ -1672,6 +2581,14 @@
             "focus": "observation",
             "casel": [
               "responsible-decision-making"
+            ],
+            "shot": "medium",
+            "mood": "intense",
+            "illustrationPrompt": "Arrows raining down on armored soldiers",
+            "illustrationKey": "arraadia:tactical:tac-archers:tac-archers-1",
+            "location": "Thumur battlefield",
+            "props": [
+              "arrows"
             ]
           },
           {
@@ -1681,7 +2598,12 @@
             "focus": "dialogue",
             "casel": [
               "social-awareness"
-            ]
+            ],
+            "shot": "medium",
+            "mood": "aggressive",
+            "illustrationPrompt": "Odwani Soldier speaking, mid-sentence",
+            "illustrationKey": "arraadia:tactical:tac-archers:tac-archers-2",
+            "location": "Thumur battlefield"
           },
           {
             "id": "tac-archers-3",
@@ -1690,6 +2612,14 @@
             "focus": "dialogue",
             "casel": [
               "social-awareness"
+            ],
+            "shot": "medium",
+            "mood": "aggressive",
+            "illustrationPrompt": "General Khashin speaking, mid-sentence",
+            "illustrationKey": "arraadia:tactical:tac-archers:tac-archers-3",
+            "location": "Thumur battlefield",
+            "props": [
+              "shields"
             ]
           }
         ]
@@ -1704,6 +2634,14 @@
             "focus": "observation",
             "casel": [
               "responsible-decision-making"
+            ],
+            "shot": "medium",
+            "mood": "intense",
+            "illustrationPrompt": "Large boulder launching from catapult",
+            "illustrationKey": "arraadia:tactical:tac-catapult:tac-catapult-1",
+            "location": "Thumur battlefield",
+            "props": [
+              "catapult"
             ]
           },
           {
@@ -1713,6 +2651,14 @@
             "focus": "dialogue",
             "casel": [
               "social-awareness"
+            ],
+            "shot": "medium",
+            "mood": "intense",
+            "illustrationPrompt": "General Khashin speaking, mid-sentence",
+            "illustrationKey": "arraadia:tactical:tac-catapult:tac-catapult-2",
+            "location": "Thumur battlefield",
+            "props": [
+              "weapons"
             ]
           }
         ]
@@ -1727,7 +2673,12 @@
             "focus": "observation",
             "casel": [
               "responsible-decision-making"
-            ]
+            ],
+            "shot": "medium",
+            "mood": "intense",
+            "illustrationPrompt": "Soldiers falling into pit traps and tangled in nets",
+            "illustrationKey": "arraadia:tactical:tac-traps:tac-traps-1",
+            "location": "Thumur battlefield"
           },
           {
             "id": "tac-traps-2",
@@ -1736,7 +2687,12 @@
             "focus": "dialogue",
             "casel": [
               "social-awareness"
-            ]
+            ],
+            "shot": "medium",
+            "mood": "aggressive",
+            "illustrationPrompt": "Odwan Commander speaking, mid-sentence",
+            "illustrationKey": "arraadia:tactical:tac-traps:tac-traps-2",
+            "location": "Thumur battlefield"
           }
         ]
       },
@@ -1750,7 +2706,12 @@
             "focus": "observation",
             "casel": [
               "self-management"
-            ]
+            ],
+            "shot": "medium",
+            "mood": "intense",
+            "illustrationPrompt": "Fierce melee combat between fighters",
+            "illustrationKey": "arraadia:tactical:tac-swordsmen:tac-swordsmen-1",
+            "location": "Thumur battlefield"
           },
           {
             "id": "tac-swordsmen-2",
@@ -1760,6 +2721,14 @@
             "casel": [
               "self-awareness",
               "relationship-skills"
+            ],
+            "shot": "medium",
+            "mood": "aggressive",
+            "illustrationPrompt": "Widodo speaking, mid-sentence",
+            "illustrationKey": "arraadia:tactical:tac-swordsmen:tac-swordsmen-2",
+            "location": "Thumur battlefield",
+            "props": [
+              "tribute sacks"
             ]
           }
         ]
@@ -1774,7 +2743,12 @@
             "focus": "observation",
             "casel": [
               "relationship-skills"
-            ]
+            ],
+            "shot": "medium",
+            "mood": "intense",
+            "illustrationPrompt": "Wide shot observing the scene",
+            "illustrationKey": "arraadia:tactical:tac-medics:tac-medics-1",
+            "location": "Thumur battlefield"
           },
           {
             "id": "tac-medics-2",
@@ -1783,7 +2757,12 @@
             "focus": "dialogue",
             "casel": [
               "self-management"
-            ]
+            ],
+            "shot": "medium",
+            "mood": "intense",
+            "illustrationPrompt": "Wounded Fighter speaking, mid-sentence",
+            "illustrationKey": "arraadia:tactical:tac-medics:tac-medics-2",
+            "location": "Thumur battlefield"
           }
         ]
       },
@@ -1798,6 +2777,14 @@
             "focus": "observation",
             "casel": [
               "responsible-decision-making"
+            ],
+            "shot": "medium",
+            "mood": "intense",
+            "illustrationPrompt": "Arrows raining down on armored soldiers",
+            "illustrationKey": "arraadia:tactical:tac-archers-final:tac-final-1",
+            "location": "Thumur battlefield",
+            "props": [
+              "arrows"
             ]
           },
           {
@@ -1807,7 +2794,12 @@
             "focus": "dialogue",
             "casel": [
               "social-awareness"
-            ]
+            ],
+            "shot": "medium",
+            "mood": "panicked",
+            "illustrationPrompt": "General Khashin shouting retreat, panicked expression",
+            "illustrationKey": "arraadia:tactical:tac-archers-final:tac-final-2",
+            "location": "Thumur battlefield"
           }
         ]
       }
@@ -1819,7 +2811,12 @@
         "focus": "observation",
         "casel": [
           "social-awareness"
-        ]
+        ],
+        "shot": "medium",
+        "mood": "triumphant",
+        "illustrationPrompt": "Soldiers fleeing in disarray, dropping weapons",
+        "illustrationKey": "arraadia:tactical:conclusion:tac-end-1",
+        "location": "Thumur battlefield"
       }
     ]
   },
@@ -1831,7 +2828,12 @@
       "focus": "dialogue",
       "casel": [
         "relationship-skills"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "triumphant",
+      "illustrationPrompt": "Widodo speaking, mid-sentence",
+      "illustrationKey": "arraadia:ending:end-1",
+      "location": "Thumur village center"
     },
     {
       "id": "end-2",
@@ -1840,7 +2842,12 @@
       "focus": "dialogue",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "hopeful",
+      "illustrationPrompt": "Qulul Elder speaking, mid-sentence",
+      "illustrationKey": "arraadia:ending:end-2",
+      "location": "Thumur village center"
     },
     {
       "id": "end-3",
@@ -1849,7 +2856,12 @@
       "focus": "dialogue",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "triumphant",
+      "illustrationPrompt": "Hadarah Ally speaking, mid-sentence",
+      "illustrationKey": "arraadia:ending:end-3",
+      "location": "Thumur village center"
     },
     {
       "id": "end-4",
@@ -1858,15 +2870,32 @@
       "focus": "dialogue",
       "casel": [
         "relationship-skills"
+      ],
+      "shot": "medium",
+      "mood": "hopeful",
+      "illustrationPrompt": "Widodo speaking, mid-sentence",
+      "illustrationKey": "arraadia:ending:end-4",
+      "location": "Thumur village center",
+      "props": [
+        "Kesatria Badge"
       ]
     },
     {
       "id": "end-5",
-      "text": "Villagers present food. \"Peanut rice, peanut chicken, peanut bread\u2014our finest!\" a villager says.",
+      "text": "Villagers present food. \"Peanut rice, peanut chicken, peanut bread—our finest!\" a villager says.",
       "actor": "Villager",
       "focus": "dialogue",
       "casel": [
         "relationship-skills"
+      ],
+      "shot": "medium",
+      "mood": "hopeful",
+      "illustrationPrompt": "Villager speaking, mid-sentence",
+      "illustrationKey": "arraadia:ending:end-5",
+      "location": "Thumur village center",
+      "props": [
+        "food supplies",
+        "peanut dishes"
       ]
     },
     {
@@ -1876,17 +2905,27 @@
       "focus": "dialogue",
       "casel": [
         "self-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "warm",
+      "illustrationPrompt": "Mono speaking, mid-sentence",
+      "illustrationKey": "arraadia:ending:end-6",
+      "location": "Thumur village center"
     },
     {
       "id": "end-7",
-      "text": "\"You've changed us, Mono. We were content to bend, but you've shown us we can stand tall despite our stature. What you've learned here\u2014that courage doesn't always mean rushing into battle, but finding the right way to fight\u2014take that wisdom with you,\" says Widodo.",
+      "text": "\"You've changed us, Mono. We were content to bend, but you've shown us we can stand tall despite our stature. What you've learned here—that courage doesn't always mean rushing into battle, but finding the right way to fight—take that wisdom with you,\" says Widodo.",
       "actor": "Widodo",
       "focus": "dialogue",
       "casel": [
         "self-awareness",
         "responsible-decision-making"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "triumphant",
+      "illustrationPrompt": "Widodo speaking, mid-sentence",
+      "illustrationKey": "arraadia:ending:end-7",
+      "location": "Thumur village center"
     },
     {
       "id": "end-8",
@@ -1895,7 +2934,12 @@
       "focus": "dialogue",
       "casel": [
         "social-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "warm",
+      "illustrationPrompt": "Hadarah Ally speaking, mid-sentence",
+      "illustrationKey": "arraadia:ending:end-8",
+      "location": "Thumur village center"
     },
     {
       "id": "end-9",
@@ -1904,7 +2948,12 @@
       "focus": "dialogue",
       "casel": [
         "responsible-decision-making"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "hopeful",
+      "illustrationPrompt": "Mono speaking, mid-sentence",
+      "illustrationKey": "arraadia:ending:end-9",
+      "location": "Thumur village center"
     },
     {
       "id": "end-10",
@@ -1913,7 +2962,12 @@
       "focus": "dialogue",
       "casel": [
         "relationship-skills"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "hopeful",
+      "illustrationPrompt": "Widodo speaking, mid-sentence",
+      "illustrationKey": "arraadia:ending:end-10",
+      "location": "Thumur village center"
     },
     {
       "id": "end-11",
@@ -1922,7 +2976,12 @@
       "focus": "character-action",
       "casel": [
         "self-management"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "hopeful",
+      "illustrationPrompt": "Mono riding a beast",
+      "illustrationKey": "arraadia:ending:end-11",
+      "location": "Thumur village center"
     },
     {
       "id": "end-12",
@@ -1931,7 +2990,12 @@
       "focus": "dialogue",
       "casel": [
         "self-awareness"
-      ]
+      ],
+      "shot": "medium",
+      "mood": "hopeful",
+      "illustrationPrompt": "Mono speaking, mid-sentence",
+      "illustrationKey": "arraadia:ending:end-12",
+      "location": "Thumur village center"
     },
     {
       "id": "end-13",
@@ -1939,7 +3003,12 @@
       "focus": "transition",
       "casel": [
         "self-awareness"
-      ]
+      ],
+      "shot": "wide",
+      "mood": "hopeful",
+      "illustrationPrompt": "Figure riding into the distance at sunset",
+      "illustrationKey": "arraadia:ending:end-13",
+      "location": "Thumur village center"
     }
   ],
   "_meta": {

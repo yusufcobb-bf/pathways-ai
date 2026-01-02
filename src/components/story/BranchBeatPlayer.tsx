@@ -92,6 +92,15 @@ export default function BranchBeatPlayer({
       onPrev={currentIndex > 0 ? handlePrev : undefined}
       onNext={handleNext}
       isLast={isLast}
+      // Stage 5: Pass visual metadata for placeholder card
+      beatMeta={{
+        location: currentBeat?.location,
+        shot: currentBeat?.shot,
+        mood: currentBeat?.mood,
+        actor: currentBeat?.actor,
+        props: currentBeat?.props,
+        illustrationKey: currentBeat?.illustrationKey,
+      }}
     />
   );
 }
